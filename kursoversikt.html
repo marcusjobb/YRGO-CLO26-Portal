@@ -1,0 +1,601 @@
+<title>CLO26 Kursöversikt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+
+<style>
+  :root {
+    --bg:        #F7F8FC;
+    --surface:   #FFFFFF;
+    --border:    #E2E7F2;
+    --text:      #1A1C2E;
+    --muted:     #6870A0;
+    --accent:    #5760D9;
+    --accent-dim:#EEF0FB;
+    --green:     #16A34A;
+    --green-bg:  #DCFCE7;
+    --amber:     #A16207;
+    --amber-bg:  #FEFCE8;
+    --red:       #B91C1C;
+    --red-bg:    #FEE2E2;
+    --week-num:  #5760D9;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:        #12131C;
+      --surface:   #1A1B28;
+      --border:    #282A3E;
+      --text:      #D8DCF2;
+      --muted:     #7880B0;
+      --accent:    #7A84F0;
+      --accent-dim:#1E2040;
+      --green:     #4ADE80;
+      --green-bg:  #052E16;
+      --amber:     #FDE047;
+      --amber-bg:  #1C1500;
+      --red:       #FCA5A5;
+      --red-bg:    #2D0A0A;
+      --week-num:  #7A84F0;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg:        #12131C;
+    --surface:   #1A1B28;
+    --border:    #282A3E;
+    --text:      #D8DCF2;
+    --muted:     #7880B0;
+    --accent:    #7A84F0;
+    --accent-dim:#1E2040;
+    --green:     #4ADE80;
+    --green-bg:  #052E16;
+    --amber:     #FCD34D;
+    --amber-bg:  #1C1203;
+    --red:       #FCA5A5;
+    --red-bg:    #2D0A0A;
+    --week-num:  #7A84F0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .kurs-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .header h1 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.2;
+    text-wrap: balance;
+    margin-bottom: 0.75rem;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .meta-row span {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    border: 2px solid transparent;
+    transition: opacity 0.15s, border-color 0.15s;
+  }
+
+  .pill.green { background: var(--green-bg); color: var(--green); }
+  .pill.amber { background: var(--amber-bg); color: var(--amber); }
+  .pill.red   { background: var(--red-bg);   color: var(--red);   }
+
+  .pill[aria-pressed="false"] {
+    opacity: 0.35;
+    border-color: transparent;
+  }
+
+  .pill[aria-pressed="true"].green { border-color: var(--green); }
+  .pill[aria-pressed="true"].amber { border-color: var(--amber); }
+  .pill[aria-pressed="true"].red   { border-color: var(--red); }
+
+  /* Hide items when their level is toggled off */
+  body.hide-green .item[data-level="green"] { display: none; }
+  body.hide-amber .item[data-level="amber"] { display: none; }
+  body.hide-red   .item[data-level="red"]   { display: none; }
+
+  /* Timeline */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .week {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 0 1.5rem;
+  }
+
+  /* Left: week marker */
+  .week-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0.25rem;
+  }
+
+  .week-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent-dim);
+    border: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .week-dot span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--week-num);
+  }
+
+  .week-line {
+    flex: 1;
+    width: 2px;
+    background: var(--border);
+    margin: 4px 0;
+  }
+
+  .week:last-child .week-line {
+    display: none;
+  }
+
+  /* Right: week content */
+  .week-content {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .week-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .week-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+
+  .week-goal {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .week-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1rem 0;
+  }
+
+  .week-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 540px) {
+    .week { grid-template-columns: 48px 1fr; gap: 0 1rem; }
+    .week-cols { grid-template-columns: 1fr; }
+  }
+
+  .col-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+
+  .item-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 13.5px;
+    line-height: 1.4;
+  }
+
+  .item-badge {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 0.38em;
+  }
+
+  .item-badge.green { background: var(--green); }
+  .item-badge.amber { background: var(--amber); }
+  .item-badge.red   { background: var(--red); }
+
+  .item a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .item a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .item-note {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  /* Tenta week special */
+  .tenta-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    margin-top: 0.5rem;
+  }
+
+  .tenta-table td {
+    padding: 0.45rem 0;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .tenta-table td:first-child {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+    padding-right: 1rem;
+    width: 130px;
+  }
+
+  .tenta-table tr:last-child td { border-bottom: none; }
+
+  .tenta-badge {
+    display: inline-block;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .deadline-bar {
+    background: var(--accent-dim);
+    border-left: 3px solid var(--accent);
+    padding: 0.5rem 0.75rem;
+    border-radius: 0 6px 6px 0;
+    font-size: 13px;
+    margin-top: 1rem;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .score-row {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .score-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.65rem;
+    border-radius: 6px;
+    color: var(--muted);
+  }
+
+  .score-chip strong { color: var(--text); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+
+<div class="page">
+
+  <header class="header">
+    <p class="kurs-label">CLO26 · Kurs 01 · v.36–40</p>
+    <h1>Kursöversikt — Grundläggande OOP i C#</h1>
+    <div class="meta-row">
+      <span>📅 1 sep – 3 okt 2026</span>
+      <span>📍 Mån + Ons campus · Fredag online 09–11</span>
+      <span>❌ Ingen inlämning vecka 1–2</span>
+    </div>
+  </header>
+
+  <div class="legend">
+    <button class="pill green" data-level="green" aria-pressed="true">● Måste göra</button>
+    <button class="pill amber" data-level="amber" aria-pressed="true">● Välj minst ett</button>
+    <button class="pill red"   data-level="red"   aria-pressed="true">● Utmana dig själv</button>
+  </div>
+
+  <div class="timeline">
+
+    <!-- V36 -->
+    <div class="week">
+      <div class="week-marker">
+        <div class="week-dot"><span>v36</span></div>
+        <div class="week-line"></div>
+      </div>
+      <div class="week-content">
+        <div class="week-header">
+          <div class="week-title">Git och verktyg</div>
+          <div class="week-goal">Fungerande miljö. Kan göra ett komplett git-flöde.</div>
+        </div>
+        <div class="week-divider"></div>
+        <div class="week-cols">
+          <div>
+            <div class="col-label">Läs</div>
+            <ul class="item-list">
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="01_verktyg_och_git/notes/installationsguide.md">installationsguide.md</a></li>
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="01_verktyg_och_git/notes/git_grunder.md">git_grunder.md</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="01_verktyg_och_git/notes/git_konflikter.md">git_konflikter.md</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-label">Gör</div>
+            <ul class="item-list">
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="01_verktyg_och_git/exercises/ovning_01_git_setup.md">ovning_01_git_setup</a></li>
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="01_verktyg_och_git/exercises/ovning_02_forsta_repot.md">ovning_02_forsta_repot</a></li>
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="01_verktyg_och_git/exercises/ovning_03_hello_world.md">ovning_03_hello_world</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="01_verktyg_och_git/exercises/logik_01_metropolitanclub.md">logik_01_metropolitanclub</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="01_verktyg_och_git/exercises/diskutera_01_kassaapparaten.md">diskutera_01_kassaapparaten</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="01_verktyg_och_git/exercises/diskutera_03_kalle.md">diskutera_03_kalle</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="01_verktyg_och_git/exercises/gruppovning_01_fyrkanter.md">gruppovning_01_fyrkanter</a></li>
+              <li class="item" data-level="red"><span class="item-badge red"></span><a href="01_verktyg_och_git/exercises/training_vecka1.md">training_vecka1</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- V37 -->
+    <div class="week">
+      <div class="week-marker">
+        <div class="week-dot"><span>v37</span></div>
+        <div class="week-line"></div>
+      </div>
+      <div class="week-content">
+        <div class="week-header">
+          <div class="week-title">C# repetition</div>
+          <div class="week-goal">Varm i kläderna. Kan variabler, if/else, loopar och metoder.</div>
+        </div>
+        <div class="week-divider"></div>
+        <div class="week-cols">
+          <div>
+            <div class="col-label">Läs</div>
+            <ul class="item-list">
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="02_syntax_och_variabler/notes/variabler.md">variabler.md</a></li>
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="02_syntax_och_variabler/notes/datatyper.md">datatyper.md</a></li>
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="02_syntax_och_variabler/notes/konsol.md">konsol.md</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><span class="item-note">if_else.md · loopar.md · metoder.md — publiceras v37</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-label">Gör</div>
+            <ul class="item-list">
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="02_syntax_och_variabler/exercises/stories/story_01_grlub_the_troll.md">story_01_grlub_the_troll</a></li>
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="02_syntax_och_variabler/exercises/arithmetic/missing_crown.md">arithmetic/missing_crown</a></li>
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="03_villkor_och_loopar/exercises/conditions/varberg_vs_sisjoen.md">conditions/varberg_vs_sisjoen</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="02_syntax_och_variabler/exercises/stories/story_02_anakin.md">story_02_anakin</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="02_syntax_och_variabler/exercises/stories/story_03_sherlock.md">story_03_sherlock</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="02_syntax_och_variabler/exercises/arithmetic/cat_diet.md">arithmetic/cat_diet</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="02_syntax_och_variabler/exercises/arithmetic/streaming_vs_cinema.md">arithmetic/streaming_vs_cinema</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="03_villkor_och_loopar/exercises/conditions/temperature_check.md">conditions/temperature_check</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="03_villkor_och_loopar/exercises/loops/countdown.md">loops/countdown</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="03_villkor_och_loopar/exercises/loops/pirate_game.md">loops/pirate_game</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="03_villkor_och_loopar/ovning_tarningsspelet.md">ovning_tarningsspelet</a></li>
+              <li class="item" data-level="red"><span class="item-badge red"></span><a href="02_syntax_och_variabler/exercises/stories/story_04_arsene_lupin.md">story_04_arsene_lupin</a></li>
+              <li class="item" data-level="red"><span class="item-badge red"></span><a href="02_syntax_och_variabler/exercises/stories/story_05_harry_potter.md">story_05_harry_potter</a></li>
+              <li class="item" data-level="red"><span class="item-badge red"></span><a href="02_syntax_och_variabler/exercises/training_vecka2.md">training_vecka2</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- V38 -->
+    <div class="week">
+      <div class="week-marker">
+        <div class="week-dot"><span>v38</span></div>
+        <div class="week-line"></div>
+      </div>
+      <div class="week-content">
+        <div class="week-header">
+          <div class="week-title">Klasser och OOP</div>
+          <div class="week-goal">Kan skriva en klass med konstruktor, properties och metoder. Förstår varför inkapsling finns.</div>
+        </div>
+        <div class="week-divider"></div>
+        <div class="week-cols">
+          <div>
+            <div class="col-label">Läs</div>
+            <ul class="item-list">
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="05_klasser_och_oop/notes/klasser_och_oop.md">klasser_och_oop.md</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-label">Gör</div>
+            <ul class="item-list">
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="05_klasser_och_oop/exercises/ovning_01_car.md">ovning_01_car</a></li>
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="05_klasser_och_oop/exercises/ovning_02_spaceship.md">ovning_02_spaceship</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="05_klasser_och_oop/exercises/intro_varfor_oop.md">intro_varfor_oop</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="04_metoder/exercises/calculator_methods.md">metoder/calculator_methods</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="04_metoder/exercises/grade_calculator.md">metoder/grade_calculator</a></li>
+              <li class="item" data-level="red"><span class="item-badge red"></span><a href="04_metoder/exercises/basic_algorithms.md">metoder/basic_algorithms</a></li>
+              <li class="item" data-level="red"><span class="item-badge red"></span><a href="05_klasser_och_oop/exercises/training_vecka3.md">training_vecka3</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="deadline-bar">Inlämning 1 — Spellistan · deadline sön 21 sep 23:59</div>
+      </div>
+    </div>
+
+    <!-- V39 -->
+    <div class="week">
+      <div class="week-marker">
+        <div class="week-dot"><span>v39</span></div>
+        <div class="week-line"></div>
+      </div>
+      <div class="week-content">
+        <div class="week-header">
+          <div class="week-title">Samlingar och datastrukturer</div>
+          <div class="week-goal">Kan använda List och enum. Förstår när man väljer List vs Dictionary.</div>
+        </div>
+        <div class="week-divider"></div>
+        <div class="week-cols">
+          <div>
+            <div class="col-label">Läs</div>
+            <ul class="item-list">
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="06_datastrukturer/notes/arrayer_och_listor.md">arrayer_och_listor.md</a></li>
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="06_datastrukturer/notes/dictionary.md">dictionary.md</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="06_datastrukturer/notes/enum.md">enum.md</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-label">Gör</div>
+            <ul class="item-list">
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="06_datastrukturer/exercises/array_exercises.md">array_exercises</a></li>
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="06_datastrukturer/exercises/dictionary_phonebook.md">dictionary_phonebook</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="06_datastrukturer/exercises/array_avengers.md">array_avengers</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="06_datastrukturer/exercises/dictionary_stargate.md">dictionary_stargate</a></li>
+              <li class="item" data-level="amber"><span class="item-badge amber"></span><a href="06_datastrukturer/exercises/arraycopy.md">arraycopy</a></li>
+              <li class="item" data-level="red"><span class="item-badge red"></span><a href="06_datastrukturer/exercises/training_vecka4.md">training_vecka4</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="deadline-bar">Skogsäventyret (grupp) · deadline sön 28 sep 23:59</div>
+      </div>
+    </div>
+
+    <!-- V40 -->
+    <div class="week">
+      <div class="week-marker">
+        <div class="week-dot"><span>v40</span></div>
+        <div class="week-line"></div>
+      </div>
+      <div class="week-content">
+        <div class="week-header">
+          <div class="week-title">Repetition och tenta</div>
+          <div class="week-goal">Visa vad du kan. Inga nya ämnen den här veckan.</div>
+        </div>
+        <div class="week-divider"></div>
+        <table class="tenta-table">
+          <tr>
+            <td>Mån 29 sep</td>
+            <td>Repetition av alla ämnen · öppen handledning</td>
+          </tr>
+          <tr>
+            <td>Tis 30 sep</td>
+            <td><span class="tenta-badge">TENTA</span> 09:00–11:00</td>
+          </tr>
+          <tr>
+            <td>Ons 1 okt</td>
+            <td>Genomgång + sista handledning Skogsäventyret</td>
+          </tr>
+        </table>
+        <div class="score-row">
+          <div class="score-chip">Täcker: Git · variabler · if/else · loopar · metoder · klasser · List · enum</div>
+          <div class="score-chip">Bara terminologi — kod bedöms på inlämningar</div>
+          <div class="score-chip"><strong>G</strong> = 60 %</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Toggle pills
+  document.querySelectorAll('.pill[data-level]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const level = btn.dataset.level;
+      const active = btn.getAttribute('aria-pressed') === 'true';
+      btn.setAttribute('aria-pressed', active ? 'false' : 'true');
+      document.body.classList.toggle('hide-' + level, active);
+    });
+  });
+
+  // Prefix all item links with GitHub base URL
+  const base = 'https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-01-grundlaggande-oop/';
+  document.querySelectorAll('.item a').forEach(a => {
+    a.href = base + a.getAttribute('href');
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+  });
+</script>
