@@ -3,11 +3,31 @@
 YRGO · Campus Mölndal · Kursmaterial-portal
 
 - **[Discord](https://discord.gg/ZSquGkSvK)** — klassens community, ställ frågor, dela kod, hjälp varandra
-- **[Installationsguide](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-01-grundlaggande-oop/01_verktyg_och_git/notes/installationsguide.md)** — gör detta innan dag 2
-- **[Kursöversikt](kursoversikt.html)** — vecka för vecka, lärandemål och deadlines
-- **[Läs inför onsdag: Git-grunder](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-01-grundlaggande-oop/01_verktyg_och_git/notes/git_grunder.md)** — vad Git är och de tre grundbegreppen
-- **[Klassens Git-profiler](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/classmates.md)** — namn och GitHub-användarnamn
-- **Inlämningsuppgifter** — kommer snart
+- **[Klassens Git-profiler](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-01-grundlaggande-oop/01_verktyg_och_git/classmates.md)** — namn och GitHub-användarnamn
+
+---
+
+## Modul 01 — Verktyg och Git
+
+- **[Installationsguide](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-01-grundlaggande-oop/01_verktyg_och_git/notes/installationsguide.md)**
+- **[Git-grunder](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-01-grundlaggande-oop/01_verktyg_och_git/notes/git_grunder.md)**
+- **[Git-konflikter](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-01-grundlaggande-oop/01_verktyg_och_git/notes/git_konflikter.md)**
+- **[Övningar — modul 01](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/tree/main/kurs-01-grundlaggande-oop/01_verktyg_och_git/exercises)**
+
+---
+
+## Modul 02 — Syntax och variabler
+
+- **[Variabler](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-01-grundlaggande-oop/02_syntax_och_variabler/notes/variabler.md)**
+- **[Datatyper](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-01-grundlaggande-oop/02_syntax_och_variabler/notes/datatyper.md)**
+- **[Konsol](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-01-grundlaggande-oop/02_syntax_och_variabler/notes/konsol.md)**
+- **[Övningar — modul 02](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/tree/main/kurs-01-grundlaggande-oop/02_syntax_och_variabler/exercises)**
+
+---
+
+## Programmeringstermer
+
+- **[Alla termer](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/tree/main/kurs-01-grundlaggande-oop/termer)**
 
 ---
 
