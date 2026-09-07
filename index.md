@@ -25,6 +25,15 @@ YRGO · Campus Mölndal · Kursmaterial-portal
 
 ---
 
+## Modul 03 — Villkor och loopar
+
+- **[If-satser](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-01-grundlaggande-oop/03_villkor_och_loopar/notes/if_else.md)**
+- **[Loopar](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-01-grundlaggande-oop/03_villkor_och_loopar/notes/loopar.md)**
+- **[Switch](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-01-grundlaggande-oop/03_villkor_och_loopar/notes/switch.md)**
+- **[Övningar — modul 03](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/tree/main/kurs-01-grundlaggande-oop/03_villkor_och_loopar/exercises)**
+
+---
+
 ## Programmeringstermer
 
 - **[Alla termer](https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/tree/main/kurs-01-grundlaggande-oop/termer)**
