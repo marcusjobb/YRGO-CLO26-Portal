@@ -236,10 +236,15 @@
     grid-template-columns: 1fr 1fr;
     gap: 1.25rem;
   }
+  .week-cols-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.25rem;
+  }
 
   @media (max-width: 540px) {
     .week { grid-template-columns: 48px 1fr; gap: 0 1rem; }
-    .week-cols { grid-template-columns: 1fr; }
+    .week-cols, .week-cols-3 { grid-template-columns: 1fr; }
   }
 
   .col-label {
@@ -440,7 +445,7 @@
           <div class="week-goal">Varm i kläderna. Kan variabler, if/else, loopar och metoder.</div>
         </div>
         <div class="week-divider"></div>
-        <div class="week-cols">
+        <div class="week-cols-3">
           <div>
             <div class="col-label">Läs</div>
             <ul class="item-list">
@@ -477,6 +482,13 @@
               <li class="item" data-level="red"><span class="item-badge red"></span><a href="02_syntax_och_variabler/exercises/stories/story_04_arsene_lupin.md">story_04_arsene_lupin</a></li>
               <li class="item" data-level="red"><span class="item-badge red"></span><a href="02_syntax_och_variabler/exercises/stories/story_05_harry_potter.md">story_05_harry_potter</a></li>
               <li class="item" data-level="red"><span class="item-badge red"></span><a href="02_syntax_och_variabler/exercises/training_vecka2.md">training_vecka2</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="col-label">Tenta</div>
+            <ul class="item-list">
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="02_syntax_och_variabler/tentafragor/fragor_variabler.md">fragor_variabler</a></li>
+              <li class="item" data-level="green"><span class="item-badge green"></span><a href="03_villkor_och_loopar/tentafragor/fragor_villkor.md">fragor_villkor</a></li>
             </ul>
           </div>
         </div>
