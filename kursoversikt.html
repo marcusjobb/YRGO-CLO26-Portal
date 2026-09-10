@@ -661,7 +661,8 @@ function renderAmne(amne, base, q) {
   // resource links (lektion + notes)
   const resources = [];
   if (amne.lektion) resources.push({ icon:'📊', label: amne.lektion.text, href: base + amne.lektion.href });
-  if (amne.notes)   resources.push({ icon:'📝', label: amne.notes.text,   href: base + amne.notes.href });
+  const notesArr = Array.isArray(amne.notes) ? amne.notes : (amne.notes ? [amne.notes] : []);
+  notesArr.forEach(n => resources.push({ icon:'📝', label: n.text, href: base + n.href }));
 
   if (resources.length) {
     const resEl = el('div','amne-resources');
@@ -827,7 +828,7 @@ function runSearch(q) {
         a.titel, a.beskrivning,
         ...(a.tags || []),
         resourceSearchStr(a.lektion),
-        resourceSearchStr(a.notes),
+        ...(Array.isArray(a.notes) ? a.notes.map(resourceSearchStr) : [resourceSearchStr(a.notes)]),
         ...(a.examples || []).map(itemSearchStr),
         ...(a.ovningar?.green || []).map(itemSearchStr),
         ...(a.ovningar?.amber || []).map(itemSearchStr),

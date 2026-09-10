@@ -329,17 +329,32 @@
               "Convert"
             ]
           },
-          "notes": {
-            "text": "konsol.md",
-            "href": "02_syntax_och_variabler/notes/konsol.md",
-            "tags": [
-              "Console",
-              "ReadLine",
-              "WriteLine",
-              "input",
-              "output"
-            ]
-          },
+          "notes": [
+            {
+              "text": "konsol.md",
+              "href": "02_syntax_och_variabler/notes/konsol.md",
+              "tags": [
+                "Console",
+                "ReadLine",
+                "WriteLine",
+                "input",
+                "output"
+              ]
+            },
+            {
+              "text": "konsol_avancerat.md",
+              "href": "02_syntax_och_variabler/notes/konsol_avancerat.md",
+              "tags": [
+                "Console.Clear",
+                "BackgroundColor",
+                "ForegroundColor",
+                "SetCursorPosition",
+                "CursorVisible",
+                "ResetColor",
+                "ConsoleColor"
+              ]
+            }
+          ],
           "examples": [],
           "ovningar": {
             "green": [],
