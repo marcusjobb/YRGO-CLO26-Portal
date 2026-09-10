@@ -1,10 +1,270 @@
+<meta charset="UTF-8">
 <title>CLO26 — Cloud Developer</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="0; url=kursoversikt.html">
-<link rel="canonical" href="kursoversikt.html">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+
 <style>
-  body { font-family: system-ui, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #F7F8FC; }
-  a { color: #5760D9; font-size: 1.1rem; }
+:root {
+  --bg:         #F1F2F8;
+  --surface:    #FFFFFF;
+  --surface2:   #F7F8FC;
+  --border:     #E2E5F0;
+  --text:       #1A1C2E;
+  --muted:      #6870A0;
+  --accent:     #5760D9;
+  --accent-dim: #ECEEFB;
+  --green:      #15803D;
+  --green-bg:   #DCFCE7;
+  --amber:      #B45309;
+  --amber-bg:   #FEF3C7;
+  --slate:      #64748B;
+  --slate-bg:   #F1F5F9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:         #0E0F18;
+    --surface:    #13141F;
+    --surface2:   #1A1B2A;
+    --border:     #1E2034;
+    --text:       #D0D4EE;
+    --muted:      #6068A0;
+    --accent:     #7A84F0;
+    --accent-dim: #1A1E42;
+    --green:      #4ADE80;
+    --green-bg:   #052E16;
+    --amber:      #FCD34D;
+    --amber-bg:   #1C1203;
+    --slate:      #94A3B8;
+    --slate-bg:   #1E2234;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:         #0E0F18;
+  --surface:    #13141F;
+  --surface2:   #1A1B2A;
+  --border:     #1E2034;
+  --text:       #D0D4EE;
+  --muted:      #6068A0;
+  --accent:     #7A84F0;
+  --accent-dim: #1A1E42;
+  --green:      #4ADE80;
+  --green-bg:   #052E16;
+  --amber:      #FCD34D;
+  --amber-bg:   #1C1203;
+  --slate:      #94A3B8;
+  --slate-bg:   #1E2234;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 0 0 4rem;
+}
+
+.prog-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 2.5rem 1.5rem;
+}
+.prog-inner { max-width: 1020px; margin: 0 auto; }
+.prog-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .4rem;
+}
+.prog-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
+  margin-bottom: .65rem;
+}
+.prog-meta { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 13px; color: var(--muted); }
+.prog-meta a { color: inherit; }
+
+.prog-strip {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: .75rem 2.5rem;
+}
+.prog-strip-inner {
+  max-width: 1020px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.strip-bar-wrap { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.strip-bar-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+.strip-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.strip-chips { display: flex; gap: .5rem; }
+.strip-chip { display: flex; align-items: center; gap: .3rem; font-size: 11.5px; font-weight: 600; padding: .2rem .55rem; border-radius: 999px; }
+.chip-done   { background: var(--green-bg); color: var(--green); }
+.chip-active { background: var(--accent-dim); color: var(--accent); }
+.chip-coming { background: var(--slate-bg); color: var(--slate); }
+
+.grid-wrap { max-width: 1020px; margin: 2rem auto; padding: 0 2.5rem; }
+.grid-label { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+.kurs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: .75rem; }
+
+.kcard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.1rem 1.1rem 1rem;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+  position: relative;
+}
+a.kcard { transition: border-color .15s, box-shadow .15s, transform .1s; }
+a.kcard:hover { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(87,96,217,.08); transform: translateY(-1px); }
+.kcard.is-active { border-color: var(--accent); }
+.kcard.is-done   { opacity: .78; }
+.kcard.is-coming { cursor: default; }
+
+.kcard-top { display: flex; align-items: flex-start; gap: .75rem; }
+.knr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+.kcard.is-done   .knr { background: var(--green-bg); color: var(--green); }
+.kcard.is-active .knr { background: var(--accent); color: #fff; }
+.kcard.is-coming .knr { background: var(--slate-bg); color: var(--slate); }
+
+.ktitle-wrap { flex: 1; min-width: 0; }
+.ktitle { font-size: 14px; font-weight: 700; line-height: 1.3; margin-bottom: .15rem; }
+.kperiod { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--muted); }
+
+.kcard-bottom { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.kstatus { display: inline-flex; align-items: center; gap: .3rem; font-size: 11.5px; font-weight: 600; padding: .2rem .55rem; border-radius: 999px; }
+.kstatus.done   { background: var(--green-bg); color: var(--green); }
+.kstatus.active { background: var(--accent-dim); color: var(--accent); }
+.kstatus.coming { background: var(--slate-bg); color: var(--slate); }
+
+.kcard-arrow { font-size: 13px; color: var(--muted); transition: color .15s, transform .15s; }
+a.kcard:hover .kcard-arrow { color: var(--accent); transform: translateX(2px); }
+
+.kcard.is-active::before {
+  content: '';
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+.prog-footer { max-width: 1020px; margin: 0 auto; padding: 0 2.5rem; font-size: 12px; color: var(--muted); }
+
+@media(max-width: 600px) {
+  .prog-header, .prog-strip { padding: 1.25rem 1rem 1rem; }
+  .grid-wrap, .prog-footer  { padding: 0 1rem; }
+  .strip-chips { display: none; }
+}
+@media(prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
-<p>Omdirigerar… <a href="kursoversikt.html">Klicka här om det inte händer automatiskt.</a></p>
+
+<header class="prog-header">
+  <div class="prog-inner">
+    <div class="prog-eyebrow">YRGO · Campus Mölndal · YH 400 yhp</div>
+    <h1 class="prog-title">Cloud Developer — CLO26</h1>
+    <div class="prog-meta">
+      <span>📅 Sep 2026 – Jun 2028</span>
+      <span>👨‍🏫 Marcus Ackre Medina</span>
+      <span>💬 <a href="https://discord.gg/ZSquGkSvK">Discord</a></span>
+    </div>
+  </div>
+</header>
+
+<div class="prog-strip">
+  <div class="prog-strip-inner">
+    <div class="strip-bar-wrap"><div class="strip-bar-fill" id="prog-fill"></div></div>
+    <span class="strip-label" id="prog-label"></span>
+    <div class="strip-chips">
+      <span class="strip-chip chip-done"   id="count-done"></span>
+      <span class="strip-chip chip-active" id="count-active"></span>
+      <span class="strip-chip chip-coming" id="count-coming"></span>
+    </div>
+  </div>
+</div>
+
+<div class="grid-wrap">
+  <div class="grid-label">Kurser i utbildningen</div>
+  <div class="kurs-grid" id="kurs-grid"></div>
+</div>
+
+<div class="prog-footer" id="prog-footer"></div>
+
+<script>
+const PROGRAM = {
+  kurser: [
+    { nr:'01', namn:'Grundläggande OOP i C#', period:'v.36–40 · HT26', status:'active', yhp:35, href:'./kursoversikt.html' },
+    { nr:'02', namn:'Databaser och SQL',       period:'v.41–45 · HT26', status:'coming', yhp:30 },
+    { nr:'03', namn:'Fördjupad OOP',           period:'v.46–50 · HT26', status:'coming', yhp:35 },
+    { nr:'04', namn:'Test och kvalitet',       period:'v.2–6 · VT27',   status:'coming', yhp:25 },
+  ],
+};
+
+const done   = PROGRAM.kurser.filter(k => k.status === 'done');
+const active = PROGRAM.kurser.filter(k => k.status === 'active');
+const coming = PROGRAM.kurser.filter(k => k.status === 'coming');
+const total  = PROGRAM.kurser.length;
+const pct    = Math.round((done.length + active.length * .5) / total * 100);
+
+document.getElementById('prog-fill').style.width   = pct + '%';
+document.getElementById('prog-label').textContent  = `Kurs ${done.length + active.length} av ${total}`;
+document.getElementById('count-done').textContent   = `✓ ${done.length} klara`;
+document.getElementById('count-active').textContent = `● ${active.length} aktiv`;
+document.getElementById('count-coming').textContent = `○ ${coming.length} kommande`;
+
+const grid = document.getElementById('kurs-grid');
+
+PROGRAM.kurser.forEach(k => {
+  const statusText = k.status === 'done' ? 'Klar' : k.status === 'active' ? 'Pågår nu' : 'Kommer';
+  const tag  = k.href ? 'a' : 'div';
+  const card = document.createElement(tag);
+  card.className = `kcard is-${k.status}`;
+  if (k.href) card.href = k.href;
+  card.innerHTML = `
+    <div class="kcard-top">
+      <div class="knr">${k.nr}</div>
+      <div class="ktitle-wrap">
+        <div class="ktitle">${k.namn}</div>
+        <div class="kperiod">${k.period} · ${k.yhp} yhp</div>
+      </div>
+    </div>
+    <div class="kcard-bottom">
+      <span class="kstatus ${k.status}">
+        ${k.status === 'done' ? '✓' : k.status === 'active' ? '●' : '○'} ${statusText}
+      </span>
+      ${k.href ? '<span class="kcard-arrow">→</span>' : ''}
+    </div>`;
+  grid.appendChild(card);
+});
+
+const totalYhp = PROGRAM.kurser.reduce((s, k) => s + k.yhp, 0);
+document.getElementById('prog-footer').innerHTML =
+  `Marcus Ackre Medina · NionIT · Nion Education &nbsp;·&nbsp; ${totalYhp} yhp`;
+</script>

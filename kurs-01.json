@@ -1,0 +1,920 @@
+{
+  "kod": "CLO26",
+  "nummer": "01",
+  "namn": "Grundläggande OOP i C#",
+  "period": "v.36–40",
+  "datum": "1 sep – 3 okt 2026",
+  "schema": "Mån + Ons campus · Fre online 09–11",
+  "notering": "Ingen inlämning v.1–2",
+  "githubBase": "https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-01-grundlaggande-oop/",
+  "links": [
+    {
+      "icon": "💬",
+      "label": "Discord",
+      "href": "https://discord.gg/ZSquGkSvK"
+    }
+  ],
+  "betyg": {
+    "G": "Alla mandatory-uppgifter inlämnade och godkända",
+    "VG": "Djup förklaring av arkitekturbeslut + förklaring av valfri design-pattern"
+  },
+  "veckor": [
+    {
+      "nr": 36,
+      "titel": "Git och verktyg",
+      "tid": "4–6 h",
+      "mal": "Fungerande miljö. Kan göra ett komplett git-flöde.",
+      "amnen": [
+        {
+          "titel": "Versionshantering med Git",
+          "beskrivning": "Förstå git-flödet: init, add, commit, push, pull och branch",
+          "tags": [
+            "git",
+            "commit",
+            "push",
+            "clone",
+            "branch",
+            "merge"
+          ],
+          "lektion": null,
+          "notes": {
+            "text": "git_grunder.md",
+            "href": "01_verktyg_och_git/notes/git_grunder.md",
+            "tags": [
+              "git",
+              "versionshantering",
+              "terminal"
+            ]
+          },
+          "ovningar": {
+            "green": [
+              {
+                "text": "ovning_01 git setup",
+                "href": "01_verktyg_och_git/exercises/ovning_01_git_setup.md",
+                "tags": [
+                  "git",
+                  "init",
+                  "config",
+                  "setup"
+                ],
+                "desc": "Det här är ingen kodövning — det är din utvecklarmiljös grundsetup."
+              },
+              {
+                "text": "ovning_02 första repot",
+                "href": "01_verktyg_och_git/exercises/ovning_02_forsta_repot.md",
+                "tags": [
+                  "git",
+                  "add",
+                  "commit",
+                  "push",
+                  "remote"
+                ],
+                "desc": "Du ska skapa ett litet C#-program som hälsar på dig, committa det och pusha till GitHub."
+              }
+            ],
+            "amber": [
+              {
+                "text": "git_konflikter.md",
+                "href": "01_verktyg_och_git/notes/git_konflikter.md",
+                "tags": [
+                  "git",
+                  "merge",
+                  "konflikt",
+                  "rebase"
+                ],
+                "desc": "En konflikt uppstår när Git inte kan avgöra vilken version av en fil som ska gälla."
+              }
+            ],
+            "red": [
+              {
+                "text": "training_vecka1",
+                "href": "01_verktyg_och_git/exercises/training_vecka1.md",
+                "tags": [
+                  "git",
+                  "branch",
+                  "merge",
+                  "avancerat"
+                ],
+                "desc": "Vilket Git-kommando visar vilka filer som har ändrats?"
+              }
+            ]
+          }
+        },
+        {
+          "titel": "Installera .NET och VS Code",
+          "beskrivning": "Sätt upp din lokala C#-miljö och kör Hello World",
+          "tags": [
+            "dotnet",
+            "vscode",
+            "terminal",
+            "csharp",
+            "installation"
+          ],
+          "lektion": null,
+          "notes": {
+            "text": "installationsguide.md",
+            "href": "01_verktyg_och_git/notes/installationsguide.md",
+            "tags": [
+              "installation",
+              "dotnet",
+              "vscode",
+              "setup"
+            ]
+          },
+          "ovningar": {
+            "green": [
+              {
+                "text": "ovning_03 hello world",
+                "href": "01_verktyg_och_git/exercises/ovning_03_hello_world.md",
+                "tags": [
+                  "csharp",
+                  "Console.WriteLine",
+                  "program",
+                  "hello"
+                ],
+                "desc": "Datorn vet inte vem du är än."
+              }
+            ],
+            "amber": [],
+            "red": []
+          }
+        }
+      ]
+    },
+    {
+      "nr": 37,
+      "titel": "C# repetition",
+      "tid": "8–12 h",
+      "mal": "Varm i kläderna. Kan variabler, if/else, loopar och switch.",
+      "tentafragor": [
+        {
+          "text": "01 Git & verktyg",
+          "href": "tentafrågor/01_fragor_git.md"
+        },
+        {
+          "text": "02 Variabler",
+          "href": "tentafrågor/02_fragor_variabler.md"
+        },
+        {
+          "text": "03 Villkor & loopar",
+          "href": "tentafrågor/03_fragor_villkor.md"
+        }
+      ],
+      "amnen": [
+        {
+          "titel": "Variabler och datatyper",
+          "beskrivning": "De grundläggande typerna i C# och hur man deklarerar och använder variabler",
+          "tags": [
+            "int",
+            "string",
+            "bool",
+            "double",
+            "var",
+            "datatyp",
+            "decimal"
+          ],
+          "lektion": {
+            "text": "variabler_marp.md",
+            "href": "02_syntax_och_variabler/lectures/variabler_marp.md",
+            "tags": [
+              "int",
+              "string",
+              "bool",
+              "double",
+              "var",
+              "deklarera"
+            ]
+          },
+          "notes": {
+            "text": "variabler.md",
+            "href": "02_syntax_och_variabler/notes/variabler.md",
+            "tags": [
+              "variabler",
+              "datatyp",
+              "int",
+              "string"
+            ]
+          },
+          "examples": [
+            {
+              "text": "VariableExamples.cs",
+              "href": "02_syntax_och_variabler/examples/VariableExamples.cs",
+              "tags": [
+                "int",
+                "string",
+                "double",
+                "bool",
+                "var",
+                "exempel"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [
+              {
+                "text": "flowchart",
+                "href": "02_syntax_och_variabler/exercises/flowchart/rita_flodesschemat.md",
+                "tags": [
+                  "flödesschema",
+                  "algoritm",
+                  "planering"
+                ],
+                "desc": "Den här övningen handlar om att tänka, inte koda."
+              },
+              {
+                "text": "story_01_grlub",
+                "href": "02_syntax_och_variabler/exercises/stories/story_01_grlub_the_troll.md",
+                "tags": [
+                  "string",
+                  "Console.WriteLine",
+                  "variabler",
+                  "berättelse"
+                ],
+                "desc": "Detta är sagan om trollet Grlub som bor i en mörk skog."
+              },
+              {
+                "text": "missing_crown",
+                "href": "02_syntax_och_variabler/exercises/arithmetic/missing_crown.md",
+                "tags": [
+                  "int",
+                  "aritmetik",
+                  "beräkning",
+                  "modulo"
+                ],
+                "desc": "Alex, Sam och Kim beställer en pizza på Pizzeria Napoli. Den kostar 125 kr."
+              },
+              {
+                "text": "telefonplanen",
+                "href": "02_syntax_och_variabler/exercises/arithmetic/telefonplanen.md",
+                "tags": [
+                  "double",
+                  "int",
+                  "aritmetik",
+                  "decimal",
+                  "beräkning"
+                ],
+                "desc": "Du letar efter ett nytt mobilabonnemang. Tre operatörer erbjuder var sitt paket — men vilket är billigast i…"
+              },
+              {
+                "text": "filmkvällen",
+                "href": "02_syntax_och_variabler/exercises/arithmetic/filmkvaellen.md",
+                "tags": [
+                  "int",
+                  "aritmetik",
+                  "beräkning",
+                  "variabler"
+                ],
+                "desc": "Du och fyra kompisar ska ha filmkväll hemma hos dig."
+              }
+            ],
+            "amber": [
+              {
+                "text": "story_02_anakin",
+                "href": "02_syntax_och_variabler/exercises/stories/story_02_anakin.md",
+                "tags": [
+                  "string",
+                  "variabler",
+                  "berättelse",
+                  "interpolation"
+                ],
+                "desc": "Unge Anakin Skywalker har äntligen kommit till den heliga kristallgrottan på planeten Ilum för att välja sin…"
+              }
+            ],
+            "red": [
+              {
+                "text": "story_04_lupin",
+                "href": "02_syntax_och_variabler/exercises/stories/story_04_arsene_lupin.md",
+                "tags": [
+                  "string",
+                  "variabler",
+                  "berättelse",
+                  "komplex"
+                ],
+                "desc": "Den berömde gentleman-tjuven Arsène Lupin står inför sin största utmaning hittills: Banque de Paris's…"
+              },
+              {
+                "text": "training_vecka2",
+                "href": "02_syntax_och_variabler/exercises/training_vecka2.md",
+                "tags": [
+                  "variabler",
+                  "datatyp",
+                  "repetition",
+                  "avancerat"
+                ],
+                "desc": "Vad händer när du skriver int ålder = 25; i C#?"
+              }
+            ]
+          }
+        },
+        {
+          "titel": "Konsol-I/O",
+          "beskrivning": "Läsa input från användaren och skriva till konsolen",
+          "tags": [
+            "Console.WriteLine",
+            "Console.ReadLine",
+            "string",
+            "input",
+            "output",
+            "Convert"
+          ],
+          "lektion": {
+            "text": "konsol_marp.md",
+            "href": "02_syntax_och_variabler/lectures/konsol_marp.md",
+            "tags": [
+              "Console",
+              "ReadLine",
+              "WriteLine",
+              "input",
+              "output",
+              "Convert"
+            ]
+          },
+          "notes": {
+            "text": "konsol.md",
+            "href": "02_syntax_och_variabler/notes/konsol.md",
+            "tags": [
+              "Console",
+              "ReadLine",
+              "WriteLine",
+              "input",
+              "output"
+            ]
+          },
+          "examples": [],
+          "ovningar": {
+            "green": [],
+            "amber": [],
+            "red": []
+          }
+        },
+        {
+          "titel": "if/else och villkor",
+          "beskrivning": "Styr programflödet med if, else if och else — och jämförelseoperatorer",
+          "tags": [
+            "if",
+            "else",
+            "bool",
+            "villkor",
+            "jämförelse",
+            "operatorer"
+          ],
+          "lektion": {
+            "text": "if_else_marp.md",
+            "href": "03_villkor_och_loopar/if_else_marp.md",
+            "tags": [
+              "if",
+              "else",
+              "bool",
+              "villkor",
+              "jämförelse"
+            ]
+          },
+          "notes": {
+            "text": "if_else.md",
+            "href": "03_villkor_och_loopar/notes/if_else.md",
+            "tags": [
+              "if",
+              "else",
+              "villkor",
+              "bool"
+            ]
+          },
+          "examples": [
+            {
+              "text": "Biobiljett.cs",
+              "href": "03_villkor_och_loopar/examples/Biobiljett.cs",
+              "tags": [
+                "if",
+                "else",
+                "int",
+                "villkor",
+                "exempel"
+              ]
+            },
+            {
+              "text": "ConditionExamples.cs",
+              "href": "03_villkor_och_loopar/examples/ConditionExamples.cs",
+              "tags": [
+                "if",
+                "else",
+                "bool",
+                "villkor",
+                "exempel"
+              ]
+            },
+            {
+              "text": "KaraktärsSkapare.cs",
+              "href": "03_villkor_och_loopar/examples/KaraktärsSkapare.cs",
+              "tags": [
+                "if",
+                "else",
+                "string",
+                "spel",
+                "exempel"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [
+              {
+                "text": "biobiljetten",
+                "href": "03_villkor_och_loopar/exercises/conditions/biobiljetten.md",
+                "tags": [
+                  "if",
+                  "else",
+                  "int",
+                  "villkor",
+                  "pris"
+                ],
+                "desc": "Filmstaden har tre prisklasser. Programmet ska ta emot en ålder och skriva ut rätt biljettpris."
+              },
+              {
+                "text": "ska_vi_grilla",
+                "href": "03_villkor_och_loopar/exercises/conditions/ska_vi_grilla.md",
+                "tags": [
+                  "if",
+                  "else",
+                  "bool",
+                  "string",
+                  "villkor"
+                ],
+                "desc": "Det är fredag och du ska bestämma vad ni ska äta ikväll. Allt beror på vädret."
+              },
+              {
+                "text": "temperature_check",
+                "href": "03_villkor_och_loopar/exercises/conditions/temperature_check.md",
+                "tags": [
+                  "if",
+                  "else",
+                  "double",
+                  "villkor",
+                  "jämförelse"
+                ],
+                "desc": "Du ska skriva ett program som avgör vad man ska ha på sig beroende på temperaturen. Steg 1 bygger grunden."
+              },
+              {
+                "text": "varberg_vs_sisjoen",
+                "href": "03_villkor_och_loopar/exercises/conditions/varberg_vs_sisjoen.md",
+                "tags": [
+                  "if",
+                  "else",
+                  "double",
+                  "aritmetik",
+                  "jämförelse"
+                ],
+                "desc": "Du bor i Mölndal och vill köpa en Samsung 65\" TV."
+              },
+              {
+                "text": "self_test if/else",
+                "href": "03_villkor_och_loopar/exercises/self_test/self_test_if.md",
+                "tags": [
+                  "if",
+                  "else",
+                  "self-test",
+                  "repetition"
+                ],
+                "desc": "Välj det alternativ du tror stämmer — öppna sen förklaringen och se om du hade rätt."
+              }
+            ],
+            "amber": [
+              {
+                "text": "tärningsspelet",
+                "href": "03_villkor_och_loopar/exercises/ovning_tarningsspelet.md",
+                "tags": [
+                  "random",
+                  "if",
+                  "else",
+                  "int",
+                  "spel",
+                  "loop"
+                ],
+                "desc": "Lasse och Kalle sitter vid köksbordet och slåss om vem som ska diska."
+              },
+              {
+                "text": "vaderprognosen",
+                "href": "03_villkor_och_loopar/exercises/conditions/vaderprognosen.md",
+                "tags": [
+                  "if",
+                  "else",
+                  "string",
+                  "villkor",
+                  "input"
+                ],
+                "desc": "En väderapp visar en väderkod (1–5) och du ska skriva ut en beskrivning av vädret och ett klädråd."
+              },
+              {
+                "text": "character_class",
+                "href": "03_villkor_och_loopar/exercises/conditions/character_class.md",
+                "tags": [
+                  "if",
+                  "else",
+                  "string",
+                  "spel",
+                  "input"
+                ],
+                "desc": "Du skapar ett litet rollspelssystem i Sagan om Ringen-stil."
+              }
+            ],
+            "red": [
+              {
+                "text": "betty",
+                "href": "03_villkor_och_loopar/exercises/conditions/betty.md",
+                "tags": [
+                  "if",
+                  "else",
+                  "komplex",
+                  "string",
+                  "int",
+                  "flödesschema"
+                ],
+                "desc": "En kärlekstriangel i tre akter — inspirerad av ett välkänt tonårsdrama."
+              },
+              {
+                "text": "Draken",
+                "href": "03_villkor_och_loopar/exercises/conditions/Draken.md",
+                "tags": [
+                  "if",
+                  "else",
+                  "komplex",
+                  "spel",
+                  "string",
+                  "flödesschema"
+                ],
+                "desc": "En hjälte hittar ett svärd. Det är inte ett bra tecken för draken — eller byn."
+              },
+              {
+                "text": "ManicMonday",
+                "href": "03_villkor_och_loopar/exercises/conditions/ManicMonday.md",
+                "tags": [
+                  "if",
+                  "else",
+                  "komplex",
+                  "string",
+                  "datum",
+                  "flödesschema"
+                ],
+                "desc": "Det är måndag. Allt som kan gå fel, går fel — en händelse i taget."
+              },
+              {
+                "text": "biokvallen",
+                "href": "03_villkor_och_loopar/exercises/conditions/biokvallen.md",
+                "tags": [
+                  "if",
+                  "else",
+                  "komplex",
+                  "input",
+                  "string",
+                  "flödesschema"
+                ],
+                "desc": "Du ska bygga ett program som kombinerar tre separata switch-satser och sätter ihop resultaten till ett…"
+              }
+            ]
+          }
+        },
+        {
+          "titel": "Loopar",
+          "beskrivning": "Repetera kod med for, while och do-while",
+          "tags": [
+            "for",
+            "while",
+            "do-while",
+            "loop",
+            "iteration",
+            "int"
+          ],
+          "lektion": {
+            "text": "loopar_marp.md",
+            "href": "03_villkor_och_loopar/loopar_marp.md",
+            "tags": [
+              "for",
+              "while",
+              "do-while",
+              "loop",
+              "iteration"
+            ]
+          },
+          "notes": {
+            "text": "loopar.md",
+            "href": "03_villkor_och_loopar/notes/loopar.md",
+            "tags": [
+              "for",
+              "while",
+              "do-while",
+              "loop"
+            ]
+          },
+          "examples": [
+            {
+              "text": "KonsolAnimation.cs",
+              "href": "03_villkor_och_loopar/examples/KonsolAnimation.cs",
+              "tags": [
+                "for",
+                "while",
+                "loop",
+                "Console",
+                "animation",
+                "exempel"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [
+              {
+                "text": "countdown",
+                "href": "03_villkor_och_loopar/exercises/loops/countdown.md",
+                "tags": [
+                  "for",
+                  "while",
+                  "int",
+                  "loop",
+                  "countdown"
+                ],
+                "desc": "Två korta loopar. Steg 1 räknar ned med en for-loop. Steg 2 räknar jämna tal med en while-loop."
+              },
+              {
+                "text": "bankräntan",
+                "href": "03_villkor_och_loopar/exercises/loops/bankrantan.md",
+                "tags": [
+                  "for",
+                  "double",
+                  "loop",
+                  "ränta",
+                  "aritmetik",
+                  "beräkning"
+                ],
+                "desc": "Du har precis fått sommarjobb och lagt 5 000 kr på sparkontot. Banken lovar 3,5 % ränta per år."
+              },
+              {
+                "text": "multiplikationstabellen",
+                "href": "03_villkor_och_loopar/exercises/loops/multiplikationstabellen.md",
+                "tags": [
+                  "for",
+                  "int",
+                  "loop",
+                  "multiplikation",
+                  "tabell"
+                ],
+                "desc": "Lillebrodern Robin sitter och sliter med matteboken."
+              },
+              {
+                "text": "summera poäng",
+                "href": "03_villkor_och_loopar/exercises/loops/summera_poang.md",
+                "tags": [
+                  "while",
+                  "int",
+                  "loop",
+                  "ackumulator",
+                  "input"
+                ],
+                "desc": "Fredag kväll, fyra kompisar spelar Yantzee runt köksbordet."
+              }
+            ],
+            "amber": [
+              {
+                "text": "gissa talet",
+                "href": "03_villkor_och_loopar/exercises/loops/gissa_talet.md",
+                "tags": [
+                  "do-while",
+                  "random",
+                  "loop",
+                  "int",
+                  "spel",
+                  "input"
+                ],
+                "desc": "På rasten sitter Vera och Kim och spelar ett spel — en tänker på ett tal, den andra gissar."
+              },
+              {
+                "text": "lösenordsförsöket",
+                "href": "03_villkor_och_loopar/exercises/loops/lossenordsforsoket.md",
+                "tags": [
+                  "for",
+                  "while",
+                  "loop",
+                  "string",
+                  "break",
+                  "inloggning"
+                ],
+                "desc": "Spelklubben på Campus har ett hemligt forum där nästa LAN-spelkväll planeras."
+              },
+              {
+                "text": "rymdfärja start",
+                "href": "03_villkor_och_loopar/exercises/loops/rymdfarja_start.md",
+                "tags": [
+                  "for",
+                  "random",
+                  "bool",
+                  "loop",
+                  "int",
+                  "villkor"
+                ],
+                "desc": "Du är kontrollingenjör på ESA i Kourou, Franska Guyana. Uppskjutningen av Ariane 6 är om 10 minuter."
+              },
+              {
+                "text": "Astro Naut",
+                "href": "03_villkor_och_loopar/exercises/loops/astro_naut.md",
+                "tags": [
+                  "for",
+                  "switch",
+                  "random",
+                  "int",
+                  "loop",
+                  "rymd"
+                ],
+                "desc": "Rymdfararen Astro Naut skickas in i asteroidfältet CloudTwentySix för att leta efter sällsynta mineral."
+              }
+            ],
+            "red": []
+          }
+        },
+        {
+          "titel": "switch-satsen",
+          "beskrivning": "Välj bland flera alternativ med switch och case — snyggare än långa if/else-kedjor",
+          "tags": [
+            "switch",
+            "case",
+            "default",
+            "string",
+            "int",
+            "enum"
+          ],
+          "lektion": {
+            "text": "switch_marp.md",
+            "href": "03_villkor_och_loopar/switch_marp.md",
+            "tags": [
+              "switch",
+              "case",
+              "default",
+              "break"
+            ]
+          },
+          "notes": {
+            "text": "switch.md",
+            "href": "03_villkor_och_loopar/notes/switch.md",
+            "tags": [
+              "switch",
+              "case",
+              "default",
+              "string"
+            ]
+          },
+          "examples": [
+            {
+              "text": "Betyg.cs",
+              "href": "03_villkor_och_loopar/examples/Betyg.cs",
+              "tags": [
+                "switch",
+                "case",
+                "int",
+                "betyg",
+                "exempel"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [
+              {
+                "text": "veckodagen",
+                "href": "03_villkor_och_loopar/exercises/conditions/veckodagen.md",
+                "tags": [
+                  "switch",
+                  "case",
+                  "string",
+                  "int",
+                  "dag"
+                ],
+                "desc": "Du får ett tal (1–7) och ska skriva ut rätt veckodag på svenska."
+              },
+              {
+                "text": "årstiden",
+                "href": "03_villkor_och_loopar/exercises/conditions/arstiden.md",
+                "tags": [
+                  "switch",
+                  "case",
+                  "int",
+                  "årstid",
+                  "månad"
+                ],
+                "desc": "En väderapp på telefonen visar bara månadstal — 1 till 12."
+              },
+              {
+                "text": "rätt hälsning",
+                "href": "03_villkor_och_loopar/exercises/conditions/ratt_halsning.md",
+                "tags": [
+                  "switch",
+                  "case",
+                  "int",
+                  "string",
+                  "tid"
+                ],
+                "desc": "Receptionen på Hotel Riviera vill ha ett nytt check-in-system."
+              }
+            ],
+            "amber": [
+              {
+                "text": "restaurangmenyn",
+                "href": "03_villkor_och_loopar/exercises/conditions/restaurangmenyn.md",
+                "tags": [
+                  "switch",
+                  "case",
+                  "decimal",
+                  "input",
+                  "meny"
+                ],
+                "desc": "Du jobbar på en restaurang och behöver ett program som tar ett menyval och skriver ut maträttens namn och…"
+              },
+              {
+                "text": "tenta_betyget",
+                "href": "03_villkor_och_loopar/exercises/conditions/tenta_betyget.md",
+                "tags": [
+                  "switch",
+                  "case",
+                  "if",
+                  "else",
+                  "int",
+                  "betyg"
+                ],
+                "desc": "Du ska skriva ett program som tar en tentapoäng och skriver ut rätt betyg."
+              },
+              {
+                "text": "kalkylator",
+                "href": "03_villkor_och_loopar/exercises/conditions/kalkylator.md",
+                "tags": [
+                  "switch",
+                  "case",
+                  "double",
+                  "string",
+                  "operator",
+                  "input"
+                ],
+                "desc": "Nattväktaren på serverrummet på Klippan Data AB behöver räkna ut kapacitetsvärden snabbt — utan att ta fram…"
+              }
+            ],
+            "red": []
+          }
+        }
+      ]
+    },
+    {
+      "nr": 38,
+      "titel": "Klasser och OOP",
+      "tid": "8–10 h",
+      "mal": "Kan skriva en klass med konstruktor, properties och metoder. Förstår inkapsling.",
+      "comingSoon": "Material publiceras vecka 38 (mån 14 sep)",
+      "deadline": "Inlämning 1 — Spellistan · deadline sön 21 sep 23:59",
+      "amnen": []
+    },
+    {
+      "nr": 39,
+      "titel": "Samlingar och datastrukturer",
+      "tid": "8–10 h",
+      "mal": "Kan använda List<T> och enum. Förstår när man väljer List vs Dictionary.",
+      "comingSoon": "Material publiceras vecka 39 (mån 21 sep)",
+      "deadline": "Skogsäventyret (grupp) · deadline sön 28 sep 23:59",
+      "amnen": [],
+      "kommande_ovningar": [
+        {
+          "text": "pirate_game",
+          "href": "03_villkor_och_loopar/exercises/loops/pirate_game.md",
+          "tags": [
+            "while",
+            "random",
+            "spel",
+            "loop",
+            "do-while"
+          ],
+          "desc": "Du styr en pirat som letar skatt på fyra platser.",
+          "note": "Kräver List<T> — tas upp i vecka 39"
+        }
+      ]
+    },
+    {
+      "nr": 40,
+      "titel": "Repetition och tenta",
+      "tid": "4–6 h",
+      "mal": "Visa vad du kan. Inga nya ämnen den här veckan.",
+      "amnen": [],
+      "tenta": [
+        {
+          "dag": "Mån 29 sep",
+          "info": "Repetition av alla ämnen · öppen handledning",
+          "isTenta": false
+        },
+        {
+          "dag": "Tis 30 sep",
+          "info": "TENTA  09:00–11:00",
+          "isTenta": true
+        },
+        {
+          "dag": "Ons 1 okt",
+          "info": "Genomgång + sista handledning Skogsäventyret",
+          "isTenta": false
+        }
+      ],
+      "tentaChips": [
+        "Täcker: Git · variabler · if/else · loopar · klasser · List · enum",
+        "Bara terminologi — kod bedöms på inlämningar",
+        "G = 60 %"
+      ]
+    }
+  ]
+}
