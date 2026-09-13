@@ -874,9 +874,97 @@
       "titel": "Klasser och OOP",
       "tid": "8–10 h",
       "mal": "Kan skriva en klass med konstruktor, properties och metoder. Förstår inkapsling.",
-      "comingSoon": "Material publiceras vecka 38 (mån 14 sep)",
-      "deadline": "Inlämning 1 — Spellistan · deadline sön 21 sep 23:59",
-      "amnen": []
+      "deadline": "Inlämning 1 — Drömmatchen · deadline sön 21 sep 23:59",
+      "tentafragor": [
+        {
+          "text": "05 Klasser och OOP",
+          "href": "05_klasser_och_oop/tentafragor/fragor.md"
+        }
+      ],
+      "amnen": [
+        {
+          "titel": "Klasser och objekt",
+          "beskrivning": "Klassen är ritningen, objektet är huset. Konstruktor, privata fält, properties och metoder.",
+          "tags": ["klass", "objekt", "konstruktor", "private", "public", "new"],
+          "lektion": {
+            "text": "klasser_och_objekt_marp.md",
+            "href": "05_klasser_och_oop/lectures/klasser_och_objekt_marp.md",
+            "tags": ["klass", "objekt", "konstruktor", "BankAccount"]
+          },
+          "notes": {
+            "text": "klasser_och_oop.md",
+            "href": "05_klasser_och_oop/notes/klasser_och_oop.md",
+            "tags": ["klass", "objekt", "inkapsling", "property"]
+          },
+          "examples": [
+            {
+              "text": "BankAccount.cs",
+              "href": "05_klasser_och_oop/examples/BankAccount.cs",
+              "tags": ["klass", "konstruktor", "property", "metod"]
+            }
+          ],
+          "ovningar": [
+            {
+              "text": "Intro — Varför OOP?",
+              "href": "05_klasser_och_oop/exercises/intro_varfor_oop.md",
+              "tags": ["oop", "intro"],
+              "desc": "Varför behövs klasser alls?"
+            },
+            {
+              "text": "Övning — Bilen",
+              "href": "05_klasser_och_oop/exercises/ovning_01_car.md",
+              "tags": ["klass", "konstruktor", "property"],
+              "desc": "Bygg en Car-klass från grunden."
+            },
+            {
+              "text": "Övning — Rymdskeppet",
+              "href": "05_klasser_och_oop/exercises/ovning_02_spaceship.md",
+              "tags": ["klass", "konstruktor", "property"],
+              "desc": "Samma mönster som bilen, ny kontext."
+            },
+            {
+              "text": "Övning — Tärningen",
+              "href": "05_klasser_och_oop/exercises/ovning_tarning.md",
+              "tags": ["klass", "static", "random", "metod"],
+              "desc": "Tärning med static Random. Extra: T6/T12/T20."
+            },
+            {
+              "text": "Övning — Personen",
+              "href": "05_klasser_och_oop/exercises/ovning_person.md",
+              "tags": ["klass", "property", "konstruktor"],
+              "desc": "Person med FullständigtNamn-property."
+            },
+            {
+              "text": "Övning — Personen och dagräknaren",
+              "href": "05_klasser_och_oop/exercises/ovning_person_datum.md",
+              "tags": ["klass", "DateTime", "samarbete"],
+              "desc": "Person + DateCalc. Nils Sjöberg, 13 dec 1989."
+            },
+            {
+              "text": "Övning — Husdjuren",
+              "href": "05_klasser_och_oop/exercises/ovning_pets.md",
+              "tags": ["klass", "DRY", "arv"],
+              "desc": "Hund + Katt — ett pedagogiskt DRY-brott."
+            }
+          ],
+          "inlamning": {
+            "text": "Inlämning 1 — Drömmatchen",
+            "href": "05_klasser_och_oop/assignment/klasser_samarbetar.md",
+            "tags": ["klass", "samarbete", "fotboll", "G", "VG"],
+            "desc": "Spelare + Match. Sätt ihop drömlagen — oavsett era."
+          }
+        },
+        {
+          "titel": "Inkapsling",
+          "beskrivning": "Varför fält är privata och vad det innebär att ett objekt äger sin data.",
+          "tags": ["inkapsling", "private", "public", "encapsulation"],
+          "notes": {
+            "text": "oop.md",
+            "href": "termer/oop.md",
+            "tags": ["inkapsling", "abstraktion", "oop"]
+          }
+        }
+      ]
     },
     {
       "nr": 39,
