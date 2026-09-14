@@ -1021,13 +1021,13 @@
         },
         {
           "dag": "Tis 30 sep",
-          "info": "TENTA  09:00–11:00",
-          "isTenta": true
+          "info": "Genomgång + sista handledning Skogsäventyret",
+          "isTenta": false
         },
         {
           "dag": "Ons 1 okt",
-          "info": "Genomgång + sista handledning Skogsäventyret",
-          "isTenta": false
+          "info": "TENTA  09:00–11:00",
+          "isTenta": true
         }
       ],
       "tentaChips": [
