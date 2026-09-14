@@ -979,7 +979,8 @@
             "text": "oop.md",
             "href": "termer/oop.md",
             "tags": ["inkapsling", "abstraktion", "oop"]
-          }
+          },
+          "ovningar": { "green": [], "amber": [], "red": [] }
         }
       ]
     },
