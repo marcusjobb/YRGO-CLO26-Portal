@@ -672,6 +672,14 @@ function renderAmne(amne, base, q) {
     body.appendChild(resEl);
   }
 
+  // inlämning
+  if (amne.inlamning) {
+    const inEl = el('div','amne-resources');
+    const href = amne.inlamning.href.startsWith('http') ? amne.inlamning.href : base + amne.inlamning.href;
+    inEl.innerHTML = `<a class="res-link" href="${href}" target="_blank" rel="noopener" style="border-color:var(--accent);color:var(--accent)"><span class="res-icon">📋</span>${hl(amne.inlamning.text, q)}</a>`;
+    body.appendChild(inEl);
+  }
+
   // examples
   if (amne.examples?.length) {
     const exEl = el('div','amne-resources amne-examples');
