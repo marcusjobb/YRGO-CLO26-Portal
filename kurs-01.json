@@ -981,6 +981,89 @@
             "tags": ["inkapsling", "abstraktion", "oop"]
           },
           "ovningar": { "green": [], "amber": [], "red": [] }
+        },
+        {
+          "titel": "Arv",
+          "beskrivning": "Basklass och subklass. virtual och override. Konstruktorkedja med base(). DRY löst med arv.",
+          "tags": ["arv", "basklass", "subklass", "virtual", "override", "base", "protected"],
+          "lektion": {
+            "text": "arv_marp.md",
+            "href": "05_klasser_och_oop/lectures/arv_marp.md",
+            "tags": ["arv", "virtual", "override", "base", "Djur"]
+          },
+          "ovningar": {
+            "green": [
+              {
+                "text": "Träningspass — Klasser",
+                "href": "05_klasser_och_oop/exercises/traningspass_klasser.md",
+                "tags": ["klass", "konstruktor", "property", "metod"],
+                "desc": "K1–K7: repetition av klasser och properties."
+              },
+              {
+                "text": "Träningspass — Metoder",
+                "href": "05_klasser_och_oop/exercises/traningspass_metoder.md",
+                "tags": ["metod", "return", "parameter"],
+                "desc": "M1–M7: repetition av metoder med returvärden."
+              },
+              {
+                "text": "Övning — Djursjukhuset (förmiddag)",
+                "href": "05_klasser_och_oop/exercises/ovning_arv_och_metoder.md",
+                "tags": ["arv", "virtual", "override", "Djur"],
+                "desc": "Hund + Katt ärver Djur. MänskligaÅr() med virtual."
+              }
+            ],
+            "amber": [
+              {
+                "text": "Träningspass — Arv",
+                "href": "05_klasser_och_oop/exercises/traningspass_arv.md",
+                "tags": ["arv", "virtual", "override", "base"],
+                "desc": "A1–A6: Fordon, Anställda, Former, Karaktärer, Betalningar, ToString."
+              },
+              {
+                "text": "Träningspass — Konstruktoröverlagring",
+                "href": "05_klasser_och_oop/exercises/traningspass_konstruktor_overlagring.md",
+                "tags": ["konstruktor", "this", "base", "överlagring"],
+                "desc": "KO1–KO5: samma klass, flera konstruktorer."
+              },
+              {
+                "text": "Övning — Lönesystemet",
+                "href": "05_klasser_och_oop/exercises/ovning_lon.md",
+                "tags": ["arv", "virtual", "override", "open-closed"],
+                "desc": "Anställd, Lärare, Konsult, TillfälligFöreläsare. Öppen/stängd-principen i praktiken."
+              }
+            ],
+            "red": [
+              {
+                "text": "Övning — Arv fördjupning (eftermiddag)",
+                "href": "05_klasser_och_oop/exercises/ovning_arv_fordjupning.md",
+                "tags": ["arv", "base.Metod", "ToString", "overloading"],
+                "desc": "base.Metod(), ToString(), metodöverlagring och Journal-utmaning."
+              },
+              {
+                "text": "Träningspass — Klasser extra",
+                "href": "05_klasser_och_oop/exercises/traningspass_klasser_extra.md",
+                "tags": ["klass", "konstruktor", "property", "metod"],
+                "desc": "K8–K12: extra klassövningar för den som vill ha mer."
+              },
+              {
+                "text": "Träningspass — Metoder extra",
+                "href": "05_klasser_och_oop/exercises/traningspass_metoder_extra.md",
+                "tags": ["metod", "return", "primtal", "Celsius"],
+                "desc": "M8–M12: extra metodövningar för den som vill ha mer."
+              }
+            ]
+          }
+        },
+        {
+          "titel": "Arv — tips och tricks",
+          "beskrivning": "Metodöverlagring, konstruktoröverlagring, this(...) vs base(...), base.Metod() och ToString() override.",
+          "tags": ["överlagring", "this", "base", "ToString", "metodöverlagring"],
+          "lektion": {
+            "text": "arv_tips_marp.md",
+            "href": "05_klasser_och_oop/lectures/arv_tips_marp.md",
+            "tags": ["överlagring", "this", "base", "ToString"]
+          },
+          "ovningar": { "green": [], "amber": [], "red": [] }
         }
       ]
     },
