@@ -17,6 +17,11 @@
       "icon": "⚽",
       "label": "Inlämning 1 — Starta här",
       "href": "https://github.com/marcusjobb/clo26-drommatchen"
+    },
+    {
+      "icon": "📚",
+      "label": "C# boken",
+      "href": "https://marcusjobb.github.io/programmering-csharp/"
     }
   ],
   "betyg": {
@@ -891,6 +896,10 @@
           "titel": "Klasser och objekt",
           "beskrivning": "Klassen är ritningen, objektet är huset. Konstruktor, privata fält, properties och metoder.",
           "tags": ["klass", "objekt", "konstruktor", "private", "public", "new"],
+          "bok": {
+            "text": "Klasser",
+            "href": "https://marcusjobb.github.io/programmering-csharp/oop/klasser/"
+          },
           "lektion": {
             "text": "klasser_och_objekt_marp.md",
             "href": "05_klasser_och_oop/lectures/klasser_och_objekt_marp.md",
@@ -975,6 +984,10 @@
           "titel": "Inkapsling",
           "beskrivning": "Varför fält är privata och vad det innebär att ett objekt äger sin data.",
           "tags": ["inkapsling", "private", "public", "encapsulation"],
+          "bok": {
+            "text": "Inkapsling",
+            "href": "https://marcusjobb.github.io/programmering-csharp/oop/inkapsling/"
+          },
           "notes": {
             "text": "oop.md",
             "href": "termer/oop.md",
@@ -986,6 +999,10 @@
           "titel": "Arv",
           "beskrivning": "Basklass och subklass. virtual och override. Konstruktorkedja med base(). DRY löst med arv.",
           "tags": ["arv", "basklass", "subklass", "virtual", "override", "base", "protected"],
+          "bok": {
+            "text": "Arv",
+            "href": "https://marcusjobb.github.io/programmering-csharp/oop/arv/"
+          },
           "lektion": {
             "text": "arv_marp.md",
             "href": "05_klasser_och_oop/lectures/arv_marp.md",
@@ -1058,6 +1075,11 @@
           "titel": "Arv — tips och tricks",
           "beskrivning": "Metodöverlagring, konstruktoröverlagring, this(...) vs base(...), base.Metod() och ToString() override.",
           "tags": ["överlagring", "this", "base", "ToString", "metodöverlagring"],
+          "bok": [
+            { "text": "Metodöverlagring", "href": "https://marcusjobb.github.io/programmering-csharp/metoder/metodoverlagring/" },
+            { "text": "Överlagring (OOP)", "href": "https://marcusjobb.github.io/programmering-csharp/oop/overlagring/" },
+            { "text": "ToString()", "href": "https://marcusjobb.github.io/programmering-csharp/oop/tostring/" }
+          ],
           "lektion": {
             "text": "arv_tips_marp.md",
             "href": "05_klasser_och_oop/lectures/arv_tips_marp.md",
