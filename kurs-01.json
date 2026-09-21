@@ -1094,22 +1094,107 @@
       "titel": "Samlingar och datastrukturer",
       "tid": "8–10 h",
       "mal": "Kan använda List<T> och enum. Förstår när man väljer List vs Dictionary.",
-      "comingSoon": "Material publiceras vecka 39 (mån 21 sep)",
       "deadline": "Skogsäventyret (grupp) · deadline sön 28 sep 23:59",
-      "amnen": [],
-      "kommande_ovningar": [
+      "amnen": [
         {
-          "text": "pirate_game",
-          "href": "03_villkor_och_loopar/exercises/loops/pirate_game.md",
-          "tags": [
-            "while",
-            "random",
-            "spel",
-            "loop",
-            "do-while"
+          "titel": "Arrayer och List<T>",
+          "beskrivning": "Arrayer har fast storlek — List<T> växer dynamiskt. Lär dig Add(), Remove() och foreach.",
+          "tags": ["array", "List", "foreach", "index", "samling", "T"],
+          "lektion": {
+            "text": "arrayer_listor_marp.md",
+            "href": "06_datastrukturer/lectures/arrayer_listor_marp.md",
+            "tags": ["array", "List", "foreach", "Add", "samling"]
+          },
+          "notes": {
+            "text": "arrayer_och_listor.md",
+            "href": "06_datastrukturer/notes/arrayer_och_listor.md",
+            "tags": ["array", "List", "foreach", "index"]
+          },
+          "examples": [
+            {
+              "text": "DataStructureExamples.cs",
+              "href": "06_datastrukturer/examples/DataStructureExamples.cs",
+              "tags": ["array", "List", "Dictionary", "enum", "exempel"]
+            }
           ],
-          "desc": "Du styr en pirat som letar skatt på fyra platser.",
-          "note": "Kräver List<T> — tas upp i vecka 39"
+          "ovningar": {
+            "green": [
+              {
+                "text": "Avengers-registret",
+                "href": "06_datastrukturer/exercises/array_avengers.md",
+                "tags": ["array", "for", "index", "string"],
+                "desc": "S.H.I.E.L.D. behöver ett hjälteregister. Nick Fury har tid för kod, men inte för dålig kod."
+              },
+              {
+                "text": "arraycopy",
+                "href": "06_datastrukturer/exercises/arraycopy.md",
+                "tags": ["array", "index", "kopia"],
+                "desc": "Skapa en array med 10 heltal och plocka ut de fem första i en ny array."
+              }
+            ],
+            "amber": [
+              {
+                "text": "array_exercises",
+                "href": "06_datastrukturer/exercises/array_exercises.md",
+                "tags": ["array", "foreach", "string", "superhjälte"],
+                "desc": "Fyll i koden för ett superhjälteregister — träna på index och foreach."
+              },
+              {
+                "text": "Piratskatten",
+                "href": "06_datastrukturer/exercises/pirate_game.md",
+                "tags": ["while", "List", "random", "spel", "loop"],
+                "desc": "Du styr en pirat som letar skatt på fyra platser. Rita ett flödesschema innan du kodar."
+              }
+            ],
+            "red": [
+              {
+                "text": "Träningsuppgifter v4",
+                "href": "06_datastrukturer/exercises/training_vecka4.md",
+                "tags": ["array", "List", "enum", "Dictionary", "self-test", "repetition"],
+                "desc": "Frågesport om datastrukturer — välj bäst svar, se förklaring."
+              }
+            ]
+          }
+        },
+        {
+          "titel": "Dictionary och enum",
+          "beskrivning": "Dictionary<TKey,TValue> för nyckel-värde-uppslagning. enum för namngivna konstanter.",
+          "tags": ["Dictionary", "enum", "key", "value", "ContainsKey", "TryGetValue"],
+          "lektion": {
+            "text": "dictionary_enum_marp.md",
+            "href": "06_datastrukturer/lectures/dictionary_enum_marp.md",
+            "tags": ["Dictionary", "enum", "key", "value"]
+          },
+          "notes": [
+            {
+              "text": "dictionary.md",
+              "href": "06_datastrukturer/notes/dictionary.md",
+              "tags": ["Dictionary", "key", "value", "ContainsKey"]
+            },
+            {
+              "text": "enum.md",
+              "href": "06_datastrukturer/notes/enum.md",
+              "tags": ["enum", "konstanter", "switch"]
+            }
+          ],
+          "ovningar": {
+            "green": [
+              {
+                "text": "Telefonkatalog",
+                "href": "06_datastrukturer/exercises/dictionary_phonebook.md",
+                "tags": ["Dictionary", "Add", "ContainsKey", "Remove"],
+                "desc": "Bygg en telefonkatalog med Dictionary — lägg till, sök och ta bort kontakter."
+              },
+              {
+                "text": "SG-1 personalregister",
+                "href": "06_datastrukturer/exercises/dictionary_stargate.md",
+                "tags": ["Dictionary", "key", "value", "string"],
+                "desc": "Stargate Command behöver snabb uppslagning av SG-1-teamets specialområden."
+              }
+            ],
+            "amber": [],
+            "red": []
+          }
         }
       ]
     },
