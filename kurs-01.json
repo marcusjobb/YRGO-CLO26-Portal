@@ -1097,6 +1097,17 @@
       "deadline": "Skogsäventyret (grupp) · deadline sön 28 sep 23:59",
       "amnen": [
         {
+          "titel": "Repetition v37–v38",
+          "beskrivning": "Snabbrepetition av variabler, numeriska typer, string-metoder och klass-terminologi.",
+          "tags": ["int", "double", "decimal", "string", "Trim", "Substring", "Replace", "DTO", "Helper", "Modell"],
+          "notes": {
+            "text": "repetition_v37_v38.md",
+            "href": "06_datastrukturer/notes/repetition_v37_v38.md",
+            "tags": ["variabler", "string", "Trim", "ToUpper", "Contains", "Substring", "klass-terminologi"]
+          },
+          "ovningar": { "green": [], "amber": [], "red": [] }
+        },
+        {
           "titel": "Arrayer och List<T>",
           "beskrivning": "Arrayer har fast storlek — List<T> växer dynamiskt. Lär dig Add(), Remove() och foreach.",
           "tags": ["array", "List", "foreach", "index", "samling", "T"],
