@@ -1212,6 +1212,11 @@
               "tags": ["enum", "Enum.Parse", "Enum.TryParse", "int", "live-demo"]
             },
             {
+              "text": "dictionary_genomgang.md",
+              "href": "06_datastrukturer/notes/dictionary_genomgang.md",
+              "tags": ["Dictionary", "ContainsKey", "KeyValuePair", "OrderBy", "LINQ", "Console-färger", "live-demo"]
+            },
+            {
               "text": "dictionary_med_objekt.md",
               "href": "06_datastrukturer/notes/dictionary_med_objekt.md",
               "tags": ["Dictionary", "objekt", "cirkulärreferens", "korsreferens", "live-demo"]
