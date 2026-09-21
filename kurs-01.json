@@ -1187,6 +1187,11 @@
               "text": "enum.md",
               "href": "06_datastrukturer/notes/enum.md",
               "tags": ["enum", "konstanter", "switch"]
+            },
+            {
+              "text": "dictionary_med_objekt.md",
+              "href": "06_datastrukturer/notes/dictionary_med_objekt.md",
+              "tags": ["Dictionary", "objekt", "cirkulärreferens", "korsreferens", "live-demo"]
             }
           ],
           "ovningar": {
