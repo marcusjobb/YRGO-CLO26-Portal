@@ -1130,6 +1130,18 @@
                 "href": "06_datastrukturer/exercises/arraycopy.md",
                 "tags": ["array", "index", "kopia"],
                 "desc": "Skapa en array med 10 heltal och plocka ut de fem första i en ny array."
+              },
+              {
+                "text": "Self-test — Arrayer",
+                "href": "06_datastrukturer/exercises/self_test_arrayer.md",
+                "tags": ["array", "self-test", "index", "Length", "foreach"],
+                "desc": "6 frågor: fast storlek, index, Length, for vs foreach — välj bäst svar."
+              },
+              {
+                "text": "Self-test — List<T>",
+                "href": "06_datastrukturer/exercises/self_test_listor.md",
+                "tags": ["List", "self-test", "Add", "Remove", "Contains", "Count"],
+                "desc": "6 frågor: Add, Remove, Contains, Count och collection initializer."
               }
             ],
             "amber": [
@@ -1148,10 +1160,10 @@
             ],
             "red": [
               {
-                "text": "Träningsuppgifter v4",
+                "text": "Träningsuppgifter v4 (blandat)",
                 "href": "06_datastrukturer/exercises/training_vecka4.md",
                 "tags": ["array", "List", "enum", "Dictionary", "self-test", "repetition"],
-                "desc": "Frågesport om datastrukturer — välj bäst svar, se förklaring."
+                "desc": "Frågesport om alla datastrukturer — välj bäst svar, se förklaring."
               }
             ]
           }
@@ -1190,9 +1202,40 @@
                 "href": "06_datastrukturer/exercises/dictionary_stargate.md",
                 "tags": ["Dictionary", "key", "value", "string"],
                 "desc": "Stargate Command behöver snabb uppslagning av SG-1-teamets specialområden."
+              },
+              {
+                "text": "Trafikljuset",
+                "href": "06_datastrukturer/exercises/ovning_enum_trafikljus.md",
+                "tags": ["enum", "switch", "metod"],
+                "desc": "Stadsingenjören behöver ett trafikljussystem. Enum + switch, tre värden."
+              },
+              {
+                "text": "Väderstationen",
+                "href": "06_datastrukturer/exercises/ovning_enum_vader.md",
+                "tags": ["enum", "switch", "return", "string"],
+                "desc": "SMHI-appen ger klädråd baserat på väderläge. Enum med returmetod."
+              },
+              {
+                "text": "Self-test — Dictionary",
+                "href": "06_datastrukturer/exercises/self_test_dictionary.md",
+                "tags": ["Dictionary", "self-test", "ContainsKey", "TryGetValue", "KeyValuePair"],
+                "desc": "6 frågor: syntax, Add vs indexerare, KeyNotFoundException, TryGetValue, unika nycklar."
+              },
+              {
+                "text": "Self-test — Enum",
+                "href": "06_datastrukturer/exercises/self_test_enum.md",
+                "tags": ["enum", "self-test", "switch", "int", "cast"],
+                "desc": "6 frågor: namngivna konstanter, placering, underliggande heltal, switch-syntax, cast."
               }
             ],
-            "amber": [],
+            "amber": [
+              {
+                "text": "Kafé Nionit — betalningssystem",
+                "href": "06_datastrukturer/exercises/ovning_enum_kafebetalning.md",
+                "tags": ["enum", "Dictionary", "decimal", "kvitto"],
+                "desc": "Kassören väljer dryck, systemet räknar pris och skriver kvitto. Kombinerar enum + Dictionary."
+              }
+            ],
             "red": []
           }
         }
