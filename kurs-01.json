@@ -1189,6 +1189,11 @@
               "tags": ["enum", "konstanter", "switch"]
             },
             {
+              "text": "enum_labyrinten.md",
+              "href": "06_datastrukturer/notes/enum_labyrinten.md",
+              "tags": ["enum", "Enum.Parse", "Enum.TryParse", "int", "live-demo"]
+            },
+            {
               "text": "dictionary_med_objekt.md",
               "href": "06_datastrukturer/notes/dictionary_med_objekt.md",
               "tags": ["Dictionary", "objekt", "cirkulärreferens", "korsreferens", "live-demo"]
