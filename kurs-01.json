@@ -1105,11 +1105,18 @@
             "href": "06_datastrukturer/lectures/arrayer_listor_marp.md",
             "tags": ["array", "List", "foreach", "Add", "samling"]
           },
-          "notes": {
-            "text": "arrayer_och_listor.md",
-            "href": "06_datastrukturer/notes/arrayer_och_listor.md",
-            "tags": ["array", "List", "foreach", "index"]
-          },
+          "notes": [
+            {
+              "text": "arrayer_och_listor.md",
+              "href": "06_datastrukturer/notes/arrayer_och_listor.md",
+              "tags": ["array", "List", "foreach", "index"]
+            },
+            {
+              "text": "list_instansiering_och_foreach.md",
+              "href": "06_datastrukturer/notes/list_instansiering_och_foreach.md",
+              "tags": ["List", "new()", "objektinitierare", "Insert", "ForEach", "lambda", "live-demo"]
+            }
+          ],
           "examples": [
             {
               "text": "DataStructureExamples.cs",
