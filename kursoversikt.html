@@ -883,10 +883,13 @@ function initSearch() {
 /* ══════════════════════════════════════════════════════
    boot
 ══════════════════════════════════════════════════════ */
-fetch('kurs-01.json')
+const KURS_NR = (new URLSearchParams(location.search).get('kurs') || '01').replace(/[^0-9]/g,'').padStart(2,'0');
+const KURS_FIL = `kurs-${KURS_NR}.json`;
+fetch(KURS_FIL)
   .then(r => r.json())
   .then(data => {
     KURS = data;
+    document.title = `${KURS.kod} Kurs ${KURS.nummer} — ${KURS.namn}`;
     // pick active week: current if in range, else first
     const nrs = KURS.veckor.map(v => v.nr);
     activeWeekNr = nrs.includes(currentWeek) ? currentWeek : nrs[0];
@@ -899,6 +902,6 @@ fetch('kurs-01.json')
   })
   .catch(() => {
     document.getElementById('week-view').innerHTML =
-      '<div class="wv-empty">⚠️ Kunde inte ladda kurs-01.json — kör via http-server, inte file://</div>';
+      '<div class="wv-empty">⚠️ Kunde inte ladda ' + KURS_FIL + ' — kör via http-server, inte file://</div>';
   });
 </script>

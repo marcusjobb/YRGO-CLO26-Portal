@@ -1,0 +1,227 @@
+{
+  "kod": "CLO26",
+  "nummer": "02",
+  "namn": "Databaser och SQL",
+  "period": "v.41–44",
+  "datum": "5 okt – 1 nov 2026",
+  "schema": "Mån + Tis campus · Ons online 09–11",
+  "notering": "Ingen inlämning v.41 · Tenta tis 27 okt",
+  "githubBase": "https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-02-databaser/",
+  "links": [
+    { "icon": "💬", "label": "Discord", "href": "https://discord.gg/ZSquGkSvK" },
+    { "icon": "🧪", "label": "sqliteonline.com — SQL i webbläsaren", "href": "https://sqliteonline.com/" },
+    { "icon": "🕵️", "label": "Läxa: SQL Murder Mystery", "href": "https://mystery.knightlab.com/" },
+    { "icon": "🚓", "label": "Läxa: SQL Police Department", "href": "https://sqlpd.com/" },
+    { "icon": "🎩", "label": "Läxa: SQL Noir", "href": "https://www.sqlnoir.com/" },
+    { "icon": "📚", "label": "SQLZoo", "href": "https://sqlzoo.net/" }
+  ],
+  "betyg": {
+    "G": "Skriftligt prov och inlämningsuppgifter godkända — kan hantera data med SQL och i en dokumentdatabas",
+    "VG": "Avancerade SQL-frågor (subfrågor, JOIN över flera tabeller), normaliserad design och resonemang kring alternativa lösningar"
+  },
+  "veckor": [
+    {
+      "nr": 41,
+      "titel": "Introduktion till databaser",
+      "tid": "8–10 h",
+      "mal": "Vet vad en databas är och varför den finns. Har SQLite igång och kan ställa sin första SQL-fråga.",
+      "amnen": [
+        {
+          "titel": "Varför finns databaser?",
+          "beskrivning": "En vanlig tisdag på CSI: Göteborg — från pappersarkiv till tabeller, rader och kolumner.",
+          "tags": ["databas", "tabell", "rad", "kolumn", "primärnyckel", "terminologi"],
+          "lektion": {
+            "text": "01_intro_csi_marp.md",
+            "href": "01_intro_databaser/lectures/01_intro_csi_marp.md",
+            "tags": ["databas", "terminologi", "CSI"]
+          },
+          "notes": [
+            {
+              "text": "intro_databaser.md",
+              "href": "01_intro_databaser/notes/intro_databaser.md",
+              "tags": ["databas", "tabell", "terminologi"]
+            },
+            {
+              "text": "Databashäftet — förord",
+              "href": "01_intro_databaser/notes/csharp_cmyh_c_sharp_databases_brief_00_forord.md",
+              "tags": ["häfte", "översikt"]
+            }
+          ],
+          "ovningar": {
+            "green": [
+              {
+                "text": "Tankeövningar om databaser",
+                "href": "01_intro_databaser/exercises/SQL_ovningar_nyborjare_tankeovningar_om_databaser.md",
+                "tags": ["modellering", "papper", "tabell"],
+                "desc": "Djursjukhuset har allt på papper. Hur blir det tabeller? Penna räcker."
+              },
+              {
+                "text": "Övningar lektion 2 — relationsschema",
+                "href": "01_intro_databaser/exercises/ovningar_lektion_2.md",
+                "tags": ["schema", "primärnyckel", "främmande nyckel", "relation"],
+                "desc": "Rita ett relationsschema för en Sales-databas med kopplade tabeller."
+              }
+            ],
+            "amber": [
+              {
+                "text": "Rädda Kaos-Databasen",
+                "href": "01_intro_databaser/exercises/01_radda_kaos_databasen.md",
+                "tags": ["design", "workshop", "grupp", "analys"],
+                "desc": "Utvecklaren är borta och webbshopens databas har växt vilt. Ni är konsulterna."
+              }
+            ],
+            "red": [
+              {
+                "text": "Träningsuppgifter v1",
+                "href": "01_intro_databaser/exercises/training_vecka1.md",
+                "tags": ["self-test", "terminologi", "repetition"],
+                "desc": "Frågesport om veckans begrepp — välj bäst svar, se förklaring."
+              }
+            ]
+          }
+        },
+        {
+          "titel": "SQLite och verktyg",
+          "beskrivning": "En hel databas i en enda fil. Installera DB Browser for SQLite och öppna din första databas.",
+          "tags": ["SQLite", "installation", "DB Browser", "verktyg", "fil"],
+          "lektion": {
+            "text": "sqlite_intro_marp.md",
+            "href": "01_intro_databaser/lectures/sqlite_intro_marp.md",
+            "tags": ["SQLite", "fil", "databas"]
+          },
+          "notes": [
+            {
+              "text": "Installera DB Browser for SQLite",
+              "href": "01_intro_databaser/notes/sqlite_browser_installation.md",
+              "tags": ["installation", "Windows", "Mac", "Linux"]
+            },
+            {
+              "text": "sqlite_intro.md",
+              "href": "01_intro_databaser/notes/sqlite_intro.md",
+              "tags": ["SQLite", "egenskaper"]
+            },
+            {
+              "text": "Databashäftet kap 1 — SQLite",
+              "href": "01_intro_databaser/notes/csharp_cmyh_c_sharp_databases_brief_01_sqlite.md",
+              "tags": ["SQLite", "häfte", "Docker"]
+            }
+          ],
+          "ovningar": {
+            "green": [
+              {
+                "text": "Installationsguide (slides)",
+                "href": "01_intro_databaser/lectures/sqlite_browser_installation.md",
+                "tags": ["installation", "DB Browser"],
+                "desc": "Följ guiden steg för steg tills DB Browser öppnar en tom databas."
+              }
+            ],
+            "amber": [],
+            "red": []
+          }
+        },
+        {
+          "titel": "Din första SQL",
+          "beskrivning": "SQL är ett frågespråk — du beskriver vad du vill ha, inte hur. CREATE TABLE, INSERT och SELECT.",
+          "tags": ["SQL", "SELECT", "INSERT", "CREATE TABLE", "WHERE", "sqliteonline"],
+          "lektion": {
+            "text": "sql_intro_marp.md",
+            "href": "01_intro_databaser/lectures/sql_intro_marp.md",
+            "tags": ["SQL", "SELECT", "sqliteonline"]
+          },
+          "notes": {
+            "text": "sql_intro.md",
+            "href": "01_intro_databaser/notes/sql_intro.md",
+            "tags": ["SQL", "SELECT", "frågespråk"]
+          },
+          "ovningar": {
+            "green": [
+              {
+                "text": "Övningar lektion 3 — CREATE och INSERT",
+                "href": "01_intro_databaser/exercises/ovningar_lektion_3.md",
+                "tags": ["CREATE", "INSERT", "constraints"],
+                "desc": "Bygg Sales-databasen från lektion 2 i SQL och fyll den med data."
+              }
+            ],
+            "amber": [
+              {
+                "text": "Specialpizza",
+                "href": "01_intro_databaser/exercises/specialpizza_sql_ovning.md",
+                "tags": ["SELECT", "INSERT", "recept"],
+                "desc": "Pizzerian går dåligt. Med en databas och lite äventyrlighet skapar du receptet."
+              }
+            ],
+            "red": [
+              {
+                "text": "Halloween-mysteriet",
+                "href": "01_intro_databaser/exercises/sql_mysteriet.md",
+                "tags": ["SELECT", "WHERE", "deduktion", "story", "halloween"],
+                "desc": "Natten då produktionsdatabasen försvann. Fyra misstänkta — lös det med SQL."
+              }
+            ]
+          }
+        },
+        {
+          "titel": "Välja databasmotor",
+          "beskrivning": "SQLite, MySQL eller PostgreSQL? Och vad skiljer relationsdatabaser från dokumentdatabaser?",
+          "tags": ["SQLite", "MySQL", "PostgreSQL", "server", "relationsdatabas", "dokumentdatabas"],
+          "lektion": {
+            "text": "databastyper_val_av_databasmotor_marp.md",
+            "href": "01_intro_databaser/lectures/databastyper_val_av_databasmotor_marp.md",
+            "tags": ["databasmotor", "val", "connection string"]
+          },
+          "notes": [
+            {
+              "text": "databastyper.md",
+              "href": "01_intro_databaser/notes/databastyper.md",
+              "tags": ["SQLite", "MySQL", "PostgreSQL"]
+            },
+            {
+              "text": "Databashäftet kap 2 — MySQL",
+              "href": "01_intro_databaser/notes/csharp_cmyh_c_sharp_databases_brief_02_mysql.md",
+              "tags": ["MySQL", "server", "Docker"]
+            }
+          ],
+          "ovningar": {
+            "green": [],
+            "amber": [
+              {
+                "text": "Denormalisering för AI (SQLite)",
+                "href": "01_intro_databaser/exercises/02_denormalisering_for_ai_sqlite.md",
+                "tags": ["AI", "ML", "workshop", "SQLite"],
+                "desc": "WildShop AB vill använda sin data för maskininlärning. Hur ska den se ut?"
+              }
+            ],
+            "red": []
+          }
+        }
+      ]
+    },
+    {
+      "nr": 42,
+      "titel": "SQL grunder — CRUD",
+      "tid": "8–10 h",
+      "mal": "Kan läsa, lägga till, uppdatera och ta bort data med SQL.",
+      "comingSoon": "Material publiceras vecka 42 (mån 12 okt)",
+      "deadline": "Inlämning 1 — Diskografi · deadline sön 18 okt 23:59",
+      "amnen": []
+    },
+    {
+      "nr": 43,
+      "titel": "SQL avancerat, normalisering och säkerhet",
+      "tid": "10–12 h",
+      "mal": "Kan JOIN:a, aggregera och normalisera. Förstår SQL injection och hur man skyddar sig.",
+      "comingSoon": "Material publiceras vecka 43 (mån 19 okt)",
+      "deadline": "Inlämning 2 — Filmdatabas-appen · deadline sön 25 okt 23:59",
+      "amnen": []
+    },
+    {
+      "nr": 44,
+      "titel": "MongoDB och tenta",
+      "tid": "6–8 h",
+      "mal": "Har provat en dokumentdatabas och kan förklara skillnaden mot en relationsdatabas.",
+      "comingSoon": "Material publiceras vecka 44 (mån 26 okt)",
+      "deadline": "Tenta · tisdag 27 okt 09:00–12:00",
+      "amnen": []
+    }
+  ]
+}
