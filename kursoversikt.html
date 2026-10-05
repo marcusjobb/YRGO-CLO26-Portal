@@ -632,6 +632,11 @@ function buildLegend() {
 /* ══════════════════════════════════════════════════════
    render one ämne-card
 ══════════════════════════════════════════════════════ */
+// Absoluta länkar (http/https) används som de är; relativa sökvägar prefixas med repo-basen.
+function resolveHref(base, href) {
+  return /^https?:\/\//i.test(href) ? href : base + href;
+}
+
 function renderAmne(amne, base, q) {
   const card = el('div','amne-card');
 
@@ -660,9 +665,9 @@ function renderAmne(amne, base, q) {
 
   // resource links (lektion + notes)
   const resources = [];
-  if (amne.lektion) resources.push({ icon:'📊', label: amne.lektion.text, href: base + amne.lektion.href });
+  if (amne.lektion) resources.push({ icon:'📊', label: amne.lektion.text, href: resolveHref(base, amne.lektion.href) });
   const notesArr = Array.isArray(amne.notes) ? amne.notes : (amne.notes ? [amne.notes] : []);
-  notesArr.forEach(n => resources.push({ icon:'📝', label: n.text, href: base + n.href }));
+  notesArr.forEach(n => resources.push({ icon:'📝', label: n.text, href: resolveHref(base, n.href) }));
 
   if (resources.length) {
     const resEl = el('div','amne-resources');
@@ -675,7 +680,7 @@ function renderAmne(amne, base, q) {
   // inlämning
   if (amne.inlamning) {
     const inEl = el('div','amne-resources');
-    const href = amne.inlamning.href.startsWith('http') ? amne.inlamning.href : base + amne.inlamning.href;
+    const href = resolveHref(base, amne.inlamning.href);
     inEl.innerHTML = `<a class="res-link" href="${href}" target="_blank" rel="noopener" style="border-color:var(--accent);color:var(--accent)"><span class="res-icon">📋</span>${hl(amne.inlamning.text, q)}</a>`;
     body.appendChild(inEl);
   }
@@ -684,7 +689,7 @@ function renderAmne(amne, base, q) {
   if (amne.examples?.length) {
     const exEl = el('div','amne-resources amne-examples');
     amne.examples.forEach(ex => {
-      exEl.innerHTML += `<a class="res-link res-link-ex" href="${base + ex.href}" target="_blank" rel="noopener"><span class="res-icon">💻</span>${hl(ex.text, q)}</a>`;
+      exEl.innerHTML += `<a class="res-link res-link-ex" href="${resolveHref(base, ex.href)}" target="_blank" rel="noopener"><span class="res-icon">💻</span>${hl(ex.text, q)}</a>`;
     });
     body.appendChild(exEl);
   }
@@ -702,7 +707,7 @@ function renderAmne(amne, base, q) {
     allOvs.forEach(o => {
       const row = el('div','ov-row ' + o.niva);
       const descHtml = o.desc ? `<span class="ov-desc">${hl(o.desc, q)}</span>` : '';
-      row.innerHTML = `<span class="ov-dot"></span><a href="${base + o.href}" target="_blank" rel="noopener">${hl(o.text, q)}</a>${descHtml}`;
+      row.innerHTML = `<span class="ov-dot"></span><a href="${resolveHref(base, o.href)}" target="_blank" rel="noopener">${hl(o.text, q)}</a>${descHtml}`;
       ovEl.appendChild(row);
     });
     body.appendChild(ovEl);
@@ -780,7 +785,7 @@ function renderWeekView() {
     tf.appendChild(el('div','tentafragor-label','Tentafrågor'));
     const tfl = el('div','tentafragor-list');
     v.tentafragor.forEach(t => {
-      tfl.innerHTML += `<a class="tentafragor-link" href="${base + t.href}" target="_blank" rel="noopener">${t.text}</a>`;
+      tfl.innerHTML += `<a class="tentafragor-link" href="${resolveHref(base, t.href)}" target="_blank" rel="noopener">${t.text}</a>`;
     });
     tf.appendChild(tfl);
     view.appendChild(tf);
