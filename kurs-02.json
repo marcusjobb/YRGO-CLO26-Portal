@@ -130,6 +130,17 @@
           "tags": ["debugging", "gummianka", "metod"],
           "lektion": { "text": "gummiankemetoden_marp.md", "href": "01_intro_databaser/lectures/gummiankemetoden_marp.md", "tags": ["debugging", "gummianka"] },
           "ovningar": { "green": [], "amber": [], "red": [] }
+        },
+        {
+          "titel": "Livekodning — Första SQLite-databasen",
+          "beskrivning": "Hjältedatabasen från lektionen: CREATE, INSERT, SELECT, WHERE och UPDATE, och sedan delar vi upp den i Hero, City och HeroCity. Plus SQL jämfört med C# och hur du ritar databasen i dbdiagram.io.",
+          "tags": ["SQLite", "CRUD", "UPDATE", "många-till-många", "dbdiagram", "C#"],
+          "examples": [
+            { "text": "Första SQLite-databasen", "href": "01_intro_databaser/examples/2026-10-07_forsta_sqlite_databasen.md", "tags": ["SQLite", "INSERT", "UPDATE", "DROP TABLE"] },
+            { "text": "SQL jämfört med C#", "href": "01_intro_databaser/examples/2026-10-07_sql_jamfort_med_csharp.md", "tags": ["C#", "List", "foreach", "LIKE"] },
+            { "text": "Rita databasen med dbdiagram.io", "href": "01_intro_databaser/examples/2026-10-07_dbdiagram_intro.md", "tags": ["dbdiagram", "DBML", "ER-diagram"] }
+          ],
+          "ovningar": { "green": [], "amber": [], "red": [] }
         }
       ]
     },
