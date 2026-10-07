@@ -141,6 +141,15 @@
             { "text": "Rita databasen med dbdiagram.io", "href": "01_intro_databaser/examples/2026-10-07_dbdiagram_intro.md", "tags": ["dbdiagram", "DBML", "ER-diagram"] }
           ],
           "ovningar": { "green": [], "amber": [], "red": [] }
+        },
+        {
+          "titel": "Veckans tips — GitHub Student Developer Pack",
+          "beskrivning": "Gratis verktyg som student, bland annat GitHub Copilot. Skolmejlen räcker inte alltid för att verifiera dig, så här står vilket underlag som fungerar och vad du gör om du får avslag.",
+          "tags": ["GitHub", "Copilot", "student", "verktyg"],
+          "notes": [
+            { "text": "GitHub Student Developer Pack — så verifierar du dig", "href": "01_intro_databaser/notes/github_student_developer_pack.md", "tags": ["GitHub", "verifiering", "studentintyg"] }
+          ],
+          "ovningar": { "green": [], "amber": [], "red": [] }
         }
       ]
     },
