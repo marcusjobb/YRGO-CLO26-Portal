@@ -25,7 +25,7 @@
       "titel": "SQL-boot",
       "tid": "3–6 h",
       "mal": "Har installerat SQLite Browser och lekt med SQL i minst ett spel. Vet ungefär vad SELECT gör.",
-      "notering": "Ingen föreläsning. Ingen inlämning. Bara spel.",
+      "notering": "Ingen inlämning. Föreläsningar + SQL-spel.",
       "amnen": [
         {
           "titel": "Installera SQLite Browser",
@@ -103,6 +103,33 @@
               }
             ]
           }
+        },
+        {
+          "titel": "Föreläsning — Databaser, CSI-intro",
+          "beskrivning": "En vanlig tisdag på CSI: Göteborg — varför databaser finns, tre grundbegrepp och dina första SELECT och WHERE.",
+          "tags": ["databas", "intro", "CSI", "SELECT", "WHERE"],
+          "lektion": { "text": "01_intro_csi_marp.md", "href": "01_intro_databaser/lectures/01_intro_csi_marp.md", "tags": ["intro", "databas"] },
+          "notes": [
+            { "text": "Intro till databaser", "href": "01_intro_databaser/notes/intro_databaser.md", "tags": ["begrepp", "tabell", "rad", "kolumn"] }
+          ],
+          "ovningar": { "green": [], "amber": [], "red": [] }
+        },
+        {
+          "titel": "Föreläsning — Vilken databas väljer du?",
+          "beskrivning": "SQLite, MySQL och PostgreSQL: vad skiljer dem åt och när passar vilken?",
+          "tags": ["SQLite", "MySQL", "PostgreSQL", "databastyper"],
+          "lektion": { "text": "databastyper_val_av_databasmotor_marp.md", "href": "01_intro_databaser/lectures/databastyper_val_av_databasmotor_marp.md", "tags": ["databastyper", "val av motor"] },
+          "notes": [
+            { "text": "Databastyper", "href": "01_intro_databaser/notes/databastyper.md", "tags": ["server", "fil", "jämförelse"] }
+          ],
+          "ovningar": { "green": [], "amber": [], "red": [] }
+        },
+        {
+          "titel": "Veckans nördiska — Gummiankemetoden",
+          "beskrivning": "Förklara koden för en gummianka, och hitta felet själv. Historik och varför det fungerar.",
+          "tags": ["debugging", "gummianka", "metod"],
+          "lektion": { "text": "gummiankemetoden_marp.md", "href": "01_intro_databaser/lectures/gummiankemetoden_marp.md", "tags": ["debugging", "gummianka"] },
+          "ovningar": { "green": [], "amber": [], "red": [] }
         }
       ]
     },

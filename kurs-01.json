@@ -159,15 +159,15 @@
       "tentafragor": [
         {
           "text": "01 Git & verktyg",
-          "href": "tentafrågor/01_fragor_git.md"
+          "href": "01_verktyg_och_git/tentafragor/01_fragor_git.md"
         },
         {
           "text": "02 Variabler",
-          "href": "tentafrågor/02_fragor_variabler.md"
+          "href": "02_syntax_och_variabler/tentafragor/02_fragor_variabler.md"
         },
         {
           "text": "03 Villkor & loopar",
-          "href": "tentafrågor/03_fragor_villkor.md"
+          "href": "03_villkor_och_loopar/tentafragor/03_fragor_villkor.md"
         }
       ],
       "amnen": [
@@ -385,7 +385,7 @@
           ],
           "lektion": {
             "text": "if_else_marp.md",
-            "href": "03_villkor_och_loopar/if_else_marp.md",
+            "href": "03_villkor_och_loopar/lectures/if_else_marp.md",
             "tags": [
               "if",
               "else",
@@ -609,7 +609,7 @@
           ],
           "lektion": {
             "text": "loopar_marp.md",
-            "href": "03_villkor_och_loopar/loopar_marp.md",
+            "href": "03_villkor_och_loopar/lectures/loopar_marp.md",
             "tags": [
               "for",
               "while",
@@ -697,7 +697,7 @@
             "amber": [
               {
                 "text": "gissa talet",
-                "href": "03_villkor_och_loopar/exercises/loops/gissa_talet.md",
+                "href": "03_villkor_och_loopar/exercises/random/gissa_talet.md",
                 "tags": [
                   "do-while",
                   "random",
@@ -764,7 +764,7 @@
           ],
           "lektion": {
             "text": "switch_marp.md",
-            "href": "03_villkor_och_loopar/switch_marp.md",
+            "href": "03_villkor_och_loopar/lectures/switch_marp.md",
             "tags": [
               "switch",
               "case",
@@ -1128,13 +1128,7 @@
               "tags": ["List", "new()", "objektinitierare", "Insert", "ForEach", "lambda", "live-demo"]
             }
           ],
-          "examples": [
-            {
-              "text": "DataStructureExamples.cs",
-              "href": "06_datastrukturer/examples/DataStructureExamples.cs",
-              "tags": ["array", "List", "Dictionary", "enum", "exempel"]
-            }
-          ],
+          "examples": [],
           "ovningar": {
             "green": [
               {
