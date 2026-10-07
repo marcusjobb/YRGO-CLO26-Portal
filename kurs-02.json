@@ -143,6 +143,46 @@
           "ovningar": { "green": [], "amber": [], "red": [] }
         },
         {
+          "titel": "Livekodning — SQLite i C#",
+          "beskrivning": "Från tom konsolapplikation till en SQLite-databas i C#: NuGet-paketet, projektfilen och ExecuteNonQuery, ExecuteScalar och ExecuteReader. Sedan flyttar vi koden till en egen klass, SQLiteHandler.",
+          "tags": ["C#", "SQLite", "NuGet", "csproj", "Microsoft.Data.Sqlite", "klass"],
+          "examples": [
+            { "text": "SQLite i C#", "href": "01_intro_databaser/examples/2026-10-07_sqlite_i_csharp.md", "tags": ["NuGet", "csproj", "parametrar", "ExecuteReader"] },
+            { "text": "SQLite-handler", "href": "01_intro_databaser/examples/2026-10-07_sqlite_handler.md", "tags": ["klass", "namespace", "refaktorering"] }
+          ],
+          "ovningar": {
+            "green": [],
+            "amber": [
+              { "text": "C# + SQL-övningar", "href": "01_intro_databaser/exercises/csharp_och_sql_ovningar.md", "tags": ["DatabaseHandler", "DataTable", "CRUD", "grupp"], "desc": "Bygg en egen DatabaseHandler steg för steg, och avsluta med klasser och CRUD. Gör dem i grupp." }
+            ],
+            "red": []
+          }
+        },
+        {
+          "titel": "Rymdmangan — SQL från C# med besättningen på Kometen",
+          "beskrivning": "Piratmetoden (ExecuteNonQuery) och handlarmetoden (ExecuteReader + DataTable) berättade som manga. I Lastmanifestet kräver tullen ordning, och vi skickar objekt till databasen i stället för lösa värden.",
+          "tags": ["C#", "SQLite", "DataTable", "klasser", "List"],
+          "notes": [
+            { "text": "SQL från C# — en rymdmanga", "href": "01_intro_databaser/notes/sql_fran_csharp_rymdmanga.md", "tags": ["ExecuteNonQuery", "ExecuteReader", "DataTable", "parametrar"] },
+            { "text": "Lastmanifestet — klasser till databasen", "href": "01_intro_databaser/notes/sqlite_lastmanifestet.md", "tags": ["klasser", "CargoHandler", "List", "objekt"] }
+          ],
+          "ovningar": { "green": [], "amber": [], "red": [] }
+        },
+        {
+          "titel": "Övningar — SQL-sökningar",
+          "beskrivning": "Skapa en filmdatabas från grunden, och lek sedan CSI med tusen påhittade personer från Mockaroo.",
+          "tags": ["SQL", "SELECT", "WHERE", "COUNT", "LIKE", "Mockaroo"],
+          "ovningar": {
+            "green": [
+              { "text": "SQL-filmdatabas", "href": "01_intro_databaser/exercises/sql_filmdatabas.md", "tags": ["CREATE", "INSERT", "UPDATE", "ALTER"], "desc": "Sex korta uppgifter: från tom databas till sorterade sökningar." }
+            ],
+            "amber": [
+              { "text": "Mer sökningar", "href": "01_intro_databaser/exercises/mer_sokningar.md", "tags": ["Mockaroo", "COUNT", "DISTINCT", "LIKE"], "desc": "Generera testdata och svara på CSI-frågor med SQL." }
+            ],
+            "red": []
+          }
+        },
+        {
           "titel": "Veckans tips — GitHub Student Developer Pack",
           "beskrivning": "Gratis verktyg som student, bland annat GitHub Copilot. Skolmejlen räcker inte alltid för att verifiera dig, så här står vilket underlag som fungerar och vad du gör om du får avslag.",
           "tags": ["GitHub", "Copilot", "student", "verktyg"],
