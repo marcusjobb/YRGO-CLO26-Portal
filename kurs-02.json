@@ -238,6 +238,15 @@
           }
         },
         {
+          "titel": "Inlämning 1 — Din favoritartists diskografi",
+          "beskrivning": "Bygg en normaliserad SQL-databas över en artists diskografi. Minst 3 tabeller, 3 album, 3NF och ett ER-diagram. Deadline söndag 18 okt 23:59.",
+          "tags": ["inlämning", "SQL", "CREATE TABLE", "JOIN", "ER-diagram", "normalisering"],
+          "notes": [
+            { "text": "Inlämning 1 — Diskografi (uppgiftsbeskrivning)", "href": "assignment/inlamning_1_diskografi.md", "tags": ["G", "VG", "sql-fil", "ER-diagram", "zip"] }
+          ],
+          "ovningar": { "green": [], "amber": [], "red": [] }
+        },
+        {
           "titel": "Nördiska v.42 — databasbegrepp",
           "beskrivning": "Varje grupp förklarar 2–3 begrepp för klassen. Begreppen delas ut måndag, presentation onsdag.",
           "tags": ["nördiska", "terminologi", "begrepp", "presentation"],
