@@ -195,12 +195,58 @@
     },
     {
       "nr": 42,
-      "titel": "SQL grunder — CRUD",
+      "titel": "ER-diagram, normalisering och SQL-grunder",
       "tid": "8–10 h",
-      "mal": "Kan läsa, lägga till, uppdatera och ta bort data med SQL.",
-      "comingSoon": "Material publiceras vecka 42 (mån 12 okt)",
+      "mal": "Kan rita ett ER-diagram, förklara 1NF/2NF/3NF och skriva CREATE TABLE + INSERT i SQLite Browser.",
       "deadline": "Inlämning 1 — Diskografi · deadline sön 18 okt 23:59",
-      "amnen": []
+      "amnen": [
+        {
+          "titel": "ER-diagram — design FÖRE SQL",
+          "beskrivning": "Rita upp databasen på papper innan du skriver en enda rad SQL. Entiteter, attribut, relationer och kardinalitet (1:1, 1:N, N:M). Vi ritar en djurpark live på tavlan.",
+          "tags": ["ER-diagram", "entitet", "relation", "kardinalitet", "design"],
+          "notes": [
+            { "text": "Termer: ER-diagram", "href": "termer/er-diagram.md", "tags": ["ERD", "entitet", "primärnyckel", "foreign key", "crow's foot"] }
+          ],
+          "ovningar": { "green": [], "amber": [], "red": [] }
+        },
+        {
+          "titel": "Normalisering — organisera data rätt",
+          "beskrivning": "Varför redundans är farligt och hur du löser det. 1NF = ett värde per cell. 2NF = alla kolumner beror på hela primärnyckeln. 3NF = inga transitiva beroenden.",
+          "tags": ["normalisering", "1NF", "2NF", "3NF", "redundans", "GDPR"],
+          "notes": [
+            { "text": "Termer: normalisering och GDPR", "href": "termer/normalisering.md", "tags": ["1NF", "2NF", "3NF", "transitivt beroende", "GDPR", "raderingsrätten"] }
+          ],
+          "ovningar": { "green": [], "amber": [], "red": [] }
+        },
+        {
+          "titel": "SQLite Browser + SQL-grunder",
+          "beskrivning": "Installera SQLite Browser om du inte gjort det. Skapa din första tabell med CREATE TABLE och lägg in data med INSERT INTO. Sedan: SELECT, WHERE och ORDER BY — vi kör livekod mot djurpark-databasen.",
+          "tags": ["SQLite", "CREATE TABLE", "INSERT", "SELECT", "WHERE", "ORDER BY"],
+          "lektion": { "text": "Föreläsning: SQL-intro", "href": "01_intro_databaser/lectures/sql_intro_marp.md", "tags": ["SELECT", "WHERE", "INSERT", "CREATE TABLE"] },
+          "notes": [
+            { "text": "Installera DB Browser for SQLite", "href": "01_intro_databaser/notes/sqlite_browser_installation.md", "tags": ["installation", "Windows", "Mac", "Linux"] },
+            { "text": "SQL-intro", "href": "01_intro_databaser/notes/sql_intro.md", "tags": ["SELECT", "WHERE", "ORDER BY", "LIMIT"] }
+          ],
+          "ovningar": {
+            "green": [
+              { "text": "SQL-filmdatabas", "href": "01_intro_databaser/exercises/sql_filmdatabas.md", "tags": ["CREATE", "INSERT", "SELECT", "UPDATE"], "desc": "Bygg en filmdatabas från grunden och skriv dina första riktiga SQL-frågor." }
+            ],
+            "amber": [
+              { "text": "Mer sökningar", "href": "01_intro_databaser/exercises/mer_sokningar.md", "tags": ["Mockaroo", "COUNT", "DISTINCT", "LIKE"], "desc": "Generera testdata och svara på CSI-frågor med SQL." }
+            ],
+            "red": []
+          }
+        },
+        {
+          "titel": "Nördiska v.42 — databasbegrepp",
+          "beskrivning": "Varje grupp förklarar 2–3 begrepp för klassen. Begreppen delas ut måndag, presentation onsdag.",
+          "tags": ["nördiska", "terminologi", "begrepp", "presentation"],
+          "notes": [
+            { "text": "Nördiska v.42 — ord och begrepp", "href": "nordiska/v42.md", "tags": ["databas", "tabell", "primärnyckel", "SELECT", "INSERT"] }
+          ],
+          "ovningar": { "green": [], "amber": [], "red": [] }
+        }
+      ]
     },
     {
       "nr": 43,
