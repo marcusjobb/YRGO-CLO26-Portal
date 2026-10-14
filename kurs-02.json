@@ -579,8 +579,30 @@
             }
           ],
           "ovningar": {
-            "green": [],
-            "amber": [],
+            "green": [
+              {
+                "text": "Övning: Djurparken",
+                "href": "03_normalisering_gdpr/exercises/ovning_erd_djurpark.md",
+                "tags": [
+                  "ER-diagram",
+                  "djurpark",
+                  "kardinalitet"
+                ],
+                "desc": "Rita ER-diagrammet för djurparken från lektionen — samma entiteter, samma relationer."
+              }
+            ],
+            "amber": [
+              {
+                "text": "Övning: Spelbutiken",
+                "href": "03_normalisering_gdpr/exercises/ovning_erd_spelbutik.md",
+                "tags": [
+                  "ER-diagram",
+                  "N:M",
+                  "mellantabell"
+                ],
+                "desc": "Rita ER-diagram för en onlinespelbutik. Identifiera N:M-relationer och skriv CREATE TABLE för mellantabellerna."
+              }
+            ],
             "red": []
           },
           "mal": "Kan rita ett ER-diagram med entiteter, attribut och kardinalitet (1:1, 1:N, N:M) innan koden skrivs."
@@ -611,8 +633,31 @@
             }
           ],
           "ovningar": {
-            "green": [],
-            "amber": [],
+            "green": [
+              {
+                "text": "Övning: Normalisera orderdata",
+                "href": "03_normalisering_gdpr/exercises/ovning_normalisering_order.md",
+                "tags": [
+                  "1NF",
+                  "2NF",
+                  "3NF",
+                  "orderdata"
+                ],
+                "desc": "Steg för steg från kaos-tabell till normaliserad design — 1NF → 2NF → 3NF → CREATE TABLE."
+              }
+            ],
+            "amber": [
+              {
+                "text": "Övning: Spelsamling",
+                "href": "03_normalisering_gdpr/exercises/ovning_normalisering_spelsamling.md",
+                "tags": [
+                  "normalisering",
+                  "mellantabell",
+                  "spelsamling"
+                ],
+                "desc": "Normalisera en platt spelsamlingstabell — samma steg, nytt scenario med N:M-relationer."
+              }
+            ],
             "red": []
           },
           "mal": "Kan förklara 1NF, 2NF och 3NF och omstrukturera en platt tabell till normaliserad design."
