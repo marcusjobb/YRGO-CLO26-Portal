@@ -198,7 +198,7 @@
       "titel": "ER-diagram, normalisering och SQL-grunder",
       "tid": "8–10 h",
       "mal": "Kan rita ett ER-diagram, förklara 1NF/2NF/3NF och skriva CREATE TABLE + INSERT i SQLite Browser.",
-      "deadline": "Inlämning 1 — Diskografi · deadline sön 18 okt 23:59",
+      "deadline": "Inlämning 1 — Diskografi · deadline ons 21 okt 23:59 (förlängd)",
       "amnen": [
         {
           "titel": "ER-diagram — design FÖRE SQL",
@@ -215,6 +215,33 @@
           "tags": ["normalisering", "1NF", "2NF", "3NF", "redundans", "GDPR"],
           "notes": [
             { "text": "Termer: normalisering och GDPR", "href": "termer/normalisering.md", "tags": ["1NF", "2NF", "3NF", "transitivt beroende", "GDPR", "raderingsrätten"] }
+          ],
+          "ovningar": { "green": [], "amber": [], "red": [] }
+        },
+        {
+          "titel": "Fredag v42 — SQL-repetition (SELECT → VIEW)",
+          "beskrivning": "Repetition av CRUD, CREATE TABLE, FOREIGN KEY och Views med spelbutiksscenario. Varje slide länkar direkt till notes i repot.",
+          "tags": ["SELECT", "INSERT", "UPDATE", "DELETE", "VIEW", "repetition", "CRUD"],
+          "lektion": { "text": "SQL-repetition (Del 1)", "href": "01_intro_databaser/lectures/sql_repetition_marp.md", "tags": ["SELECT", "CRUD", "VIEW", "spelbutik"] },
+          "notes": [
+            { "text": "SQL-intro", "href": "01_intro_databaser/notes/sql_intro.md", "tags": ["SELECT", "WHERE", "ORDER BY", "LIMIT"] },
+            { "text": "SQLite-grunder", "href": "01_intro_databaser/notes/sqlite_grund.md", "tags": ["CREATE TABLE", "PRIMARY KEY", "INSERT"] }
+          ],
+          "ovningar": {
+            "green": [
+              { "text": "SQL-repetitionsövningar", "href": "01_intro_databaser/exercises/sql_repetition_ovningar.md", "tags": ["SELECT", "INSERT", "UPDATE", "DELETE", "VIEW"], "desc": "Sex delar — från CREATE TABLE till Views. Jobba dig igenom." }
+            ],
+            "amber": [],
+            "red": []
+          }
+        },
+        {
+          "titel": "Fredag v42 — ERD och normalisering (Del 2)",
+          "beskrivning": "Från en låda med 'Kalle Svensson, Södra Gatan 23, Myskoby' till tre separata tabeller med JOIN. Visuell genomgång med HTML-boxar i stället för text.",
+          "tags": ["ERD", "normalisering", "JOIN", "FOREIGN KEY", "3NF", "relationsdesign"],
+          "lektion": { "text": "ERD & Normalisering (Del 2)", "href": "01_intro_databaser/lectures/erd_normalisering_repetition_marp.md", "tags": ["ERD", "normalisering", "JOIN", "1:N"] },
+          "notes": [
+            { "text": "Normalisering", "href": "03_normalisering_gdpr/notes/normalisering.md", "tags": ["1NF", "2NF", "3NF"] }
           ],
           "ovningar": { "green": [], "amber": [], "red": [] }
         },
@@ -239,7 +266,7 @@
         },
         {
           "titel": "Inlämning 1 — Din favoritartists diskografi",
-          "beskrivning": "Bygg en normaliserad SQL-databas över en artists diskografi. Minst 3 tabeller, 3 album, 3NF och ett ER-diagram. Deadline söndag 18 okt 23:59.",
+          "beskrivning": "Bygg en normaliserad SQL-databas över en artists diskografi. Minst 3 tabeller, 3 album, 3NF och ett ER-diagram. Deadline onsdag 21 okt 23:59 (förlängd).",
           "tags": ["inlämning", "SQL", "CREATE TABLE", "JOIN", "ER-diagram", "normalisering"],
           "notes": [
             { "text": "Inlämning 1 — Diskografi (uppgiftsbeskrivning)", "href": "assignment/inlamning_1_diskografi.md", "tags": ["G", "VG", "sql-fil", "ER-diagram", "zip"] }
