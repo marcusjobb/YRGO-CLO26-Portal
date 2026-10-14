@@ -353,15 +353,15 @@ function currentWeekNr() {
 const CURRENT_WEEK = currentWeekNr();
 
 // ── FETCH & RENDER ────────────────────────────────────────────────────────
-const courseSelect    = document.getElementById('courseSelect');
-const sbBody          = document.getElementById('sbBody');
-const timelineEl      = document.getElementById('timelineScroll');
-const timelineLoading = document.getElementById('timelineLoading');
-const topbarInfo      = document.getElementById('topbarInfo');
-const searchInput     = document.getElementById('searchInput');
+const courseSelect = document.getElementById('courseSelect');
+const sbBody       = document.getElementById('sbBody');
+const timelineEl   = document.getElementById('timelineScroll');
+const topbarInfo   = document.getElementById('topbarInfo');
+const searchInput  = document.getElementById('searchInput');
 
 async function loadCourse(jsonFile) {
-  timelineLoading.style.display = 'block';
+  // Reset both panes; re-insert a fresh loading node so timelineScroll is never detached
+  timelineEl.innerHTML = '<div class="loading" id="timelineLoading">Laddar kursdata…</div>';
   sbBody.innerHTML = '<div class="loading">Laddar…</div>';
 
   let data;
@@ -370,11 +370,10 @@ async function loadCourse(jsonFile) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     data = await r.json();
   } catch (e) {
-    timelineLoading.textContent = 'Kunde inte ladda kursdata. (' + e.message + ')';
+    timelineEl.innerHTML = '<div class="loading">Kunde inte ladda kursdata. (' + e.message + ')</div>';
     return;
   }
   courseData = data;
-  timelineLoading.style.display = 'none';
   renderSidebar(data);
   renderTimeline(data);
   topbarInfo.textContent = data.kod + ' · ' + data.period + ' · ' + data.schema;
@@ -479,7 +478,8 @@ function renderTimeline(d, filter) {
         if (a.lektion) {
           html += `<a class="tlink lektion" href="${ghBase}${a.lektion.href}" target="_blank">📽 ${a.lektion.text}</a>`;
         }
-        for (const n of (a.notes || [])) {
+        const notesList = Array.isArray(a.notes) ? a.notes : (a.notes ? [a.notes] : []);
+        for (const n of notesList) {
           html += `<a class="tlink notes" href="${ghBase}${n.href}" target="_blank">📖 ${n.text}</a>`;
         }
         const ovningar = a.ovningar || {};
@@ -510,11 +510,7 @@ function renderTimeline(d, filter) {
     html += `</div></div>`;
   }
 
-  // Clear and insert
-  const scroll = document.getElementById('timelineScroll');
-  const loading = document.getElementById('timelineLoading');
-  if (loading) loading.remove();
-  scroll.innerHTML = html;
+  timelineEl.innerHTML = html;
 }
 
 // ── TOGGLE WEEK ────────────────────────────────────────────────────────────
@@ -561,5 +557,17 @@ courseSelect.addEventListener('change', () => {
 });
 
 // ── INIT ───────────────────────────────────────────────────────────────────
+// Stöd för ?kurs=01, ?kurs=02 etc i URL:en
+(function applyUrlParams() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const kurs = params.get('kurs');
+    if (kurs) {
+      const jsonFile = 'kurs-' + kurs.padStart(2, '0') + '.json';
+      const opt = Array.from(courseSelect.options).find(o => o.value === jsonFile);
+      if (opt) courseSelect.value = jsonFile;
+    }
+  } catch(e) {}
+})();
 loadCourse(courseSelect.value);
 </script>
