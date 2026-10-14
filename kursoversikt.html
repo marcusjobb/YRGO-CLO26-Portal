@@ -227,7 +227,12 @@ html, body { height: 100%; font-family: var(--sans); color: var(--text); backgro
   border-bottom: 1px solid var(--border);
 }
 .topic:last-child { border-bottom: none; }
-.topic-title { font-size: 13.5px; font-weight: 600; margin-bottom: .25rem; }
+.topic-title { font-size: 13.5px; font-weight: 600; margin-bottom: .2rem; }
+.topic-mal {
+  font-size: 11.5px; color: var(--accent); margin-bottom: .25rem;
+  display: flex; align-items: baseline; gap: .3rem;
+}
+.topic-mal::before { content: '🎯'; font-size: 10px; flex-shrink: 0; }
 .topic-desc { font-size: 12.5px; color: var(--muted); margin-bottom: .55rem; line-height: 1.55; }
 .topic-tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .55rem; }
 .tag {
@@ -430,7 +435,7 @@ function renderTimeline(d, filter) {
     if (fLow) {
       const weekText = (v.titel + ' ' + (v.mal || '') + ' ' + (v.deadline || '')).toLowerCase();
       const topicTexts = (v.amnen || []).map(a =>
-        (a.titel + ' ' + a.beskrivning + ' ' + (a.tags || []).join(' ')).toLowerCase()
+        (a.titel + ' ' + (a.mal || '') + ' ' + a.beskrivning + ' ' + (a.tags || []).join(' ')).toLowerCase()
       );
       const weekMatch = weekText.includes(fLow);
       const topicMatch = topicTexts.some(t => t.includes(fLow));
@@ -460,12 +465,13 @@ function renderTimeline(d, filter) {
     } else if (hasTopics) {
       html += `<div class="topics-body" id="topics-${v.nr}" style="${defaultOpen ? '' : 'display:none'}">`;
       for (const a of v.amnen) {
-        const topicText = (a.titel + ' ' + a.beskrivning + ' ' + (a.tags || []).join(' ')).toLowerCase();
+        const topicText = (a.titel + ' ' + (a.mal || '') + ' ' + a.beskrivning + ' ' + (a.tags || []).join(' ')).toLowerCase();
         const topicVisible = !fLow || topicText.includes(fLow);
         if (!topicVisible) continue;
 
         html += `<div class="topic">
           <div class="topic-title">${a.titel}</div>
+          ${a.mal ? `<div class="topic-mal">${a.mal}</div>` : ''}
           ${a.beskrivning ? `<div class="topic-desc">${a.beskrivning}</div>` : ''}
           ${(a.tags && a.tags.length) ? `<div class="topic-tags">${a.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
           <div class="topic-links">`;
