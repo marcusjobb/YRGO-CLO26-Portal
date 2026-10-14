@@ -200,6 +200,25 @@
       "deadline": "Inlämning 1 — Diskografi · deadline ons 21 okt 23:59 (förlängd)",
       "amnen": [
         {
+          "titel": "SQLite Browser + SQL-grunder",
+          "beskrivning": "Installera SQLite Browser om du inte gjort det. Skapa din första tabell med CREATE TABLE och lägg in data med INSERT INTO. Sedan: SELECT, WHERE och ORDER BY — vi kör livekod mot djurpark-databasen.",
+          "tags": ["SQLite", "CREATE TABLE", "INSERT", "SELECT", "WHERE", "ORDER BY"],
+          "lektion": { "text": "Föreläsning: SQL-intro", "href": "01_intro_databaser/lectures/sql_intro_marp.md", "tags": ["SELECT", "WHERE", "INSERT", "CREATE TABLE"] },
+          "notes": [
+            { "text": "Installera DB Browser for SQLite", "href": "01_intro_databaser/notes/sqlite_browser_installation.md", "tags": ["installation", "Windows", "Mac", "Linux"] },
+            { "text": "SQL-intro", "href": "01_intro_databaser/notes/sql_intro.md", "tags": ["SELECT", "WHERE", "ORDER BY", "LIMIT"] }
+          ],
+          "ovningar": {
+            "green": [
+              { "text": "SQL-filmdatabas", "href": "01_intro_databaser/exercises/sql_filmdatabas.md", "tags": ["CREATE", "INSERT", "SELECT", "UPDATE"], "desc": "Bygg en filmdatabas från grunden och skriv dina första riktiga SQL-frågor." }
+            ],
+            "amber": [
+              { "text": "Mer sökningar", "href": "01_intro_databaser/exercises/mer_sokningar.md", "tags": ["Mockaroo", "COUNT", "DISTINCT", "LIKE"], "desc": "Generera testdata och svara på CSI-frågor med SQL." }
+            ],
+            "red": []
+          }
+        },
+        {
           "titel": "ER-diagram — design FÖRE SQL",
           "beskrivning": "Rita upp databasen på papper innan du skriver en enda rad SQL. Entiteter, attribut, relationer och kardinalitet (1:1, 1:N, N:M). Vi ritar en djurpark live på tavlan.",
           "tags": ["ER-diagram", "entitet", "relation", "kardinalitet", "design"],
@@ -243,25 +262,6 @@
             { "text": "Normalisering", "href": "03_normalisering_gdpr/notes/normalisering.md", "tags": ["1NF", "2NF", "3NF"] }
           ],
           "ovningar": { "green": [], "amber": [], "red": [] }
-        },
-        {
-          "titel": "SQLite Browser + SQL-grunder",
-          "beskrivning": "Installera SQLite Browser om du inte gjort det. Skapa din första tabell med CREATE TABLE och lägg in data med INSERT INTO. Sedan: SELECT, WHERE och ORDER BY — vi kör livekod mot djurpark-databasen.",
-          "tags": ["SQLite", "CREATE TABLE", "INSERT", "SELECT", "WHERE", "ORDER BY"],
-          "lektion": { "text": "Föreläsning: SQL-intro", "href": "01_intro_databaser/lectures/sql_intro_marp.md", "tags": ["SELECT", "WHERE", "INSERT", "CREATE TABLE"] },
-          "notes": [
-            { "text": "Installera DB Browser for SQLite", "href": "01_intro_databaser/notes/sqlite_browser_installation.md", "tags": ["installation", "Windows", "Mac", "Linux"] },
-            { "text": "SQL-intro", "href": "01_intro_databaser/notes/sql_intro.md", "tags": ["SELECT", "WHERE", "ORDER BY", "LIMIT"] }
-          ],
-          "ovningar": {
-            "green": [
-              { "text": "SQL-filmdatabas", "href": "01_intro_databaser/exercises/sql_filmdatabas.md", "tags": ["CREATE", "INSERT", "SELECT", "UPDATE"], "desc": "Bygg en filmdatabas från grunden och skriv dina första riktiga SQL-frågor." }
-            ],
-            "amber": [
-              { "text": "Mer sökningar", "href": "01_intro_databaser/exercises/mer_sokningar.md", "tags": ["Mockaroo", "COUNT", "DISTINCT", "LIKE"], "desc": "Generera testdata och svara på CSI-frågor med SQL." }
-            ],
-            "red": []
-          }
         },
         {
           "titel": "Inlämning 1 — Din favoritartists diskografi",
