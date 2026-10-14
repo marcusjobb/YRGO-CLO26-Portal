@@ -9,11 +9,6 @@
   "githubBase": "https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-01-grundlaggande-oop/",
   "links": [
     {
-      "icon": "💬",
-      "label": "Discord",
-      "href": "https://discord.gg/ZSquGkSvK"
-    },
-    {
       "icon": "⚽",
       "label": "Inlämning 1 — Starta här",
       "href": "https://github.com/marcusjobb/clo26-drommatchen"

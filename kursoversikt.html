@@ -1,912 +1,559 @@
-<meta charset="UTF-8">
-<title>CLO26 Kurs 01 — Grundläggande OOP i C#</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>CLO26 Kursöversikt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
 
 <style>
-/* ── TOKENS ─────────────────────────────────────────── */
+/* ── LAYOUT: dark left sidebar (240px) + scrollable timeline main ── */
 :root {
-  --sb-bg:       #13141F;
-  --sb-surface:  #1C1E2E;
-  --sb-border:   #252838;
-  --sb-text:     #C4C8E8;
-  --sb-muted:    #8C94C0;
-  --sb-accent:   #7A84F0;
+  /* sidebar */
+  --sb-bg:      #13141F;
+  --sb-surf:    #1C1E2E;
+  --sb-border:  #252838;
+  --sb-text:    #C4C8E8;
+  --sb-muted:   #8C94C0;
+  --sb-accent:  #7A84F0;
 
-  --bg:          #F1F2F8;
-  --surface:     #FFFFFF;
-  --surface2:    #F7F8FC;
-  --border:      #E2E5F0;
-  --text:        #1A1C2E;
-  --muted:       #485080;
-  --accent:      #5760D9;
-  --accent-dim:  #ECEEFB;
-  --accent-glow: rgba(87,96,217,.12);
+  /* main */
+  --bg:         #F1F2F8;
+  --surf:       #FFFFFF;
+  --surf2:      #F7F8FC;
+  --border:     #E2E5F0;
+  --text:       #1A1C2E;
+  --muted:      #485080;
+  --accent:     #5760D9;
+  --accent-dim: #ECEEFB;
 
-  --green:       #15803D;
-  --green-bg:    #DCFCE7;
-  --amber:       #B45309;
-  --amber-bg:    #FEF3C7;
-  --red:         #B91C1C;
-  --red-bg:      #FEE2E2;
+  /* semantic */
+  --green:      #15803D; --green-bg: #DCFCE7;
+  --amber:      #B45309; --amber-bg: #FEF3C7;
+  --red:        #B91C1C; --red-bg:   #FEE2E2;
+  --deadline-c: #7C3AED; --deadline-bg: #EDE9FE;
+
+  --radius: 10px;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg:         #13141F;
-    --surface:    #1E2030;
-    --surface2:   #252840;
-    --border:     #2A2D45;
-    --text:       #D4D8F0;
-    --muted:      #9AA2D0;
-    --accent:     #8890F5;
-    --accent-dim: #1E2248;
-    --accent-glow:rgba(136,144,245,.1);
-    --green:      #4ADE80;
-    --green-bg:   #0A2E1A;
-    --amber:      #FCD34D;
-    --amber-bg:   #241900;
-    --red:        #FCA5A5;
-    --red-bg:     #2D0A0A;
+    --bg:         #13141F; --surf:   #1E2030; --surf2:  #252840;
+    --border:     #2A2D45; --text:   #D4D8F0; --muted:  #9AA2D0;
+    --accent:     #8890F5; --accent-dim: #1E2248;
+    --green:      #4ADE80; --green-bg:  #0A2E1A;
+    --amber:      #FCD34D; --amber-bg:  #241900;
+    --red:        #FCA5A5; --red-bg:    #2D0A0A;
+    --deadline-c: #C4B5FD; --deadline-bg: #1E1040;
+    color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg:         #13141F;
-  --surface:    #1E2030;
-  --surface2:   #252840;
-  --border:     #2A2D45;
-  --text:       #D4D8F0;
-  --muted:      #7880B0;
-  --accent:     #8890F5;
-  --accent-dim: #1E2248;
-  --accent-glow:rgba(136,144,245,.1);
-  --green:      #4ADE80;
-  --green-bg:   #0A2E1A;
-  --amber:      #FCD34D;
-  --amber-bg:   #241900;
-  --red:        #FCA5A5;
-  --red-bg:     #2D0A0A;
+  --bg:         #13141F; --surf:   #1E2030; --surf2:  #252840;
+  --border:     #2A2D45; --text:   #D4D8F0; --muted:  #9AA2D0;
+  --accent:     #8890F5; --accent-dim: #1E2248;
+  --green:      #4ADE80; --green-bg:  #0A2E1A;
+  --amber:      #FCD34D; --amber-bg:  #241900;
+  --red:        #FCA5A5; --red-bg:    #2D0A0A;
+  --deadline-c: #C4B5FD; --deadline-bg: #1E1040;
+  color-scheme: dark;
 }
 
-/* ── RESET ───────────────────────────────────────────── */
-*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-html,body { height:100%; overflow:hidden; }
-body {
-  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  font-size:16px;
-  line-height:1.65;
-}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: var(--sans); color: var(--text); background: var(--bg); font-size: 15px; line-height: 1.6; }
 
-/* ── LAYOUT ──────────────────────────────────────────── */
-.layout {
-  display:grid;
-  grid-template-columns:240px 1fr;
-  height:100vh;
-}
+/* ── WRAPPER ── */
+.layout { display: flex; height: 100%; overflow: hidden; }
 
-/* ── SIDEBAR ─────────────────────────────────────────── */
+/* ── SIDEBAR ── */
 .sidebar {
-  background:var(--sb-bg);
-  border-right:1px solid var(--sb-border);
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
+  width: 240px; flex-shrink: 0;
+  background: var(--sb-bg); border-right: 1px solid var(--sb-border);
+  display: flex; flex-direction: column; overflow: hidden;
+  z-index: 10;
 }
 .sb-head {
-  padding:1.25rem 1.25rem 1rem;
-  border-bottom:1px solid var(--sb-border);
-  flex-shrink:0;
+  padding: 1rem 1rem 0.75rem;
+  border-bottom: 1px solid var(--sb-border);
+  flex-shrink: 0;
 }
 .sb-eyebrow {
-  font-family:'JetBrains Mono',monospace;
-  font-size:9.5px;
-  font-weight:600;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color:var(--sb-accent);
-  margin-bottom:.35rem;
+  font-family: var(--mono); font-size: 9px; font-weight: 600;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--sb-accent); margin-bottom: .5rem;
 }
-.sb-title {
-  color:var(--sb-text);
-  font-size:13px;
-  font-weight:700;
-  line-height:1.3;
-  margin-bottom:.75rem;
+
+/* Kursväljare — combobox */
+.course-select {
+  width: 100%; padding: .45rem .7rem;
+  background: var(--sb-surf); border: 1px solid var(--sb-border);
+  color: var(--sb-text); border-radius: 7px;
+  font-family: var(--sans); font-size: 12.5px; font-weight: 600;
+  cursor: pointer; outline: none; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238C94C0' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right .6rem center;
+  padding-right: 2rem;
+  transition: border-color .15s;
 }
-.sb-progress-bar { height:3px; background:var(--sb-surface); border-radius:2px; overflow:hidden; }
-.sb-progress-fill { height:100%; background:var(--sb-accent); border-radius:2px; }
-.sb-progress-meta {
-  display:flex;
-  justify-content:space-between;
-  margin-top:.3rem;
-  font-family:'JetBrains Mono',monospace;
-  font-size:9.5px;
-  color:var(--sb-muted);
-}
-.sb-scroll {
-  flex:1;
-  overflow-y:auto;
-  padding:.75rem 0 1rem;
-  scrollbar-width:thin;
-  scrollbar-color:var(--sb-border) transparent;
+.course-select:hover, .course-select:focus { border-color: var(--sb-accent); }
+
+.sb-body { flex: 1; overflow-y: auto; padding: .5rem 0 1rem;
+  scrollbar-width: thin; scrollbar-color: var(--sb-border) transparent; }
+
+.sb-section {
+  margin-bottom: .25rem;
 }
 .sb-section-label {
-  font-family:'JetBrains Mono',monospace;
-  font-size:9px;
-  font-weight:600;
-  letter-spacing:.15em;
-  text-transform:uppercase;
-  color:var(--sb-muted);
-  padding:.75rem 1.25rem .4rem;
-  display:block;
+  font-family: var(--mono); font-size: 9px; font-weight: 600;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--sb-muted); padding: .75rem 1rem .3rem; display: block;
 }
-.sb-week-list { list-style:none; }
-.sb-week-item {
-  display:flex;
-  align-items:center;
-  gap:.55rem;
-  padding:.4rem 1.25rem;
-  cursor:pointer;
-  color:var(--sb-muted);
-  border-left:2px solid transparent;
-  text-decoration:none;
-  transition:background .1s,color .1s,border-color .1s;
-  user-select:none;
+.sb-week-list { list-style: none; }
+.sb-week-btn {
+  display: flex; align-items: center; gap: .5rem;
+  width: 100%; text-align: left;
+  padding: .35rem 1rem; border: none; background: none;
+  color: var(--sb-muted); cursor: pointer; font-family: var(--sans);
+  font-size: 12px; border-left: 2px solid transparent;
+  transition: background .1s, color .1s, border-color .1s;
 }
-.sb-week-item:hover { background:var(--sb-surface); color:var(--sb-text); }
-.sb-week-item.is-current  { color:var(--sb-text); border-left-color:var(--sb-accent); background:rgba(122,132,240,.06); }
-.sb-week-item.is-selected { color:var(--sb-text); border-left-color:var(--sb-accent); background:rgba(122,132,240,.12); }
-.sb-week-item.is-past     { opacity:.5; }
-.sb-dot { width:6px; height:6px; border-radius:50%; background:currentColor; flex-shrink:0; }
-.sb-week-item.is-current  .sb-dot,
-.sb-week-item.is-selected .sb-dot { background:var(--sb-accent); box-shadow:0 0 0 3px rgba(122,132,240,.2); }
-.sb-wnr { font-family:'JetBrains Mono',monospace; font-size:10px; width:20px; flex-shrink:0; font-variant-numeric:tabular-nums; }
-.sb-wname { font-size:12.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex:1; }
+.sb-week-btn:hover { background: var(--sb-surf); color: var(--sb-text); }
+.sb-week-btn.active { color: var(--sb-text); border-left-color: var(--sb-accent); background: rgba(122,132,240,.1); }
+.sb-week-btn.coming-soon { opacity: .4; }
+.sb-wnr { font-family: var(--mono); font-size: 10px; width: 18px; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+.sb-wname { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1; }
 .sb-now-chip {
-  font-family:'JetBrains Mono',monospace;
-  font-size:8.5px;
-  font-weight:600;
-  background:rgba(122,132,240,.18);
-  color:var(--sb-accent);
-  padding:.1rem .35rem;
-  border-radius:3px;
-  flex-shrink:0;
+  font-family: var(--mono); font-size: 8px; font-weight: 600;
+  background: rgba(122,132,240,.2); color: var(--sb-accent);
+  padding: .1rem .3rem; border-radius: 3px; flex-shrink: 0;
 }
-.sb-link-list { list-style:none; }
+.sb-link-list { list-style: none; }
 .sb-link {
-  display:flex;
-  align-items:center;
-  gap:.55rem;
-  padding:.4rem 1.25rem;
-  color:var(--sb-muted);
-  text-decoration:none;
-  font-size:12.5px;
-  transition:color .1s;
+  display: flex; align-items: center; gap: .5rem;
+  padding: .35rem 1rem;
+  color: var(--sb-muted); text-decoration: none; font-size: 12px;
+  transition: color .1s, background .1s;
 }
-.sb-link:hover { color:var(--sb-text); }
-.sb-link-icon { font-size:13px; flex-shrink:0; }
-.sb-grade {
-  margin:.5rem 1rem 0;
-  padding:.75rem;
-  background:var(--sb-surface);
-  border:1px solid var(--sb-border);
-  border-radius:8px;
-  flex-shrink:0;
-}
-.sb-grade-label {
-  font-family:'JetBrains Mono',monospace;
-  font-size:9px;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:var(--sb-muted);
-  margin-bottom:.5rem;
-}
-.sb-grade-row { display:flex; align-items:baseline; gap:.45rem; margin-bottom:.25rem; }
-.sb-badge { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; padding:.15rem .45rem; border-radius:4px; flex-shrink:0; }
-.sb-badge-g  { background:rgba(74,222,128,.12); color:#4ADE80; }
-.sb-badge-vg { background:rgba(122,132,240,.18); color:var(--sb-accent); }
-.sb-grade-desc { font-size:11px; color:var(--sb-muted); line-height:1.4; }
+.sb-link:hover { color: var(--sb-text); background: var(--sb-surf); }
 
-/* ── MAIN ────────────────────────────────────────────── */
-.main { display:flex; flex-direction:column; overflow:hidden; background:var(--bg); }
-.main-head {
-  background:var(--surface);
-  border-bottom:1px solid var(--border);
-  padding:1rem 2rem .85rem;
-  flex-shrink:0;
-}
-.main-eyebrow { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:.25rem; }
-.main-title { font-size:clamp(1.15rem,2vw,1.45rem); font-weight:700; line-height:1.25; margin-bottom:.45rem; }
-.main-meta { display:flex; flex-wrap:wrap; gap:.65rem; font-size:12px; color:var(--muted); }
+/* ── MAIN ── */
+.main { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
 
-/* ── CONTROLS BAR ────────────────────────────────────── */
-.controls-bar {
-  display:flex;
-  align-items:center;
-  gap:1rem;
-  padding:.45rem 2rem;
-  border-bottom:1px solid var(--border);
-  background:var(--surface);
-  flex-shrink:0;
-  flex-wrap:wrap;
+.topbar {
+  padding: .7rem max(16px, env(safe-area-inset-right, 0px)) .7rem max(16px, env(safe-area-inset-left, 0px));
+  background: var(--surf); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: .75rem; flex-shrink: 0;
 }
-.legend-group { display:flex; align-items:center; gap:.6rem; flex-shrink:0; }
-.legend-pre { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
-.pill {
-  display:inline-flex; align-items:center; gap:.25rem;
-  padding:.15rem .5rem;
-  border-radius:999px;
-  font-size:11.5px; font-weight:600;
-  cursor:pointer;
-  border:1.5px solid transparent;
-  transition:opacity .15s,border-color .15s;
-  user-select:none; font-family:inherit; background:none;
-}
-.pill.g { background:var(--green-bg); color:var(--green); }
-.pill.a { background:var(--amber-bg); color:var(--amber); }
-.pill.r { background:var(--red-bg);   color:var(--red); }
-.pill[aria-pressed="false"] { opacity:.25; }
-.pill[aria-pressed="true"].g { border-color:var(--green); }
-.pill[aria-pressed="true"].a { border-color:var(--amber); }
-.pill[aria-pressed="true"].r { border-color:var(--red); }
-body.hide-g .ov-row.green { display:none; }
-body.hide-a .ov-row.amber { display:none; }
-body.hide-r .ov-row.red   { display:none; }
-
-.search-wrap { position:relative; flex:1; min-width:160px; max-width:360px; margin-left:auto; }
-.search-icon { position:absolute; left:.55rem; top:50%; transform:translateY(-50%); font-size:12px; pointer-events:none; opacity:.4; }
+.search-wrap { flex: 1; position: relative; max-width: 380px; }
+.search-icon { position: absolute; left: .7rem; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
 .search-input {
-  width:100%; height:28px;
-  padding:0 1.75rem 0 1.85rem;
-  background:var(--surface2);
-  border:1px solid var(--border);
-  border-radius:6px;
-  color:var(--text); font-size:12.5px; font-family:inherit;
-  outline:none;
-  transition:border-color .15s,background .15s;
+  width: 100%; padding: .45rem .75rem .45rem 2.2rem;
+  background: var(--surf2); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); font-family: var(--sans); font-size: 13.5px;
+  outline: none; transition: border-color .15s;
 }
-.search-input:focus { border-color:var(--accent); background:var(--surface); }
-.search-input::placeholder { color:var(--muted); font-size:12px; }
-.search-clear {
-  position:absolute; right:.45rem; top:50%; transform:translateY(-50%);
-  background:none; border:none; cursor:pointer;
-  color:var(--muted); font-size:13px; line-height:1; padding:.1rem; display:none;
+.search-input::placeholder { color: var(--muted); }
+.search-input:focus { border-color: var(--accent); }
+.topbar-course-info {
+  font-family: var(--mono); font-size: 11px; color: var(--muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.search-input:not(:placeholder-shown) ~ .search-clear { display:block; }
-.search-count { font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--muted); white-space:nowrap; flex-shrink:0; }
-.search-hit { background:#C7CAFA; color:#1A1C2E; border-radius:2px; padding:0 2px; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .search-hit { background:#3A3F7A; color:#E8EAFF; }
+.theme-btn {
+  padding: .4rem .6rem; background: var(--surf2); border: 1px solid var(--border);
+  border-radius: 8px; cursor: pointer; color: var(--muted); font-size: 14px;
+  transition: color .15s, background .15s; flex-shrink: 0;
 }
-:root[data-theme="dark"] .search-hit { background:#3A3F7A; color:#E8EAFF; }
+.theme-btn:hover { color: var(--text); background: var(--border); }
 
-/* ── WEEK VIEW ───────────────────────────────────────── */
-.week-view {
-  flex:1;
-  overflow-y:auto;
-  padding:1.25rem 2rem 2.5rem;
-  scrollbar-width:thin;
-  scrollbar-color:var(--border) transparent;
+/* ── TIMELINE SCROLL ── */
+.timeline-scroll {
+  flex: 1; overflow-y: auto; padding: 1.5rem max(16px, env(safe-area-inset-right, 0px)) 3rem max(16px, env(safe-area-inset-left, 0px));
 }
 
-/* week navigation header */
-.wv-nav {
-  display:flex;
-  align-items:center;
-  gap:.75rem;
-  margin-bottom:1.1rem;
+/* ── COURSE HEADER ── */
+.course-header {
+  margin: 0 0 1.75rem; padding: 1.25rem 1.5rem;
+  background: var(--surf); border: 1px solid var(--border); border-radius: var(--radius);
 }
-.wv-nav-btn {
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:6px;
-  color:var(--muted);
-  cursor:pointer;
-  font-size:14px;
-  width:28px; height:28px;
-  display:flex; align-items:center; justify-content:center;
-  transition:color .12s,border-color .12s;
-  flex-shrink:0;
+.course-title { font-size: 1.4rem; font-weight: 700; line-height: 1.25; margin-bottom: .35rem; }
+.course-meta { display: flex; flex-wrap: wrap; gap: .5rem .75rem; margin-bottom: .6rem; }
+.course-meta-item { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.course-betyg { display: flex; gap: .5rem; flex-wrap: wrap; }
+.betyg-chip {
+  font-size: 11.5px; padding: .2rem .65rem; border-radius: 20px;
+  background: var(--accent-dim); color: var(--accent);
+  font-family: var(--mono); font-weight: 600;
 }
-.wv-nav-btn:hover:not(:disabled) { color:var(--accent); border-color:var(--accent); }
-.wv-nav-btn:disabled { opacity:.3; cursor:default; }
-.wv-week-badge {
-  font-family:'JetBrains Mono',monospace;
-  font-size:11px; font-weight:600;
-  background:var(--accent-dim);
-  color:var(--accent);
-  padding:.2rem .6rem;
-  border-radius:6px;
-  flex-shrink:0;
-}
-.wv-week-title { font-size:15px; font-weight:700; flex:1; }
-.wv-week-meta { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); }
+.betyg-chip span { font-weight: 400; color: var(--muted); }
 
-/* week goal bar */
-.wv-goal {
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-left:3px solid var(--accent);
-  border-radius:0 8px 8px 0;
-  padding:.55rem .85rem;
-  font-size:13px;
-  color:var(--muted);
-  margin-bottom:1.1rem;
+/* ── WEEK CARD ── */
+.week-section { margin: 0 0 1.25rem; scroll-margin-top: 1rem; }
+.week-card {
+  background: var(--surf); border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden;
+}
+.week-card.is-coming-soon { opacity: .6; }
+
+.week-header {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1rem 1.25rem;
+  cursor: pointer; user-select: none;
+}
+.week-header:hover { background: var(--surf2); }
+.week-badge {
+  flex-shrink: 0; width: 40px; height: 40px; border-radius: 8px;
+  background: var(--accent-dim); color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+}
+.week-badge.is-current { background: var(--accent); color: #fff; }
+.week-info { flex: 1; min-width: 0; }
+.week-title { font-size: 15.5px; font-weight: 700; line-height: 1.3; }
+.week-sub {
+  display: flex; flex-wrap: wrap; gap: .35rem .75rem;
+  margin-top: .2rem; font-family: var(--mono); font-size: 10.5px; color: var(--muted);
+}
+.week-deadline { color: var(--deadline-c); }
+.week-toggle { flex-shrink: 0; color: var(--muted); font-size: 14px; align-self: center; transition: transform .2s; }
+.week-toggle.open { transform: rotate(90deg); }
+.coming-soon-label {
+  margin: 0 1.25rem 1rem; padding: .5rem .75rem;
+  background: var(--surf2); border-radius: 7px;
+  font-size: 12.5px; color: var(--muted); font-style: italic;
 }
 
-/* ämne cards */
-.amnen-list { display:flex; flex-direction:column; gap:.65rem; max-width:780px; }
-
-.amne-card {
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:10px;
-  overflow:hidden;
+/* ── TOPICS ── */
+.topics-body { border-top: 1px solid var(--border); }
+.topic {
+  padding: .9rem 1.25rem;
+  border-bottom: 1px solid var(--border);
 }
-.amne-head {
-  padding:.85rem 1rem .7rem;
-  border-bottom:1px solid var(--border);
-}
-.amne-titel { font-size:14px; font-weight:700; margin-bottom:.2rem; }
-.amne-beskr { font-size:12.5px; color:var(--muted); margin-bottom:.5rem; line-height:1.45; }
-.amne-tags  { display:flex; flex-wrap:wrap; gap:.3rem; }
+.topic:last-child { border-bottom: none; }
+.topic-title { font-size: 13.5px; font-weight: 600; margin-bottom: .25rem; }
+.topic-desc { font-size: 12.5px; color: var(--muted); margin-bottom: .55rem; line-height: 1.55; }
+.topic-tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .55rem; }
 .tag {
-  font-family:'JetBrains Mono',monospace;
-  font-size:10.5px;
-  background:var(--surface2);
-  border:1px solid var(--border);
-  color:var(--muted);
-  padding:.1rem .4rem;
-  border-radius:4px;
-  cursor:pointer;
-  transition:background .12s,color .12s,border-color .12s;
+  font-family: var(--mono); font-size: 10px;
+  padding: .1rem .4rem; border-radius: 4px;
+  background: var(--surf2); color: var(--muted);
+  border: 1px solid var(--border);
 }
-.tag:hover { background:var(--accent-dim); color:var(--accent); border-color:var(--accent); }
-.tag.is-active { background:var(--accent-dim); color:var(--accent); border-color:var(--accent); }
+.topic-links { display: flex; flex-wrap: wrap; gap: .4rem; }
+.tlink {
+  display: inline-flex; align-items: center; gap: .3rem;
+  font-size: 12px; padding: .25rem .6rem; border-radius: 6px; text-decoration: none;
+  font-weight: 500; transition: opacity .15s;
+}
+.tlink:hover { opacity: .75; }
+.tlink.lektion { background: var(--accent-dim); color: var(--accent); }
+.tlink.notes   { background: var(--surf2); color: var(--muted); border: 1px solid var(--border); }
+.tlink.green   { background: var(--green-bg); color: var(--green); }
+.tlink.amber   { background: var(--amber-bg); color: var(--amber); }
+.tlink.red     { background: var(--red-bg);   color: var(--red);   }
+.tlink.assignment { background: var(--deadline-bg); color: var(--deadline-c); }
 
-.amne-body { padding:.7rem 1rem .85rem; display:flex; flex-direction:column; gap:.6rem; }
+/* ── SEARCH HIGHLIGHT ── */
+.hidden-search { display: none !important; }
+mark { background: rgba(87,96,217,.18); border-radius: 2px; padding: 0 2px; }
 
-.amne-resources { display:flex; gap:.5rem; flex-wrap:wrap; }
-.res-link {
-  display:inline-flex; align-items:center; gap:.3rem;
-  padding:.2rem .6rem;
-  background:var(--surface2);
-  border:1px solid var(--border);
-  border-radius:5px;
-  font-size:12px;
-  color:var(--muted);
-  text-decoration:none;
-  transition:color .12s,border-color .12s;
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .sidebar { width: 200px; }
+  .topbar-course-info { display: none; }
 }
-.res-link:hover { color:var(--accent); border-color:var(--accent); }
-.res-link .res-icon { font-size:11px; }
-.res-link-ex { opacity:.8; font-family:'JetBrains Mono',monospace; font-size:11px; }
+@media (max-width: 480px) {
+  .sidebar { position: fixed; left: -200px; top: 0; height: 100%; z-index: 20; transition: left .2s; }
+  .sidebar.open { left: 0; }
+  .layout { position: relative; }
+  .mobile-menu-btn { display: flex !important; }
+}
+.mobile-menu-btn { display: none; padding: .4rem .6rem; background: var(--surf2); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; color: var(--muted); font-size: 16px; }
 
-.amne-ovningar { display:flex; flex-direction:column; gap:.3rem; }
-.ov-row {
-  display:flex; align-items:flex-start; gap:.5rem;
-  font-size:12.5px;
-}
-.ov-dot {
-  width:7px; height:7px;
-  border-radius:50%;
-  margin-top:.38em;
-  flex-shrink:0;
-}
-.ov-row.green .ov-dot { background:var(--green); }
-.ov-row.amber .ov-dot { background:var(--amber); }
-.ov-row.red   .ov-dot { background:var(--red); }
-.ov-row a {
-  color:var(--muted);
-  text-decoration:none;
-  transition:color .12s;
-  flex-shrink:0;
-}
-.ov-row a:hover { color:var(--accent); }
-.ov-desc {
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.4;
-}
-.ov-desc::before { content:'— '; }
-
-/* coming soon / deadline / tenta */
-.wv-coming {
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:2rem;
-  text-align:center;
-  font-size:13px;
-  color:var(--muted);
-  font-style:italic;
-  max-width:780px;
-}
-.wv-deadline {
-  display:flex; align-items:center; gap:.5rem;
-  margin-bottom:.65rem;
-  padding:.5rem .85rem;
-  background:var(--accent-dim);
-  border-left:3px solid var(--accent);
-  border-radius:0 6px 6px 0;
-  font-size:12.5px; color:var(--accent); font-weight:600;
-  max-width:780px;
-}
-.wv-tenta {
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:1rem;
-  max-width:780px;
-  margin-top:.65rem;
-}
-.tenta-tbl { width:100%; border-collapse:collapse; font-size:13px; }
-.tenta-tbl td { padding:.4rem 0; border-bottom:1px solid var(--border); vertical-align:top; }
-.tenta-tbl td:first-child { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); width:110px; white-space:nowrap; padding-right:.75rem; }
-.tenta-tbl tr:last-child td { border-bottom:none; }
-.tenta-badge { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; background:var(--accent-dim); color:var(--accent); padding:.15rem .45rem; border-radius:4px; }
-.score-chips { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.75rem; }
-.score-chip { font-family:'JetBrains Mono',monospace; font-size:11px; background:var(--surface2); border:1px solid var(--border); padding:.2rem .5rem; border-radius:5px; color:var(--muted); }
-
-/* tentafrågor */
-.wv-tentafragor { max-width:780px; margin-top:.65rem; }
-.tentafragor-label { font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); opacity:.4; margin-bottom:.4rem; }
-.tentafragor-list { display:flex; flex-wrap:wrap; gap:.4rem; }
-.tentafragor-link {
-  font-size:12px; color:var(--muted); text-decoration:none;
-  background:var(--surface); border:1px solid var(--border);
-  padding:.2rem .55rem; border-radius:5px;
-  transition:color .12s,border-color .12s;
-}
-.tentafragor-link:hover { color:var(--accent); border-color:var(--accent); }
-
-/* search results mode */
-.search-week-group { margin-bottom:1.25rem; max-width:780px; }
-.search-week-heading {
-  font-family:'JetBrains Mono',monospace;
-  font-size:10px; font-weight:600;
-  letter-spacing:.1em; text-transform:uppercase;
-  color:var(--muted); opacity:.5;
-  margin-bottom:.5rem;
-}
-.wv-empty { text-align:center; padding:3rem 1rem; font-size:13px; color:var(--muted); }
-
-/* mobile */
-@media(max-width:640px) {
-  .layout { grid-template-columns:1fr; }
-  .sidebar { display:none; }
-  .week-view { padding:1rem; }
-  .main-head { padding:.85rem 1rem .7rem; }
-  .controls-bar { padding:.4rem 1rem; }
-}
-@media(prefers-reduced-motion:reduce) { *{ transition:none!important; } }
+/* ── EMPTY / LOADING ── */
+.loading { padding: 3rem; text-align: center; color: var(--muted); font-size: 14px; }
 </style>
 
 <div class="layout">
-  <aside class="sidebar" id="sidebar"></aside>
-  <main class="main">
-    <header class="main-head" id="main-head"></header>
-    <div class="controls-bar">
-      <div class="legend-group" id="legend-bar"></div>
+
+  <!-- ── SIDEBAR ── -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sb-head">
+      <div class="sb-eyebrow">CLO26 · HT26</div>
+      <select class="course-select" id="courseSelect">
+        <option value="kurs-01.json">Kurs 01 — OOP i C#</option>
+        <option value="kurs-02.json" selected>Kurs 02 — Databaser och SQL</option>
+      </select>
+    </div>
+
+    <div class="sb-body" id="sbBody">
+      <div class="loading">Laddar...</div>
+    </div>
+  </nav>
+
+  <!-- ── MAIN ── -->
+  <div class="main">
+    <div class="topbar">
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="Meny">☰</button>
       <div class="search-wrap">
         <span class="search-icon">🔍</span>
-        <input class="search-input" type="search" id="sok"
-          placeholder="Sök ämne, övning eller tag…"
-          autocomplete="off" spellcheck="false">
-        <button class="search-clear" id="sok-clear" aria-label="Rensa">✕</button>
+        <input class="search-input" id="searchInput" type="search" placeholder="Sök ämne, tag eller begrepp…" autocomplete="off">
       </div>
-      <span class="search-count" id="sok-count"></span>
+      <div class="topbar-course-info" id="topbarInfo"></div>
+      <button class="theme-btn" id="themeBtn" title="Byt tema">🌙</button>
     </div>
-    <div class="week-view" id="week-view">
-      <div class="wv-empty">Laddar…</div>
+
+    <div class="timeline-scroll" id="timelineScroll">
+      <div class="loading" id="timelineLoading">Laddar kursdata…</div>
     </div>
-  </main>
+  </div>
+
 </div>
 
 <script>
-/* ══════════════════════════════════════════════════════
-   helpers
-══════════════════════════════════════════════════════ */
-function isoWeek(d) {
-  const dt = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  dt.setUTCDate(dt.getUTCDate() + 4 - (dt.getUTCDay() || 7));
-  const y0 = new Date(Date.UTC(dt.getUTCFullYear(), 0, 1));
-  return Math.ceil((((dt - y0) / 86400000) + 1) / 7);
+// ── DATA ──────────────────────────────────────────────────────────────────
+const GITHUB_BASE_FALLBACK = 'https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/';
+let courseData = null;
+
+// ── THEME ─────────────────────────────────────────────────────────────────
+const themeBtn = document.getElementById('themeBtn');
+let theme = (() => { try { return localStorage.getItem('clo26-theme') || 'system'; } catch(e) { return 'system'; } })();
+
+function applyTheme(t) {
+  const root = document.documentElement;
+  if (t === 'dark')  { root.setAttribute('data-theme','dark');  themeBtn.textContent = '☀️'; }
+  else if (t === 'light') { root.setAttribute('data-theme','light'); themeBtn.textContent = '🌙'; }
+  else               { root.removeAttribute('data-theme');        themeBtn.textContent = '🌙'; }
 }
-function el(tag, cls, html) {
-  const e = document.createElement(tag);
-  if (cls) e.className = cls;
-  if (html !== undefined) e.innerHTML = html;
-  return e;
+applyTheme(theme);
+themeBtn.addEventListener('click', () => {
+  const next = (theme === 'dark') ? 'light' : 'dark';
+  theme = next;
+  try { localStorage.setItem('clo26-theme', next); } catch(e) {}
+  applyTheme(next);
+});
+
+// ── MOBILE MENU ────────────────────────────────────────────────────────────
+const sidebar  = document.getElementById('sidebar');
+const menuBtn  = document.getElementById('menuBtn');
+menuBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
+document.addEventListener('click', e => {
+  if (window.innerWidth <= 480 && !sidebar.contains(e.target) && e.target !== menuBtn) sidebar.classList.remove('open');
+});
+
+// ── CURRENT WEEK ──────────────────────────────────────────────────────────
+function currentWeekNr() {
+  const d = new Date();
+  const startOfYear = new Date(d.getFullYear(), 0, 1);
+  const diff = d - startOfYear + (startOfYear.getDay() || 7 - 1) * 86400000;
+  return Math.ceil(diff / (7 * 86400000));
 }
-function hl(text, q) {
-  if (!q) return text;
-  const i = text.toLowerCase().indexOf(q);
-  if (i === -1) return text;
-  return text.slice(0,i) + '<mark class="search-hit">' + text.slice(i, i+q.length) + '</mark>' + text.slice(i+q.length);
-}
+const CURRENT_WEEK = currentWeekNr();
 
-/* ══════════════════════════════════════════════════════
-   state
-══════════════════════════════════════════════════════ */
-let KURS = null;
-let activeWeekNr = null;
-const currentWeek = isoWeek(new Date());
+// ── FETCH & RENDER ────────────────────────────────────────────────────────
+const courseSelect    = document.getElementById('courseSelect');
+const sbBody          = document.getElementById('sbBody');
+const timelineEl      = document.getElementById('timelineScroll');
+const timelineLoading = document.getElementById('timelineLoading');
+const topbarInfo      = document.getElementById('topbarInfo');
+const searchInput     = document.getElementById('searchInput');
 
-/* ══════════════════════════════════════════════════════
-   sidebar
-══════════════════════════════════════════════════════ */
-function buildSidebar() {
-  const sb = document.getElementById('sidebar');
-  sb.innerHTML = '';
+async function loadCourse(jsonFile) {
+  timelineLoading.style.display = 'block';
+  sbBody.innerHTML = '<div class="loading">Laddar…</div>';
 
-  const allWeeks  = KURS.veckor.map(v => v.nr);
-  const doneCount = allWeeks.filter(w => w < currentWeek).length;
-  const total     = allWeeks.length;
-
-  const head = el('div','sb-head');
-  head.innerHTML = `
-    <div class="sb-eyebrow">${KURS.kod} · Kurs ${KURS.nummer}</div>
-    <div class="sb-title">${KURS.namn}</div>
-    <div class="sb-progress-bar"><div class="sb-progress-fill" style="width:${Math.round(doneCount/total*100)}%"></div></div>
-    <div class="sb-progress-meta"><span>${doneCount} av ${total} veckor klara</span><span>${KURS.period}</span></div>`;
-  sb.appendChild(head);
-
-  const scroll = el('div','sb-scroll');
-
-  const wSec = el('div');
-  wSec.appendChild(el('span','sb-section-label','Veckor'));
-  const wList = el('ul','sb-week-list');
-
-  KURS.veckor.forEach(v => {
-    const state = v.nr < currentWeek ? 'past' : v.nr === currentWeek ? 'current' : 'future';
-    const li = el('li');
-    const a  = el('a');
-    a.className = 'sb-week-item'
-      + (state === 'past' ? ' is-past' : '')
-      + (state === 'current' ? ' is-current' : '')
-      + (v.nr === activeWeekNr ? ' is-selected' : '');
-    a.setAttribute('data-nr', v.nr);
-    a.innerHTML = `<span class="sb-dot"></span><span class="sb-wnr">v${v.nr}</span><span class="sb-wname">${v.titel}</span>${state==='current'?'<span class="sb-now-chip">NU</span>':''}`;
-    a.addEventListener('click', e => { e.preventDefault(); setWeek(v.nr); });
-    li.appendChild(a);
-    wList.appendChild(li);
-  });
-  wSec.appendChild(wList);
-  scroll.appendChild(wSec);
-
-  if (KURS.links?.length) {
-    const lSec = el('div');
-    lSec.appendChild(el('span','sb-section-label','Snabblänkar'));
-    const lList = el('ul','sb-link-list');
-    KURS.links.forEach(lk => {
-      const li = el('li');
-      li.innerHTML = `<a class="sb-link" href="${lk.href}" target="_blank" rel="noopener"><span class="sb-link-icon">${lk.icon}</span>${lk.label}</a>`;
-      lList.appendChild(li);
-    });
-    lSec.appendChild(lList);
-    scroll.appendChild(lSec);
-  }
-
-  sb.appendChild(scroll);
-
-  const gBox = el('div','sb-grade');
-  gBox.innerHTML = `<div class="sb-grade-label">Betygskriterier</div>
-    <div class="sb-grade-row"><span class="sb-badge sb-badge-g">G</span><span class="sb-grade-desc">${KURS.betyg.G}</span></div>
-    <div class="sb-grade-row"><span class="sb-badge sb-badge-vg">VG</span><span class="sb-grade-desc">${KURS.betyg.VG}</span></div>`;
-  sb.appendChild(gBox);
-}
-
-/* ══════════════════════════════════════════════════════
-   main head
-══════════════════════════════════════════════════════ */
-function buildHead() {
-  document.getElementById('main-head').innerHTML = `
-    <div class="main-eyebrow">${KURS.kod} · Kurs ${KURS.nummer} · ${KURS.period}</div>
-    <div class="main-title">${KURS.namn}</div>
-    <div class="main-meta">
-      <span>📅 ${KURS.datum}</span>
-      <span>📍 ${KURS.schema}</span>
-      <span>ℹ️ ${KURS.notering}</span>
-    </div>`;
-}
-
-/* ══════════════════════════════════════════════════════
-   legend
-══════════════════════════════════════════════════════ */
-function buildLegend() {
-  const bar = document.getElementById('legend-bar');
-  bar.innerHTML = `<span class="legend-pre">Nivå</span>
-    <button class="pill g" data-cls="g" aria-pressed="true">● Måste</button>
-    <button class="pill a" data-cls="a" aria-pressed="true">● Välj ett</button>
-    <button class="pill r" data-cls="r" aria-pressed="true">● Utmaning</button>`;
-  bar.querySelectorAll('.pill').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const on = btn.getAttribute('aria-pressed') === 'true';
-      btn.setAttribute('aria-pressed', on ? 'false' : 'true');
-      document.body.classList.toggle('hide-' + btn.dataset.cls, on);
-    });
-  });
-}
-
-/* ══════════════════════════════════════════════════════
-   render one ämne-card
-══════════════════════════════════════════════════════ */
-// Absoluta länkar (http/https) används som de är; relativa sökvägar prefixas med repo-basen.
-function resolveHref(base, href) {
-  return /^https?:\/\//i.test(href) ? href : base + href;
-}
-
-function renderAmne(amne, base, q) {
-  const card = el('div','amne-card');
-
-  // head
-  const head = el('div','amne-head');
-  head.appendChild(el('div','amne-titel', hl(amne.titel, q)));
-  if (amne.beskrivning) head.appendChild(el('div','amne-beskr', hl(amne.beskrivning, q)));
-
-  if (amne.tags?.length) {
-    const tagsEl = el('div','amne-tags');
-    amne.tags.forEach(t => {
-      const tag = el('button','tag' + (q && t.toLowerCase() === q ? ' is-active' : ''), t);
-      tag.addEventListener('click', () => {
-        const inp = document.getElementById('sok');
-        inp.value = inp.value.trim().toLowerCase() === t.toLowerCase() ? '' : t;
-        inp.dispatchEvent(new Event('input'));
-      });
-      tagsEl.appendChild(tag);
-    });
-    head.appendChild(tagsEl);
-  }
-  card.appendChild(head);
-
-  // body
-  const body = el('div','amne-body');
-
-  // resource links (lektion + notes)
-  const resources = [];
-  if (amne.lektion) resources.push({ icon:'📊', label: amne.lektion.text, href: resolveHref(base, amne.lektion.href) });
-  const notesArr = Array.isArray(amne.notes) ? amne.notes : (amne.notes ? [amne.notes] : []);
-  notesArr.forEach(n => resources.push({ icon:'📝', label: n.text, href: resolveHref(base, n.href) }));
-
-  if (resources.length) {
-    const resEl = el('div','amne-resources');
-    resources.forEach(r => {
-      resEl.innerHTML += `<a class="res-link" href="${r.href}" target="_blank" rel="noopener"><span class="res-icon">${r.icon}</span>${hl(r.label, q)}</a>`;
-    });
-    body.appendChild(resEl);
-  }
-
-  // inlämning
-  if (amne.inlamning) {
-    const inEl = el('div','amne-resources');
-    const href = resolveHref(base, amne.inlamning.href);
-    inEl.innerHTML = `<a class="res-link" href="${href}" target="_blank" rel="noopener" style="border-color:var(--accent);color:var(--accent)"><span class="res-icon">📋</span>${hl(amne.inlamning.text, q)}</a>`;
-    body.appendChild(inEl);
-  }
-
-  // examples
-  if (amne.examples?.length) {
-    const exEl = el('div','amne-resources amne-examples');
-    amne.examples.forEach(ex => {
-      exEl.innerHTML += `<a class="res-link res-link-ex" href="${resolveHref(base, ex.href)}" target="_blank" rel="noopener"><span class="res-icon">💻</span>${hl(ex.text, q)}</a>`;
-    });
-    body.appendChild(exEl);
-  }
-
-  // övningar
-  const ovs = amne.ovningar;
-  const allOvs = [
-    ...(ovs.green||[]).map(o => ({...o, niva:'green'})),
-    ...(ovs.amber||[]).map(o => ({...o, niva:'amber'})),
-    ...(ovs.red  ||[]).map(o => ({...o, niva:'red'})),
-  ];
-
-  if (allOvs.length) {
-    const ovEl = el('div','amne-ovningar');
-    allOvs.forEach(o => {
-      const row = el('div','ov-row ' + o.niva);
-      const descHtml = o.desc ? `<span class="ov-desc">${hl(o.desc, q)}</span>` : '';
-      row.innerHTML = `<span class="ov-dot"></span><a href="${resolveHref(base, o.href)}" target="_blank" rel="noopener">${hl(o.text, q)}</a>${descHtml}`;
-      ovEl.appendChild(row);
-    });
-    body.appendChild(ovEl);
-  }
-
-  card.appendChild(body);
-  return card;
-}
-
-/* ══════════════════════════════════════════════════════
-   show one week
-══════════════════════════════════════════════════════ */
-function setWeek(nr) {
-  activeWeekNr = nr;
-  // clear search
-  document.getElementById('sok').value = '';
-  document.getElementById('sok-count').textContent = '';
-  // update sidebar highlight
-  document.querySelectorAll('.sb-week-item').forEach(a => {
-    a.classList.toggle('is-selected', +a.dataset.nr === nr);
-  });
-  renderWeekView();
-}
-
-function renderWeekView() {
-  const view  = document.getElementById('week-view');
-  const base  = KURS.githubBase;
-  const veckor = KURS.veckor;
-  const idx   = veckor.findIndex(v => v.nr === activeWeekNr);
-  const v     = veckor[idx];
-  if (!v) return;
-
-  view.innerHTML = '';
-
-  // nav bar
-  const nav = el('div','wv-nav');
-  const prevBtn = el('button','wv-nav-btn','←');
-  prevBtn.disabled = idx === 0;
-  prevBtn.addEventListener('click', () => setWeek(veckor[idx-1].nr));
-  const nextBtn = el('button','wv-nav-btn','→');
-  nextBtn.disabled = idx === veckor.length - 1;
-  nextBtn.addEventListener('click', () => setWeek(veckor[idx+1].nr));
-
-  nav.appendChild(prevBtn);
-  nav.appendChild(el('span','wv-week-badge','v' + v.nr));
-  nav.appendChild(el('span','wv-week-title', v.titel));
-  if (v.tid) nav.appendChild(el('span','wv-week-meta','⏱ ' + v.tid));
-  nav.appendChild(nextBtn);
-  view.appendChild(nav);
-
-  // goal
-  if (v.mal) view.appendChild(el('div','wv-goal', '🎯 ' + v.mal));
-
-  // deadline
-  if (v.deadline) {
-    view.appendChild(el('div','wv-deadline', '📌 ' + v.deadline));
-  }
-
-  // coming soon
-  if (v.comingSoon) {
-    view.appendChild(el('div','wv-coming', v.comingSoon));
+  let data;
+  try {
+    const r = await fetch(jsonFile);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    data = await r.json();
+  } catch (e) {
+    timelineLoading.textContent = 'Kunde inte ladda kursdata. (' + e.message + ')';
     return;
   }
+  courseData = data;
+  timelineLoading.style.display = 'none';
+  renderSidebar(data);
+  renderTimeline(data);
+  topbarInfo.textContent = data.kod + ' · ' + data.period + ' · ' + data.schema;
+}
 
-  // ämnen
-  if (v.amnen?.length) {
-    const list = el('div','amnen-list');
-    v.amnen.forEach(a => list.appendChild(renderAmne(a, base, '')));
-    view.appendChild(list);
+// ── SIDEBAR RENDER ─────────────────────────────────────────────────────────
+function renderSidebar(d) {
+  const ghBase = d.githubBase || GITHUB_BASE_FALLBACK;
+  let html = '<div class="sb-section"><span class="sb-section-label">Kursens veckor</span><ul class="sb-week-list">';
+  for (const v of d.veckor) {
+    const isCurrent = v.nr === CURRENT_WEEK;
+    const isPast    = v.nr < CURRENT_WEEK;
+    const isSoon    = !!v.comingSoon;
+    html += `<li>
+      <button class="sb-week-btn${isCurrent ? ' active' : ''}${isSoon ? ' coming-soon' : ''}"
+              data-week="${v.nr}" onclick="scrollToWeek(${v.nr})">
+        <span class="sb-wnr">v${v.nr}</span>
+        <span class="sb-wname">${v.titel}</span>
+        ${isCurrent ? '<span class="sb-now-chip">NU</span>' : ''}
+      </button></li>`;
   }
+  html += '</ul></div>';
 
-  // tentafrågor
-  if (v.tentafragor?.length) {
-    const tf = el('div','wv-tentafragor');
-    tf.appendChild(el('div','tentafragor-label','Tentafrågor'));
-    const tfl = el('div','tentafragor-list');
-    v.tentafragor.forEach(t => {
-      tfl.innerHTML += `<a class="tentafragor-link" href="${resolveHref(base, t.href)}" target="_blank" rel="noopener">${t.text}</a>`;
-    });
-    tf.appendChild(tfl);
-    view.appendChild(tf);
-  }
-
-  // tenta table
-  if (v.tenta) {
-    const box = el('div','wv-tenta');
-    const tbl = el('table','tenta-tbl');
-    v.tenta.forEach(row => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${row.dag}</td><td>${row.isTenta ? '<span class="tenta-badge">TENTA</span> ' + row.info.replace('TENTA ','').replace('09:00–11:00',' 09:00–11:00') : row.info}</td>`;
-      tbl.appendChild(tr);
-    });
-    box.appendChild(tbl);
-    if (v.tentaChips) {
-      const chips = el('div','score-chips');
-      v.tentaChips.forEach(c => chips.appendChild(el('span','score-chip',c)));
-      box.appendChild(chips);
+  if (d.links && d.links.length) {
+    html += '<div class="sb-section"><span class="sb-section-label">Resurser</span><ul class="sb-link-list">';
+    for (const l of d.links) {
+      html += `<li><a class="sb-link" href="${l.href}" target="_blank" rel="noopener">${l.icon || '🔗'} ${l.label}</a></li>`;
     }
-    view.appendChild(box);
+    html += '</ul></div>';
   }
+  sbBody.innerHTML = html;
 }
 
-/* ══════════════════════════════════════════════════════
-   search (cross-week)
-══════════════════════════════════════════════════════ */
-function itemSearchStr(item) {
-  return [item.text, item.desc || '', ...(item.tags || [])].join(' ').toLowerCase();
-}
-function resourceSearchStr(r) {
-  return r ? [r.text, ...(r.tags || [])].join(' ').toLowerCase() : '';
-}
+// ── TIMELINE RENDER ────────────────────────────────────────────────────────
+function renderTimeline(d, filter) {
+  const ghBase = d.githubBase || GITHUB_BASE_FALLBACK;
+  const fLow   = filter ? filter.toLowerCase() : '';
 
-function runSearch(q) {
-  const view     = document.getElementById('week-view');
-  const countEl  = document.getElementById('sok-count');
-  const base     = KURS.githubBase;
+  let html = `<div class="course-header">
+    <div class="course-title">${d.namn}</div>
+    <div class="course-meta">
+      <span class="course-meta-item">📅 ${d.datum}</span>
+      <span class="course-meta-item">🗓 ${d.schema}</span>
+      ${d.notering ? `<span class="course-meta-item">📌 ${d.notering}</span>` : ''}
+    </div>
+    ${d.betyg ? `<div class="course-betyg">
+      <span class="betyg-chip">G <span>${d.betyg.G}</span></span>
+      <span class="betyg-chip">VG <span>${d.betyg.VG}</span></span>
+    </div>` : ''}
+  </div>`;
 
-  if (!q) {
-    countEl.textContent = '';
-    renderWeekView();
-    return;
+  for (const v of d.veckor) {
+    const isCurrent = v.nr === CURRENT_WEEK;
+    const isSoon    = !!v.comingSoon;
+    const hasTopics = v.amnen && v.amnen.length > 0;
+
+    // Filter: hide entire week if nothing matches
+    if (fLow) {
+      const weekText = (v.titel + ' ' + (v.mal || '') + ' ' + (v.deadline || '')).toLowerCase();
+      const topicTexts = (v.amnen || []).map(a =>
+        (a.titel + ' ' + a.beskrivning + ' ' + (a.tags || []).join(' ')).toLowerCase()
+      );
+      const weekMatch = weekText.includes(fLow);
+      const topicMatch = topicTexts.some(t => t.includes(fLow));
+      if (!weekMatch && !topicMatch) continue;
+    }
+
+    // Default open: current week or not coming-soon
+    const defaultOpen = (isCurrent || (!isSoon && !filter)) ? true : false;
+
+    html += `<div class="week-section" id="week-${v.nr}">
+      <div class="week-card${isSoon ? ' is-coming-soon' : ''}">
+        <div class="week-header" onclick="toggleWeek(${v.nr}, this)">
+          <div class="week-badge${isCurrent ? ' is-current' : ''}">v${v.nr}</div>
+          <div class="week-info">
+            <div class="week-title">${v.titel}</div>
+            <div class="week-sub">
+              ${v.tid ? `<span>⏱ ${v.tid}</span>` : ''}
+              ${v.deadline ? `<span class="week-deadline">📬 ${v.deadline}</span>` : ''}
+              ${v.mal ? `<span>${v.mal}</span>` : ''}
+            </div>
+          </div>
+          ${hasTopics || isSoon ? `<span class="week-toggle${defaultOpen ? ' open' : ''}">▶</span>` : ''}
+        </div>`;
+
+    if (isSoon) {
+      html += `<div class="coming-soon-label" style="${defaultOpen ? '' : 'display:none'}">${v.comingSoon}</div>`;
+    } else if (hasTopics) {
+      html += `<div class="topics-body" id="topics-${v.nr}" style="${defaultOpen ? '' : 'display:none'}">`;
+      for (const a of v.amnen) {
+        const topicText = (a.titel + ' ' + a.beskrivning + ' ' + (a.tags || []).join(' ')).toLowerCase();
+        const topicVisible = !fLow || topicText.includes(fLow);
+        if (!topicVisible) continue;
+
+        html += `<div class="topic">
+          <div class="topic-title">${a.titel}</div>
+          ${a.beskrivning ? `<div class="topic-desc">${a.beskrivning}</div>` : ''}
+          ${(a.tags && a.tags.length) ? `<div class="topic-tags">${a.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>` : ''}
+          <div class="topic-links">`;
+
+        if (a.lektion) {
+          html += `<a class="tlink lektion" href="${ghBase}${a.lektion.href}" target="_blank">📽 ${a.lektion.text}</a>`;
+        }
+        for (const n of (a.notes || [])) {
+          html += `<a class="tlink notes" href="${ghBase}${n.href}" target="_blank">📖 ${n.text}</a>`;
+        }
+        const ovningar = a.ovningar || {};
+        for (const o of (ovningar.green || [])) {
+          html += `<a class="tlink green" href="${ghBase}${o.href}" target="_blank">🟢 ${o.text}</a>`;
+        }
+        for (const o of (ovningar.amber || [])) {
+          html += `<a class="tlink amber" href="${ghBase}${o.href}" target="_blank">🟡 ${o.text}</a>`;
+        }
+        for (const o of (ovningar.red || [])) {
+          html += `<a class="tlink red" href="${ghBase}${o.href}" target="_blank">🔴 ${o.text}</a>`;
+        }
+        if (a.notes && a.notes.some(n => n.href && n.href.includes('assignment'))) {
+          // skip – already shown in notes
+        }
+        // Check if any notes look like assignment
+        for (const n of (a.notes || [])) {
+          if (n.href && (n.href.includes('inlamning') || n.href.includes('assignment'))) {
+            // already rendered as notes link, style differently
+          }
+        }
+
+        html += `</div></div>`;
+      }
+      html += '</div>';
+    }
+
+    html += `</div></div>`;
   }
 
-  view.innerHTML = '';
-  let totalHits = 0;
-  let weekHits  = 0;
+  // Clear and insert
+  const scroll = document.getElementById('timelineScroll');
+  const loading = document.getElementById('timelineLoading');
+  if (loading) loading.remove();
+  scroll.innerHTML = html;
+}
 
-  KURS.veckor.forEach(v => {
-    const matchingAmnen = (v.amnen || []).filter(a => {
-      const haystack = [
-        a.titel, a.beskrivning,
-        ...(a.tags || []),
-        resourceSearchStr(a.lektion),
-        ...(Array.isArray(a.notes) ? a.notes.map(resourceSearchStr) : [resourceSearchStr(a.notes)]),
-        ...(a.examples || []).map(itemSearchStr),
-        ...(a.ovningar?.green || []).map(itemSearchStr),
-        ...(a.ovningar?.amber || []).map(itemSearchStr),
-        ...(a.ovningar?.red   || []).map(itemSearchStr),
-      ].join(' ').toLowerCase();
-      return haystack.includes(q);
-    });
+// ── TOGGLE WEEK ────────────────────────────────────────────────────────────
+function toggleWeek(nr, headerEl) {
+  const body   = document.getElementById('topics-' + nr);
+  const toggle = headerEl.querySelector('.week-toggle');
+  if (!body) return;
+  const open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : '';
+  if (toggle) toggle.classList.toggle('open', !open);
+}
 
-    if (!matchingAmnen.length) return;
-
-    weekHits++;
-    totalHits += matchingAmnen.length;
-
-    const group = el('div','search-week-group');
-    group.appendChild(el('div','search-week-heading', `v${v.nr} — ${v.titel}`));
-    const list = el('div','amnen-list');
-    matchingAmnen.forEach(a => list.appendChild(renderAmne(a, base, q)));
-    group.appendChild(list);
-    view.appendChild(group);
-  });
-
-  if (totalHits === 0) {
-    view.appendChild(el('div','wv-empty','Inga träffar. Prova ett kortare sökord.'));
-    countEl.textContent = '';
-  } else {
-    countEl.textContent = `${totalHits} ämne${totalHits!==1?'n':''} i ${weekHits} vecka${weekHits!==1?'r':''}`;
+// ── SCROLL TO WEEK ─────────────────────────────────────────────────────────
+function scrollToWeek(nr) {
+  const el = document.getElementById('week-' + nr);
+  if (!el) return;
+  // Make sure topics are open
+  const body = document.getElementById('topics-' + nr);
+  if (body && body.style.display === 'none') {
+    const header = el.querySelector('.week-header');
+    if (header) toggleWeek(nr, header);
   }
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Update active state in sidebar
+  document.querySelectorAll('.sb-week-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.querySelector(`.sb-week-btn[data-week="${nr}"]`);
+  if (btn) btn.classList.add('active');
+  if (window.innerWidth <= 480) sidebar.classList.remove('open');
 }
 
-/* ══════════════════════════════════════════════════════
-   search wiring
-══════════════════════════════════════════════════════ */
-function initSearch() {
-  const input    = document.getElementById('sok');
-  const clearBtn = document.getElementById('sok-clear');
-  input.addEventListener('input', () => runSearch(input.value.trim().toLowerCase()));
-  clearBtn.addEventListener('click', () => {
-    input.value = '';
-    runSearch('');
-    input.focus();
-  });
-}
+// ── SEARCH ─────────────────────────────────────────────────────────────────
+let searchTimer;
+searchInput.addEventListener('input', () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    if (courseData) renderTimeline(courseData, searchInput.value.trim());
+  }, 200);
+});
 
-/* ══════════════════════════════════════════════════════
-   boot
-══════════════════════════════════════════════════════ */
-const KURS_NR = (new URLSearchParams(location.search).get('kurs') || '01').replace(/[^0-9]/g,'').padStart(2,'0');
-const KURS_FIL = `kurs-${KURS_NR}.json`;
-fetch(KURS_FIL)
-  .then(r => r.json())
-  .then(data => {
-    KURS = data;
-    document.title = `${KURS.kod} Kurs ${KURS.nummer} — ${KURS.namn}`;
-    // pick active week: current if in range, else first
-    const nrs = KURS.veckor.map(v => v.nr);
-    activeWeekNr = nrs.includes(currentWeek) ? currentWeek : nrs[0];
+// ── COURSE SWITCH ──────────────────────────────────────────────────────────
+courseSelect.addEventListener('change', () => {
+  searchInput.value = '';
+  loadCourse(courseSelect.value);
+});
 
-    buildHead();
-    buildLegend();
-    buildSidebar();
-    initSearch();
-    renderWeekView();
-  })
-  .catch(() => {
-    document.getElementById('week-view').innerHTML =
-      '<div class="wv-empty">⚠️ Kunde inte ladda ' + KURS_FIL + ' — kör via http-server, inte file://</div>';
-  });
+// ── INIT ───────────────────────────────────────────────────────────────────
+loadCourse(courseSelect.value);
 </script>

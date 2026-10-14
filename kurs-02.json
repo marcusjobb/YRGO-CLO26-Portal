@@ -8,7 +8,6 @@
   "notering": "Ingen inlämning v.41 · Tenta tis 27 okt",
   "githubBase": "https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-02-databaser/",
   "links": [
-    { "icon": "💬", "label": "Discord", "href": "https://discord.gg/ZSquGkSvK" },
     { "icon": "🧪", "label": "sqliteonline.com — SQL i webbläsaren", "href": "https://sqliteonline.com/" },
     { "icon": "🕵️", "label": "Läxa: SQL Murder Mystery", "href": "https://mystery.knightlab.com/" },
     { "icon": "🚓", "label": "Läxa: SQL Police Department", "href": "https://sqlpd.com/" },
@@ -270,15 +269,6 @@
           "tags": ["inlämning", "SQL", "CREATE TABLE", "JOIN", "ER-diagram", "normalisering"],
           "notes": [
             { "text": "Inlämning 1 — Diskografi (uppgiftsbeskrivning)", "href": "assignment/inlamning_1_diskografi.md", "tags": ["G", "VG", "sql-fil", "ER-diagram", "zip"] }
-          ],
-          "ovningar": { "green": [], "amber": [], "red": [] }
-        },
-        {
-          "titel": "Nördiska v.42 — databasbegrepp",
-          "beskrivning": "Varje grupp förklarar 2–3 begrepp för klassen. Begreppen delas ut måndag, presentation onsdag.",
-          "tags": ["nördiska", "terminologi", "begrepp", "presentation"],
-          "notes": [
-            { "text": "Nördiska v.42 — ord och begrepp", "href": "nordiska/v42.md", "tags": ["databas", "tabell", "primärnyckel", "SELECT", "INSERT"] }
           ],
           "ovningar": { "green": [], "amber": [], "red": [] }
         }
