@@ -324,6 +324,20 @@
             "Microsoft.Data.Sqlite",
             "klass"
           ],
+          "notes": [
+            {
+              "text": "Quicksheet — NuGet-paket och connection strings",
+              "href": "01_intro_databaser/notes/ado_quicksheet.md",
+              "tags": [
+                "NuGet",
+                "connection string",
+                "SQLite",
+                "MySQL",
+                "PostgreSQL",
+                "snabbreferens"
+              ]
+            }
+          ],
           "examples": [
             {
               "text": "SQLite i C#",
@@ -393,6 +407,18 @@
                 "CargoHandler",
                 "List",
                 "objekt"
+              ]
+            },
+            {
+              "text": "Quicksheet — ADO.NET-objekt",
+              "href": "01_intro_databaser/notes/ado_objects_quicksheet.md",
+              "tags": [
+                "ExecuteNonQuery",
+                "ExecuteScalar",
+                "ExecuteReader",
+                "DataTable",
+                "Transaction",
+                "snabbreferens"
               ]
             }
           ],
