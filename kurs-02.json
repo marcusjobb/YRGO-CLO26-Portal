@@ -745,7 +745,7 @@
           "mal": "Kan förklara 1NF, 2NF och 3NF och omstrukturera en platt tabell till normaliserad design."
         },
         {
-          "titel": "Fredag v42 — SQL-repetition (SELECT → VIEW)",
+          "titel": "Fredag v42 — SQL-grunder (Del 1)",
           "beskrivning": "Repetition av CRUD, CREATE TABLE, FOREIGN KEY och Views med spelbutiksscenario. Varje slide länkar direkt till notes i repot.",
           "tags": [
             "SELECT",
@@ -808,7 +808,7 @@
           "mal": "Kan skriva SELECT, INSERT, UPDATE, DELETE och CREATE VIEW utan att slå upp syntax."
         },
         {
-          "titel": "Fredag v42 — ERD och normalisering (Del 2)",
+          "titel": "Fredag v42 — Normalisering och JOIN (Del 2)",
           "beskrivning": "Från en låda med 'Kalle Svensson, Södra Gatan 23, Myskoby' till tre separata tabeller med JOIN. Visuell genomgång med HTML-boxar i stället för text.",
           "tags": [
             "ERD",
@@ -845,6 +845,68 @@
             "red": []
           },
           "mal": "Kan utgå från ett verkligt scenario och designa ett ER-diagram med JOIN-relationer i 3NF."
+        },
+        {
+          "titel": "Fredag v42 — C# och databaser (Del 3)",
+          "beskrivning": "Koppla spelbutiksdatabasen till C# med ADO.NET: tabell som klass, connection string, parametrar mot SQL injection och de tre Execute-metoderna.",
+          "tags": [
+            "C#",
+            "ADO.NET",
+            "SQLite",
+            "ExecuteNonQuery",
+            "ExecuteReader",
+            "parametrar",
+            "SQL injection"
+          ],
+          "lektion": {
+            "text": "C# och databaser (Del 3)",
+            "href": "01_intro_databaser/lectures/csharp_databaser_marp.md",
+            "tags": [
+              "C#",
+              "connection",
+              "ExecuteNonQuery",
+              "ExecuteScalar",
+              "ExecuteReader"
+            ]
+          },
+          "notes": [
+            {
+              "text": "Quicksheet — NuGet-paket och connection strings",
+              "href": "01_intro_databaser/notes/ado_quicksheet.md",
+              "tags": [
+                "NuGet",
+                "connection string",
+                "snabbreferens"
+              ]
+            },
+            {
+              "text": "Quicksheet — ADO.NET-objekt",
+              "href": "01_intro_databaser/notes/ado_objects_quicksheet.md",
+              "tags": [
+                "ExecuteNonQuery",
+                "ExecuteReader",
+                "DataTable",
+                "Transaction",
+                "snabbreferens"
+              ]
+            },
+            {
+              "text": "Från tabell till klass — SQL och C# sida vid sida",
+              "href": "01_intro_databaser/notes/sql/tabeller-och-klasser.md",
+              "tags": [
+                "C#",
+                "klass",
+                "property",
+                "LINQ"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [],
+            "amber": [],
+            "red": []
+          },
+          "mal": "Kan koppla en SQLite-databas till C#, köra INSERT och SELECT med parametrar och omvandla rader till objekt."
         },
         {
           "titel": "Inlämning 1 — Din favoritartists diskografi",
