@@ -582,6 +582,62 @@
           "mal": "Kan skapa tabell med CREATE TABLE, lägga in data med INSERT och söka med SELECT WHERE ORDER BY."
         },
         {
+          "titel": "SQL — ett kommando i taget",
+          "beskrivning": "En hel serie med egna sidor för SELECT, WHERE, ORDER BY, aggregatfunktioner, GROUP BY, JOIN, subquery, INSERT, UPDATE och DELETE. Samma övningstabell genom hela vägen. Börja med index-sidan och välj vad du vill fördjupa dig i.",
+          "tags": [
+            "SQL",
+            "SELECT",
+            "JOIN",
+            "GROUP BY",
+            "C#",
+            "LINQ",
+            "referens"
+          ],
+          "notes": [
+            {
+              "text": "SQL — ett kommando i taget (översikt)",
+              "href": "01_intro_databaser/notes/sql/index.md",
+              "tags": [
+                "SELECT",
+                "JOIN",
+                "INSERT",
+                "UPDATE",
+                "DELETE",
+                "DQL",
+                "DML"
+              ]
+            },
+            {
+              "text": "JOIN — koppla ihop tabeller",
+              "href": "01_intro_databaser/notes/sql/join.md",
+              "tags": [
+                "JOIN",
+                "LEFT JOIN",
+                "INNER JOIN",
+                "alias",
+                "kartesisk produkt"
+              ]
+            },
+            {
+              "text": "Från tabell till klass — SQL och C# sida vid sida",
+              "href": "01_intro_databaser/notes/sql/tabeller-och-klasser.md",
+              "tags": [
+                "C#",
+                "klass",
+                "property",
+                "LINQ",
+                "ORM"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [],
+            "amber": [],
+            "red": []
+          },
+          "mal": "Kan navigera SQL-serien och hitta rätt kommando när det behövs."
+        },
+        {
           "titel": "ER-diagram — design FÖRE SQL",
           "beskrivning": "Rita upp databasen på papper innan du skriver en enda rad SQL. Entiteter, attribut, relationer och kardinalitet (1:1, 1:N, N:M). Vi ritar en djurpark live på tavlan.",
           "tags": [
