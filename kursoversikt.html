@@ -492,16 +492,6 @@ function renderTimeline(d, filter) {
         for (const o of (ovningar.red || [])) {
           html += `<a class="tlink red" href="${ghBase}${o.href}" target="_blank">🔴 ${o.text}</a>`;
         }
-        if (a.notes && a.notes.some(n => n.href && n.href.includes('assignment'))) {
-          // skip – already shown in notes
-        }
-        // Check if any notes look like assignment
-        for (const n of (a.notes || [])) {
-          if (n.href && (n.href.includes('inlamning') || n.href.includes('assignment'))) {
-            // already rendered as notes link, style differently
-          }
-        }
-
         html += `</div></div>`;
       }
       html += '</div>';
