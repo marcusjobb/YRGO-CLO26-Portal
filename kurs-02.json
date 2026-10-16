@@ -909,6 +909,54 @@
           "mal": "Kan koppla en SQLite-databas till C#, köra INSERT och SELECT med parametrar och omvandla rader till objekt."
         },
         {
+          "titel": "Extraföreläsning — SQL JOINs på djupet",
+          "beskrivning": "INNER JOIN vs LEFT JOIN förklaras visuellt med bilder och livekod mot en riktig databas. Vi kör steg för steg: syntax, exempel, jämförelse, ON vs WHERE och vanliga fallgropar.",
+          "tags": [
+            "JOIN",
+            "INNER JOIN",
+            "LEFT JOIN",
+            "extraföreläsning",
+            "repetition"
+          ],
+          "lektion": {
+            "text": "SQL JOINs — extraföreläsning",
+            "href": "01_intro_databaser/lectures/databaser_joins_marp.md",
+            "tags": [
+              "INNER JOIN",
+              "LEFT JOIN",
+              "ON vs WHERE",
+              "NULL",
+              "GROUP BY"
+            ]
+          },
+          "examples": [
+            {
+              "text": "Demobas — skapa joins_demo.db",
+              "href": "01_intro_databaser/examples/skapa_joins_demo.py",
+              "tags": [
+                "Python",
+                "SQLite",
+                "demobas"
+              ]
+            },
+            {
+              "text": "SQL-schema för demobasen",
+              "href": "01_intro_databaser/examples/joins_demo.sql",
+              "tags": [
+                "CREATE TABLE",
+                "INSERT",
+                "demodata"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [],
+            "amber": [],
+            "red": []
+          },
+          "mal": "Kan förklara skillnaden mellan INNER och LEFT JOIN och skriva frågor som kopplar ihop minst två tabeller."
+        },
+        {
           "titel": "Inlämning 1 — Din favoritartists diskografi",
           "beskrivning": "Bygg en normaliserad SQL-databas över en artists diskografi. Minst 3 tabeller, 3 album, 3NF och ett ER-diagram. Deadline onsdag 21 okt 23:59 (förlängd).",
           "tags": [
