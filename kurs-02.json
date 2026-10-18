@@ -994,9 +994,175 @@
       "titel": "SQL avancerat, normalisering och säkerhet",
       "tid": "10–12 h",
       "mal": "Kan JOIN:a, aggregera och normalisera. Förstår SQL injection och hur man skyddar sig.",
-      "comingSoon": "Material publiceras vecka 43 (mån 19 okt)",
       "deadline": "Inlämning 2 — Filmdatabas-appen · deadline sön 25 okt 23:59",
-      "amnen": []
+      "amnen": [
+        {
+          "titel": "Föreläsning — Normalisering (repetition)",
+          "beskrivning": "Repetition av 1NF/2NF/3NF och de tre anomalierna. Vad händer när man INTE normaliserar?",
+          "tags": [
+            "normalisering",
+            "1NF",
+            "2NF",
+            "3NF",
+            "anomalier"
+          ],
+          "notes": [
+            {
+              "text": "Normalisering — teori och termer",
+              "href": "termer/normalisering.md",
+              "tags": [
+                "normalisering",
+                "anomalier",
+                "begrepp"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [],
+            "amber": [],
+            "red": []
+          }
+        },
+        {
+          "titel": "Föreläsning — Djursjukhuset: JOIN och normalisering",
+          "beskrivning": "Från kaos-tabell till normaliserad design — och sedan JOINs för att ställa verkliga frågor mot datan.",
+          "tags": [
+            "JOIN",
+            "normalisering",
+            "ER-diagram",
+            "djursjukhuset"
+          ],
+          "notes": [
+            {
+              "text": "Hämta seed-filen — Klösarvet Djursjukhus AB",
+              "href": "03_normalisering_gdpr/examples/djursjukhus_seed.sql",
+              "tags": [
+                "SQLite",
+                "seed",
+                "JOIN",
+                "FK"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [
+              {
+                "text": "JOINs i klassrummet 🐾",
+                "href": "03_normalisering_gdpr/exercises/ovning_joins_klassrum.md",
+                "tags": [
+                  "JOIN",
+                  "GROUP BY",
+                  "LEFT JOIN"
+                ],
+                "desc": "Fyra övningar mot djursjukhusdatabasen: ägare med djur, besökshistorik, flest djur och LEFT JOIN utan besök."
+              }
+            ],
+            "amber": [
+              {
+                "text": "JOINs och aggregat — hemövning 🏠",
+                "href": "03_normalisering_gdpr/exercises/ovning_joins_hem.md",
+                "tags": [
+                  "JOIN",
+                  "HAVING",
+                  "subquery",
+                  "veterinär"
+                ],
+                "desc": "Tuffare: senaste besök per djur, ägare med flera av samma art, bygg Veterinar-tabellen och GDPR-reflektion."
+              }
+            ],
+            "red": []
+          }
+        },
+        {
+          "titel": "Föreläsning — GROUP BY och aggregat",
+          "beskrivning": "Räkna, summera och filtrera grupper. Vad är skillnaden mellan WHERE och HAVING?",
+          "tags": [
+            "GROUP BY",
+            "HAVING",
+            "COUNT",
+            "SUM",
+            "AVG",
+            "aggregat"
+          ],
+          "notes": [],
+          "ovningar": {
+            "green": [],
+            "amber": [],
+            "red": []
+          }
+        },
+        {
+          "titel": "Föreläsning — GDPR och databaser",
+          "beskrivning": "Vad GDPR kräver av oss som bygger system: dataminimering, rätten att bli glömd, anonymisering och privacy by design.",
+          "tags": [
+            "GDPR",
+            "Art. 5",
+            "Art. 9",
+            "Art. 15",
+            "Art. 17",
+            "anonymisering",
+            "biometri"
+          ],
+          "notes": [
+            {
+              "text": "GDPR i praktiken — riktiga scenarier",
+              "href": "03_normalisering_gdpr/notes/gdpr_praktik_scenarier.md",
+              "tags": [
+                "GDPR",
+                "garanti",
+                "registerutdrag",
+                "anonymisering",
+                "fotoalbum"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [
+              {
+                "text": "GDPR i klassrummet 🔒",
+                "href": "03_normalisering_gdpr/exercises/ovning_gdpr_klassrum.md",
+                "tags": [
+                  "GDPR",
+                  "gymappen",
+                  "dataminimering",
+                  "radering"
+                ],
+                "desc": "Hitta GDPR-brott i gymappens databas, designa om Medlemmar-tabellen och implementera rätten att bli glömd."
+              }
+            ],
+            "amber": [],
+            "red": []
+          }
+        },
+        {
+          "titel": "Planeringsverktyg — MoSCoW",
+          "beskrivning": "Prioritera rätt från start. Vad måste vara med? Vad kan vänta?",
+          "tags": [
+            "MoSCoW",
+            "Must",
+            "Should",
+            "Could",
+            "prioritering",
+            "MVP"
+          ],
+          "notes": [
+            {
+              "text": "MoSCoW — prioritering av krav",
+              "href": "03_normalisering_gdpr/notes/moscow_prioritering.md",
+              "tags": [
+                "MoSCoW",
+                "MVP",
+                "kravhantering"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [],
+            "amber": [],
+            "red": []
+          }
+        }
+      ]
     },
     {
       "nr": 44,
