@@ -1166,7 +1166,7 @@
     },
     {
       "nr": 44,
-      "titel": "Transaktioner, säkerhet och tenta",
+      "titel": "Transaktioner och säkerhet",
       "tid": "4–5 h",
       "mal": "Förstår UPDATE och DELETE med WHERE, kan skriva säker SQL med parametrar och vet vad en transaktion gör.",
       "amnen": [
@@ -1221,7 +1221,7 @@
         },
         {
           "titel": "🎓 Tenta — onsdag 28 okt 09:00–12:00",
-          "beskrivning": "Skriftlig tenta. SQL och SQL-objekt i C#. Inga hjälpmedel. Genomgång samma dag eftermiddag.",
+          "beskrivning": "Skriftlig tenta. SQL och SQL-objekt i C#. Inga hjälpmedel. Genomgång samma eftermiddag.",
           "tags": [
             "tenta",
             "SQL",
