@@ -1166,12 +1166,76 @@
     },
     {
       "nr": 44,
-      "titel": "MongoDB och tenta",
-      "tid": "6–8 h",
-      "mal": "Har provat en dokumentdatabas och kan förklara skillnaden mot en relationsdatabas.",
-      "comingSoon": "Material publiceras vecka 44 (mån 26 okt)",
-      "deadline": "Tenta · onsdag 28 okt 09:00–12:00",
-      "amnen": []
+      "titel": "Transaktioner, säkerhet och tenta",
+      "tid": "4–5 h",
+      "mal": "Förstår UPDATE och DELETE med WHERE, kan skriva säker SQL med parametrar och vet vad en transaktion gör.",
+      "amnen": [
+        {
+          "titel": "Föreläsning — UPDATE och DELETE: med och utan WHERE",
+          "beskrivning": "UPDATE och DELETE är ofarliga — tills du glömmer WHERE. Vi kör live och ser vad som händer när hela tabellen uppdateras på en gång.",
+          "tags": [
+            "UPDATE",
+            "DELETE",
+            "WHERE",
+            "säkerhet"
+          ],
+          "notes": [],
+          "ovningar": {
+            "green": [],
+            "amber": [],
+            "red": []
+          }
+        },
+        {
+          "titel": "Föreläsning — Transaktioner: BEGIN, COMMIT, ROLLBACK",
+          "beskrivning": "Vad händer om servern kraschar mitt i en INSERT? Transaktioner garanterar att antingen sparas allt — eller ingenting.",
+          "tags": [
+            "transaktion",
+            "BEGIN",
+            "COMMIT",
+            "ROLLBACK",
+            "atomicitet"
+          ],
+          "notes": [],
+          "ovningar": {
+            "green": [],
+            "amber": [],
+            "red": []
+          }
+        },
+        {
+          "titel": "Föreläsning — SQL injection och parametriserade frågor",
+          "beskrivning": "En liten strängkonkatenering kan radera hela databasen. Vi kör attacken live — och sedan fixar vi den med MySqlParameter.",
+          "tags": [
+            "SQL injection",
+            "MySqlParameter",
+            "säkerhet",
+            "parametriserade frågor"
+          ],
+          "notes": [],
+          "ovningar": {
+            "green": [],
+            "amber": [],
+            "red": []
+          }
+        },
+        {
+          "titel": "🎓 Tenta — onsdag 28 okt 09:00–12:00",
+          "beskrivning": "Skriftlig tenta. SQL och SQL-objekt i C#. Inga hjälpmedel. Genomgång samma dag eftermiddag.",
+          "tags": [
+            "tenta",
+            "SQL",
+            "C#",
+            "examination"
+          ],
+          "notes": [],
+          "ovningar": {
+            "green": [],
+            "amber": [],
+            "red": []
+          }
+        }
+      ]
     }
   ]
 }
