@@ -1,0 +1,313 @@
+{
+  "kod": "CLO26",
+  "nummer": "03",
+  "namn": "Fördjupad OOP i C#",
+  "period": "v.45–49",
+  "datum": "2 nov – 4 dec 2026",
+  "schema": "Mån + Ons campus 09–12 och 13–15 · Fre online 09–11",
+  "notering": "Två inlämningar: 22 nov och 4 dec · Tenta ons 2 dec 09:00",
+  "githubBase": "https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-03-fordjupad-oop/",
+  "links": [],
+  "betyg": {
+    "G": "Skriftligt prov och inlämningsuppgifter godkända — kan koppla en applikation till data, använda designmönster och refaktorera enligt clean code.",
+    "VG": "Fördjupar och motiverar sina val: reflekterar över designmönster, strukturerar en modulär applikation och granskar kod."
+  },
+  "veckor": [
+    {
+      "nr": 45,
+      "titel": "Trygg start: klasser, arv, abstract och interface",
+      "tid": "6–8 h",
+      "mal": "Kan skapa klasser och objekt, använda arv med virtual/override, välja mellan abstract och interface, filtrera typer med OfType och spara ett objekt som JSON.",
+      "notering": "Måndag: hela OOP-repetitionen. Onsdag: JSON. Läxorna följer hjältens äventyr.",
+      "amnen": [
+        {
+          "titel": "Föreläsning — Klass och objekt",
+          "beskrivning": "Klassen är ritningen, objektet är huset. Vi bygger Mira, en hjälte, och ser vad new och konstruktorn gör. Alla hjältar möts på storbild.",
+          "tags": [
+            "klass",
+            "objekt",
+            "new",
+            "konstruktor"
+          ],
+          "notes": [
+            {
+              "text": "Bildspel — Klass och objekt",
+              "href": "00_klasser_och_objekt/lectures/01_klass_och_objekt_marp.md",
+              "tags": [
+                "klass",
+                "objekt"
+              ]
+            },
+            {
+              "text": "Läsversion — Klass och objekt",
+              "href": "00_klasser_och_objekt/notes/klass_och_objekt.md",
+              "tags": [
+                "klass",
+                "objekt",
+                "konstruktor"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [
+              {
+                "text": "Övning 1 — din egen hjälte",
+                "href": "00_klasser_och_objekt/exercises/ovning_1_hjalten.md",
+                "tags": [
+                  "klass",
+                  "objekt",
+                  "par"
+                ],
+                "desc": "Skapa klassen Hero och två hjältar. I par: en skriver, en läser högt."
+              }
+            ],
+            "amber": [],
+            "red": []
+          }
+        },
+        {
+          "titel": "Föreläsning — Arv, virtual och override",
+          "beskrivning": "Mira möter ett monster. Det gemensamma skrivs en gång i en basklass, och samma anrop ger olika svar beroende på objekt.",
+          "tags": [
+            "arv",
+            "virtual",
+            "override",
+            "polymorfism"
+          ],
+          "notes": [
+            {
+              "text": "Bildspel — Arv",
+              "href": "00_klasser_och_objekt/lectures/02_arv_marp.md",
+              "tags": [
+                "arv",
+                "override"
+              ]
+            },
+            {
+              "text": "Läsversion — Arv",
+              "href": "00_klasser_och_objekt/notes/arv.md",
+              "tags": [
+                "arv",
+                "virtual",
+                "override",
+                "polymorfism"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [
+              {
+                "text": "Övning 2 — arv",
+                "href": "00_klasser_och_objekt/exercises/ovning_2_arv.md",
+                "tags": [
+                  "arv",
+                  "override",
+                  "par"
+                ],
+                "desc": "Character, Hero och Monster med egna svar. Wizard som extra."
+              }
+            ],
+            "amber": [],
+            "red": []
+          }
+        },
+        {
+          "titel": "Föreläsning — Abstract och interface",
+          "beskrivning": "Abstract: en ritning som aldrig får bli ett hus. Interface: ett löfte om vad man kan. Båda används för att filtrera typer med OfType.",
+          "tags": [
+            "abstract",
+            "interface",
+            "OfType",
+            "filtrera typer"
+          ],
+          "notes": [
+            {
+              "text": "Bildspel — Abstract och interface",
+              "href": "00_klasser_och_objekt/lectures/03_abstract_och_interface_marp.md",
+              "tags": [
+                "abstract",
+                "interface"
+              ]
+            },
+            {
+              "text": "Läsversion — Abstract och interface",
+              "href": "00_klasser_och_objekt/notes/abstract_och_interface.md",
+              "tags": [
+                "abstract",
+                "interface",
+                "OfType"
+              ]
+            },
+            {
+              "text": "Termer — OOP-repetition",
+              "href": "termer/oop_repetition.md",
+              "tags": [
+                "termer"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [
+              {
+                "text": "Övning 3 — abstract och interface",
+                "href": "00_klasser_och_objekt/exercises/ovning_3_abstract_interface.md",
+                "tags": [
+                  "abstract",
+                  "interface",
+                  "OfType",
+                  "par"
+                ],
+                "desc": "Gör Character abstrakt, skapa IHealer och filtrera med OfType."
+              }
+            ],
+            "amber": [],
+            "red": []
+          }
+        },
+        {
+          "titel": "Läxa A (tisdag) — Hjältens äventyr, kapitel 1",
+          "beskrivning": "24 uppgifter i fyra ämnen: klass och objekt, arv, abstract, interface. Två obligatoriska, två mer övning och två Ninja per ämne. Ninja är frivilligt.",
+          "tags": [
+            "läxa",
+            "klass",
+            "arv",
+            "abstract",
+            "interface"
+          ],
+          "notes": [
+            {
+              "text": "Läxa A — Hjältens äventyr",
+              "href": "00_klasser_och_objekt/exercises/lara_a_hjaltens_aventyr.md",
+              "tags": [
+                "läxa",
+                "kapitel 1"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [],
+            "amber": [],
+            "red": []
+          }
+        },
+        {
+          "titel": "Föreläsning — Spara ett objekt som JSON",
+          "beskrivning": "Hjälten behöver en sparfil. Vi gör klass till JSON, stöter på en tom {} och fixar den, och startar om programmet så att hjälten finns kvar.",
+          "tags": [
+            "JSON",
+            "serialisering",
+            "System.Text.Json",
+            "fil"
+          ],
+          "notes": [
+            {
+              "text": "Bildspel — Spara ett objekt som JSON",
+              "href": "01_databaskopplingar/lectures/json_spara_ett_objekt_marp.md",
+              "tags": [
+                "JSON",
+                "serialisering"
+              ]
+            },
+            {
+              "text": "Läsversion — Spara ett objekt som JSON",
+              "href": "01_databaskopplingar/notes/json_spara_ett_objekt.md",
+              "tags": [
+                "JSON",
+                "serialisering",
+                "deserialisering"
+              ]
+            },
+            {
+              "text": "Termer — JSON och serialisering",
+              "href": "termer/json_spara_objekt.md",
+              "tags": [
+                "termer"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [
+              {
+                "text": "Övning — spara och ladda hjälten",
+                "href": "01_databaskopplingar/exercises/ovning_json_spara_hjalten.md",
+                "tags": [
+                  "JSON",
+                  "fil",
+                  "par"
+                ],
+                "desc": "Spara en hjälte till hjalte.json och ladda den igen. Flera hjältar som mer övning."
+              }
+            ],
+            "amber": [],
+            "red": []
+          }
+        },
+        {
+          "titel": "Läxa B (torsdag) — Hjältens äventyr, kapitel 2: sparfilen",
+          "beskrivning": "Spara hela spelläget och ladda det igen. Ta med frågor till fredagens handledning.",
+          "tags": [
+            "läxa",
+            "JSON",
+            "fil"
+          ],
+          "notes": [
+            {
+              "text": "Läxa B — Sparfilen",
+              "href": "01_databaskopplingar/exercises/lara_b_sparfilen.md",
+              "tags": [
+                "läxa",
+                "kapitel 2"
+              ]
+            }
+          ],
+          "ovningar": {
+            "green": [],
+            "amber": [],
+            "red": []
+          }
+        },
+        {
+          "titel": "Fredag — Handledning 09–11 (distans)",
+          "beskrivning": "Frågor från läxorna besvaras. Ta med din fråga.",
+          "tags": [
+            "handledning"
+          ],
+          "notes": [],
+          "ovningar": {
+            "green": [],
+            "amber": [],
+            "red": []
+          }
+        }
+      ]
+    },
+    {
+      "nr": 46,
+      "titel": "Interface, Strategy och dataformat",
+      "tid": "",
+      "mal": "Kan använda interface och Strategy, och spara data som JSON, YAML och XML.",
+      "amnen": []
+    },
+    {
+      "nr": 47,
+      "titel": "EF Core och UML",
+      "tid": "",
+      "mal": "Kan koppla en app till en databas med EF Core och rita enkla UML-diagram.",
+      "amnen": []
+    },
+    {
+      "nr": 48,
+      "titel": "MongoDB, Factory och Observer",
+      "tid": "",
+      "mal": "Kan använda en dokumentdatabas och känner igen Factory och Observer.",
+      "amnen": []
+    },
+    {
+      "nr": 49,
+      "titel": "Refactoring, kodgranskning och tenta",
+      "tid": "",
+      "mal": "Kan refaktorera enligt clean code, granska kod och har gjort tentan.",
+      "amnen": []
+    }
+  ]
+}
