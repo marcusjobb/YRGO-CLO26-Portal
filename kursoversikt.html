@@ -551,6 +551,7 @@ searchInput.addEventListener('input', () => {
 
 // ── COURSE SWITCH ──────────────────────────────────────────────────────────
 courseSelect.addEventListener('change', () => {
+  if (courseSelect.value === 'kurs-03.json') { location.href = 'kurs-ny.html?kurs=03'; return; }
   searchInput.value = '';
   loadCourse(courseSelect.value);
 });
