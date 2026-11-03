@@ -1,3 +1,11 @@
+<meta charset="utf-8">
+<script>
+/* Kurs 03 har ny layout (kurs-ny.html). Gamla länkar skickas dit, kurs 01 och 02 ligger kvar här. */
+(function () { try {
+  var k = new URLSearchParams(location.search).get('kurs');
+  if (!k || k === '03' || k === '3') location.replace('kurs-ny.html?kurs=03');
+} catch (e) {} })();
+</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>CLO26 Kursöversikt</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
