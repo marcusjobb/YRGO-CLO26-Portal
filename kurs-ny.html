@@ -166,23 +166,27 @@ mark { background:rgba(42,94,196,.2); color:inherit; border-radius:2px; padding:
   <div id="aiBody"></div>
 </div></div>
 
-<div class="overlay" id="vmOverlay"><div class="modal" role="dialog" aria-modal="true" aria-label="Fråga Marcus">
-  <div class="head"><div><h2>👨‍🏫 Fråga Marcus</h2><p id="vmTitle"></p></div><button class="x" id="vmClose" aria-label="Stäng">✕</button></div>
-  <div class="howto"><b>Så här gör du:</b> 1. Kopiera prompten. 2. Öppna din favorit-AI (till exempel ChatGPT, Claude, Gemini eller Copilot). 3. Klistra in den som ditt första meddelande. Då agerar AI:n som Marcus och guidar dig utan att ge svaret.<div class="ailinks" data-ailinks></div></div>
+<div class="overlay" id="vmOverlay"><div class="modal" role="dialog" aria-modal="true" aria-label="Välj AI">
+  <div class="head"><div><h2 id="vmHead">✅ Prompten är kopierad</h2><p id="vmTitle"></p></div><button class="x" id="vmClose" aria-label="Stäng">✕</button></div>
+  <div class="howto"><b>Så här gör du:</b> 1. Välj en AI här under. 2. Klistra in prompten som ditt första meddelande (Ctrl+V, eller ⌘V på Mac). 3. Skicka. Då agerar AI:n som Marcus och guidar dig utan att ge svaret.
+    <div class="ailinks" data-ailinks></div></div>
+  <details id="vmDet"><summary>Visa prompten eller kopiera igen</summary>
+    <div class="promptbox" id="vmBox" style="margin:8px 0"></div>
+    <button class="big-copy" id="vmCopy">Kopiera igen</button></details>
   <a class="ghlink" id="vmLink" target="_blank" rel="noopener">Öppna övningen på GitHub →</a>
-  <div class="promptbox" id="vmBox"></div>
-  <button class="big-copy" id="vmCopy">Kopiera prompt</button>
 </div></div>
 
 <script>
 (function () {
   var AI_LINKS = [
-    { n: 'Gemini', u: 'https://gemini.google.com', note: 'Skolan bjuder på Pro' },
+    { n: 'Gemini', u: 'https://gemini.google.com', note: 'skolan bjuder på Pro' },
     { n: 'Copilot', u: 'https://copilot.microsoft.com' },
     { n: 'Claude', u: 'https://claude.ai' },
-    { n: 'ChatGPT (OpenAI)', u: 'https://chatgpt.com' },
-    { n: '1min.AI', u: 'https://1min.ai?referrer_id=9b12faba-f8a3-49ea-bd25-d8343f1fd965', ref: true },
-    { n: 'Pi', u: 'https://pi.ai' }
+    { n: 'ChatGPT', u: 'https://chatgpt.com' },
+    { n: 'Duck.ai', u: 'https://duck.ai', note: 'DuckDuckGo' },
+    { n: 'Lumo', u: 'https://lumo.proton.me', note: 'Proton' },
+    { n: 'Pi', u: 'https://pi.ai/talk' },
+    { n: '1min.AI', u: 'https://1min.ai?referrer_id=9b12faba-f8a3-49ea-bd25-d8343f1fd965', ref: true }
   ];
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
@@ -191,7 +195,7 @@ mark { background:rgba(42,94,196,.2); color:inherit; border-radius:2px; padding:
   (function () {
     var h = AI_LINKS.map(function (a) {
       return '<a href="' + a.u + '" target="_blank" rel="noopener' + (a.ref ? ' sponsored' : '') + '">' + a.n + (a.note ? ' · ' + a.note : '') + (a.ref ? ' · referenslänk' : '') + '</a>';
-    }).join('') + '<small>1min.AI-länken är en referenslänk: Marcus kan få en förmån om du registrerar dig. Du väljer själv vilken AI du använder.</small>';
+    }).join('') + '<small>1min.AI-länken är en referenslänk: Marcus kan få en förmån om du registrerar dig. Du väljer själv vilken AI du använder. Skriv aldrig personuppgifter (namn, personnummer, lösenord) i en AI-chatt.</small>';
     document.querySelectorAll('[data-ailinks]').forEach(function (el) { el.innerHTML = h; });
   })();
 
@@ -271,20 +275,25 @@ mark { background:rgba(42,94,196,.2); color:inherit; border-radius:2px; padding:
   var prompts = {}, pid = 0;
   function reg(text) { prompts[++pid] = text; return pid; }
 
-  function openVM(id, title, href) {
-    $('vmTitle').textContent = title;
-    $('vmLink').href = GH + href;
-    $('vmBox').textContent = prompts[id];
+  function showAI(text, title, href) {
+    $('vmTitle').textContent = title || '';
+    $('vmBox').textContent = text;
+    if (href) { $('vmLink').href = GH + href; $('vmLink').style.display = ''; } else { $('vmLink').style.display = 'none'; }
+    $('vmHead').textContent = '✅ Prompten är kopierad';
+    $('vmDet').open = false;
+    function fail() { $('vmHead').textContent = '⚠️ Kopieringen gick inte automatiskt'; $('vmDet').open = true; }
+    if (navigator.clipboard) navigator.clipboard.writeText(text).catch(fail); else fail();
     $('vmOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
+  function openVM(id, title, href) { showAI(prompts[id], title, href); }
   function closeVM() { $('vmOverlay').classList.remove('open'); document.body.style.overflow = ''; }
   function openAI() { $('aiOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
   function closeAI() { $('aiOverlay').classList.remove('open'); document.body.style.overflow = ''; }
   $('vmClose').onclick = closeVM; $('aiClose').onclick = closeAI; $('aiBtn').onclick = openAI;
   $('vmOverlay').onclick = function (e) { if (e.target === this) closeVM(); };
   $('aiOverlay').onclick = function (e) { if (e.target === this) closeAI(); };
-  $('vmCopy').onclick = function () { copy($('vmBox').textContent, this, 'Kopiera prompt'); };
+  $('vmCopy').onclick = function () { copy($('vmBox').textContent, this, 'Kopiera igen'); };
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
     if ($('vmOverlay').classList.contains('open')) closeVM(); else closeAI();
@@ -393,7 +402,7 @@ mark { background:rgba(42,94,196,.2); color:inherit; border-radius:2px; padding:
     });
     $('aiBody').innerHTML = html || '<p class="week-meta">Promptar kommer när materialet publiceras.</p>';
     document.querySelectorAll('.copy-btn[data-id]').forEach(function (b) {
-      b.onclick = function () { copy(prompts[+b.dataset.id], b, 'Kopiera'); };
+      b.onclick = function () { var t = b.parentNode.querySelector('b'); closeAI(); showAI(prompts[+b.dataset.id], t ? t.textContent : '', null); };
     });
   }
 
