@@ -1,1241 +1,1245 @@
 {
-  "kod": "CLO26",
-  "nummer": "02",
-  "namn": "Databaser och SQL",
-  "period": "v.41–44",
-  "datum": "5 okt – 1 nov 2026",
-  "schema": "Mån + Ons campus · Fre online 09–11",
-  "notering": "Ingen inlämning v.41 · Tenta ons 28 okt",
-  "githubBase": "https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-02-databaser/",
-  "links": [
-    {
-      "icon": "🧪",
-      "label": "sqliteonline.com — SQL i webbläsaren",
-      "href": "https://sqliteonline.com/"
-    },
-    {
-      "icon": "🕵️",
-      "label": "Läxa: SQL Murder Mystery",
-      "href": "https://mystery.knightlab.com/"
-    },
-    {
-      "icon": "🚓",
-      "label": "Läxa: SQL Police Department",
-      "href": "https://sqlpd.com/"
-    },
-    {
-      "icon": "🎩",
-      "label": "Läxa: SQL Noir",
-      "href": "https://www.sqlnoir.com/"
-    },
-    {
-      "icon": "📚",
-      "label": "SQLZoo",
-      "href": "https://sqlzoo.net/"
-    }
-  ],
-  "betyg": {
-    "G": "Skriftligt prov och inlämningsuppgifter godkända — kan hantera data med SQL och i en dokumentdatabas",
-    "VG": "Avancerade SQL-frågor (subfrågor, JOIN över flera tabeller), normaliserad design och resonemang kring alternativa lösningar"
+ "kod": "CLO26",
+ "nummer": "02",
+ "namn": "Databaser och SQL",
+ "period": "v.41–44",
+ "datum": "5 okt – 1 nov 2026",
+ "schema": "Mån + Ons campus · Fre online 09–11",
+ "notering": "Ingen inlämning v.41 · Tenta ons 28 okt",
+ "githubBase": "https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-02-databaser/",
+ "links": [
+  {
+   "icon": "🧪",
+   "label": "sqliteonline.com — SQL i webbläsaren",
+   "href": "https://sqliteonline.com/"
   },
-  "veckor": [
+  {
+   "icon": "🕵️",
+   "label": "Läxa: SQL Murder Mystery",
+   "href": "https://mystery.knightlab.com/"
+  },
+  {
+   "icon": "🚓",
+   "label": "Läxa: SQL Police Department",
+   "href": "https://sqlpd.com/"
+  },
+  {
+   "icon": "🎩",
+   "label": "Läxa: SQL Noir",
+   "href": "https://www.sqlnoir.com/"
+  },
+  {
+   "icon": "📚",
+   "label": "SQLZoo",
+   "href": "https://sqlzoo.net/"
+  }
+ ],
+ "betyg": {
+  "G": "Skriftligt prov och inlämningsuppgifter godkända — kan hantera data med SQL och i en dokumentdatabas",
+  "VG": "Avancerade SQL-frågor (subfrågor, JOIN över flera tabeller), normaliserad design och resonemang kring alternativa lösningar"
+ },
+ "veckor": [
+  {
+   "nr": 41,
+   "titel": "SQL-boot",
+   "tid": "3–6 h",
+   "mal": "Har installerat SQLite Browser och lekt med SQL i minst ett spel. Vet ungefär vad SELECT gör.",
+   "notering": "Ingen inlämning. Föreläsningar + SQL-spel.",
+   "amnen": [
     {
-      "nr": 41,
-      "titel": "SQL-boot",
-      "tid": "3–6 h",
-      "mal": "Har installerat SQLite Browser och lekt med SQL i minst ett spel. Vet ungefär vad SELECT gör.",
-      "notering": "Ingen inlämning. Föreläsningar + SQL-spel.",
-      "amnen": [
-        {
-          "titel": "Installera SQLite Browser",
-          "beskrivning": "Ladda ner och installera på din dator. Skapa en tom databas — namn, djur, musik, vad som helst. Minst 5 rader och en SELECT-fråga.",
-          "tags": [
-            "SQLite",
-            "installation",
-            "DB Browser",
-            "verktyg"
-          ],
-          "notes": [
-            {
-              "text": "Veckans guide — SQL-boot",
-              "href": "00_sql_boot/README.md",
-              "tags": [
-                "boot",
-                "installation",
-                "spel",
-                "SQLite"
-              ]
-            },
-            {
-              "text": "Installera DB Browser for SQLite",
-              "href": "01_intro_databaser/notes/sqlite_browser_installation.md",
-              "tags": [
-                "installation",
-                "Windows",
-                "Mac",
-                "Linux"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          },
-          "mal": "Har installerat SQLite Browser och kan skapa en tom databas med minst 5 rader."
-        },
-        {
-          "titel": "SQL-spel — välj din bana",
-          "beskrivning": "Leka dig in i SQL. Börja med SQL Island eller SQL Zoo. Klar? Lös ett mordfall med SQL Murder Mystery. Vill du pressa dig? DataLemur.",
-          "tags": [
-            "SQL",
-            "spel",
-            "övning",
-            "extern"
-          ],
-          "ovningar": {
-            "green": [
-              {
-                "text": "SQL Island",
-                "href": "https://sql-island.informatik.uni-kl.de/",
-                "tags": [
-                  "spel",
-                  "äventyr",
-                  "nybörjare"
-                ],
-                "desc": "Du är strandsatt på en ö — överlev med SQL-kommandon. Bra startpunkt.",
-                "external": true
-              },
-              {
-                "text": "SQL Zoo",
-                "href": "https://sqlzoo.net/",
-                "tags": [
-                  "syntax",
-                  "SELECT",
-                  "övning"
-                ],
-                "desc": "Klassisk syntax-träning direkt i webbläsaren. SELECT-kapitlet räcker den här veckan.",
-                "external": true
-              }
-            ],
-            "amber": [
-              {
-                "text": "SQL Murder Mystery",
-                "href": "https://mystery.knightlab.com/",
-                "tags": [
-                  "spel",
-                  "mordfall",
-                  "JOIN"
-                ],
-                "desc": "Lös ett mordfall med SQL. Kräver SELECT, WHERE, JOIN — klassiker.",
-                "external": true
-              },
-              {
-                "text": "SQL Police Department",
-                "href": "https://sqlpd.com/",
-                "tags": [
-                  "spel",
-                  "ärenden",
-                  "stigande svårighet"
-                ],
-                "desc": "Ärenden med stigande svårighet. Liknar Murder Mystery men med fler cases.",
-                "external": true
-              }
-            ],
-            "red": [
-              {
-                "text": "DataLemur SQL Game",
-                "href": "https://datalemur.com/sql-game",
-                "tags": [
-                  "spel",
-                  "riktiga data",
-                  "ninja"
-                ],
-                "desc": "Spel med riktiga datamängder. Rejält.",
-                "external": true
-              },
-              {
-                "text": "DataLemur — intervjufrågor",
-                "href": "https://datalemur.com/sql-interview-questions",
-                "tags": [
-                  "intervju",
-                  "ninja",
-                  "press"
-                ],
-                "desc": "Verkliga intervjufrågor från techbolag. Hur det faktiskt känns.",
-                "external": true
-              }
-            ]
-          },
-          "mal": "Har kört minst ett SQL-spel och vet vad SELECT gör i praktiken."
-        },
-        {
-          "titel": "Föreläsning — Databaser, CSI-intro",
-          "beskrivning": "En vanlig tisdag på CSI: Göteborg — varför databaser finns, tre grundbegrepp och dina första SELECT och WHERE.",
-          "tags": [
-            "databas",
-            "intro",
-            "CSI",
-            "SELECT",
-            "WHERE"
-          ],
-          "lektion": {
-            "text": "01_intro_csi_marp.md",
-            "href": "01_intro_databaser/lectures/01_intro_csi_marp.md",
-            "tags": [
-              "intro",
-              "databas"
-            ]
-          },
-          "notes": [
-            {
-              "text": "Intro till databaser",
-              "href": "01_intro_databaser/notes/intro_databaser.md",
-              "tags": [
-                "begrepp",
-                "tabell",
-                "rad",
-                "kolumn"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          },
-          "mal": "Kan förklara vad en databas är och skriva en enkel SELECT med WHERE."
-        },
-        {
-          "titel": "Föreläsning — Vilken databas väljer du?",
-          "beskrivning": "SQLite, MySQL och PostgreSQL: vad skiljer dem åt och när passar vilken?",
-          "tags": [
-            "SQLite",
-            "MySQL",
-            "PostgreSQL",
-            "databastyper"
-          ],
-          "lektion": {
-            "text": "databastyper_val_av_databasmotor_marp.md",
-            "href": "01_intro_databaser/lectures/databastyper_val_av_databasmotor_marp.md",
-            "tags": [
-              "databastyper",
-              "val av motor"
-            ]
-          },
-          "notes": [
-            {
-              "text": "Databastyper",
-              "href": "01_intro_databaser/notes/databastyper.md",
-              "tags": [
-                "server",
-                "fil",
-                "jämförelse"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          },
-          "mal": "Kan skilja SQLite, MySQL och PostgreSQL åt och motivera när man väljer vilken."
-        },
-        {
-          "titel": "Veckans nördiska — Gummiankemetoden",
-          "beskrivning": "Förklara koden för en gummianka, och hitta felet själv. Historik och varför det fungerar.",
-          "tags": [
-            "debugging",
-            "gummianka",
-            "metod"
-          ],
-          "lektion": {
-            "text": "gummiankemetoden_marp.md",
-            "href": "01_intro_databaser/lectures/gummiankemetoden_marp.md",
-            "tags": [
-              "debugging",
-              "gummianka"
-            ]
-          },
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          },
-          "mal": "Kan använda gummiankemetoden aktivt för att hitta fel i sin egen kod."
-        },
-        {
-          "titel": "Livekodning — Första SQLite-databasen",
-          "beskrivning": "Hjältedatabasen från lektionen: CREATE, INSERT, SELECT, WHERE och UPDATE, och sedan delar vi upp den i Hero, City och HeroCity. Plus SQL jämfört med C# och hur du ritar databasen i dbdiagram.io.",
-          "tags": [
-            "SQLite",
-            "CRUD",
-            "UPDATE",
-            "många-till-många",
-            "dbdiagram",
-            "C#"
-          ],
-          "examples": [
-            {
-              "text": "Första SQLite-databasen",
-              "href": "01_intro_databaser/examples/2026-10-07_forsta_sqlite_databasen.md",
-              "tags": [
-                "SQLite",
-                "INSERT",
-                "UPDATE",
-                "DROP TABLE"
-              ]
-            },
-            {
-              "text": "SQL jämfört med C#",
-              "href": "01_intro_databaser/examples/2026-10-07_sql_jamfort_med_csharp.md",
-              "tags": [
-                "C#",
-                "List",
-                "foreach",
-                "LIKE"
-              ]
-            },
-            {
-              "text": "Rita databasen med dbdiagram.io",
-              "href": "01_intro_databaser/examples/2026-10-07_dbdiagram_intro.md",
-              "tags": [
-                "dbdiagram",
-                "DBML",
-                "ER-diagram"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          },
-          "mal": "Kan skriva CREATE TABLE, INSERT, SELECT, WHERE, UPDATE och dela upp en tabell i relationer."
-        },
-        {
-          "titel": "Livekodning — SQLite i C#",
-          "beskrivning": "Från tom konsolapplikation till en SQLite-databas i C#: NuGet-paketet, projektfilen och ExecuteNonQuery, ExecuteScalar och ExecuteReader. Sedan flyttar vi koden till en egen klass, SQLiteHandler.",
-          "tags": [
-            "C#",
-            "SQLite",
-            "NuGet",
-            "csproj",
-            "Microsoft.Data.Sqlite",
-            "klass"
-          ],
-          "notes": [
-            {
-              "text": "Quicksheet — NuGet-paket och connection strings",
-              "href": "01_intro_databaser/notes/ado_quicksheet.md",
-              "tags": [
-                "NuGet",
-                "connection string",
-                "SQLite",
-                "MySQL",
-                "PostgreSQL",
-                "snabbreferens"
-              ]
-            }
-          ],
-          "examples": [
-            {
-              "text": "SQLite i C#",
-              "href": "01_intro_databaser/examples/2026-10-07_sqlite_i_csharp.md",
-              "tags": [
-                "NuGet",
-                "csproj",
-                "parametrar",
-                "ExecuteReader"
-              ]
-            },
-            {
-              "text": "SQLite-handler",
-              "href": "01_intro_databaser/examples/2026-10-07_sqlite_handler.md",
-              "tags": [
-                "klass",
-                "namespace",
-                "refaktorering"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [],
-            "amber": [
-              {
-                "text": "C# + SQL-övningar",
-                "href": "01_intro_databaser/exercises/csharp_och_sql_ovningar.md",
-                "tags": [
-                  "DatabaseHandler",
-                  "DataTable",
-                  "CRUD",
-                  "grupp"
-                ],
-                "desc": "Bygg en egen DatabaseHandler steg för steg, och avsluta med klasser och CRUD. Gör dem i grupp."
-              }
-            ],
-            "red": []
-          },
-          "mal": "Kan koppla SQLite till C# med NuGet och köra frågor via ExecuteNonQuery, ExecuteScalar och ExecuteReader."
-        },
-        {
-          "titel": "Rymdmangan — SQL från C# med besättningen på Kometen",
-          "beskrivning": "Piratmetoden (ExecuteNonQuery) och handlarmetoden (ExecuteReader + DataTable) berättade som manga. I Lastmanifestet kräver tullen ordning, och vi skickar objekt till databasen i stället för lösa värden.",
-          "tags": [
-            "C#",
-            "SQLite",
-            "DataTable",
-            "klasser",
-            "List"
-          ],
-          "notes": [
-            {
-              "text": "SQL från C# — en rymdmanga",
-              "href": "01_intro_databaser/notes/sql_fran_csharp_rymdmanga.md",
-              "tags": [
-                "ExecuteNonQuery",
-                "ExecuteReader",
-                "DataTable",
-                "parametrar"
-              ]
-            },
-            {
-              "text": "Lastmanifestet — klasser till databasen",
-              "href": "01_intro_databaser/notes/sqlite_lastmanifestet.md",
-              "tags": [
-                "klasser",
-                "CargoHandler",
-                "List",
-                "objekt"
-              ]
-            },
-            {
-              "text": "Quicksheet — ADO.NET-objekt",
-              "href": "01_intro_databaser/notes/ado_objects_quicksheet.md",
-              "tags": [
-                "ExecuteNonQuery",
-                "ExecuteScalar",
-                "ExecuteReader",
-                "DataTable",
-                "Transaction",
-                "snabbreferens"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          },
-          "mal": "Förstår piratmetoden (ExecuteNonQuery) och handlarmetoden (ExecuteReader + DataTable) och kan skicka objekt till databasen."
-        },
-        {
-          "titel": "Övningar — SQL-sökningar",
-          "beskrivning": "Skapa en filmdatabas från grunden, och lek sedan CSI med tusen påhittade personer från Mockaroo.",
-          "tags": [
-            "SQL",
-            "SELECT",
-            "WHERE",
-            "COUNT",
-            "LIKE",
-            "Mockaroo"
-          ],
-          "ovningar": {
-            "green": [
-              {
-                "text": "SQL-filmdatabas",
-                "href": "01_intro_databaser/exercises/sql_filmdatabas.md",
-                "tags": [
-                  "CREATE",
-                  "INSERT",
-                  "UPDATE",
-                  "ALTER"
-                ],
-                "desc": "Sex korta uppgifter: från tom databas till sorterade sökningar."
-              }
-            ],
-            "amber": [
-              {
-                "text": "Mer sökningar",
-                "href": "01_intro_databaser/exercises/mer_sokningar.md",
-                "tags": [
-                  "Mockaroo",
-                  "COUNT",
-                  "DISTINCT",
-                  "LIKE"
-                ],
-                "desc": "Generera testdata och svara på CSI-frågor med SQL."
-              }
-            ],
-            "red": []
-          },
-          "mal": "Kan skapa en databas, lägga in data och skriva SELECT med WHERE, COUNT, DISTINCT och LIKE."
-        },
-        {
-          "titel": "Veckans tips — GitHub Student Developer Pack",
-          "beskrivning": "Gratis verktyg som student, bland annat GitHub Copilot. Skolmejlen räcker inte alltid för att verifiera dig, så här står vilket underlag som fungerar och vad du gör om du får avslag.",
-          "tags": [
-            "GitHub",
-            "Copilot",
-            "student",
-            "verktyg"
-          ],
-          "notes": [
-            {
-              "text": "GitHub Student Developer Pack — så verifierar du dig",
-              "href": "01_intro_databaser/notes/github_student_developer_pack.md",
-              "tags": [
-                "GitHub",
-                "verifiering",
-                "studentintyg"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          },
-          "mal": "Har aktiverat GitHub Student Pack och testat GitHub Copilot."
-        }
-      ]
+     "titel": "Installera SQLite Browser",
+     "beskrivning": "Ladda ner och installera på din dator. Skapa en tom databas — namn, djur, musik, vad som helst. Minst 5 rader och en SELECT-fråga.",
+     "tags": [
+      "SQLite",
+      "installation",
+      "DB Browser",
+      "verktyg"
+     ],
+     "notes": [
+      {
+       "text": "Veckans guide — SQL-boot",
+       "href": "00_sql_boot/README.md",
+       "tags": [
+        "boot",
+        "installation",
+        "spel",
+        "SQLite"
+       ]
+      },
+      {
+       "text": "Installera DB Browser for SQLite",
+       "href": "01_intro_databaser/notes/sqlite_browser_installation.md",
+       "tags": [
+        "installation",
+        "Windows",
+        "Mac",
+        "Linux"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "mal": "Har installerat SQLite Browser och kan skapa en tom databas med minst 5 rader."
     },
     {
-      "nr": 42,
-      "titel": "ER-diagram, normalisering och SQL-grunder",
-      "tid": "8–10 h",
-      "mal": "Kan rita ett ER-diagram, förklara 1NF/2NF/3NF och skriva CREATE TABLE + INSERT i SQLite Browser.",
-      "deadline": "Inlämning 1 — Diskografi · deadline ons 21 okt 23:59 (förlängd)",
-      "amnen": [
-        {
-          "titel": "SQLite Browser + SQL-grunder",
-          "beskrivning": "Installera SQLite Browser om du inte gjort det. Skapa din första tabell med CREATE TABLE och lägg in data med INSERT INTO. Sedan: SELECT, WHERE och ORDER BY — vi kör livekod mot djurpark-databasen.",
-          "tags": [
-            "SQLite",
-            "CREATE TABLE",
-            "INSERT",
-            "SELECT",
-            "WHERE",
-            "ORDER BY"
-          ],
-          "lektion": {
-            "text": "Föreläsning: SQL-intro",
-            "href": "01_intro_databaser/lectures/sql_intro_marp.md",
-            "tags": [
-              "SELECT",
-              "WHERE",
-              "INSERT",
-              "CREATE TABLE"
-            ]
-          },
-          "notes": [
-            {
-              "text": "Installera DB Browser for SQLite",
-              "href": "01_intro_databaser/notes/sqlite_browser_installation.md",
-              "tags": [
-                "installation",
-                "Windows",
-                "Mac",
-                "Linux"
-              ]
-            },
-            {
-              "text": "SQL-intro",
-              "href": "01_intro_databaser/notes/sql_intro.md",
-              "tags": [
-                "SELECT",
-                "WHERE",
-                "ORDER BY",
-                "LIMIT"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [
-              {
-                "text": "SQL-filmdatabas",
-                "href": "01_intro_databaser/exercises/sql_filmdatabas.md",
-                "tags": [
-                  "CREATE",
-                  "INSERT",
-                  "SELECT",
-                  "UPDATE"
-                ],
-                "desc": "Bygg en filmdatabas från grunden och skriv dina första riktiga SQL-frågor."
-              }
-            ],
-            "amber": [
-              {
-                "text": "Mer sökningar",
-                "href": "01_intro_databaser/exercises/mer_sokningar.md",
-                "tags": [
-                  "Mockaroo",
-                  "COUNT",
-                  "DISTINCT",
-                  "LIKE"
-                ],
-                "desc": "Generera testdata och svara på CSI-frågor med SQL."
-              }
-            ],
-            "red": []
-          },
-          "mal": "Kan skapa tabell med CREATE TABLE, lägga in data med INSERT och söka med SELECT WHERE ORDER BY."
-        },
-        {
-          "titel": "SQL — ett kommando i taget",
-          "beskrivning": "En hel serie med egna sidor för SELECT, WHERE, ORDER BY, aggregatfunktioner, GROUP BY, JOIN, subquery, INSERT, UPDATE och DELETE. Samma övningstabell genom hela vägen. Börja med index-sidan och välj vad du vill fördjupa dig i.",
-          "tags": [
-            "SQL",
-            "SELECT",
-            "JOIN",
-            "GROUP BY",
-            "C#",
-            "LINQ",
-            "referens"
-          ],
-          "notes": [
-            {
-              "text": "SQL — ett kommando i taget (översikt)",
-              "href": "01_intro_databaser/notes/sql/index.md",
-              "tags": [
-                "SELECT",
-                "JOIN",
-                "INSERT",
-                "UPDATE",
-                "DELETE",
-                "DQL",
-                "DML"
-              ]
-            },
-            {
-              "text": "JOIN — koppla ihop tabeller",
-              "href": "01_intro_databaser/notes/sql/join.md",
-              "tags": [
-                "JOIN",
-                "LEFT JOIN",
-                "INNER JOIN",
-                "alias",
-                "kartesisk produkt"
-              ]
-            },
-            {
-              "text": "Från tabell till klass — SQL och C# sida vid sida",
-              "href": "01_intro_databaser/notes/sql/tabeller-och-klasser.md",
-              "tags": [
-                "C#",
-                "klass",
-                "property",
-                "LINQ",
-                "ORM"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          },
-          "mal": "Kan navigera SQL-serien och hitta rätt kommando när det behövs."
-        },
-        {
-          "titel": "ER-diagram — design FÖRE SQL",
-          "beskrivning": "Rita upp databasen på papper innan du skriver en enda rad SQL. Entiteter, attribut, relationer och kardinalitet (1:1, 1:N, N:M). Vi ritar en djurpark live på tavlan.",
-          "tags": [
-            "ER-diagram",
-            "entitet",
-            "relation",
-            "kardinalitet",
-            "design"
-          ],
-          "notes": [
-            {
-              "text": "Termer: ER-diagram",
-              "href": "termer/er-diagram.md",
-              "tags": [
-                "ERD",
-                "entitet",
-                "primärnyckel",
-                "foreign key",
-                "crow's foot"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [
-              {
-                "text": "Övning: Djurparken",
-                "href": "03_normalisering_gdpr/exercises/ovning_erd_djurpark.md",
-                "tags": [
-                  "ER-diagram",
-                  "djurpark",
-                  "kardinalitet"
-                ],
-                "desc": "Rita ER-diagrammet för djurparken från lektionen — samma entiteter, samma relationer."
-              }
-            ],
-            "amber": [
-              {
-                "text": "Övning: Spelbutiken",
-                "href": "03_normalisering_gdpr/exercises/ovning_erd_spelbutik.md",
-                "tags": [
-                  "ER-diagram",
-                  "N:M",
-                  "mellantabell"
-                ],
-                "desc": "Rita ER-diagram för en onlinespelbutik. Identifiera N:M-relationer och skriv CREATE TABLE för mellantabellerna."
-              }
-            ],
-            "red": []
-          },
-          "mal": "Kan rita ett ER-diagram med entiteter, attribut och kardinalitet (1:1, 1:N, N:M) innan koden skrivs."
-        },
-        {
-          "titel": "Normalisering — organisera data rätt",
-          "beskrivning": "Varför redundans är farligt och hur du löser det. 1NF = ett värde per cell. 2NF = alla kolumner beror på hela primärnyckeln. 3NF = inga transitiva beroenden.",
-          "tags": [
-            "normalisering",
-            "1NF",
-            "2NF",
-            "3NF",
-            "redundans",
-            "GDPR"
-          ],
-          "notes": [
-            {
-              "text": "Termer: normalisering och GDPR",
-              "href": "termer/normalisering.md",
-              "tags": [
-                "1NF",
-                "2NF",
-                "3NF",
-                "transitivt beroende",
-                "GDPR",
-                "raderingsrätten"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [
-              {
-                "text": "Övning: Normalisera orderdata",
-                "href": "03_normalisering_gdpr/exercises/ovning_normalisering_order.md",
-                "tags": [
-                  "1NF",
-                  "2NF",
-                  "3NF",
-                  "orderdata"
-                ],
-                "desc": "Steg för steg från kaos-tabell till normaliserad design — 1NF → 2NF → 3NF → CREATE TABLE."
-              }
-            ],
-            "amber": [
-              {
-                "text": "Övning: Spelsamling",
-                "href": "03_normalisering_gdpr/exercises/ovning_normalisering_spelsamling.md",
-                "tags": [
-                  "normalisering",
-                  "mellantabell",
-                  "spelsamling"
-                ],
-                "desc": "Normalisera en platt spelsamlingstabell — samma steg, nytt scenario med N:M-relationer."
-              }
-            ],
-            "red": []
-          },
-          "mal": "Kan förklara 1NF, 2NF och 3NF och omstrukturera en platt tabell till normaliserad design."
-        },
-        {
-          "titel": "Fredag v42 — SQL-grunder (Del 1)",
-          "beskrivning": "Repetition av CRUD, CREATE TABLE, FOREIGN KEY och Views med spelbutiksscenario. Varje slide länkar direkt till notes i repot.",
-          "tags": [
-            "SELECT",
-            "INSERT",
-            "UPDATE",
-            "DELETE",
-            "VIEW",
-            "repetition",
-            "CRUD"
-          ],
-          "lektion": {
-            "text": "SQL-repetition (Del 1)",
-            "href": "01_intro_databaser/lectures/sql_repetition_marp.md",
-            "tags": [
-              "SELECT",
-              "CRUD",
-              "VIEW",
-              "spelbutik"
-            ]
-          },
-          "notes": [
-            {
-              "text": "SQL-intro",
-              "href": "01_intro_databaser/notes/sql_intro.md",
-              "tags": [
-                "SELECT",
-                "WHERE",
-                "ORDER BY",
-                "LIMIT"
-              ]
-            },
-            {
-              "text": "SQLite-grunder",
-              "href": "01_intro_databaser/notes/sqlite_grund.md",
-              "tags": [
-                "CREATE TABLE",
-                "PRIMARY KEY",
-                "INSERT"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [
-              {
-                "text": "SQL-repetitionsövningar",
-                "href": "01_intro_databaser/exercises/sql_repetition_ovningar.md",
-                "tags": [
-                  "SELECT",
-                  "INSERT",
-                  "UPDATE",
-                  "DELETE",
-                  "VIEW"
-                ],
-                "desc": "Sex delar — från CREATE TABLE till Views. Jobba dig igenom."
-              }
-            ],
-            "amber": [],
-            "red": []
-          },
-          "mal": "Kan skriva SELECT, INSERT, UPDATE, DELETE och CREATE VIEW utan att slå upp syntax."
-        },
-        {
-          "titel": "Fredag v42 — Normalisering och JOIN (Del 2)",
-          "beskrivning": "Från en låda med 'Kalle Svensson, Södra Gatan 23, Myskoby' till tre separata tabeller med JOIN. Visuell genomgång med HTML-boxar i stället för text.",
-          "tags": [
-            "ERD",
-            "normalisering",
-            "JOIN",
-            "FOREIGN KEY",
-            "3NF",
-            "relationsdesign"
-          ],
-          "lektion": {
-            "text": "ERD & Normalisering (Del 2)",
-            "href": "01_intro_databaser/lectures/erd_normalisering_repetition_marp.md",
-            "tags": [
-              "ERD",
-              "normalisering",
-              "JOIN",
-              "1:N"
-            ]
-          },
-          "notes": [
-            {
-              "text": "Normalisering",
-              "href": "03_normalisering_gdpr/notes/normalisering.md",
-              "tags": [
-                "1NF",
-                "2NF",
-                "3NF"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          },
-          "mal": "Kan utgå från ett verkligt scenario och designa ett ER-diagram med JOIN-relationer i 3NF."
-        },
-        {
-          "titel": "Fredag v42 — C# och databaser (Del 3)",
-          "beskrivning": "Koppla spelbutiksdatabasen till C# med ADO.NET: tabell som klass, connection string, parametrar mot SQL injection och de tre Execute-metoderna.",
-          "tags": [
-            "C#",
-            "ADO.NET",
-            "SQLite",
-            "ExecuteNonQuery",
-            "ExecuteReader",
-            "parametrar",
-            "SQL injection"
-          ],
-          "lektion": {
-            "text": "C# och databaser (Del 3)",
-            "href": "01_intro_databaser/lectures/csharp_databaser_marp.md",
-            "tags": [
-              "C#",
-              "connection",
-              "ExecuteNonQuery",
-              "ExecuteScalar",
-              "ExecuteReader"
-            ]
-          },
-          "notes": [
-            {
-              "text": "Quicksheet — NuGet-paket och connection strings",
-              "href": "01_intro_databaser/notes/ado_quicksheet.md",
-              "tags": [
-                "NuGet",
-                "connection string",
-                "snabbreferens"
-              ]
-            },
-            {
-              "text": "Quicksheet — ADO.NET-objekt",
-              "href": "01_intro_databaser/notes/ado_objects_quicksheet.md",
-              "tags": [
-                "ExecuteNonQuery",
-                "ExecuteReader",
-                "DataTable",
-                "Transaction",
-                "snabbreferens"
-              ]
-            },
-            {
-              "text": "Från tabell till klass — SQL och C# sida vid sida",
-              "href": "01_intro_databaser/notes/sql/tabeller-och-klasser.md",
-              "tags": [
-                "C#",
-                "klass",
-                "property",
-                "LINQ"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          },
-          "mal": "Kan koppla en SQLite-databas till C#, köra INSERT och SELECT med parametrar och omvandla rader till objekt."
-        },
-        {
-          "titel": "Extraföreläsning — SQL JOINs på djupet",
-          "beskrivning": "INNER JOIN vs LEFT JOIN förklaras visuellt med bilder och livekod mot en riktig databas. Vi kör steg för steg: syntax, exempel, jämförelse, ON vs WHERE och vanliga fallgropar.",
-          "tags": [
-            "JOIN",
-            "INNER JOIN",
-            "LEFT JOIN",
-            "extraföreläsning",
-            "repetition"
-          ],
-          "lektion": {
-            "text": "SQL JOINs — extraföreläsning",
-            "href": "01_intro_databaser/lectures/databaser_joins_marp.md",
-            "tags": [
-              "INNER JOIN",
-              "LEFT JOIN",
-              "ON vs WHERE",
-              "NULL",
-              "GROUP BY"
-            ]
-          },
-          "examples": [
-            {
-              "text": "Demobas — skapa joins_demo.db",
-              "href": "01_intro_databaser/examples/skapa_joins_demo.py",
-              "tags": [
-                "Python",
-                "SQLite",
-                "demobas"
-              ]
-            },
-            {
-              "text": "SQL-schema för demobasen",
-              "href": "01_intro_databaser/examples/joins_demo.sql",
-              "tags": [
-                "CREATE TABLE",
-                "INSERT",
-                "demodata"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          },
-          "mal": "Kan förklara skillnaden mellan INNER och LEFT JOIN och skriva frågor som kopplar ihop minst två tabeller."
-        },
-        {
-          "titel": "Inlämning 1 — Din favoritartists diskografi",
-          "beskrivning": "Bygg en normaliserad SQL-databas över en artists diskografi. Minst 3 tabeller, 3 album, 3NF och ett ER-diagram. Deadline onsdag 21 okt 23:59 (förlängd).",
-          "tags": [
-            "inlämning",
-            "SQL",
-            "CREATE TABLE",
-            "JOIN",
-            "ER-diagram",
-            "normalisering"
-          ],
-          "notes": [
-            {
-              "text": "Inlämning 1 — Diskografi (uppgiftsbeskrivning)",
-              "href": "assignment/inlamning_1_diskografi.md",
-              "tags": [
-                "G",
-                "VG",
-                "sql-fil",
-                "ER-diagram",
-                "zip"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          },
-          "mal": "Levererar en normaliserad SQL-databas med minst 3 tabeller, ER-diagram och korrekt seed-data."
-        }
+     "titel": "SQL-spel — välj din bana",
+     "beskrivning": "Leka dig in i SQL. Börja med SQL Island eller SQL Zoo. Klar? Lös ett mordfall med SQL Murder Mystery. Vill du pressa dig? DataLemur.",
+     "tags": [
+      "SQL",
+      "spel",
+      "övning",
+      "extern"
+     ],
+     "ovningar": {
+      "green": [
+       {
+        "text": "SQL Island",
+        "href": "https://sql-island.informatik.uni-kl.de/",
+        "tags": [
+         "spel",
+         "äventyr",
+         "nybörjare"
+        ],
+        "desc": "Du är strandsatt på en ö — överlev med SQL-kommandon. Bra startpunkt.",
+        "external": true
+       },
+       {
+        "text": "SQL Zoo",
+        "href": "https://sqlzoo.net/",
+        "tags": [
+         "syntax",
+         "SELECT",
+         "övning"
+        ],
+        "desc": "Klassisk syntax-träning direkt i webbläsaren. SELECT-kapitlet räcker den här veckan.",
+        "external": true
+       }
+      ],
+      "amber": [
+       {
+        "text": "SQL Murder Mystery",
+        "href": "https://mystery.knightlab.com/",
+        "tags": [
+         "spel",
+         "mordfall",
+         "JOIN"
+        ],
+        "desc": "Lös ett mordfall med SQL. Kräver SELECT, WHERE, JOIN — klassiker.",
+        "external": true
+       },
+       {
+        "text": "SQL Police Department",
+        "href": "https://sqlpd.com/",
+        "tags": [
+         "spel",
+         "ärenden",
+         "stigande svårighet"
+        ],
+        "desc": "Ärenden med stigande svårighet. Liknar Murder Mystery men med fler cases.",
+        "external": true
+       }
+      ],
+      "red": [
+       {
+        "text": "DataLemur SQL Game",
+        "href": "https://datalemur.com/sql-game",
+        "tags": [
+         "spel",
+         "riktiga data",
+         "ninja"
+        ],
+        "desc": "Spel med riktiga datamängder. Rejält.",
+        "external": true
+       },
+       {
+        "text": "DataLemur — intervjufrågor",
+        "href": "https://datalemur.com/sql-interview-questions",
+        "tags": [
+         "intervju",
+         "ninja",
+         "press"
+        ],
+        "desc": "Verkliga intervjufrågor från techbolag. Hur det faktiskt känns.",
+        "external": true
+       }
       ]
+     },
+     "mal": "Har kört minst ett SQL-spel och vet vad SELECT gör i praktiken."
     },
     {
-      "nr": 43,
-      "titel": "SQL avancerat, normalisering och säkerhet",
-      "tid": "10–12 h",
-      "mal": "Kan JOIN:a, aggregera och normalisera. Förstår SQL injection och hur man skyddar sig.",
-      "deadline": "Inlämning 2 — Filmdatabas-appen · deadline sön 25 okt 23:59",
-      "amnen": [
-        {
-          "titel": "Föreläsning — Normalisering (repetition)",
-          "beskrivning": "Repetition av 1NF/2NF/3NF och de tre anomalierna. Vad händer när man INTE normaliserar?",
-          "tags": [
-            "normalisering",
-            "1NF",
-            "2NF",
-            "3NF",
-            "anomalier"
-          ],
-          "notes": [
-            {
-              "text": "Normalisering — teori och termer",
-              "href": "termer/normalisering.md",
-              "tags": [
-                "normalisering",
-                "anomalier",
-                "begrepp"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          }
-        },
-        {
-          "titel": "Föreläsning — Djursjukhuset: JOIN och normalisering",
-          "beskrivning": "Från kaos-tabell till normaliserad design — och sedan JOINs för att ställa verkliga frågor mot datan.",
-          "tags": [
-            "JOIN",
-            "normalisering",
-            "ER-diagram",
-            "djursjukhuset"
-          ],
-          "notes": [
-            {
-              "text": "Hämta seed-filen — Klösarvet Djursjukhus AB",
-              "href": "03_normalisering_gdpr/examples/djursjukhus_seed.sql",
-              "tags": [
-                "SQLite",
-                "seed",
-                "JOIN",
-                "FK"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [
-              {
-                "text": "JOINs i klassrummet 🐾",
-                "href": "03_normalisering_gdpr/exercises/ovning_joins_klassrum.md",
-                "tags": [
-                  "JOIN",
-                  "GROUP BY",
-                  "LEFT JOIN"
-                ],
-                "desc": "Fyra övningar mot djursjukhusdatabasen: ägare med djur, besökshistorik, flest djur och LEFT JOIN utan besök."
-              }
-            ],
-            "amber": [
-              {
-                "text": "JOINs och aggregat — hemövning 🏠",
-                "href": "03_normalisering_gdpr/exercises/ovning_joins_hem.md",
-                "tags": [
-                  "JOIN",
-                  "HAVING",
-                  "subquery",
-                  "veterinär"
-                ],
-                "desc": "Tuffare: senaste besök per djur, ägare med flera av samma art, bygg Veterinar-tabellen och GDPR-reflektion."
-              }
-            ],
-            "red": []
-          }
-        },
-        {
-          "titel": "Föreläsning — GROUP BY och aggregat",
-          "beskrivning": "Räkna, summera och filtrera grupper. Vad är skillnaden mellan WHERE och HAVING?",
-          "tags": [
-            "GROUP BY",
-            "HAVING",
-            "COUNT",
-            "SUM",
-            "AVG",
-            "aggregat"
-          ],
-          "notes": [],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          }
-        },
-        {
-          "titel": "Föreläsning — GDPR och databaser",
-          "beskrivning": "Vad GDPR kräver av oss som bygger system: dataminimering, rätten att bli glömd, anonymisering och privacy by design.",
-          "tags": [
-            "GDPR",
-            "Art. 5",
-            "Art. 9",
-            "Art. 15",
-            "Art. 17",
-            "anonymisering",
-            "biometri"
-          ],
-          "notes": [
-            {
-              "text": "GDPR i praktiken — riktiga scenarier",
-              "href": "03_normalisering_gdpr/notes/gdpr_praktik_scenarier.md",
-              "tags": [
-                "GDPR",
-                "garanti",
-                "registerutdrag",
-                "anonymisering",
-                "fotoalbum"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [
-              {
-                "text": "GDPR i klassrummet 🔒",
-                "href": "03_normalisering_gdpr/exercises/ovning_gdpr_klassrum.md",
-                "tags": [
-                  "GDPR",
-                  "gymappen",
-                  "dataminimering",
-                  "radering"
-                ],
-                "desc": "Hitta GDPR-brott i gymappens databas, designa om Medlemmar-tabellen och implementera rätten att bli glömd."
-              }
-            ],
-            "amber": [],
-            "red": []
-          }
-        },
-        {
-          "titel": "Planeringsverktyg — MoSCoW",
-          "beskrivning": "Prioritera rätt från start. Vad måste vara med? Vad kan vänta?",
-          "tags": [
-            "MoSCoW",
-            "Must",
-            "Should",
-            "Could",
-            "prioritering",
-            "MVP"
-          ],
-          "notes": [
-            {
-              "text": "MoSCoW — prioritering av krav",
-              "href": "03_normalisering_gdpr/notes/moscow_prioritering.md",
-              "tags": [
-                "MoSCoW",
-                "MVP",
-                "kravhantering"
-              ]
-            }
-          ],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          }
-        }
+     "titel": "Föreläsning — Databaser, CSI-intro",
+     "beskrivning": "En vanlig tisdag på CSI: Göteborg — varför databaser finns, tre grundbegrepp och dina första SELECT och WHERE.",
+     "tags": [
+      "databas",
+      "intro",
+      "CSI",
+      "SELECT",
+      "WHERE"
+     ],
+     "lektion": {
+      "text": "Bildspel — Databaser",
+      "href": "01_intro_databaser/lectures/01_intro_csi_marp.md",
+      "tags": [
+       "intro",
+       "databas"
       ]
+     },
+     "notes": [
+      {
+       "text": "Intro till databaser",
+       "href": "01_intro_databaser/notes/intro_databaser.md",
+       "tags": [
+        "begrepp",
+        "tabell",
+        "rad",
+        "kolumn"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "mal": "Kan förklara vad en databas är och skriva en enkel SELECT med WHERE."
     },
     {
-      "nr": 44,
-      "titel": "Transaktioner och säkerhet",
-      "tid": "4–5 h",
-      "mal": "Förstår UPDATE och DELETE med WHERE, kan skriva säker SQL med parametrar och vet vad en transaktion gör.",
-      "amnen": [
-        {
-          "titel": "Föreläsning — UPDATE och DELETE: med och utan WHERE",
-          "beskrivning": "UPDATE och DELETE är ofarliga — tills du glömmer WHERE. Vi kör live och ser vad som händer när hela tabellen uppdateras på en gång.",
-          "tags": [
-            "UPDATE",
-            "DELETE",
-            "WHERE",
-            "säkerhet"
-          ],
-          "notes": [],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          }
-        },
-        {
-          "titel": "Föreläsning — Transaktioner: BEGIN, COMMIT, ROLLBACK",
-          "beskrivning": "Vad händer om servern kraschar mitt i en INSERT? Transaktioner garanterar att antingen sparas allt — eller ingenting.",
-          "tags": [
-            "transaktion",
-            "BEGIN",
-            "COMMIT",
-            "ROLLBACK",
-            "atomicitet"
-          ],
-          "notes": [],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          }
-        },
-        {
-          "titel": "Föreläsning — SQL injection och parametriserade frågor",
-          "beskrivning": "En liten strängkonkatenering kan radera hela databasen. Vi kör attacken live — och sedan fixar vi den med MySqlParameter.",
-          "tags": [
-            "SQL injection",
-            "MySqlParameter",
-            "säkerhet",
-            "parametriserade frågor"
-          ],
-          "notes": [],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          }
-        },
-        {
-          "titel": "🎓 Tenta — onsdag 28 okt 09:00–12:00",
-          "beskrivning": "Skriftlig tenta. SQL och SQL-objekt i C#. Inga hjälpmedel. Genomgång samma eftermiddag.",
-          "tags": [
-            "tenta",
-            "SQL",
-            "C#",
-            "examination"
-          ],
-          "notes": [],
-          "ovningar": {
-            "green": [],
-            "amber": [],
-            "red": []
-          }
-        }
+     "titel": "Föreläsning — Vilken databas väljer du?",
+     "beskrivning": "SQLite, MySQL och PostgreSQL: vad skiljer dem åt och när passar vilken?",
+     "tags": [
+      "SQLite",
+      "MySQL",
+      "PostgreSQL",
+      "databastyper"
+     ],
+     "lektion": {
+      "text": "Bildspel — Vilken databas väljer du?: SQLite, MySQL och PostgreSQL",
+      "href": "01_intro_databaser/lectures/databastyper_val_av_databasmotor_marp.md",
+      "tags": [
+       "databastyper",
+       "val av motor"
       ]
+     },
+     "notes": [
+      {
+       "text": "Databastyper",
+       "href": "01_intro_databaser/notes/databastyper.md",
+       "tags": [
+        "server",
+        "fil",
+        "jämförelse"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "mal": "Kan skilja SQLite, MySQL och PostgreSQL åt och motivera när man väljer vilken."
+    },
+    {
+     "titel": "Veckans nördiska — Gummiankemetoden",
+     "beskrivning": "Förklara koden för en gummianka, och hitta felet själv. Historik och varför det fungerar.",
+     "tags": [
+      "debugging",
+      "gummianka",
+      "metod"
+     ],
+     "lektion": {
+      "text": "Bildspel — Gummiankemetoden",
+      "href": "01_intro_databaser/lectures/gummiankemetoden_marp.md",
+      "tags": [
+       "debugging",
+       "gummianka"
+      ]
+     },
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "mal": "Kan använda gummiankemetoden aktivt för att hitta fel i sin egen kod."
+    },
+    {
+     "titel": "Livekodning — Första SQLite-databasen",
+     "beskrivning": "Hjältedatabasen från lektionen: CREATE, INSERT, SELECT, WHERE och UPDATE, och sedan delar vi upp den i Hero, City och HeroCity. Plus SQL jämfört med C# och hur du ritar databasen i dbdiagram.io.",
+     "tags": [
+      "SQLite",
+      "CRUD",
+      "UPDATE",
+      "många-till-många",
+      "dbdiagram",
+      "C#"
+     ],
+     "examples": [
+      {
+       "text": "Första SQLite-databasen",
+       "href": "01_intro_databaser/examples/2026-10-07_forsta_sqlite_databasen.md",
+       "tags": [
+        "SQLite",
+        "INSERT",
+        "UPDATE",
+        "DROP TABLE"
+       ]
+      },
+      {
+       "text": "SQL jämfört med C#",
+       "href": "01_intro_databaser/examples/2026-10-07_sql_jamfort_med_csharp.md",
+       "tags": [
+        "C#",
+        "List",
+        "foreach",
+        "LIKE"
+       ]
+      },
+      {
+       "text": "Rita databasen med dbdiagram.io",
+       "href": "01_intro_databaser/examples/2026-10-07_dbdiagram_intro.md",
+       "tags": [
+        "dbdiagram",
+        "DBML",
+        "ER-diagram"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "mal": "Kan skriva CREATE TABLE, INSERT, SELECT, WHERE, UPDATE och dela upp en tabell i relationer."
+    },
+    {
+     "titel": "Livekodning — SQLite i C#",
+     "beskrivning": "Från tom konsolapplikation till en SQLite-databas i C#: NuGet-paketet, projektfilen och ExecuteNonQuery, ExecuteScalar och ExecuteReader. Sedan flyttar vi koden till en egen klass, SQLiteHandler.",
+     "tags": [
+      "C#",
+      "SQLite",
+      "NuGet",
+      "csproj",
+      "Microsoft.Data.Sqlite",
+      "klass"
+     ],
+     "notes": [
+      {
+       "text": "Quicksheet — NuGet-paket och connection strings",
+       "href": "01_intro_databaser/notes/ado_quicksheet.md",
+       "tags": [
+        "NuGet",
+        "connection string",
+        "SQLite",
+        "MySQL",
+        "PostgreSQL",
+        "snabbreferens"
+       ]
+      }
+     ],
+     "examples": [
+      {
+       "text": "SQLite i C#",
+       "href": "01_intro_databaser/examples/2026-10-07_sqlite_i_csharp.md",
+       "tags": [
+        "NuGet",
+        "csproj",
+        "parametrar",
+        "ExecuteReader"
+       ]
+      },
+      {
+       "text": "SQLite-handler",
+       "href": "01_intro_databaser/examples/2026-10-07_sqlite_handler.md",
+       "tags": [
+        "klass",
+        "namespace",
+        "refaktorering"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [
+       {
+        "text": "C# + SQL-övningar",
+        "href": "01_intro_databaser/exercises/csharp_och_sql_ovningar.md",
+        "tags": [
+         "DatabaseHandler",
+         "DataTable",
+         "CRUD",
+         "grupp"
+        ],
+        "desc": "Bygg en egen DatabaseHandler steg för steg, och avsluta med klasser och CRUD. Gör dem i grupp."
+       }
+      ],
+      "red": []
+     },
+     "mal": "Kan koppla SQLite till C# med NuGet och köra frågor via ExecuteNonQuery, ExecuteScalar och ExecuteReader."
+    },
+    {
+     "titel": "Rymdmangan — SQL från C# med besättningen på Kometen",
+     "beskrivning": "Piratmetoden (ExecuteNonQuery) och handlarmetoden (ExecuteReader + DataTable) berättade som manga. I Lastmanifestet kräver tullen ordning, och vi skickar objekt till databasen i stället för lösa värden.",
+     "tags": [
+      "C#",
+      "SQLite",
+      "DataTable",
+      "klasser",
+      "List"
+     ],
+     "notes": [
+      {
+       "text": "SQL från C# — en rymdmanga",
+       "href": "01_intro_databaser/notes/sql_fran_csharp_rymdmanga.md",
+       "tags": [
+        "ExecuteNonQuery",
+        "ExecuteReader",
+        "DataTable",
+        "parametrar"
+       ]
+      },
+      {
+       "text": "Lastmanifestet — klasser till databasen",
+       "href": "01_intro_databaser/notes/sqlite_lastmanifestet.md",
+       "tags": [
+        "klasser",
+        "CargoHandler",
+        "List",
+        "objekt"
+       ]
+      },
+      {
+       "text": "Quicksheet — ADO.NET-objekt",
+       "href": "01_intro_databaser/notes/ado_objects_quicksheet.md",
+       "tags": [
+        "ExecuteNonQuery",
+        "ExecuteScalar",
+        "ExecuteReader",
+        "DataTable",
+        "Transaction",
+        "snabbreferens"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "mal": "Förstår piratmetoden (ExecuteNonQuery) och handlarmetoden (ExecuteReader + DataTable) och kan skicka objekt till databasen."
+    },
+    {
+     "titel": "Övningar — SQL-sökningar",
+     "beskrivning": "Skapa en filmdatabas från grunden, och lek sedan CSI med tusen påhittade personer från Mockaroo.",
+     "tags": [
+      "SQL",
+      "SELECT",
+      "WHERE",
+      "COUNT",
+      "LIKE",
+      "Mockaroo"
+     ],
+     "ovningar": {
+      "green": [
+       {
+        "text": "SQL-filmdatabas",
+        "href": "01_intro_databaser/exercises/sql_filmdatabas.md",
+        "tags": [
+         "CREATE",
+         "INSERT",
+         "UPDATE",
+         "ALTER"
+        ],
+        "desc": "Sex korta uppgifter: från tom databas till sorterade sökningar."
+       }
+      ],
+      "amber": [
+       {
+        "text": "Mer sökningar",
+        "href": "01_intro_databaser/exercises/mer_sokningar.md",
+        "tags": [
+         "Mockaroo",
+         "COUNT",
+         "DISTINCT",
+         "LIKE"
+        ],
+        "desc": "Generera testdata och svara på CSI-frågor med SQL."
+       }
+      ],
+      "red": []
+     },
+     "mal": "Kan skapa en databas, lägga in data och skriva SELECT med WHERE, COUNT, DISTINCT och LIKE."
+    },
+    {
+     "titel": "Veckans tips — GitHub Student Developer Pack",
+     "beskrivning": "Gratis verktyg som student, bland annat GitHub Copilot. Skolmejlen räcker inte alltid för att verifiera dig, så här står vilket underlag som fungerar och vad du gör om du får avslag.",
+     "tags": [
+      "GitHub",
+      "Copilot",
+      "student",
+      "verktyg"
+     ],
+     "notes": [
+      {
+       "text": "GitHub Student Developer Pack — så verifierar du dig",
+       "href": "01_intro_databaser/notes/github_student_developer_pack.md",
+       "tags": [
+        "GitHub",
+        "verifiering",
+        "studentintyg"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "mal": "Har aktiverat GitHub Student Pack och testat GitHub Copilot."
     }
-  ]
+   ],
+   "publish": "2026-10-05"
+  },
+  {
+   "nr": 42,
+   "titel": "ER-diagram, normalisering och SQL-grunder",
+   "tid": "8–10 h",
+   "mal": "Kan rita ett ER-diagram, förklara 1NF/2NF/3NF och skriva CREATE TABLE + INSERT i SQLite Browser.",
+   "deadline": "Inlämning 1 — Diskografi · deadline ons 21 okt 23:59 (förlängd)",
+   "amnen": [
+    {
+     "titel": "SQLite Browser + SQL-grunder",
+     "beskrivning": "Installera SQLite Browser om du inte gjort det. Skapa din första tabell med CREATE TABLE och lägg in data med INSERT INTO. Sedan: SELECT, WHERE och ORDER BY — vi kör livekod mot djurpark-databasen.",
+     "tags": [
+      "SQLite",
+      "CREATE TABLE",
+      "INSERT",
+      "SELECT",
+      "WHERE",
+      "ORDER BY"
+     ],
+     "lektion": {
+      "text": "Föreläsning: SQL-intro",
+      "href": "01_intro_databaser/lectures/sql_intro_marp.md",
+      "tags": [
+       "SELECT",
+       "WHERE",
+       "INSERT",
+       "CREATE TABLE"
+      ]
+     },
+     "notes": [
+      {
+       "text": "Installera DB Browser for SQLite",
+       "href": "01_intro_databaser/notes/sqlite_browser_installation.md",
+       "tags": [
+        "installation",
+        "Windows",
+        "Mac",
+        "Linux"
+       ]
+      },
+      {
+       "text": "SQL-intro",
+       "href": "01_intro_databaser/notes/sql_intro.md",
+       "tags": [
+        "SELECT",
+        "WHERE",
+        "ORDER BY",
+        "LIMIT"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [
+       {
+        "text": "SQL-filmdatabas",
+        "href": "01_intro_databaser/exercises/sql_filmdatabas.md",
+        "tags": [
+         "CREATE",
+         "INSERT",
+         "SELECT",
+         "UPDATE"
+        ],
+        "desc": "Bygg en filmdatabas från grunden och skriv dina första riktiga SQL-frågor."
+       }
+      ],
+      "amber": [
+       {
+        "text": "Mer sökningar",
+        "href": "01_intro_databaser/exercises/mer_sokningar.md",
+        "tags": [
+         "Mockaroo",
+         "COUNT",
+         "DISTINCT",
+         "LIKE"
+        ],
+        "desc": "Generera testdata och svara på CSI-frågor med SQL."
+       }
+      ],
+      "red": []
+     },
+     "mal": "Kan skapa tabell med CREATE TABLE, lägga in data med INSERT och söka med SELECT WHERE ORDER BY."
+    },
+    {
+     "titel": "SQL — ett kommando i taget",
+     "beskrivning": "En hel serie med egna sidor för SELECT, WHERE, ORDER BY, aggregatfunktioner, GROUP BY, JOIN, subquery, INSERT, UPDATE och DELETE. Samma övningstabell genom hela vägen. Börja med index-sidan och välj vad du vill fördjupa dig i.",
+     "tags": [
+      "SQL",
+      "SELECT",
+      "JOIN",
+      "GROUP BY",
+      "C#",
+      "LINQ",
+      "referens"
+     ],
+     "notes": [
+      {
+       "text": "SQL — ett kommando i taget (översikt)",
+       "href": "01_intro_databaser/notes/sql/index.md",
+       "tags": [
+        "SELECT",
+        "JOIN",
+        "INSERT",
+        "UPDATE",
+        "DELETE",
+        "DQL",
+        "DML"
+       ]
+      },
+      {
+       "text": "JOIN — koppla ihop tabeller",
+       "href": "01_intro_databaser/notes/sql/join.md",
+       "tags": [
+        "JOIN",
+        "LEFT JOIN",
+        "INNER JOIN",
+        "alias",
+        "kartesisk produkt"
+       ]
+      },
+      {
+       "text": "Från tabell till klass — SQL och C# sida vid sida",
+       "href": "01_intro_databaser/notes/sql/tabeller-och-klasser.md",
+       "tags": [
+        "C#",
+        "klass",
+        "property",
+        "LINQ",
+        "ORM"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "mal": "Kan navigera SQL-serien och hitta rätt kommando när det behövs."
+    },
+    {
+     "titel": "ER-diagram — design FÖRE SQL",
+     "beskrivning": "Rita upp databasen på papper innan du skriver en enda rad SQL. Entiteter, attribut, relationer och kardinalitet (1:1, 1:N, N:M). Vi ritar en djurpark live på tavlan.",
+     "tags": [
+      "ER-diagram",
+      "entitet",
+      "relation",
+      "kardinalitet",
+      "design"
+     ],
+     "notes": [
+      {
+       "text": "Termer: ER-diagram",
+       "href": "termer/er-diagram.md",
+       "tags": [
+        "ERD",
+        "entitet",
+        "primärnyckel",
+        "foreign key",
+        "crow's foot"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [
+       {
+        "text": "Övning: Djurparken",
+        "href": "03_normalisering_gdpr/exercises/ovning_erd_djurpark.md",
+        "tags": [
+         "ER-diagram",
+         "djurpark",
+         "kardinalitet"
+        ],
+        "desc": "Rita ER-diagrammet för djurparken från lektionen — samma entiteter, samma relationer."
+       }
+      ],
+      "amber": [
+       {
+        "text": "Övning: Spelbutiken",
+        "href": "03_normalisering_gdpr/exercises/ovning_erd_spelbutik.md",
+        "tags": [
+         "ER-diagram",
+         "N:M",
+         "mellantabell"
+        ],
+        "desc": "Rita ER-diagram för en onlinespelbutik. Identifiera N:M-relationer och skriv CREATE TABLE för mellantabellerna."
+       }
+      ],
+      "red": []
+     },
+     "mal": "Kan rita ett ER-diagram med entiteter, attribut och kardinalitet (1:1, 1:N, N:M) innan koden skrivs."
+    },
+    {
+     "titel": "Normalisering — organisera data rätt",
+     "beskrivning": "Varför redundans är farligt och hur du löser det. 1NF = ett värde per cell. 2NF = alla kolumner beror på hela primärnyckeln. 3NF = inga transitiva beroenden.",
+     "tags": [
+      "normalisering",
+      "1NF",
+      "2NF",
+      "3NF",
+      "redundans",
+      "GDPR"
+     ],
+     "notes": [
+      {
+       "text": "Termer: normalisering och GDPR",
+       "href": "termer/normalisering.md",
+       "tags": [
+        "1NF",
+        "2NF",
+        "3NF",
+        "transitivt beroende",
+        "GDPR",
+        "raderingsrätten"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [
+       {
+        "text": "Övning: Normalisera orderdata",
+        "href": "03_normalisering_gdpr/exercises/ovning_normalisering_order.md",
+        "tags": [
+         "1NF",
+         "2NF",
+         "3NF",
+         "orderdata"
+        ],
+        "desc": "Steg för steg från kaos-tabell till normaliserad design — 1NF → 2NF → 3NF → CREATE TABLE."
+       }
+      ],
+      "amber": [
+       {
+        "text": "Övning: Spelsamling",
+        "href": "03_normalisering_gdpr/exercises/ovning_normalisering_spelsamling.md",
+        "tags": [
+         "normalisering",
+         "mellantabell",
+         "spelsamling"
+        ],
+        "desc": "Normalisera en platt spelsamlingstabell — samma steg, nytt scenario med N:M-relationer."
+       }
+      ],
+      "red": []
+     },
+     "mal": "Kan förklara 1NF, 2NF och 3NF och omstrukturera en platt tabell till normaliserad design."
+    },
+    {
+     "titel": "Fredag v42 — SQL-grunder (Del 1)",
+     "beskrivning": "Repetition av CRUD, CREATE TABLE, FOREIGN KEY och Views med spelbutiksscenario. Varje slide länkar direkt till notes i repot.",
+     "tags": [
+      "SELECT",
+      "INSERT",
+      "UPDATE",
+      "DELETE",
+      "VIEW",
+      "repetition",
+      "CRUD"
+     ],
+     "lektion": {
+      "text": "SQL-repetition (Del 1)",
+      "href": "01_intro_databaser/lectures/sql_repetition_marp.md",
+      "tags": [
+       "SELECT",
+       "CRUD",
+       "VIEW",
+       "spelbutik"
+      ]
+     },
+     "notes": [
+      {
+       "text": "SQL-intro",
+       "href": "01_intro_databaser/notes/sql_intro.md",
+       "tags": [
+        "SELECT",
+        "WHERE",
+        "ORDER BY",
+        "LIMIT"
+       ]
+      },
+      {
+       "text": "SQLite-grunder",
+       "href": "01_intro_databaser/notes/sqlite_grund.md",
+       "tags": [
+        "CREATE TABLE",
+        "PRIMARY KEY",
+        "INSERT"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [
+       {
+        "text": "SQL-repetitionsövningar",
+        "href": "01_intro_databaser/exercises/sql_repetition_ovningar.md",
+        "tags": [
+         "SELECT",
+         "INSERT",
+         "UPDATE",
+         "DELETE",
+         "VIEW"
+        ],
+        "desc": "Sex delar — från CREATE TABLE till Views. Jobba dig igenom."
+       }
+      ],
+      "amber": [],
+      "red": []
+     },
+     "mal": "Kan skriva SELECT, INSERT, UPDATE, DELETE och CREATE VIEW utan att slå upp syntax."
+    },
+    {
+     "titel": "Fredag v42 — Normalisering och JOIN (Del 2)",
+     "beskrivning": "Från en låda med 'Kalle Svensson, Södra Gatan 23, Myskoby' till tre separata tabeller med JOIN. Visuell genomgång med HTML-boxar i stället för text.",
+     "tags": [
+      "ERD",
+      "normalisering",
+      "JOIN",
+      "FOREIGN KEY",
+      "3NF",
+      "relationsdesign"
+     ],
+     "lektion": {
+      "text": "ERD & Normalisering (Del 2)",
+      "href": "01_intro_databaser/lectures/erd_normalisering_repetition_marp.md",
+      "tags": [
+       "ERD",
+       "normalisering",
+       "JOIN",
+       "1:N"
+      ]
+     },
+     "notes": [
+      {
+       "text": "Normalisering",
+       "href": "03_normalisering_gdpr/notes/normalisering.md",
+       "tags": [
+        "1NF",
+        "2NF",
+        "3NF"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "mal": "Kan utgå från ett verkligt scenario och designa ett ER-diagram med JOIN-relationer i 3NF."
+    },
+    {
+     "titel": "Fredag v42 — C# och databaser (Del 3)",
+     "beskrivning": "Koppla spelbutiksdatabasen till C# med ADO.NET: tabell som klass, connection string, parametrar mot SQL injection och de tre Execute-metoderna.",
+     "tags": [
+      "C#",
+      "ADO.NET",
+      "SQLite",
+      "ExecuteNonQuery",
+      "ExecuteReader",
+      "parametrar",
+      "SQL injection"
+     ],
+     "lektion": {
+      "text": "C# och databaser (Del 3)",
+      "href": "01_intro_databaser/lectures/csharp_databaser_marp.md",
+      "tags": [
+       "C#",
+       "connection",
+       "ExecuteNonQuery",
+       "ExecuteScalar",
+       "ExecuteReader"
+      ]
+     },
+     "notes": [
+      {
+       "text": "Quicksheet — NuGet-paket och connection strings",
+       "href": "01_intro_databaser/notes/ado_quicksheet.md",
+       "tags": [
+        "NuGet",
+        "connection string",
+        "snabbreferens"
+       ]
+      },
+      {
+       "text": "Quicksheet — ADO.NET-objekt",
+       "href": "01_intro_databaser/notes/ado_objects_quicksheet.md",
+       "tags": [
+        "ExecuteNonQuery",
+        "ExecuteReader",
+        "DataTable",
+        "Transaction",
+        "snabbreferens"
+       ]
+      },
+      {
+       "text": "Från tabell till klass — SQL och C# sida vid sida",
+       "href": "01_intro_databaser/notes/sql/tabeller-och-klasser.md",
+       "tags": [
+        "C#",
+        "klass",
+        "property",
+        "LINQ"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "mal": "Kan koppla en SQLite-databas till C#, köra INSERT och SELECT med parametrar och omvandla rader till objekt."
+    },
+    {
+     "titel": "Extraföreläsning — SQL JOINs på djupet",
+     "beskrivning": "INNER JOIN vs LEFT JOIN förklaras visuellt med bilder och livekod mot en riktig databas. Vi kör steg för steg: syntax, exempel, jämförelse, ON vs WHERE och vanliga fallgropar.",
+     "tags": [
+      "JOIN",
+      "INNER JOIN",
+      "LEFT JOIN",
+      "extraföreläsning",
+      "repetition"
+     ],
+     "lektion": {
+      "text": "SQL JOINs — extraföreläsning",
+      "href": "01_intro_databaser/lectures/databaser_joins_marp.md",
+      "tags": [
+       "INNER JOIN",
+       "LEFT JOIN",
+       "ON vs WHERE",
+       "NULL",
+       "GROUP BY"
+      ]
+     },
+     "examples": [
+      {
+       "text": "Demobas — skapa joins_demo.db",
+       "href": "01_intro_databaser/examples/skapa_joins_demo.py",
+       "tags": [
+        "Python",
+        "SQLite",
+        "demobas"
+       ]
+      },
+      {
+       "text": "SQL-schema för demobasen",
+       "href": "01_intro_databaser/examples/joins_demo.sql",
+       "tags": [
+        "CREATE TABLE",
+        "INSERT",
+        "demodata"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "mal": "Kan förklara skillnaden mellan INNER och LEFT JOIN och skriva frågor som kopplar ihop minst två tabeller."
+    },
+    {
+     "titel": "Inlämning 1 — Din favoritartists diskografi",
+     "beskrivning": "Bygg en normaliserad SQL-databas över en artists diskografi. Minst 3 tabeller, 3 album, 3NF och ett ER-diagram. Deadline onsdag 21 okt 23:59 (förlängd).",
+     "tags": [
+      "inlämning",
+      "SQL",
+      "CREATE TABLE",
+      "JOIN",
+      "ER-diagram",
+      "normalisering"
+     ],
+     "notes": [
+      {
+       "text": "Inlämning 1 — Diskografi (uppgiftsbeskrivning)",
+       "href": "assignment/inlamning_1_diskografi.md",
+       "tags": [
+        "G",
+        "VG",
+        "sql-fil",
+        "ER-diagram",
+        "zip"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "mal": "Levererar en normaliserad SQL-databas med minst 3 tabeller, ER-diagram och korrekt seed-data."
+    }
+   ],
+   "publish": "2026-10-12"
+  },
+  {
+   "nr": 43,
+   "titel": "SQL avancerat, normalisering och säkerhet",
+   "tid": "10–12 h",
+   "mal": "Kan JOIN:a, aggregera och normalisera. Förstår SQL injection och hur man skyddar sig.",
+   "deadline": "Inlämning 2 — Filmdatabas-appen · deadline sön 25 okt 23:59",
+   "amnen": [
+    {
+     "titel": "Föreläsning — Normalisering (repetition)",
+     "beskrivning": "Repetition av 1NF/2NF/3NF och de tre anomalierna. Vad händer när man INTE normaliserar?",
+     "tags": [
+      "normalisering",
+      "1NF",
+      "2NF",
+      "3NF",
+      "anomalier"
+     ],
+     "notes": [
+      {
+       "text": "Normalisering — teori och termer",
+       "href": "termer/normalisering.md",
+       "tags": [
+        "normalisering",
+        "anomalier",
+        "begrepp"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     }
+    },
+    {
+     "titel": "Föreläsning — Djursjukhuset: JOIN och normalisering",
+     "beskrivning": "Från kaos-tabell till normaliserad design — och sedan JOINs för att ställa verkliga frågor mot datan.",
+     "tags": [
+      "JOIN",
+      "normalisering",
+      "ER-diagram",
+      "djursjukhuset"
+     ],
+     "notes": [
+      {
+       "text": "Hämta seed-filen — Klösarvet Djursjukhus AB",
+       "href": "03_normalisering_gdpr/examples/djursjukhus_seed.sql",
+       "tags": [
+        "SQLite",
+        "seed",
+        "JOIN",
+        "FK"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [
+       {
+        "text": "JOINs i klassrummet 🐾",
+        "href": "03_normalisering_gdpr/exercises/ovning_joins_klassrum.md",
+        "tags": [
+         "JOIN",
+         "GROUP BY",
+         "LEFT JOIN"
+        ],
+        "desc": "Fyra övningar mot djursjukhusdatabasen: ägare med djur, besökshistorik, flest djur och LEFT JOIN utan besök."
+       }
+      ],
+      "amber": [
+       {
+        "text": "JOINs och aggregat — hemövning 🏠",
+        "href": "03_normalisering_gdpr/exercises/ovning_joins_hem.md",
+        "tags": [
+         "JOIN",
+         "HAVING",
+         "subquery",
+         "veterinär"
+        ],
+        "desc": "Tuffare: senaste besök per djur, ägare med flera av samma art, bygg Veterinar-tabellen och GDPR-reflektion."
+       }
+      ],
+      "red": []
+     }
+    },
+    {
+     "titel": "Föreläsning — GROUP BY och aggregat",
+     "beskrivning": "Räkna, summera och filtrera grupper. Vad är skillnaden mellan WHERE och HAVING?",
+     "tags": [
+      "GROUP BY",
+      "HAVING",
+      "COUNT",
+      "SUM",
+      "AVG",
+      "aggregat"
+     ],
+     "notes": [],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     }
+    },
+    {
+     "titel": "Föreläsning — GDPR och databaser",
+     "beskrivning": "Vad GDPR kräver av oss som bygger system: dataminimering, rätten att bli glömd, anonymisering och privacy by design.",
+     "tags": [
+      "GDPR",
+      "Art. 5",
+      "Art. 9",
+      "Art. 15",
+      "Art. 17",
+      "anonymisering",
+      "biometri"
+     ],
+     "notes": [
+      {
+       "text": "GDPR i praktiken — riktiga scenarier",
+       "href": "03_normalisering_gdpr/notes/gdpr_praktik_scenarier.md",
+       "tags": [
+        "GDPR",
+        "garanti",
+        "registerutdrag",
+        "anonymisering",
+        "fotoalbum"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [
+       {
+        "text": "GDPR i klassrummet 🔒",
+        "href": "03_normalisering_gdpr/exercises/ovning_gdpr_klassrum.md",
+        "tags": [
+         "GDPR",
+         "gymappen",
+         "dataminimering",
+         "radering"
+        ],
+        "desc": "Hitta GDPR-brott i gymappens databas, designa om Medlemmar-tabellen och implementera rätten att bli glömd."
+       }
+      ],
+      "amber": [],
+      "red": []
+     }
+    },
+    {
+     "titel": "Planeringsverktyg — MoSCoW",
+     "beskrivning": "Prioritera rätt från start. Vad måste vara med? Vad kan vänta?",
+     "tags": [
+      "MoSCoW",
+      "Must",
+      "Should",
+      "Could",
+      "prioritering",
+      "MVP"
+     ],
+     "notes": [
+      {
+       "text": "MoSCoW — prioritering av krav",
+       "href": "03_normalisering_gdpr/notes/moscow_prioritering.md",
+       "tags": [
+        "MoSCoW",
+        "MVP",
+        "kravhantering"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     }
+    }
+   ],
+   "publish": "2026-10-19"
+  },
+  {
+   "nr": 44,
+   "titel": "Transaktioner och säkerhet",
+   "tid": "4–5 h",
+   "mal": "Förstår UPDATE och DELETE med WHERE, kan skriva säker SQL med parametrar och vet vad en transaktion gör.",
+   "amnen": [
+    {
+     "titel": "Föreläsning — UPDATE och DELETE: med och utan WHERE",
+     "beskrivning": "UPDATE och DELETE är ofarliga — tills du glömmer WHERE. Vi kör live och ser vad som händer när hela tabellen uppdateras på en gång.",
+     "tags": [
+      "UPDATE",
+      "DELETE",
+      "WHERE",
+      "säkerhet"
+     ],
+     "notes": [],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     }
+    },
+    {
+     "titel": "Föreläsning — Transaktioner: BEGIN, COMMIT, ROLLBACK",
+     "beskrivning": "Vad händer om servern kraschar mitt i en INSERT? Transaktioner garanterar att antingen sparas allt — eller ingenting.",
+     "tags": [
+      "transaktion",
+      "BEGIN",
+      "COMMIT",
+      "ROLLBACK",
+      "atomicitet"
+     ],
+     "notes": [],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     }
+    },
+    {
+     "titel": "Föreläsning — SQL injection och parametriserade frågor",
+     "beskrivning": "En liten strängkonkatenering kan radera hela databasen. Vi kör attacken live — och sedan fixar vi den med MySqlParameter.",
+     "tags": [
+      "SQL injection",
+      "MySqlParameter",
+      "säkerhet",
+      "parametriserade frågor"
+     ],
+     "notes": [],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     }
+    },
+    {
+     "titel": "🎓 Tenta — onsdag 28 okt 09:00–12:00",
+     "beskrivning": "Skriftlig tenta. SQL och SQL-objekt i C#. Inga hjälpmedel. Genomgång samma eftermiddag.",
+     "tags": [
+      "tenta",
+      "SQL",
+      "C#",
+      "examination"
+     ],
+     "notes": [],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     }
+    }
+   ],
+   "publish": "2026-10-26"
+  }
+ ]
 }
