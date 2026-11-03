@@ -266,6 +266,28 @@ mark { background:rgba(42,94,196,.2); color:inherit; border-radius:2px; padding:
     '8. Tålmodig, lite rolig och uppmuntrande. Svenska hela tiden. Korta svar.\n';
 
   var ROLL = function () { return 'Du är Marcus, min lärare i ' + (data ? data.namn : 'programmering') + ' på YRGO Cloud Developer (CLO26).'; };
+  var TODAY = (function () {
+    var q = new URLSearchParams(location.search).get('datum');   // ?datum=2026-11-09 för att förhandsvisa
+    if (q && /^\d{4}-\d{2}-\d{2}$/.test(q)) return q;
+    var d = new Date(), p = function (n) { return (n < 10 ? '0' : '') + n; };
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());
+  })();
+  function sv(d) { var m = ['januari','februari','mars','april','maj','juni','juli','augusti','september','oktober','november','december'], p = d.split('-'); return +p[2] + ' ' + m[+p[1] - 1]; }
+  function eff(t, w) { return t.publish || w.publish || w.start || ''; }
+  function ok(l, t, w) { var d = (l && l.publish) || eff(t, w); return !d || d <= TODAY; }
+  /* Ämnet så som studerande får se det idag: bara länkar vars datum har kommit. Null = dolt. */
+  function vt(t, w) {
+    var c = {}, k; for (k in t) c[k] = t[k];
+    var f = function (l) { return ok(l, t, w); };
+    c.lektion = t.lektion && f(t.lektion) ? t.lektion : null;
+    c.notes = arr(t.notes).filter(f); c.examples = arr(t.examples).filter(f);
+    c.inlamning = t.inlamning && f(t.inlamning) ? t.inlamning : null;
+    c.ovningar = {};
+    ['green', 'amber', 'red'].forEach(function (lv) { c.ovningar[lv] = ((t.ovningar || {})[lv] || []).filter(f); });
+    var any = c.lektion || c.notes.length || c.examples.length || c.inlamning || c.ovningar.green.length || c.ovningar.amber.length || c.ovningar.red.length || t.bok;
+    return (eff(t, w) <= TODAY || any) ? c : null;
+  }
+  function visTopics(w) { return (w.amnen || []).map(function (t) { return vt(t, w); }).filter(Boolean); }
   function arr(x) { return Array.isArray(x) ? x : (x ? [x] : []); }
   function ref(h) { return /^https?:/.test(h) ? h : GH + h; }
 
@@ -362,7 +384,8 @@ mark { background:rgba(42,94,196,.2); color:inherit; border-radius:2px; padding:
 
     var shown = 0;
     d.veckor.forEach(function (w) {
-      var topics = (w.amnen || []).filter(function (t) {
+      var allVis = visTopics(w);
+      var topics = allVis.filter(function (t) {
         if (!f) return true;
         return (t.titel + ' ' + (t.beskrivning || '') + ' ' + (t.mal || '') + ' ' + (t.tags || []).join(' ')).toLowerCase().indexOf(f) > -1;
       });
@@ -377,8 +400,8 @@ mark { background:rgba(42,94,196,.2); color:inherit; border-radius:2px; padding:
       if (w.mal) html += '<p class="week-mal">🎯 ' + esc(w.mal) + '</p>';
       if (w.notering) html += '<p class="week-note">' + esc(w.notering) + '</p>';
 
-      if (!(w.amnen || []).length && !(w.tenta || []).length) {
-        html += '<div class="coming">' + esc(w.comingSoon || 'Materialet publiceras när veckan börjar.') + '</div>';
+      if (!allVis.length && !(w.tenta || []).length) {
+        html += '<div class="coming">' + esc(w.comingSoon || (w.publish && w.publish > TODAY ? 'Materialet publiceras ' + sv(w.publish) + '.' : 'Materialet publiceras när veckan börjar.')) + '</div>';
       }
       topics.forEach(function (t) {
         var isLexa = /^Läxa/.test(t.titel);
@@ -421,7 +444,7 @@ mark { background:rgba(42,94,196,.2); color:inherit; border-radius:2px; padding:
         html += '<div class="tenta-box"><h3>⚡ Tenta och repetition</h3>' +
           w.tenta.map(function (r) { return '<div class="tdag' + (r.isTenta ? ' is-tenta' : '') + '"><b>' + esc(r.dag) + '</b><span>' + esc(r.info) + '</span></div>'; }).join('') +
           ((w.tentaChips || []).length ? '<div class="chips">' + w.tentaChips.map(function (c) { return '<span class="chip">' + esc(c) + '</span>'; }).join('') + '</div>' : '') +
-          ((w.tentafragor || []).length ? '<div class="links" style="margin-top:6px">' + w.tentafragor.map(function (q) { return '<div class="lrow">' + lk('notes', '📋', q) + '</div>'; }).join('') + '</div>' : '') +
+          ((w.tentafragor || []).length ? '<div class="links" style="margin-top:6px">' + w.tentafragor.filter(function (q) { return ok(q, {}, w); }).map(function (q) { return '<div class="lrow">' + lk('notes', '📋', q) + '</div>'; }).join('') + '</div>' : '') +
           '</div>';
       }
       html += '</section>';
@@ -459,11 +482,11 @@ mark { background:rgba(42,94,196,.2); color:inherit; border-radius:2px; padding:
     var html = '';
     data.veckor.forEach(function (w) {
       var items = [];
-      (w.amnen || []).forEach(function (t) {
+      visTopics(w).forEach(function (t) {
         if (/^(Läxa|Fredag)/.test(t.titel)) return;
         items.push({ label: t.titel, text: topicPrompt(t, w) });
       });
-      if ((w.amnen || []).length) items.push({ label: 'Testa mig på vecka ' + w.nr, text: reviewPrompt(w) });
+      if (visTopics(w).length) items.push({ label: 'Testa mig på vecka ' + w.nr, text: reviewPrompt(w) });
       if (!items.length) return;
       html += '<div class="ai-week">v.' + w.nr + ' · ' + esc(w.titel) + '</div>';
       items.forEach(function (it) {
