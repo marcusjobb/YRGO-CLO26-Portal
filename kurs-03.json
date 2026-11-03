@@ -6,6 +6,12 @@
   "datum": "2 nov – 4 dec 2026",
   "schema": "Mån + Ons campus 09–12 och 13–15 · Fre online 09–11",
   "notering": "Två inlämningar: 22 nov och 4 dec · Tenta ons 2 dec 09:00",
+  "nyckeldatum": [
+    { "typ": "neutral", "label": "Kursstart", "titel": "Första lektionen", "datum": "Måndag 2 november" },
+    { "typ": "dead", "label": "Deadline", "titel": "Inlämning 1 — data (JSON / NoSQL / EF Core)", "datum": "Söndag 22 november · 23:59" },
+    { "typ": "exam", "label": "Tentamen", "titel": "Skriftligt prov, genomgång på eftermiddagen", "datum": "Onsdag 2 december · 09:00" },
+    { "typ": "dead", "label": "Deadline", "titel": "Inlämning 2 — design patterns + reflektion", "datum": "Fredag 4 december · 23:59" }
+  ],
   "githubBase": "https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-03-fordjupad-oop/",
   "links": [],
   "betyg": {
@@ -201,8 +207,16 @@
           ],
           "notes": [
             {
-              "text": "Bildspel — Spara ett objekt som JSON",
-              "href": "01_databaskopplingar/lectures/json_spara_ett_objekt_marp.md",
+              "text": "Bildspel — Spara ett objekt som JSON, del 1",
+              "href": "01_databaskopplingar/lectures/json_spara_ett_objekt_del1_marp.md",
+              "tags": [
+                "JSON",
+                "serialisering"
+              ]
+            },
+            {
+              "text": "Bildspel — Spara ett objekt som JSON, del 2",
+              "href": "01_databaskopplingar/lectures/json_spara_ett_objekt_del2_marp.md",
               "tags": [
                 "JSON",
                 "serialisering"
