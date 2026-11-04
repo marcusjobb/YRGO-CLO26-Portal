@@ -1,0 +1,708 @@
+<title>Designmönster</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root {
+  --bg: #F9F9F7;
+  --fg: #1C1C1A;
+  --muted: #64645E;
+  --muted2: #9A9A90;
+  --border: #E4E4DF;
+  --code-bg: #EFEFE8;
+
+  --c-cr:    #B55608;
+  --c-cr-bg: #FEF4EC;
+  --c-st:    #1762A3;
+  --c-st-bg: #EBF2FA;
+  --c-be:    #237055;
+  --c-be-bg: #E9F4EE;
+  --c-ar:    #6040A0;
+  --c-ar-bg: #F0ECFA;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161614;
+    --fg: #E6E6E0;
+    --muted: #8A8A80;
+    --muted2: #5A5A54;
+    --border: #2C2C28;
+    --code-bg: #1E1E1A;
+    --c-cr: #E8922E; --c-cr-bg: #261508;
+    --c-st: #4B9DD4; --c-st-bg: #0C1E30;
+    --c-be: #40B076; --c-be-bg: #0A1F14;
+    --c-ar: #9878D8; --c-ar-bg: #18102A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161614; --fg: #E6E6E0; --muted: #8A8A80; --muted2: #5A5A54;
+  --border: #2C2C28; --code-bg: #1E1E1A;
+  --c-cr: #E8922E; --c-cr-bg: #261508;
+  --c-st: #4B9DD4; --c-st-bg: #0C1E30;
+  --c-be: #40B076; --c-be-bg: #0A1F14;
+  --c-ar: #9878D8; --c-ar-bg: #18102A;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 2.5rem;
+}
+
+.container { max-width: 760px; margin: 0 auto; }
+
+h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 2.6rem; font-weight: 400; line-height: 1.1;
+  text-wrap: balance; margin-bottom: 0.4rem;
+}
+.subtitle { color: var(--muted); font-size: 0.875rem; letter-spacing: 0.03em; margin-bottom: 2.5rem; }
+
+h2 {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 2.75rem; margin-bottom: 1rem;
+}
+
+code {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.82em;
+  background: var(--code-bg); padding: 0.1em 0.4em; border-radius: 3px;
+}
+
+/* ── Insight box (intro) ── */
+.insight {
+  background: var(--code-bg); border-radius: 8px;
+  padding: 1.4rem 1.6rem; margin-bottom: 0.5rem;
+}
+.insight-lead {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.2rem; font-style: italic;
+  margin-bottom: 1.1rem; line-height: 1.4;
+}
+.insight-rows { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.2rem; }
+.insight-row { display: grid; grid-template-columns: 100px 1fr; gap: 0.75rem; font-size: 0.875rem; align-items: start; }
+.insight-row code { background: none; padding: 0; font-weight: 600; font-size: 0.95em; }
+.insight-row-desc strong { color: var(--fg); }
+.insight-row-desc .sub {
+  display: block; color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem; line-height: 1.5;
+}
+.insight-body {
+  font-size: 0.875rem; line-height: 1.6;
+  border-top: 1px solid var(--border); padding-top: 0.9rem;
+}
+
+/* ── Category ── */
+.category { margin-top: 2.25rem; }
+.cat-header {
+  display: flex; align-items: baseline; gap: 0.75rem;
+  padding-bottom: 0.6rem; border-bottom: 2px solid var(--border); margin-bottom: 0.25rem;
+}
+.cat-title { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.5rem; font-weight: 400; }
+.cat-sub { font-size: 0.82rem; color: var(--muted); }
+.cr .cat-title { color: var(--c-cr); }
+.st .cat-title { color: var(--c-st); }
+.be .cat-title { color: var(--c-be); }
+.ar .cat-title { color: var(--c-ar); }
+
+/* ── Pattern row ── */
+.pattern {
+  display: grid; grid-template-columns: 175px 1fr;
+  gap: 0.75rem 1rem; padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border); align-items: start; min-width: 0;
+}
+.pattern:last-child { border-bottom: none; }
+
+.pattern-name {
+  font-weight: 600; font-size: 0.875rem;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; min-width: 0;
+}
+.cr .pattern-name { color: var(--c-cr); }
+.st .pattern-name { color: var(--c-st); }
+.be .pattern-name { color: var(--c-be); }
+.ar .pattern-name { color: var(--c-ar); }
+
+.badge {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; font-weight: 500;
+  letter-spacing: 0.04em; padding: 0.15em 0.55em; border-radius: 999px; white-space: nowrap;
+}
+.badge-lec { background: rgba(23,98,163,0.12); color: var(--c-st); }
+.badge-know { background: rgba(35,112,85,0.12); color: var(--c-be); }
+
+.pattern-body { font-size: 0.875rem; line-height: 1.55; min-width: 0; }
+.pattern-when { display: block; color: var(--muted); font-size: 0.8rem; margin-top: 0.3rem; line-height: 1.5; }
+.pattern-when em { font-style: italic; color: var(--fg); opacity: 0.8; }
+
+/* ── Classes list inside pattern ── */
+.pattern-classes {
+  margin-top: 0.65rem; padding-top: 0.55rem;
+  border-top: 1px dashed var(--border);
+}
+.cls-label {
+  font-size: 0.63rem; font-weight: 600; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--muted2);
+  display: block; margin-bottom: 0.35rem;
+}
+.cls-list { display: flex; flex-direction: column; gap: 0.25rem; }
+.cls-row {
+  display: grid; grid-template-columns: 190px 1fr;
+  gap: 0.4rem; font-size: 0.775rem; align-items: start;
+}
+.cls-row code { background: none; padding: 0; font-weight: 600; font-size: 1em; color: var(--fg); }
+.cls-row span { color: var(--muted); line-height: 1.4; }
+
+/* ── Architecture cards ── */
+.arch-cards { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.25rem; }
+.arch-card { background: var(--c-ar-bg); border-radius: 8px; padding: 1rem 1.25rem; }
+.arch-card h3 { color: var(--c-ar); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+.arch-card p { font-size: 0.875rem; line-height: 1.55; margin-bottom: 0.5rem; }
+.arch-card p:last-child { margin-bottom: 0; }
+.arch-diagram {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem;
+  color: var(--muted); line-height: 1.6;
+  margin-top: 0.5rem; padding: 0.6rem 0.8rem;
+  background: rgba(0,0,0,0.04); border-radius: 4px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .arch-diagram { background: rgba(255,255,255,0.04); }
+}
+:root[data-theme="dark"] .arch-diagram { background: rgba(255,255,255,0.04); }
+
+.arch-classes { margin-top: 0.6rem; }
+.arch-cls-row {
+  display: grid; grid-template-columns: 190px 1fr;
+  gap: 0.4rem; font-size: 0.775rem; align-items: start; margin-bottom: 0.25rem;
+}
+.arch-cls-row code { background: none; padding: 0; font-weight: 600; color: var(--fg); }
+.arch-cls-row span { color: var(--muted); line-height: 1.4; }
+
+/* Legend */
+.legend {
+  margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--border);
+  font-size: 0.775rem; color: var(--muted);
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem;
+}
+
+@media (max-width: 540px) {
+  h1 { font-size: 2rem; }
+  .pattern { grid-template-columns: 1fr; gap: 0.2rem; }
+  .insight-row { grid-template-columns: 1fr; gap: 0.1rem; }
+  .cat-header { flex-direction: column; gap: 0.15rem; align-items: flex-start; }
+  .cls-row { grid-template-columns: 1fr; gap: 0.1rem; }
+  .arch-cls-row { grid-template-columns: 1fr; gap: 0.1rem; }
+}
+</style>
+
+<div class="container">
+  <h1>Designmönster</h1>
+  <p class="subtitle">Fördjupad OOP i C# · Kurs 3 · CLO26 · YRGO</p>
+
+  <h2>Grundprincipen</h2>
+
+  <div class="insight">
+    <p class="insight-lead">"Oj, jag ska ha en databas — vilka klasser behöver jag?"</p>
+    <div class="insight-rows">
+      <div class="insight-row">
+        <code>Model</code>
+        <div class="insight-row-desc">
+          <strong>representerar en rad i databasen</strong>
+          <span class="sub">En POCO-klass — bara egenskaper, inget annat. T.ex. en <code>Product</code>-klass med <code>Id</code>, <code>Namn</code> och <code>Pris</code>.</span>
+        </div>
+      </div>
+      <div class="insight-row">
+        <code>DbContext</code>
+        <div class="insight-row-desc">
+          <strong>pratar med databasen</strong>
+          <span class="sub"><em>Context</em> betyder "sammanhang" — det är klassen som håller koll på alla tabeller och vet hur man lägger till, hämtar och tar bort rader. EF Core:s <code>DbContext</code> är ett exempel på detta mönster.</span>
+        </div>
+      </div>
+      <div class="insight-row">
+        <code>Service</code>
+        <div class="insight-row-desc">
+          <strong>sköter affärslogiken</strong>
+          <span class="sub"><em>Affärslogik</em> = reglerna för hur appen fungerar. "En order kan inte läggas om produkten inte finns i lager" — det är affärslogik. Den bor i en Service-klass, inte i UI:t och inte i databasen.</span>
+        </div>
+      </div>
+    </div>
+    <p class="insight-body">
+      Allt ovan är vanliga C#-klasser. Det enda som skiljer dem åt är <strong>vad de gör</strong> — och vi namnger dem efter det.<br><br>
+      Det är precis vad designmönster är: beprövade lösningar med namn som alla i teamet förstår. Istället för att förklara hela strukturen varje gång säger du "vi använder en Factory här" — och alla vet direkt hur det är tänkt.
+    </p>
+  </div>
+
+  <!-- ═══ CREATIONAL ═══ -->
+  <div class="category cr">
+    <h2>De 23 GoF-mönstren</h2>
+    <div class="cat-header">
+      <span class="cat-title">Creational</span>
+      <span class="cat-sub">Handlar om hur objekt skapas</span>
+    </div>
+
+    <div class="pattern cr">
+      <div class="pattern-name">Singleton<span class="badge badge-know">du känner det</span></div>
+      <div class="pattern-body">
+        Se till att det bara finns <em>ett enda</em> exemplar av en klass i hela systemet — och att alla delar på det.
+        <span class="pattern-when"><em>Patrik öppnar en ny databasanslutning för varje order som läggs. En fredag kväll med hög trafik: 500 öppna anslutningar. Servern kraschar. Pizzabeställningarna slutar fungera.</em> Med Singleton finns alltid bara en anslutning — alla delar på den. I ASP.NET Core: <code>services.AddSingleton&lt;T&gt;()</code>.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>Databasanslutning</code><span>den klass det bara ska finnas ett exemplar av</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern cr">
+      <div class="pattern-name">Factory Method<span class="badge badge-lec">★ föreläsning</span></div>
+      <div class="pattern-body">
+        Samla all kod som skapar objekt på ett enda ställe — en "fabrik" — istället för att sprida <code>new</code> över hela koden.
+        <span class="pattern-when">Patrik på Kalles Pizzeria skriver <code>new SwishTjänst()</code> på 16 ställen. Han lägger till Klarna, missar tre. Kraschar på fredag. Med Factory Method ändrar han på ett enda ställe.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>BetalningsFabrik</code><span>den klass som skapar betalningsobjekten — det enda stället med <code>new</code></span></div>
+            <div class="cls-row"><code>IBetalningsTjänst</code><span>kontraktet (interface) som alla betalningsklasser måste följa</span></div>
+            <div class="cls-row"><code>SwishTjänst</code>, <code>KortTjänst</code><span>konkreta klasser som fabriken skapar</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern cr">
+      <div class="pattern-name">Abstract Factory</div>
+      <div class="pattern-body">
+        Som Factory Method, men skapar hela <em>familjer</em> av relaterade klasser på en gång — utan att binda sig till en specifik variant.
+        <span class="pattern-when"><em>Emma bygger en app med ljust tema. Chefen vill ha ett mörkt tema till mobilversionen. Emma börjar kopiera knappar, formulär och ikoner — det är tio klasser, och ingen av dem matchar varandra riktigt.</em> Med Abstract Factory byter hon en rad — hela temat byter sig på en gång.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>ITemaFabrik</code><span>kontraktet som beskriver vad fabriken kan skapa</span></div>
+            <div class="cls-row"><code>LjustTemaFabrik</code>, <code>MörktTemaFabrik</code><span>konkreta fabriker — en per variant</span></div>
+            <div class="cls-row"><code>Knapp</code>, <code>Textfält</code><span>de klasser som fabriken skapar (finns i ljus och mörk variant)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern cr">
+      <div class="pattern-name">Builder<span class="badge badge-lec">★ föreläsning</span></div>
+      <div class="pattern-body">
+        Bygg upp ett komplext objekt steg för steg med en läsbar kedja av metoder — istället för en konstruktor med tio parametrar ingen förstår.
+        <span class="pattern-when">Vad är <code>new Order("Sofie", null, true, false, 42)</code>? Ingen vet. <code>new OrderBuilder().FörKund("Sofie").MedExpress().Bygg()</code> — det förstår alla. <code>StringBuilder</code> i C# är Builder.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>OrderBuilder</code><span>sätter ihop Order steg för steg — varje metod returnerar <code>this</code> för att möjliggöra kedjan</span></div>
+            <div class="cls-row"><code>Order</code><span>det färdiga objektet som byggaren sätter ihop</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern cr">
+      <div class="pattern-name">Prototype</div>
+      <div class="pattern-body">
+        Skapa nya objekt genom att kopiera ett befintligt — istället för att bygga upp det från noll varje gång.
+        <span class="pattern-when"><em>Carlos bygger en e-handel. Varje ny produkt skapas med hundra standardinställningar: moms, fraktklass, valuta, returregler... Han fyller i dem manuellt en i taget. Det tar tre minuter per produkt, och de flesta är identiska.</em> Med Prototype klonar han en mall-produkt och ändrar bara det som skiljer sig. I C#: <code>ICloneable</code> med <code>Clone()</code>.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>ProduktMall</code><span>klassen som kan kopiera sig själv — implementerar <code>Clone()</code></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STRUCTURAL ═══ -->
+  <div class="category st">
+    <div class="cat-header">
+      <span class="cat-title">Structural</span>
+      <span class="cat-sub">Handlar om hur klasser kopplas ihop</span>
+    </div>
+
+    <div class="pattern st">
+      <div class="pattern-name">Adapter</div>
+      <div class="pattern-body">
+        En mellanhand som översätter ett interface till ett annat — som en kontakt-adapter när du är utomlands.
+        <span class="pattern-when"><em>Anna ska integrera ett betalningssystem från 2008. Det pratar XML och SOAP. Hennes nya kod pratar med moderna interfaces. De förstår inte varandra — och Anna får inte ändra i det gamla systemet.</em> Adaptern är tolken. Anna pratar med Adaptern, Adaptern pratar med det gamla systemet. Ingen av dem behöver ändras.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>IBetalningsTjänst</code><span>ditt interface — hur din kod vill prata</span></div>
+            <div class="cls-row"><code>GammaltBetalningssystem</code><span>den externa klassen med ett annat interface</span></div>
+            <div class="cls-row"><code>BetalningsAdapter</code><span>klassen som översätter — implementerar ditt interface och pratar med det externa systemet</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern st">
+      <div class="pattern-name">Bridge</div>
+      <div class="pattern-body">
+        Dela upp en klass i två delar: <em>vad den gör</em> (abstraktionen) och <em>hur den gör det</em> (implementationen) — så de kan ändras oberoende av varandra.
+        <span class="pattern-when"><em>Patrik ska skicka notiser via e-post och SMS. Han skriver <code>EpostNotifiering</code> och <code>SMSNotifiering</code>. Sen vill chefen ha "urgenta" och "normala" varianter. Nu fyra klasser. Sen kommer WhatsApp-kravet. Snart är det tolv klasser och alla är nästan identiska.</em> Med Bridge: en klass för typen (urgent/normal) och en för kanalen (e-post/SMS). Koppla ihop dem fritt — aldrig fler klasser.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>NotifieringsTjänst</code><span>abstraktionen — den klass som koden faktiskt använder</span></div>
+            <div class="cls-row"><code>INotifieringsKanal</code><span>interfacet för hur meddelandet skickas</span></div>
+            <div class="cls-row"><code>EpostKanal</code>, <code>SMSKanal</code><span>konkreta implementationer av kanalen</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern st">
+      <div class="pattern-name">Composite</div>
+      <div class="pattern-body">
+        Behandla ett enskilt objekt och en grupp av objekt på exakt samma sätt.
+        <span class="pattern-when"><em>Emma bygger ett filhanteringssystem. Hon skriver en metod för att beräkna storleken på en fil — enkelt. Sen ska metoden fungera för mappar också. En mapp kan innehålla filer och andra mappar. Hur djupt som helst.</em> Med Composite behandlar hon en fil och en mapp exakt likadant. Mappen räknar bara ihop sina barn — och varje barn gör samma sak.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>IFilSystemKomponent</code><span>kontraktet som båda typer måste följa</span></div>
+            <div class="cls-row"><code>Fil</code><span>ett lövobjekt — har inga barn</span></div>
+            <div class="cls-row"><code>Mapp</code><span>kan innehålla både filer och mappar</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern st">
+      <div class="pattern-name">Decorator</div>
+      <div class="pattern-body">
+        Lägg till nytt beteende till ett objekt utan att ändra det — som att lägga på ett extra lager utanpå.
+        <span class="pattern-when"><em>Sofie:s <code>OrderService</code> fungerar perfekt och har tio tester. Nu vill chefen att alla anrop ska loggas. Sofie vill inte röra originalkoden — risken att något går sönder är för stor.</em> En Decorator omsluter <code>OrderService</code> och lägger till loggningen utanpå. Originalet märker ingenting. <code>BufferedStream</code> i C# är exakt detta — den omsluter en vanlig <code>Stream</code>.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>IOrderTjänst</code><span>kontraktet som båda följer</span></div>
+            <div class="cls-row"><code>OrderTjänst</code><span>originalobjektet med den faktiska logiken</span></div>
+            <div class="cls-row"><code>LoggningDecorator</code><span>omsluter OrderTjänst och lägger till loggning — utan att ändra originalet</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern st">
+      <div class="pattern-name">Facade</div>
+      <div class="pattern-body">
+        Dölj ett komplext system bakom ett enkelt interface. Den som anropar behöver inte veta vad som händer bakom.
+        <span class="pattern-when"><em>Carlos ska lägga en order i Sofies system. Han ser att han måste anropa <code>LagerService</code>, sedan <code>BetalningsService</code>, sedan <code>LeveransService</code> — i rätt ordning, med rätt parametrar. Det är inte hans jobb att veta allt det där.</em> Med Facade anropar han bara <code>OrderFacade.LäggOrder(order)</code>. Som att ringa receptionen på ett hotell — de fixar resten.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>OrderFacade</code><span>det enkla interfacet utåt — en metod, inte tio</span></div>
+            <div class="cls-row"><code>LagerService</code><span>kontrollerar och minskar lagersaldo</span></div>
+            <div class="cls-row"><code>BetalningsService</code><span>genomför betalningen</span></div>
+            <div class="cls-row"><code>LeveransService</code><span>skapar leveransen</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern st">
+      <div class="pattern-name">Flyweight</div>
+      <div class="pattern-body">
+        Dela data som är <em>samma</em> för många objekt istället för att kopiera den överallt — sparar minne när du har tusentals liknande objekt.
+        <span class="pattern-when"><em>Carlos bygger ett spel med en skog av en miljon träd. Varje träd-objekt lagrar sin egen textur, färg och form. Spelet startar — och kraschar omedelbart. Uppgiftshanteraren visar 4 GB minnenanvändning.</em> Med Flyweight delar alla träd av samma typ på en gemensam klass med texturen. Varje träd-objekt lagrar bara sin position. Minnet sjunker till under 400 MB.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>TeckenFormat</code><span>Flyweight — den delade klassen med typsnitt, storlek och stil</span></div>
+            <div class="cls-row"><code>TeckenFormatFabrik</code><span>hanterar och återanvänder Flyweight-objekt — ger tillbaka ett befintligt om det redan finns</span></div>
+            <div class="cls-row"><code>Tecken</code><span>Context — håller det unika per tecken (vilket bokstav, var på sidan)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern st">
+      <div class="pattern-name">Proxy</div>
+      <div class="pattern-body">
+        En klass som ser ut som originalet utåt, men kontrollerar åtkomsten till det — kan lägga till cachning, säkerhetskontroll eller lazy loading.
+        <span class="pattern-when"><em>Emmas app hämtar produktdata från ett externt API. Varje sidladdning tar 2 sekunder. Chefen klagar. Emma vet att produkterna ändras högst en gång per timme — men appen hämtar dem hundra gånger per minut.</em> En Proxy-klass svarar med cachad data när den finns. Annars frågar den API:et. Resten av koden märker ingen skillnad.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>IDataTjänst</code><span>kontraktet som båda klasser följer</span></div>
+            <div class="cls-row"><code>DataTjänst</code><span>originalobjektet som gör det riktiga jobbet</span></div>
+            <div class="cls-row"><code>CachadDataTjänst</code><span>proxy — kontrollerar cacheminnet innan den vidarebefordrar till originalet</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern st">
+      <div class="pattern-name">Repository<span class="badge badge-lec">★ föreläsning</span></div>
+      <div class="pattern-body">
+        En klass som hanterar all kommunikation med databasen. Resten av koden frågar Repository — aldrig databasen direkt.
+        <span class="pattern-when">Sofie byter databas från SQL Server till PostgreSQL. Med Repository ändrar hon på ett enda ställe. Utan det: veckor av jobb. <code>IRepository&lt;T&gt;</code> med <code>HämtaAsync()</code> och <code>LäggTillAsync()</code>.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>IOrderRepository</code><span>kontraktet — vad du kan göra med orders</span></div>
+            <div class="cls-row"><code>SqlOrderRepository</code><span>konkret implementation som pratar med SQL Server</span></div>
+            <div class="cls-row"><code>Order</code><span>modellklassen — representerar en rad i orders-tabellen</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BEHAVIORAL ═══ -->
+  <div class="category be">
+    <div class="cat-header">
+      <span class="cat-title">Behavioral</span>
+      <span class="cat-sub">Handlar om hur klasser kommunicerar</span>
+    </div>
+
+    <div class="pattern be">
+      <div class="pattern-name">Chain of Responsibility</div>
+      <div class="pattern-body">
+        En kedja av klasser. Varje klass försöker hantera förfrågan — kan den det, hanterar den den. Annars skickas den vidare till nästa.
+        <span class="pattern-when"><em>Sofie bygger ett API. Varje request ska loggas, kontrolleras mot inloggning och sedan mot behörighet. Hon stoppar in allt i en metod — 200 rader, omöjlig att testa, omöjlig att ändra i.</em> Med Chain of Responsibility: tre separata klasser, en kedja. Varje klass gör sitt och anropar <code>next()</code>. ASP.NET Core:s middleware-pipeline är exakt det här.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>IHandler</code><span>kontraktet för varje länk i kedjan</span></div>
+            <div class="cls-row"><code>LoggningHandler</code><span>loggar förfrågan och skickar vidare</span></div>
+            <div class="cls-row"><code>AutentiseringsHandler</code><span>kontrollerar inloggning — svarar med fel eller skickar vidare</span></div>
+            <div class="cls-row"><code>BehörighetsHandler</code><span>kontrollerar rättigheter och hanterar eller vidarebefordrar</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern be">
+      <div class="pattern-name">Command</div>
+      <div class="pattern-body">
+        Paketera en åtgärd som ett eget objekt — då kan den sparas, köas, ångras eller köras vid ett senare tillfälle.
+        <span class="pattern-when"><em>Anna bygger en texteditor. Chefen vill ha Ctrl+Z. Men "klistra in", "ta bort" och "formattera" är funktioner utspridda i tio klasser. Hur sparar hon dem i en lista och kör dem baklänges?</em> Varje åtgärd blir ett eget Command-objekt med <code>Utför()</code> och <code>Ångra()</code>. Historiklistan håller koll. Ctrl+Z plockar det senaste och kör <code>Ångra()</code>. <code>ICommand</code> i WPF bygger på detta.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>IKommando</code><span>kontraktet — alla kommandon har <code>Utför()</code> och <code>Ångra()</code></span></div>
+            <div class="cls-row"><code>SkapaOrderKommando</code><span>ett konkret kommando — vet hur man skapar en order och hur man ångrar det</span></div>
+            <div class="cls-row"><code>KommandoHistorik</code><span>håller koll på alla utförda kommandon (Ctrl+Z-listan)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern be">
+      <div class="pattern-name">Interpreter</div>
+      <div class="pattern-body">
+        En klass som läser och förstår ett enkelt "minispråk" — t.ex. ett sökfilter, en regelformel eller ett konfigurationsuttryck.
+        <span class="pattern-when"><em>Patrik vill att butikspersonalen ska kunna skriva rabattregler själva i ett textfält: "om Pris > 100 OCH Kategori = 'pizza' ge 10% rabatt". Men hur tolkar koden det? Det är inte en vanlig if-sats — det är text som ska utvärderas.</em> En Interpreter läser regeln och bygger upp ett träd av uttrycksobjekt som utvärderas mot varje produkt. SQL-parsers och regex-motorer fungerar på samma sätt.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>IUttryck</code><span>kontraktet — varje del av minispråket implementerar detta</span></div>
+            <div class="cls-row"><code>OchUttryck</code>, <code>EllerUttryck</code><span>logiska operatorer som kombinerar andra uttryck</span></div>
+            <div class="cls-row"><code>Jämförelse</code><span>ett lövobjekt — t.ex. "Pris > 100"</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern be">
+      <div class="pattern-name">Iterator<span class="badge badge-know">du känner det</span></div>
+      <div class="pattern-body">
+        Gå igenom en samling objekt ett steg i taget — utan att behöva veta hur samlingen är uppbyggd.
+        <span class="pattern-when"><em>Sofie har en <code>List&lt;Order&gt;</code>. Carlos hämtar orders från en databas. Emma läser dem från en fil. De vill alla loopa igenom orderna — men datakällan är helt olika. Ska de skriva tre olika loopar?</em> Nej. <code>IEnumerable&lt;T&gt;</code> + <code>foreach</code> fungerar för alla tre — utan att du behöver veta vad som ligger under. Hela LINQ bygger på Iterator.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>IEnumerable&lt;T&gt;</code><span>samlingen — det du loopar över</span></div>
+            <div class="cls-row"><code>IEnumerator&lt;T&gt;</code><span>iteratorn — håller koll på var du är i samlingen</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern be">
+      <div class="pattern-name">Mediator</div>
+      <div class="pattern-body">
+        Istället för att klasser pratar direkt med varandra pratar de med en Mediator. Mediatorn sköter kommunikationen.
+        <span class="pattern-when"><em>Patrik:s system: när en order läggs pratar <code>OrderService</code> direkt med <code>LagerService</code>, som pratar direkt med <code>EpostService</code>, som pratar direkt med SMS-tjänsten. En ändring i ett ställe kräver ändringar på fyra andra ställen. Alla känner alla.</em> Med Mediator pratar alla med Mediatorn. Ingen vet om de andra. Som ett chattrum — du skickar till chatten, chatten vidarebefordrar. MediatR i ASP.NET Core är ett exempel.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>IMediator</code><span>kontraktet för mediatorn</span></div>
+            <div class="cls-row"><code>OrderMediator</code><span>sköter kommunikationen — vet vem som ska ha vad</span></div>
+            <div class="cls-row"><code>LagerService</code>, <code>EpostService</code><span>kollegor — pratar via mediatorn, inte direkt med varandra</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern be">
+      <div class="pattern-name">Memento</div>
+      <div class="pattern-body">
+        Spara ett ögonblicksfoto av ett objekts tillstånd så att du kan återgå till det senare.
+        <span class="pattern-when"><em>Anna är halvvägs igenom att redigera en stor rapport i Sofies texteditor. Hon trycker fel och allt är borta. Sofie hade inte lagt in Ctrl+Z — Anna är rasande och rapporten är förlorad.</em> Med Memento sparas ett Snapshot vid varje steg. Ctrl+Z plockar det senaste och återställer. Samma princip används för spelsparning.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>Texteditor</code><span>objektet vars tillstånd ska sparas — kan skapa och återställa ett Snapshot</span></div>
+            <div class="cls-row"><code>Snapshot</code><span>en fryst kopia av tillståndet vid ett visst tillfälle</span></div>
+            <div class="cls-row"><code>Historik</code><span>håller koll på alla Snapshots — detta är Ctrl+Z-listan</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern be">
+      <div class="pattern-name">Observer<span class="badge badge-lec">★ föreläsning</span></div>
+      <div class="pattern-body">
+        En klass meddelar "det hände något!" utan att veta vem som lyssnar. De som bryr sig prenumererar och reagerar.
+        <span class="pattern-when"><em>Sofie:s <code>OrderService</code> ska minska lagret, skicka ett bekräftelsemail och notifiera plocklistan — allt när en order läggs. Hon stoppar in allt i <code>LäggOrder()</code>. Sen kommer kravet på SMS-avisering. Sen push-notis. Metoden växer och OrderService vet om allt.</em> Med Observer meddelar <code>OrderService</code> bara "en order lades" — och vem som lyssnar är inte dess problem. <code>event</code> och <code>delegate</code> i C# <em>är</em> Observer. <code>knapp.Click += handler</code> är samma sak.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>OrderService</code><span>publicerar event när en order läggs — vet inte om sina prenumeranter</span></div>
+            <div class="cls-row"><code>event Action&lt;Order&gt; OrderLagd</code><span>signalen som skickas ut</span></div>
+            <div class="cls-row"><code>LagerService</code>, <code>EpostService</code><span>prenumeranter — reagerar på eventet utan att OrderService känner till dem</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern be">
+      <div class="pattern-name">State</div>
+      <div class="pattern-body">
+        En klass beter sig olika beroende på vilket tillstånd den befinner sig i — utan ett hav av <code>if/else</code>.
+        <span class="pattern-when"><em>Carlos bygger orderhantering. Han skriver en stor <code>Hantera()</code>-metod: om status är "skapad" gör X, annars om "betald" gör Y, annars om "skickad"... — 300 rader, alla blandade. Sen ska han lägga till tillståndet "retur". Han vågar knappt öppna filen.</em> Med State: en klass per tillstånd. <code>order.Betala()</code> gör rätt sak automatiskt — utan ett enda if.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>Order</code><span>klassen vars beteende ändras — håller en referens till sitt nuvarande tillstånd</span></div>
+            <div class="cls-row"><code>IOrderTillstånd</code><span>kontraktet för varje tillstånds beteende</span></div>
+            <div class="cls-row"><code>SkapadOrder</code>, <code>BetaldOrder</code>, <code>SkickadOrder</code><span>en klass per tillstånd med rätt beteende</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern be">
+      <div class="pattern-name">Strategy<span class="badge badge-lec">★ föreläsning</span></div>
+      <div class="pattern-body">
+        Byt ut en algoritm runtime utan att ändra koden runt om. Algoritmen bor i en egen klass.
+        <span class="pattern-when"><code>meny.OrderBy(r => r.Pris)</code> — lambdan du skickar in <em>är</em> strategin. Du väljer sorteringslogik utan att ändra <code>OrderBy</code>. Nytt krav? Ny klass. Rör ingenting annat.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>ISorteringsStrategi</code><span>kontraktet — alla sorteringsklasser måste ha metoden <code>Sortera()</code></span></div>
+            <div class="cls-row"><code>SorteraPåPris</code>, <code>SorteraPåPopularitet</code><span>konkreta algoritmer — en klass per sorteringssätt</span></div>
+            <div class="cls-row"><code>Meny</code><span>klassen som använder strategin — tar emot vilken som helst</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern be">
+      <div class="pattern-name">Template Method</div>
+      <div class="pattern-body">
+        Definiera stegen i en algoritm i en basklass. Låt subklasserna bestämma hur <em>varje steg</em> ska utföras.
+        <span class="pattern-when"><em>Emma bygger en rapportgenerator — en för PDF och en för Excel. Hon kopierar koden och anpassar. Sen behöver hon ändra hur data hämtas. Nu måste hon ändra på två ställen. Nästa vecka vill chefen ha en tredje variant: CSV.</em> Med Template Method: basklassen håller ordningen (hämta → formattera → exportera). PDF, Excel och CSV fyller bara i hur varje steg fungerar. Ändringen i datahämtningen görs en gång.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>Rapportgenerator</code><span>abstrakt basklass — definierar stegen i rätt ordning</span></div>
+            <div class="cls-row"><code>HämtaData()</code>, <code>Formattera()</code>, <code>Exportera()</code><span>abstrakta metoder som subklasserna måste implementera</span></div>
+            <div class="cls-row"><code>PdfRapport</code>, <code>ExcelRapport</code><span>konkreta klasser som fyller i hur varje steg fungerar</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pattern be">
+      <div class="pattern-name">Visitor</div>
+      <div class="pattern-body">
+        Utför operationer på objekt utan att ändra deras klasser. Besökaren ("visitorn") tar med sig logiken.
+        <span class="pattern-when"><em>Carlos har ett orderträd med <code>Order</code>, <code>Produkt</code> och <code>Rabatt</code>-klasser. Han vill beräkna totalkostnaden. Sen exportera till XML. Sen generera en skattetabell. Om han lägger all den logiken i varje klass — de är snart omöjliga att förstå.</em> Med Visitor: en <code>KostnadsBeräknare</code> besöker varje objekt och räknar. En <code>XMLExportör</code> besöker och exporterar. Klasserna ändras aldrig.</span>
+        <div class="pattern-classes">
+          <span class="cls-label">Klasser</span>
+          <div class="cls-list">
+            <div class="cls-row"><code>IVisitor</code><span>kontraktet — en metod per typ av objekt som kan besökas</span></div>
+            <div class="cls-row"><code>KostnadsBeräknare</code>, <code>XMLExportör</code><span>konkreta visitors med specifik logik</span></div>
+            <div class="cls-row"><code>IElement</code><span>kontraktet för objekt som kan ta emot en visitor — har metoden <code>AcceptVisitor()</code></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ARCHITECTURE ═══ -->
+  <div class="category ar">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Arkitekturmönster</span>
+      <span class="cat-sub">Hur hela applikationen är organiserad</span>
+    </div>
+
+    <div class="arch-cards">
+
+      <div class="arch-card">
+        <h3>3-lagersarkitektur</h3>
+        <p>Dela upp koden i tre lager med tydliga ansvar. Varje lager pratar bara med lagret under sig.</p>
+        <div class="arch-diagram">UI / Presentation<br>        ↕<br>Affärslogik / Service<br>        ↕<br>Datakoppling / Repository / Databas</div>
+        <div class="arch-classes" style="margin-top:0.75rem;">
+          <div class="arch-cls-row"><code>MainPage</code> / <code>OrderController</code><span>UI-lagret — visar data och tar emot knapptryck</span></div>
+          <div class="arch-cls-row"><code>OrderService</code><span>affärslagret — reglerna för hur appen fungerar</span></div>
+          <div class="arch-cls-row"><code>IOrderRepository</code>, <code>SqlOrderRepository</code><span>datalagret — all kommunikation med databasen</span></div>
+        </div>
+      </div>
+
+      <div class="arch-card">
+        <h3>Clean Architecture</h3>
+        <p>Kärnlogiken i mitten, omringad av lager. Beroenden pekar alltid <em>inåt</em> — det yttersta lagret (UI, databas) vet om det inre, men inte tvärtom. Byt ut databasen utan att röra affärslogiken.</p>
+        <div class="arch-diagram">[ UI / Web / API ]<br>  → [ Application — use cases, service-klasser ]<br>    → [ Domain — entiteter och affärsregler ]<br>    ← [ Infrastructure — db, externa tjänster ]</div>
+      </div>
+
+      <div class="arch-card">
+        <h3>MVC — Model · View · Controller</h3>
+        <p>Dela upp koden i tre typer av klasser: vad som <em>visas</em> (View), hur data <em>ser ut</em> (Model) och vad som <em>händer</em> (Controller).</p>
+        <div class="arch-classes" style="margin-top:0.5rem;">
+          <div class="arch-cls-row"><code>Product</code><span>Model — POCO-klass som motsvarar en rad i databasen</span></div>
+          <div class="arch-cls-row"><code>Products.cshtml</code> / <code>ProductPage.razor</code><span>View — hanterar det som visas för användaren: webbsidor, formulär, tabeller</span></div>
+          <div class="arch-cls-row"><code>ProductController</code><span>Controller — förbereder det som vyn ska visa: hämtar data, kör Service-metoder, skickar tillbaka ett svar</span></div>
+        </div>
+      </div>
+
+      <div class="arch-card">
+        <h3>MVVM — Model · View · ViewModel</h3>
+        <p>Används i Blazor och WPF. ViewModel är en mellanklass som håller tillståndet och logiken för det som visas — View binder direkt till ViewModel utan att behöva en Controller.</p>
+        <div class="arch-classes" style="margin-top:0.5rem;">
+          <div class="arch-cls-row"><code>Product</code><span>Model — data, hämtas från databasen via Repository eller Service</span></div>
+          <div class="arch-cls-row"><code>ProductPage.razor</code> / <code>.xaml</code><span>View — det som användaren ser, binder mot ViewModel:ens egenskaper</span></div>
+          <div class="arch-cls-row"><code>ProductViewModel</code><span>ViewModel — håller tillståndet, hanterar knapptryck, pratar med Services. Är "glue" mellan Model och View</span></div>
+        </div>
+      </div>
+
+      <div class="arch-card">
+        <h3>CQRS</h3>
+        <p>Command Query Responsibility Segregation — separera läsoperationer (Query) från skrivoperationer (Command). Läsning och skrivning kan skalas och optimeras oberoende av varandra.</p>
+        <div class="arch-diagram">Read:  QueryHandler → ReadModel (optimerat för visning)<br>Write: CommandHandler → WriteModel + Events</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><strong>★ föreläsning</strong> = fullständiga kodexempel i föreläsningen</span>
+    <span><strong>du känner det</strong> = du har redan använt det utan att veta om det</span>
+  </div>
+</div>

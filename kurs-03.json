@@ -42,6 +42,11 @@
    "icon": "🦸",
    "label": "Livekodning — Mira hjälteäventyret",
    "href": "https://github.com/marcusjobb/Mira_hero_01_livekodning"
+  },
+  {
+   "icon": "🗂️",
+   "label": "Lathund — alla 23 designmönster",
+   "href": "designmonster-lathund.html"
   }
  ],
  "betyg": {
