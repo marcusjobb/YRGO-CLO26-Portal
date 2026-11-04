@@ -33,7 +33,13 @@
   }
  ],
  "githubBase": "https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-03-fordjupad-oop/",
- "links": [],
+ "links": [
+  {
+   "icon": "🦸",
+   "label": "Livekodning — Mira hjälteäventyret",
+   "href": "https://github.com/marcusjobb/Mira_hero_01_livekodning"
+  }
+ ],
  "betyg": {
   "G": "Skriftligt prov och inlämningsuppgifter godkända — kan koppla en applikation till data, använda designmönster och refaktorera enligt clean code.",
   "VG": "Fördjupar och motiverar sina val: reflekterar över designmönster, strukturerar en modulär applikation och granskar kod."
