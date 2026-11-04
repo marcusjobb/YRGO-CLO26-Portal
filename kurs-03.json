@@ -322,6 +322,87 @@
      }
     },
     {
+     "titel": "Repetitionsövningar — JSON, lista, fil och substring",
+     "beskrivning": "Korta övningar att göra på egen hand tors–fre. Samma sak om och om igen — det är meningen.",
+     "tags": [
+      "JSON",
+      "serialize",
+      "deserialize",
+      "lista",
+      "fil",
+      "substring",
+      "repetition"
+     ],
+     "notes": [
+      {
+       "text": "Notes — Spara och ladda en lista (steg för steg)",
+       "href": "01_databaskopplingar/notes/json_lista_spara_och_ladda.md",
+       "tags": ["JSON", "serialize", "deserialize", "fil"]
+      }
+     ],
+     "ovningar": {
+      "green": [
+       {
+        "text": "json01 — Objekt → JSON",
+        "href": "01_databaskopplingar/exercises/repetition.json01.md",
+        "tags": ["JSON", "serialize"],
+        "desc": "Skapa en klass, serialisera och skriv ut."
+       },
+       {
+        "text": "json02 — JSON → Objekt",
+        "href": "01_databaskopplingar/exercises/repetition.json02.md",
+        "tags": ["JSON", "deserialize"],
+        "desc": "En JSON-sträng är given. Deserialisera till ett objekt."
+       },
+       {
+        "text": "json03 — Lista → JSON",
+        "href": "01_databaskopplingar/exercises/repetition.json03.md",
+        "tags": ["JSON", "serialize", "lista"],
+        "desc": "Tre objekt i en lista. Serialisera med WriteIndented."
+       },
+       {
+        "text": "json04 — JSON → Lista",
+        "href": "01_databaskopplingar/exercises/repetition.json04.md",
+        "tags": ["JSON", "deserialize", "lista"],
+        "desc": "En JSON-array är given. Deserialisera till List<Book>."
+       },
+       {
+        "text": "lista01 — List<T>-operationer",
+        "href": "01_databaskopplingar/exercises/repetition.lista01.md",
+        "tags": ["lista", "Add", "Remove", "Count"],
+        "desc": "Add, Remove, Count, loop, filter."
+       },
+       {
+        "text": "fil01 — WriteAllText och ReadAllText",
+        "href": "01_databaskopplingar/exercises/repetition.fil01.md",
+        "tags": ["fil", "WriteAllText", "ReadAllText"],
+        "desc": "Spara en sträng till fil. Läs tillbaka."
+       },
+       {
+        "text": "substring01 — Klipp ut delar av en sträng",
+        "href": "01_databaskopplingar/exercises/repetition.substring01.md",
+        "tags": ["substring", "sträng"],
+        "desc": "Substring med ett och två argument. Index börjar på 0."
+       }
+      ],
+      "amber": [
+       {
+        "text": "lista02 — Lista: spara och ladda",
+        "href": "01_databaskopplingar/exercises/repetition.lista02.md",
+        "tags": ["lista", "JSON", "fil"],
+        "desc": "Spara lista till fil, läs tillbaka, lägg till och ta bort."
+       },
+       {
+        "text": "fil02 — WriteAllLines, ReadAllLines och enskilda rader",
+        "href": "01_databaskopplingar/exercises/repetition.fil02.md",
+        "tags": ["fil", "WriteAllLines", "ReadAllLines"],
+        "desc": "Skriv rader till fil. Hämta rad 5. Lägg till i slutet."
+       }
+      ],
+      "red": []
+     }
+    },
+    {
      "titel": "Fredag — Handledning 09–11 (distans)",
      "beskrivning": "Frågor från läxorna besvaras. Ta med din fråga.",
      "tags": [
