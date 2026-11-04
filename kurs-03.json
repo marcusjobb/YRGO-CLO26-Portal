@@ -17,19 +17,23 @@
    "typ": "dead",
    "label": "Deadline",
    "titel": "Inlämning 1 — data (JSON / NoSQL / EF Core)",
-   "datum": "Söndag 22 november · 23:59"
+   "datum": "Söndag 22 november · 23:59",
+   "iso": "2026-11-22T23:59"
   },
   {
    "typ": "exam",
    "label": "Tentamen",
    "titel": "Skriftligt prov, genomgång på eftermiddagen",
-   "datum": "Onsdag 2 december · 09:00"
+   "datum": "Onsdag 2 december · 09:00",
+   "iso": "2026-12-02T09:00",
+   "duration": 3
   },
   {
    "typ": "dead",
    "label": "Deadline",
    "titel": "Inlämning 2 — design patterns + reflektion",
-   "datum": "Fredag 4 december · 23:59"
+   "datum": "Fredag 4 december · 23:59",
+   "iso": "2026-12-04T23:59"
   }
  ],
  "githubBase": "https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-03-fordjupad-oop/",
