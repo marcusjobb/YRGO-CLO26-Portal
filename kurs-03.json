@@ -509,7 +509,28 @@
    "titel": "EF Core och UML",
    "tid": "",
    "mal": "Kan koppla en app till en databas med EF Core och rita enkla UML-diagram.",
-   "amnen": [],
+   "amnen": [
+    {
+     "titel": "Inlämning 1 — Hotel Grandioso (EF Core)",
+     "publish": "2026-11-16",
+     "beskrivning": "Individuell uppgift: ett bokningssystem med EF Core. Presenteras måndag 16 november, deadline söndag 22 november 23:59.",
+     "tags": [
+      "EF Core",
+      "inlämning",
+      "G",
+      "VG"
+     ],
+     "inlamning": {
+      "text": "Inlämning 1 — Hotel Grandioso",
+      "href": "01_databaskopplingar/assignment/inlamning_1_hotel_grandioso.md",
+      "tags": [
+       "EF Core",
+       "individuell"
+      ],
+      "desc": "Bokningssystem för ett hotell. Deadline sön 22 nov 23:59."
+     }
+    }
+   ],
    "publish": "2026-11-16"
   },
   {
