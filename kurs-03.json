@@ -5,7 +5,7 @@
  "period": "v.45–49",
  "datum": "2 nov – 4 dec 2026",
  "schema": "Mån + Ons campus 09–12 och 13–15 · Fre online 09–11",
- "notering": "Två inlämningar: 22 nov och 4 dec · Tenta ons 2 dec 09:00",
+ "notering": "Två inlämningar: 22 nov och 6 dec · Tenta ons 2 dec 09:00",
  "nyckeldatum": [
   {
    "typ": "neutral",
@@ -16,7 +16,7 @@
   {
    "typ": "dead",
    "label": "Deadline",
-   "titel": "Inlämning 1 — data (JSON / NoSQL / EF Core)",
+   "titel": "Inlämning 1 — Hotel Grandioso (EF Core)",
    "datum": "Söndag 22 november · 23:59",
    "iso": "2026-11-22T23:59"
   },
@@ -31,9 +31,9 @@
   {
    "typ": "dead",
    "label": "Deadline",
-   "titel": "Inlämning 2 — design patterns + reflektion",
-   "datum": "Fredag 4 december · 23:59",
-   "iso": "2026-12-04T23:59"
+   "titel": "Inlämning 2 — grupparbete",
+   "datum": "Söndag 6 december · 23:59",
+   "iso": "2026-12-06T23:59"
   }
  ],
  "githubBase": "https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-03-fordjupad-oop/",
@@ -518,28 +518,170 @@
   },
   {
    "nr": 46,
-   "titel": "Interface, Strategy och dataformat",
-   "tid": "",
-   "mal": "Kan använda interface och Strategy, och spara data som JSON, YAML och XML.",
-   "amnen": [],
-   "publish": "2026-11-09"
-  },
-  {
-   "nr": 47,
-   "titel": "EF Core och UML",
-   "tid": "",
-   "mal": "Kan koppla en app till en databas med EF Core och rita enkla UML-diagram.",
+   "titel": "EF Core, MongoDB och designmönster",
+   "tid": "6–8 h",
+   "mal": "Kan spara och hämta objekt med EF Core, koppla ihop två tabeller, prova MongoDB och känna igen Strategy, Factory och Observer.",
    "amnen": [
     {
-     "titel": "Inlämning 1 — Hotel Grandioso (EF Core)",
-     "publish": "2026-11-16",
-     "beskrivning": "Individuell uppgift: ett bokningssystem med EF Core. Presenteras måndag 16 november, deadline söndag 22 november 23:59.",
+     "titel": "Dagen — måndag 9 november",
+     "beskrivning": "Agenda, repetition av förra veckan och backspegel.",
+     "tags": [
+      "agenda",
+      "repetition",
+      "backspegel"
+     ],
+     "notes": [
+      {
+       "text": "Dagen — måndag 9 november",
+       "href": "01_databaskopplingar/lectures/v46_mandag_dagen_marp.md",
+       "tags": [
+        "agenda"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "publish": "2026-11-06"
+    },
+    {
+     "titel": "Föreläsning — EF Core: spara objekt i en databas",
+     "beskrivning": "Hjältarna flyttar från JSON-filen till en riktig databas. DbContext, migration och första SaveChanges.",
      "tags": [
       "EF Core",
-      "inlämning",
-      "G",
-      "VG"
+      "DbContext",
+      "migration"
      ],
+     "notes": [
+      {
+       "text": "Bildspel — EF Core: spara objekt",
+       "href": "01_databaskopplingar/lectures/ef_core_hello_marp.md",
+       "tags": [
+        "EF Core"
+       ]
+      },
+      {
+       "text": "Läsversion — EF Core: spara objekt",
+       "href": "01_databaskopplingar/notes/ef_core_hello.md",
+       "tags": [
+        "EF Core"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [
+       {
+        "text": "Övning — hjältarna i databasen",
+        "href": "01_databaskopplingar/exercises/ovning_ef_core_hjaltarna.md",
+        "tags": [
+         "EF Core",
+         "SQLite"
+        ],
+        "desc": "Spara, hämta och uppdatera hjältar med EF Core."
+       }
+      ],
+      "amber": [],
+      "red": []
+     },
+     "publish": "2026-11-06"
+    },
+    {
+     "titel": "Föreläsning — EF Core: relationer och dubbelbokning",
+     "beskrivning": "En hjälte har uppdrag. Två tabeller som hör ihop, och hur databasen stoppar en dubbelbokning.",
+     "tags": [
+      "EF Core",
+      "relationer",
+      "Include"
+     ],
+     "notes": [
+      {
+       "text": "Bildspel — EF Core: relationer",
+       "href": "01_databaskopplingar/lectures/ef_core_relationer_marp.md",
+       "tags": [
+        "EF Core",
+        "relationer"
+       ]
+      },
+      {
+       "text": "Läsversion — EF Core: relationer",
+       "href": "01_databaskopplingar/notes/ef_core_relationer.md",
+       "tags": [
+        "EF Core",
+        "relationer"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [
+       {
+        "text": "Övning — hjältarnas uppdrag",
+        "href": "01_databaskopplingar/exercises/ovning_ef_core_uppdrag.md",
+        "tags": [
+         "EF Core",
+         "relationer"
+        ],
+        "desc": "Koppla uppdrag till hjältar och hämta dem med Include."
+       }
+      ],
+      "amber": [],
+      "red": []
+     },
+     "publish": "2026-11-06"
+    },
+    {
+     "titel": "Föreläsning — MongoDB i lätt version",
+     "beskrivning": "Samma hjältar, men som dokument i stället för rader. Spara, hitta, ändra och ta bort. Ett smakprov, övningarna kommer när vi växlar till MongoDB.",
+     "tags": [
+      "MongoDB",
+      "NoSQL",
+      "dokument"
+     ],
+     "notes": [
+      {
+       "text": "Bildspel — MongoDB i lätt version",
+       "href": "01_databaskopplingar/lectures/mongodb_light_marp.md",
+       "tags": [
+        "MongoDB"
+       ]
+      },
+      {
+       "text": "Läsversion — MongoDB i lätt version",
+       "href": "01_databaskopplingar/notes/mongodb_light.md",
+       "tags": [
+        "MongoDB"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "publish": "2026-11-06"
+    },
+    {
+     "titel": "Inlämning 1 — genomgång",
+     "beskrivning": "Vi går igenom Hotel Grandioso tillsammans: vad som ska byggas och hur övningarna leder dit.",
+     "tags": [
+      "inlämning",
+      "EF Core"
+     ],
+     "notes": [
+      {
+       "text": "Bildspel — genomgång av Inlämning 1",
+       "href": "01_databaskopplingar/lectures/inlamning_1_genomgang_marp.md",
+       "tags": [
+        "inlämning"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
      "inlamning": {
       "text": "Inlämning 1 — Hotel Grandioso",
       "href": "01_databaskopplingar/assignment/inlamning_1_hotel_grandioso.md",
@@ -548,26 +690,295 @@
        "individuell"
       ],
       "desc": "Bokningssystem för ett hotell. Deadline sön 22 nov 23:59."
+     },
+     "publish": "2026-11-06"
+    },
+    {
+     "titel": "Läxa C (tisdag) — Tildas bibliotek",
+     "beskrivning": "Ett bibliotek som behöver en databas. Samma steg som på lektionen, i din egen takt.",
+     "tags": [
+      "läxa",
+      "EF Core"
+     ],
+     "notes": [
+      {
+       "text": "Läxa C — Tildas bibliotek",
+       "href": "01_databaskopplingar/exercises/lara_c_tildas_bibliotek.md",
+       "tags": [
+        "läxa"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "publish": "2026-11-06"
+    },
+    {
+     "titel": "Dagen — onsdag 11 november",
+     "beskrivning": "Agenda och backspegel.",
+     "tags": [
+      "agenda",
+      "repetition",
+      "backspegel"
+     ],
+     "notes": [
+      {
+       "text": "Dagen — onsdag 11 november",
+       "href": "02_designmonster/lectures/v46_onsdag_dagen_marp.md",
+       "tags": [
+        "agenda"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "publish": "2026-11-06"
+    },
+    {
+     "titel": "Föreläsning — UML: en ritning av koden",
+     "beskrivning": "Klassdiagram jämfört med ERD, med Mira och hennes uppdrag. Från och med nu har alla övningar ett klassdiagram.",
+     "tags": [
+      "UML",
+      "klassdiagram",
+      "ERD"
+     ],
+     "notes": [
+      {
+       "text": "Bildspel — UML: klassdiagram och ERD",
+       "href": "02_designmonster/lectures/uml_klassdiagram_marp.md",
+       "tags": [
+        "UML"
+       ]
+      },
+      {
+       "text": "Läsversion — UML: klassdiagram och ERD",
+       "href": "02_designmonster/notes/uml_klassdiagram.md",
+       "tags": [
+        "UML"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "publish": "2026-11-06"
+    },
+    {
+     "titel": "Föreläsning — Strategy: samma uppgift, flera sätt",
+     "beskrivning": "Mira byter vapen med en enda rad. Strategy är ett snällt verktyg för att byta beteende.",
+     "tags": [
+      "designmönster",
+      "Strategy",
+      "interface"
+     ],
+     "notes": [
+      {
+       "text": "Bildspel — Strategy",
+       "href": "02_designmonster/lectures/strategy_marp.md",
+       "tags": [
+        "Strategy"
+       ]
+      },
+      {
+       "text": "Läsversion — Strategy",
+       "href": "02_designmonster/notes/strategy.md",
+       "tags": [
+        "Strategy"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [
+       {
+        "text": "Övning — Strategy",
+        "href": "02_designmonster/exercises/ovning_strategy.md",
+        "tags": [
+         "Strategy"
+        ],
+        "desc": "Byt beteende utan att ändra hjälten."
+       }
+      ],
+      "amber": [],
+      "red": []
+     },
+     "publish": "2026-11-06"
+    },
+    {
+     "titel": "Föreläsning — Factory: objekten skapas på ett ställe",
+     "beskrivning": "En pizzeria där köket vet hur varje pizza görs. Factory samlar skapandet på ett ställe.",
+     "tags": [
+      "designmönster",
+      "Factory"
+     ],
+     "notes": [
+      {
+       "text": "Bildspel — Factory",
+       "href": "02_designmonster/lectures/factory_marp.md",
+       "tags": [
+        "Factory"
+       ]
+      },
+      {
+       "text": "Läsversion — Factory",
+       "href": "02_designmonster/notes/factory.md",
+       "tags": [
+        "Factory"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [
+       {
+        "text": "Övning — Factory",
+        "href": "02_designmonster/exercises/ovning_factory.md",
+        "tags": [
+         "Factory"
+        ],
+        "desc": "Låt en fabrik skapa objekten."
+       }
+      ],
+      "amber": [],
+      "red": []
+     },
+     "publish": "2026-11-06"
+    },
+    {
+     "titel": "Föreläsning — Observer och mönster att känna igen",
+     "beskrivning": "Någon ropar, andra lyssnar. Plus tre mönster du ska känna igen när du ser dem: Iterator, Repository och Singleton.",
+     "tags": [
+      "designmönster",
+      "Observer"
+     ],
+     "notes": [
+      {
+       "text": "Bildspel — Observer",
+       "href": "02_designmonster/lectures/observer_marp.md",
+       "tags": [
+        "Observer"
+       ]
+      },
+      {
+       "text": "Läsversion — Observer",
+       "href": "02_designmonster/notes/observer.md",
+       "tags": [
+        "Observer"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [
+       {
+        "text": "Övning — Observer",
+        "href": "02_designmonster/exercises/ovning_observer.md",
+        "tags": [
+         "Observer"
+        ],
+        "desc": "Meddela flera lyssnare när något händer."
+       }
+      ],
+      "amber": [],
+      "red": []
+     },
+     "publish": "2026-11-06"
+    },
+    {
+     "titel": "Läxa D (torsdag–fredag) — Mira och verktygslådan",
+     "beskrivning": "Mira packar sin verktygslåda med de tre mönstren från onsdagen.",
+     "tags": [
+      "läxa",
+      "designmönster"
+     ],
+     "notes": [
+      {
+       "text": "Läxa D — Mira och verktygslådan",
+       "href": "02_designmonster/exercises/lara_d_mira_och_verktygsladan.md",
+       "tags": [
+        "läxa"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "publish": "2026-11-06"
+    },
+    {
+     "titel": "Fredag — Handledning 09–11 (distans)",
+     "beskrivning": "Frågor från läxorna besvaras. Ta med din fråga.",
+     "tags": [
+      "handledning"
+     ],
+     "notes": [],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
      }
     }
    ],
-   "publish": "2026-11-16"
+   "publish": "2026-11-09",
+   "notering": "Måndag: EF Core på förmiddagen, MongoDB med enkel CRUD på eftermiddagen, genomgång av Inlämning 1. Onsdag: designmönster som snälla verktyg."
+  },
+  {
+   "nr": 47,
+   "titel": "Refactoring, clean code och Kanban",
+   "tid": "",
+   "mal": "Känner igen code smells, kan refaktorera med Extract Method och Rename och granska kod med en checklista.",
+   "amnen": [],
+   "publish": "2026-11-16",
+   "notering": "Code smells, SOLID, DRY, KISS, kodgranskning. Onsdag: regex. Kanban introduceras. EF-träningen fortsätter i läxorna."
   },
   {
    "nr": 48,
-   "titel": "MongoDB, Factory och Observer",
+   "titel": "Hellweek: C# hidden gems",
    "tid": "",
-   "mal": "Kan använda en dokumentdatabas och känner igen Factory och Observer.",
+   "mal": "Känner igen dynamic, pattern matching, tuples, indexers, ?. ?? ??=, extension methods, records och async/await.",
    "amnen": [],
-   "publish": "2026-11-23"
+   "publish": "2026-11-23",
+   "notering": "Inte tentastoff. Inlämning 2 (grupparbete) delas ut mån 23 nov. Bufferten i kursen: plats för EF, MongoDB och algoritm-halvdagen [ÖPPEN]."
   },
   {
    "nr": 49,
-   "titel": "Refactoring, kodgranskning och tenta",
+   "titel": "Tenta och presentationer",
    "tid": "",
    "mal": "Kan refaktorera enligt clean code, granska kod och har gjort tentan.",
-   "amnen": [],
-   "publish": "2026-11-30"
+   "amnen": [
+    {
+     "titel": "Repetition — databaser och designmönster (måndag 30 nov)",
+     "beskrivning": "Hela kursens databasdel och designmönstren, inför tentan på onsdag.",
+     "tags": [
+      "repetition",
+      "tenta"
+     ],
+     "notes": [
+      {
+       "text": "Bildspel — Databaskopplingar i C# (repetition)",
+       "href": "01_databaskopplingar/lectures/01_databaskopplingar_marp.md",
+       "tags": [
+        "repetition"
+       ]
+      }
+     ],
+     "ovningar": {
+      "green": [],
+      "amber": [],
+      "red": []
+     },
+     "publish": "2026-11-27"
+    }
+   ],
+   "publish": "2026-11-30",
+   "notering": "Mån 30 nov: repetition av databaser och designmönster. Tenta ons 2 dec 09–12, sedan grupppresentationer. Inlämning 2: sikta på att vara klar fre 4 dec, sista deadline sön 6 dec (extra tid för buggar)."
   }
  ]
 }
