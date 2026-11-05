@@ -199,6 +199,26 @@
          "par"
         ],
         "desc": "Gör Character abstrakt, skapa IHealer och filtrera med OfType."
+       },
+       {
+        "text": "Övning 4 — garaget",
+        "href": "00_klasser_och_objekt/exercises/ovning_4_garaget.md",
+        "tags": [
+         "abstract",
+         "interface",
+         "par"
+        ],
+        "desc": "Samma steg som övning 3, men med fordon: en bil, en cykel och en bärgningsbil i samma garage."
+       },
+       {
+        "text": "Övning 5 — personalsystemet",
+        "href": "00_klasser_och_objekt/exercises/ovning_5_personal.md",
+        "tags": [
+         "abstract",
+         "interface",
+         "par"
+        ],
+        "desc": "Samma steg i ett system du kan möta på jobbet: chefer, konsulter och vikarier, lön och godkända tidrapporter."
        }
       ],
       "amber": [],
