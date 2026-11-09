@@ -701,6 +701,56 @@ code {
     </div>
   </div>
 
+  <!-- ═══ ANTIPATTERNS ═══ -->
+  <div class="category ar">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Antimönster</span>
+      <span class="cat-sub">Lösningar som verkar rimliga i stunden men skapar mer problem än de löser</span>
+    </div>
+
+    <p>Det motsatta till ett designmönster. Det är som att ta genvägen genom grannens trädgård varje dag: det sparar tid till en början, men grannrelationen (systemet) försämras tills det slutar fungera. Om du hittar ett antimönster i befintlig kod är det ett tecken på att refactoring behövs, inte att du är en dålig programmerare. Alla har skrivit dessa.</p>
+
+    <div class="arch-cards">
+
+      <div class="arch-card">
+        <h3>God Object</h3>
+        <p>En klass som gör allt och vet allt. Symptom: filen är 2000 rader lång och alla ändringar tar i den.</p>
+        <div class="arch-diagram">OrderManager: sparar order, räknar moms, skickar mail, skriver kvitto<br>        ↓ dela upp ansvar (SRP)<br>OrderService · TaxCalculator · Mailer · ReceiptPrinter</div>
+      </div>
+
+      <div class="arch-card">
+        <h3>Spaghetti Code</h3>
+        <p>Kod utan struktur där logiken hopar sig. Symptom: omöjligt att följa flödet, och ingen vågar ändra något.</p>
+        <div class="arch-diagram">Lösning: tydliga metoder med ett ansvar var, och lager som bara pratar med lagret under sig (se 3-lagersarkitektur ovan).</div>
+      </div>
+
+      <div class="arch-card">
+        <h3>Magic Numbers</h3>
+        <p>Hårdkodade siffror utan förklaring. Symptom: <code>if (score &gt; 42)</code>. Varför 42?</p>
+        <div class="arch-diagram">if (score &gt; 42)<br>        ↓ ge talet ett namn<br>const int PassingScore = 42;<br>if (score &gt; PassingScore)</div>
+      </div>
+
+      <div class="arch-card">
+        <h3>Copy-Paste Programming</h3>
+        <p>Duplicerad kod istället för att extrahera en metod. Symptom: samma bugg på åtta ställen, och en rättning missar ett av dem.</p>
+        <div class="arch-diagram">Samma 10 rader i fyra metoder<br>        ↓ extrahera en metod (DRY)<br>void ValidateCustomer(Customer c) { ... }</div>
+      </div>
+
+      <div class="arch-card">
+        <h3>Premature Optimization</h3>
+        <p>Att optimera innan du vet var flaskhalsen finns. Symptom: snabb kod som ingen förstår. Knuth (1974): "Premature optimization is the root of all evil."</p>
+        <div class="arch-diagram">Mät först (profilering) → optimera sedan det som faktiskt är långsamt</div>
+      </div>
+
+      <div class="arch-card">
+        <h3>Golden Hammer</h3>
+        <p>Man använder samma verktyg eller mönster på alla problem, för att det är det man kan. Det är som en femåring med en hammare: allt ser ut som en spik, även leksaksbilen och mattan. Symptom: samma Singleton, samma Factory eller samma databasverktyg överallt, även där det inte passar.</p>
+        <div class="arch-diagram">Problemet först, verktyget sen<br>        ↓<br>Vilket problem löser jag? → Vilket verktyg passar just det?</div>
+      </div>
+
+    </div>
+  </div>
+
   <div class="legend">
     <span><strong>★ föreläsning</strong> = fullständiga kodexempel i föreläsningen</span>
     <span><strong>du känner det</strong> = du har redan använt det utan att veta om det</span>
