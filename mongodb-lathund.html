@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MongoDB</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #F9F9F7;
+  --fg: #1C1C1A;
+  --muted: #64645E;
+  --muted2: #9A9A90;
+  --border: #E4E4DF;
+  --code-bg: #EFEFE8;
+
+  --c-cr:    #B55608;
+  --c-cr-bg: #FEF4EC;
+  --c-st:    #1762A3;
+  --c-st-bg: #EBF2FA;
+  --c-be:    #237055;
+  --c-be-bg: #E9F4EE;
+  --c-ar:    #6040A0;
+  --c-ar-bg: #F0ECFA;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161614;
+    --fg: #E6E6E0;
+    --muted: #8A8A80;
+    --muted2: #5A5A54;
+    --border: #2C2C28;
+    --code-bg: #1E1E1A;
+    --c-cr: #E8922E; --c-cr-bg: #261508;
+    --c-st: #4B9DD4; --c-st-bg: #0C1E30;
+    --c-be: #40B076; --c-be-bg: #0A1F14;
+    --c-ar: #9878D8; --c-ar-bg: #18102A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161614; --fg: #E6E6E0; --muted: #8A8A80; --muted2: #5A5A54;
+  --border: #2C2C28; --code-bg: #1E1E1A;
+  --c-cr: #E8922E; --c-cr-bg: #261508;
+  --c-st: #4B9DD4; --c-st-bg: #0C1E30;
+  --c-be: #40B076; --c-be-bg: #0A1F14;
+  --c-ar: #9878D8; --c-ar-bg: #18102A;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 2.5rem;
+}
+
+.container { max-width: 760px; margin: 0 auto; }
+
+h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 2.6rem; font-weight: 400; line-height: 1.1;
+  text-wrap: balance; margin-bottom: 0.4rem;
+}
+.subtitle { color: var(--muted); font-size: 0.875rem; letter-spacing: 0.03em; margin-bottom: 2.5rem; }
+
+h2 {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 2.75rem; margin-bottom: 1rem;
+}
+
+code {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.82em;
+  background: var(--code-bg); padding: 0.1em 0.4em; border-radius: 3px;
+}
+
+/* ── Insight box (intro) ── */
+.insight {
+  background: var(--code-bg); border-radius: 8px;
+  padding: 1.4rem 1.6rem; margin-bottom: 0.5rem;
+}
+.insight-lead {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.2rem; font-style: italic;
+  margin-bottom: 1.1rem; line-height: 1.4;
+}
+.insight-rows { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.2rem; }
+.insight-row { display: grid; grid-template-columns: 100px 1fr; gap: 0.75rem; font-size: 0.875rem; align-items: start; }
+.insight-row code { background: none; padding: 0; font-weight: 600; font-size: 0.95em; }
+.insight-row-desc strong { color: var(--fg); }
+.insight-row-desc .sub {
+  display: block; color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem; line-height: 1.5;
+}
+.insight-body {
+  font-size: 0.875rem; line-height: 1.6;
+  border-top: 1px solid var(--border); padding-top: 0.9rem;
+}
+
+/* ── Category ── */
+.category { margin-top: 2.25rem; }
+.cat-header {
+  display: flex; align-items: baseline; gap: 0.75rem;
+  padding-bottom: 0.6rem; border-bottom: 2px solid var(--border); margin-bottom: 0.25rem;
+}
+.cat-title { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.5rem; font-weight: 400; }
+.cat-sub { font-size: 0.82rem; color: var(--muted); }
+.cr .cat-title { color: var(--c-cr); }
+.st .cat-title { color: var(--c-st); }
+.be .cat-title { color: var(--c-be); }
+.ar .cat-title { color: var(--c-ar); }
+
+/* ── Pattern row ── */
+.pattern {
+  display: grid; grid-template-columns: 175px 1fr;
+  gap: 0.75rem 1rem; padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border); align-items: start; min-width: 0;
+}
+.pattern:last-child { border-bottom: none; }
+
+.pattern-name {
+  font-weight: 600; font-size: 0.875rem;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; min-width: 0;
+}
+.cr .pattern-name { color: var(--c-cr); }
+.st .pattern-name { color: var(--c-st); }
+.be .pattern-name { color: var(--c-be); }
+.ar .pattern-name { color: var(--c-ar); }
+
+.badge {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; font-weight: 500;
+  letter-spacing: 0.04em; padding: 0.15em 0.55em; border-radius: 999px; white-space: nowrap;
+}
+.badge-lec { background: rgba(23,98,163,0.12); color: var(--c-st); }
+.badge-know { background: rgba(35,112,85,0.12); color: var(--c-be); }
+
+.pattern-body { font-size: 0.875rem; line-height: 1.55; min-width: 0; }
+.pattern-when { display: block; color: var(--muted); font-size: 0.8rem; margin-top: 0.3rem; line-height: 1.5; }
+.pattern-when em { font-style: italic; color: var(--fg); opacity: 0.8; }
+
+/* ── Classes list inside pattern ── */
+.pattern-classes {
+  margin-top: 0.65rem; padding-top: 0.55rem;
+  border-top: 1px dashed var(--border);
+}
+.cls-label {
+  font-size: 0.63rem; font-weight: 600; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--muted2);
+  display: block; margin-bottom: 0.35rem;
+}
+.cls-list { display: flex; flex-direction: column; gap: 0.25rem; }
+.cls-row {
+  display: grid; grid-template-columns: 190px 1fr;
+  gap: 0.4rem; font-size: 0.775rem; align-items: start;
+}
+.cls-row code { background: none; padding: 0; font-weight: 600; font-size: 1em; color: var(--fg); }
+.cls-row span { color: var(--muted); line-height: 1.4; }
+
+/* ── Architecture cards ── */
+.arch-cards { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.25rem; }
+.arch-card { background: var(--c-ar-bg); border-radius: 8px; padding: 1rem 1.25rem; }
+.arch-card h3 { color: var(--c-ar); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+.arch-card p { font-size: 0.875rem; line-height: 1.55; margin-bottom: 0.5rem; }
+.arch-card p:last-child { margin-bottom: 0; }
+.arch-diagram {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem;
+  color: var(--muted); line-height: 1.6;
+  margin-top: 0.5rem; padding: 0.6rem 0.8rem;
+  background: rgba(0,0,0,0.04); border-radius: 4px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .arch-diagram { background: rgba(255,255,255,0.04); }
+}
+:root[data-theme="dark"] .arch-diagram { background: rgba(255,255,255,0.04); }
+
+.arch-classes { margin-top: 0.6rem; }
+.arch-cls-row {
+  display: grid; grid-template-columns: 190px 1fr;
+  gap: 0.4rem; font-size: 0.775rem; align-items: start; margin-bottom: 0.25rem;
+}
+.arch-cls-row code { background: none; padding: 0; font-weight: 600; color: var(--fg); }
+.arch-cls-row span { color: var(--muted); line-height: 1.4; }
+
+/* Legend */
+.legend {
+  margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--border);
+  font-size: 0.775rem; color: var(--muted);
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem;
+}
+
+@media (max-width: 540px) {
+  h1 { font-size: 2rem; }
+  .pattern { grid-template-columns: 1fr; gap: 0.2rem; }
+  .insight-row { grid-template-columns: 1fr; gap: 0.1rem; }
+  .cat-header { flex-direction: column; gap: 0.15rem; align-items: flex-start; }
+  .cls-row { grid-template-columns: 1fr; gap: 0.1rem; }
+  .arch-cls-row { grid-template-columns: 1fr; gap: 0.1rem; }
+}
+.back { font-size: 0.9rem; margin-bottom: 0.5rem; }
+.back a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+/* Flytande innehållsförteckning: bara på breda skärmar, så att telefonen inte får horisontell scroll */
+[id] { scroll-margin-top: 1.5rem; }
+.toc { display: none; }
+@media (min-width: 1180px) {
+  .toc { display: block; position: fixed; top: 2.5rem; left: 16px; width: 180px; font-size: 0.85rem; }
+  .toc h4 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 1.05rem; color: var(--muted); margin-bottom: 0.5rem; }
+  .toc a { display: block; padding: 0.3rem 0.6rem; color: var(--muted); text-decoration: none; border-left: 2px solid var(--border); }
+  .toc a:hover, .toc a.active { color: var(--fg); border-left-color: var(--fg); }
+}
+
+pre { background: var(--code-bg); border-radius: 6px; padding: 0.9rem 1rem; overflow-x: auto;
+      font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.82rem; line-height: 1.5;
+      margin: 0.6rem 0 0.2rem; }
+pre code { background: none; padding: 0; }
+.note { border-left: 3px solid var(--c-cr); padding: 0.4rem 0.9rem; margin: 0.8rem 0; color: var(--muted); }
+.warn { border-left: 3px solid var(--c-cr); padding: 0.4rem 0.9rem; margin: 0.8rem 0; }
+table.t { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 0.6rem 0; }
+table.t th, table.t td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+table.t th { color: var(--muted); font-weight: 600; }
+.step { margin: 0.4rem 0 0.8rem; }
+.tbl-wrap { overflow-x: auto; margin: 0.6rem 0; }
+.tbl-wrap table.t { margin: 0; min-width: 420px; }
+</style>
+</head>
+<body>
+<nav class="toc" aria-label="Innehåll">
+  <h4>Innehåll</h4>
+  <a href="#mongo-val">Välj hur du kör MongoDB</a>
+  <a href="#mongo-installation">NuGet och connection string</a>
+  <a href="#mongo-docker">Docker</a>
+  <a href="#mongo-atlas">MongoDB Atlas</a>
+  <a href="#mongo-ip">IP-adress i Atlas</a>
+  <a href="#mongo-compass">MongoDB Compass</a>
+  <a href="#mongo-crud">CRUD</a>
+  <a href="#mongo-ide">Koppla på från IDE</a>
+  <a href="#mongo-termer">Terminologi</a>
+  <a href="#mongo-tips">Tips och tricks</a>
+</nav>
+
+<div class="container">
+  <p class="back"><a href="kurs.html?kurs=03">← Tillbaka till kurs 3</a></p>
+  <h1>MongoDB</h1>
+  <p class="subtitle">Fördjupad OOP i C# · Kurs 3 · CLO26 · YRGO</p>
+
+  <div class="category st" id="mongo-val">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Välj hur du kör MongoDB</span>
+    </div>
+    <p>Du kan köra MongoDB på två sätt. Båda används i kursen.</p>
+<div class="tbl-wrap"><table class="t"><thead><tr><th>Alternativ</th><th>När du väljer det</th><th>Connection string</th></tr></thead><tbody><tr><td><strong>Docker</strong></td><td>Du vill ha en databas på din egen dator</td><td><code>mongodb://localhost:27017</code></td></tr><tr><td><strong>MongoDB Atlas</strong></td><td>Du vill nå databasen från flera datorer, eller slipper installera något</td><td><code>mongodb+srv://...</code> från Atlas</td></tr></tbody></table></div>
+  </div>
+  <div class="category st" id="mongo-installation">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">NuGet och connection string</span>
+    </div>
+    <p>Skapa ett konsolprojekt och lägg till drivrutinen:</p>
+<pre><code>dotnet new console -n MongoLathund
+cd MongoLathund
+
+dotnet add package MongoDB.Driver
+dotnet add package Microsoft.Extensions.Configuration.Json
+dotnet add package Microsoft.Extensions.Configuration.UserSecrets
+dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables</code></pre>
+    <p>Connection strings i <code>appsettings.json</code>. Använd platshållare för lösenordet, precis som i EF-lathunden:</p>
+<pre><code>{
+  &quot;ConnectionStrings&quot;: {
+    &quot;MongoLocal&quot;: &quot;mongodb://localhost:27017&quot;,
+    &quot;MongoAtlas&quot;: &quot;mongodb+srv://&lt;användarnamn&gt;:&lt;lösenord&gt;@&lt;kluster&gt;.mongodb.net/?retryWrites=true&amp;w=majority&quot;
+  }
+}</code></pre>
+    <p>Lägg det riktiga Atlas-lösenordet i user secrets, inte i filen:</p>
+<pre><code>dotnet user-secrets init
+dotnet user-secrets set &quot;ConnectionStrings:MongoAtlas&quot; &quot;mongodb+srv://&lt;användarnamn&gt;:&lt;riktigt lösenord&gt;@&lt;kluster&gt;.mongodb.net/?retryWrites=true&amp;w=majority&quot;</code></pre>
+    <p>Läs konfigurationen och anslut:</p>
+<pre><code>var config = new ConfigurationBuilder()
+    .AddJsonFile(&quot;appsettings.json&quot;)
+    .AddUserSecrets&lt;Program&gt;(optional: true)
+    .AddEnvironmentVariables()
+    .Build();
+
+var connectionString = config.GetConnectionString(&quot;MongoLocal&quot;);
+
+// Tänk på att lägga till Try Catch där anslutningen kan misslyckas
+var client = new MongoClient(connectionString);
+var database = client.GetDatabase(&quot;webshop&quot;);
+var products = database.GetCollection&lt;Product&gt;(&quot;products&quot;);</code></pre>
+    <p class="note">Byt <code>MongoLocal</code> mot <code>MongoAtlas</code> när du vill ansluta till Atlas. Samma kod fungerar för båda.</p>
+
+  </div>
+  <div class="category st" id="mongo-docker">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Docker</span>
+    </div>
+    <p>Starta MongoDB-containern:</p>
+<pre><code>docker run --name mongo1 -p 27017:27017 -v mongo-data:/data/db -d mongo</code></pre>
+    <p>Volymen <code>mongo-data</code> gör att datan finns kvar om du tar bort containern. Kontrollera att den kör:</p>
+<pre><code>docker ps</code></pre>
+    <p class="note">Starta om en stoppad container med <code>docker start mongo1</code>.</p>
+
+  </div>
+  <div class="category st" id="mongo-atlas">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">MongoDB Atlas</span>
+    </div>
+    <h3>1. Registrera dig</h3>
+    <p>Gå till <strong>mongodb.com/cloud/atlas</strong> och skapa ett konto. Gratisnivån (M0) räcker för kursen.</p>
+    <h3>2. Skapa ett kluster</h3>
+    <p>Välj <strong>Build a Database</strong> → <strong>M0 Free</strong> och välj ett område nära dig. Klustret tar några minuter att skapa.</p>
+    <h3>3. Skapa en databasanvändare</h3>
+    <p>Under <strong>Security</strong> → <strong>Database Access</strong> klickar du på <strong>Add New Database User</strong>. Välj användarnamn och ett starkt lösenord. Det är inte ditt kontolösenord.</p>
+    <p class="warn">Spara lösenordet direkt, till exempel i en lösenordshanterare. Atlas visar det inte igen.</p>
+    <h3>4. Hämta connection string</h3>
+    <p>Klicka på <strong>Connect</strong> på klustret → <strong>Drivers</strong> → välj C# och kopiera strängen. Byt ut <code>&lt;password&gt;</code> mot ditt lösenord, och lägg det i user secrets (se nedan).</p>
+<pre><code>mongodb+srv://&lt;användarnamn&gt;:&lt;lösenord&gt;@&lt;kluster&gt;.mongodb.net/?retryWrites=true&amp;w=majority</code></pre>
+  </div>
+  <div class="category st" id="mongo-ip">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">IP-adress i Atlas</span>
+    </div>
+    <p>Atlas släpper bara in anslutningar från IP-adresser som du godkänt. Det är ett skydd. Så här lägger du till din egen adress:</p>
+    <p><strong>Security</strong> → <strong>Network Access</strong> → <strong>Add IP Address</strong> → <strong>Add Current IP Address</strong> → <strong>Confirm</strong>.</p>
+    <p>Det är din egen IP-adress. Använd den hemma och på skolan om den inte ändras. Har adressen ändrats, lägg till den nya.</p>
+    <p class="warn"><strong>På lektionerna</strong> lägger vi till <code>0.0.0.0/0</code>, som betyder alla adresser. Det förenklar för alla. Ta bort posten efter lektionen, annars kan vem som helst på internet försöka logga in mot klustret. Användaren och lösenordet skyddar fortfarande databasen.</p>
+
+  </div>
+  <div class="category st" id="mongo-compass">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">MongoDB Compass</span>
+    </div>
+    <p>Compass är ett grafiskt verktyg för MongoDB. Ladda ner det från <strong>mongodb.com/try/download/compass</strong> och installera det.</p>
+    <p>Öppna Compass och klistra in connection string i fältet <em>URI</em>. Klicka sedan på <strong>Connect</strong>.</p>
+    <p>Compass visar databaser, collections och dokument. Du kan också köra frågor och ändra dokument för hand.</p>
+
+  </div>
+  <div class="category st" id="mongo-crud">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">CRUD</span>
+    </div>
+    <p>Modellen är en vanlig C#-klass. MongoDB lagrar den som ett dokument. <code>Id</code> blir <code>_id</code>.</p>
+<pre><code>using MongoDB.Bson;
+
+public class Product
+{
+    public ObjectId Id { get; set; }
+    public string Name { get; set; } = &quot;&quot;;
+    public decimal Price { get; set; }
+}</code></pre>    <div class="arch-cards">
+      <div class="arch-card">
+        <h3>Create</h3>
+        <p>Lägg till ett dokument. <code>_id</code> skapas automatiskt om du inte sätter det.</p>
+        <pre><code>products.InsertOne(new Product { Name = &quot;Kaffe&quot;, Price = 49m });</code></pre>
+      </div>
+      <div class="arch-card">
+        <h3>Read</h3>
+        <p>Hämta med ett filter. <code>Find</code> returnerar en lista när du anropar <code>ToList()</code>.</p>
+        <pre><code>var billiga = products.Find(p =&gt; p.Price &lt; 100).ToList();</code></pre>
+      </div>
+      <div class="arch-card">
+        <h3>Update</h3>
+        <p>Ange vilket dokument som ska ändras och vilket fält som ska få nytt värde.</p>
+        <pre><code>products.UpdateOne(
+    p =&gt; p.Name == &quot;Kaffe&quot;,
+    Builders&lt;Product&gt;.Update.Set(p =&gt; p.Price, 39m));</code></pre>
+      </div>
+      <div class="arch-card">
+        <h3>Delete</h3>
+        <p>Ta bort det första dokument som matchar filtret.</p>
+        <pre><code>products.DeleteOne(p =&gt; p.Name == &quot;Kaffe&quot;);</code></pre>
+      </div>
+    </div>
+    <p class="note">Till skillnad från EF Core sparar varje operation direkt. Det finns inget <code>SaveChanges()</code>.</p>
+
+  </div>
+  <div class="category st" id="mongo-ide">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Koppla på från IDE</span>
+    </div>
+    <p>För MongoDB är Compass det enklaste verktyget. I VS Code kan du också använda tillägget.</p>
+    <h3>VS Code</h3>
+    <p>Installera tillägget <em>MongoDB for VS Code</em> av MongoDB. Lägg till en anslutning med connection string, och du ser databaserna i sidopanelen.</p>
+    <h3>Visual Studio och Rider</h3>
+    <p>Här finns inget inbyggt MongoDB-verktyg i standardinstallationen. Använd Compass vid sidan av.</p>
+
+  </div>
+  <div class="category st" id="mongo-termer">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Terminologi</span>
+    </div>
+<div class="tbl-wrap"><table class="t"><thead><tr><th>Term</th><th>Betydelse</th></tr></thead><tbody><tr><td><strong>Dokument</strong></td><td>En post i MongoDB. Motsvarar en rad, men är ett objekt med fält</td></tr><tr><td><strong>Collection</strong></td><td>En samling dokument. Motsvarar en tabell</td></tr><tr><td><strong>Database</strong></td><td>En samling collections</td></tr><tr><td><strong>BSON</strong></td><td>Det binära formatet som dokumenten lagras i. Liknar JSON</td></tr><tr><td><strong>_id</strong></td><td>Dokumentets unika nyckel. Skapas automatiskt om du inte sätter den</td></tr><tr><td><strong>Kluster</strong></td><td>En grupp servrar som kör databasen. Atlas ger dig ett</td></tr><tr><td><strong>Connection string</strong></td><td>Text som beskriver var och hur du ansluter</td></tr><tr><td><strong>IP access list</strong></td><td>Lista över adresser som får ansluta till Atlas</td></tr></tbody></table></div>
+  </div>
+  <div class="category st" id="mongo-tips">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Tips och tricks</span>
+    </div>
+    <ul>
+      <li><strong>Connection string fungerar inte mot Atlas?</strong> Kontrollera först att din IP-adress finns i Network Access.</li>
+      <li><strong>Ingen data syns?</strong> Kontrollera databasens namn. Det måste vara samma i koden och i Compass.</li>
+      <li><strong>Lösenord i git:</strong> lägg dem i user secrets eller miljövariabler, aldrig i <code>appsettings.json</code>.</li>
+      <li><strong>Lägg inte till <code>0.0.0.0/0</code> och glöm bort den.</strong> Ta bort posten efter lektionen.</li>
+      <li><strong>Använd <code>_id</code> som nyckel.</strong> Sök på det när du vill hämta ett specifikt dokument.</li>
+    </ul>
+
+  </div>
+
+</div>
+
+<script>
+(() => {
+  const links = [...document.querySelectorAll('.toc a')];
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  links.forEach(l => {
+    const target = document.querySelector(l.getAttribute('href'));
+    if (target) io.observe(target);
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -47,6 +47,16 @@
    "icon": "🗂️",
    "label": "Lathund — alla 23 designmönster",
    "href": "designmonster-lathund.html"
+  },
+  {
+   "icon": "🗄️",
+   "label": "Lathund — Entity Framework Core",
+   "href": "ef-core-lathund.html"
+  },
+  {
+   "icon": "🍃",
+   "label": "Lathund — MongoDB",
+   "href": "mongodb-lathund.html"
   }
  ],
  "betyg": {
