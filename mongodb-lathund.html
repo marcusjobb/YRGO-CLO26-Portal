@@ -264,10 +264,11 @@ table.t th { color: var(--muted); font-weight: 600; }
     </div>
     <p>Skapa ett konsolprojekt och lägg till drivrutinen:</p>
 <pre><code>dotnet new console -n MongoLathund
-cd MongoLathund
-
-dotnet add package MongoDB.Driver
-dotnet add package Microsoft.Extensions.Configuration.Json
+cd MongoLathund</code></pre>
+    <p>Kör den här för MongoDB-drivrutinen:</p>
+<pre><code>dotnet add package MongoDB.Driver</code></pre>
+    <p>Kör den här för att läsa konfigurationen (JSON, user secrets och miljövariabler):</p>
+<pre><code>dotnet add package Microsoft.Extensions.Configuration.Json
 dotnet add package Microsoft.Extensions.Configuration.UserSecrets
 dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables</code></pre>
     <p>Connection strings i <code>appsettings.json</code>. Använd platshållare för lösenordet, precis som i EF-lathunden:</p>

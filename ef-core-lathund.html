@@ -267,16 +267,20 @@ table.t th { color: var(--muted); font-weight: 600; }
     </div>
     <p>Skapa ett konsolprojekt och lägg till paketen. Paketen installeras med senaste stabila version som passar ditt .NET-projekt. Ange ingen version själv.</p>
 <pre><code>dotnet new console -n EfLathund
-cd EfLathund
-
-dotnet add package Microsoft.EntityFrameworkCore.Sqlite
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add package Pomelo.EntityFrameworkCore.MySql
-dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet add package Microsoft.Extensions.Configuration.Json
+cd EfLathund</code></pre>
+    <p>Kör den här för att läsa konfigurationen (JSON, user secrets och miljövariabler):</p>
+<pre><code>dotnet add package Microsoft.Extensions.Configuration.Json
 dotnet add package Microsoft.Extensions.Configuration.UserSecrets
 dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables</code></pre>
-    <p>Ett paket för varje databas du använder. Du behöver bara ta med de du faktiskt använder.</p>
+    <p>Kör den här för att använda Entity Framework Core med verktygen för migrationer:</p>
+<pre><code>dotnet add package Microsoft.EntityFrameworkCore.Design</code></pre>
+    <p>Kör den här för SQLite (en fil, ingen server):</p>
+<pre><code>dotnet add package Microsoft.EntityFrameworkCore.Sqlite</code></pre>
+    <p>Kör den här för SQL Server (LocalDB eller Docker):</p>
+<pre><code>dotnet add package Microsoft.EntityFrameworkCore.SqlServer</code></pre>
+    <p>Kör den här för MySQL:</p>
+<pre><code>dotnet add package Pomelo.EntityFrameworkCore.MySql</code></pre>
+    <p>Ett paket per databas räcker. Du behöver bara ta med de du faktiskt använder.</p>
     <p class="note"><strong>Pomelo.EntityFrameworkCore.MySql</strong> är ett community-paket för MySQL och används här i stället för Oracles paket. Det är ett vanligt val.</p>
     <p>Installera <strong>dotnet-ef</strong> en gång på datorn. Det är verktyget som kör migrationer:</p>
 <pre><code>dotnet tool install --global dotnet-ef</code></pre>
