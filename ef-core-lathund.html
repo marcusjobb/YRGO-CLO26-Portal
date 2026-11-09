@@ -235,9 +235,11 @@ table.t th { color: var(--muted); font-weight: 600; }
 <nav class="toc" aria-label="Innehåll">
   <h4>Innehåll</h4>
   <a href="#ef-val">Välj databas</a>
-  <a href="#ef-installation">Installation och verktyg</a>
-  <a href="#ef-anslutning">Connection string i JSON</a>
-  <a href="#ef-databas">Databasen: Docker eller LocalDB</a>
+  <a href="#ef-projekt">Skapa projektet</a>
+  <a href="#ef-sqlite">SQLite</a>
+  <a href="#ef-sqlserver">SQL Server</a>
+  <a href="#ef-mysql">MySQL</a>
+  <a href="#ef-hemligheter">Hemligheter</a>
   <a href="#ef-kontext">DbContext och modell</a>
   <a href="#ef-crud">CRUD</a>
   <a href="#ef-migrationer">Migrationer</a>
@@ -256,100 +258,129 @@ table.t th { color: var(--muted); font-weight: 600; }
     <div class="cat-header" style="margin-top:2.25rem;">
       <span class="cat-title">Välj databas</span>
     </div>
-    <p>EF Core fungerar med flera databaser. I kursen använder vi tre. Välj den som passar din dator.</p>
+    <p>EF Core fungerar med flera databaser. Varje avsnitt nedan har sina egna paket, sin connection string och sitt eget sätt att köra databasen. Välj det du ska använda.</p>
 <div class="tbl-wrap"><table class="t"><thead><tr><th>Databas</th><th>När du använder den</th><th>Hur den körs</th></tr></thead><tbody><tr><td><strong>SQLite</strong></td><td>Snabbast att komma igång med. En fil på disken, ingen server.</td><td>Ingen installation</td></tr><tr><td><strong>SQL Server</strong></td><td>Om du kör Windows och Visual Studio.</td><td>LocalDB (Windows) eller Docker</td></tr><tr><td><strong>MySQL</strong></td><td>Om du vill jobba med MySQL, till exempel i kurs 2.</td><td>Docker</td></tr></tbody></table></div>
-    <p class="note">Har du Windows och Visual Studio: använd <strong>LocalDB</strong>. Annars: använd <strong>Docker</strong>. Se avsnittet "Databasen" nedan.</p>
+    <p class="note">Har du Windows och Visual Studio: använd <strong>LocalDB</strong> under SQL Server. Annars: använd <strong>Docker</strong>.</p>
 
   </div>
-  <div class="category st" id="ef-installation">
+  <div class="category st" id="ef-projekt">
     <div class="cat-header" style="margin-top:2.25rem;">
-      <span class="cat-title">Installation och verktyg</span>
+      <span class="cat-title">Skapa projektet</span>
     </div>
-    <p>Skapa ett konsolprojekt och lägg till paketen. Paketen installeras med senaste stabila version som passar ditt .NET-projekt. Ange ingen version själv.</p>
+    <p>Skapa ett konsolprojekt. Det gör du en gång, oavsett databas:</p>
 <pre><code>dotnet new console -n EfLathund
 cd EfLathund</code></pre>
-    <p>Kör den här för att läsa konfigurationen (JSON, user secrets och miljövariabler):</p>
-<pre><code>dotnet add package Microsoft.Extensions.Configuration.Json
-dotnet add package Microsoft.Extensions.Configuration.UserSecrets
-dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables</code></pre>
-    <p>Kör den här för att använda Entity Framework Core med verktygen för migrationer:</p>
-<pre><code>dotnet add package Microsoft.EntityFrameworkCore.Design</code></pre>
-    <p>Kör den här för SQLite (en fil, ingen server):</p>
-<pre><code>dotnet add package Microsoft.EntityFrameworkCore.Sqlite</code></pre>
-    <p>Kör den här för SQL Server (LocalDB eller Docker):</p>
-<pre><code>dotnet add package Microsoft.EntityFrameworkCore.SqlServer</code></pre>
-    <p>Kör den här för MySQL:</p>
-<pre><code>dotnet add package Pomelo.EntityFrameworkCore.MySql</code></pre>
-    <p>Ett paket per databas räcker. Du behöver bara ta med de du faktiskt använder.</p>
-    <p class="note"><strong>Pomelo.EntityFrameworkCore.MySql</strong> är ett community-paket för MySQL och används här i stället för Oracles paket. Det är ett vanligt val.</p>
     <p>Installera <strong>dotnet-ef</strong> en gång på datorn. Det är verktyget som kör migrationer:</p>
 <pre><code>dotnet tool install --global dotnet-ef</code></pre>
     <p>Kontrollera att det fungerar:</p>
 <pre><code>dotnet ef --version</code></pre>
   </div>
-  <div class="category st" id="ef-anslutning">
+  <div class="category st" id="ef-sqlite">
     <div class="cat-header" style="margin-top:2.25rem;">
-      <span class="cat-title">Connection string i JSON</span>
+      <span class="cat-title">SQLite</span>
     </div>
-    <p>Connection string berättar för EF Core var databasen finns och hur du loggar in. Lägg den i <code>appsettings.json</code>. Skriv platshållare där lösenordet ska vara. Riktiga lösenord hör inte hemma i filen.</p>
+    <h3>Paket</h3>
+    <p>Kör först konfigurationspaketen:</p>
+<pre><code>dotnet add package Microsoft.Extensions.Configuration.Json
+dotnet add package Microsoft.Extensions.Configuration.UserSecrets
+dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables</code></pre>
+    <p>Sedan Design och SQLite-providern:</p>
+<pre><code>dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite</code></pre>
+    <h3>Connection string</h3>
+    <p>Lägg till i <code>appsettings.json</code>:</p>
 <pre><code>{
   &quot;ConnectionStrings&quot;: {
-    &quot;SqlServer&quot;: &quot;Server=localhost,1433;Database=Webshop;User Id=sa;Password=&lt;lösenord&gt;;TrustServerCertificate=True&quot;,
-    &quot;LocalDb&quot;: &quot;Server=(localdb)\\MSSQLLocalDB;Database=Webshop;Trusted_Connection=True;TrustServerCertificate=True&quot;,
-    &quot;MySql&quot;: &quot;Server=localhost;Port=3306;Database=webshop;User=root;Password=&lt;lösenord&gt;&quot;,
     &quot;Sqlite&quot;: &quot;Data Source=webshop.db&quot;
   }
 }</code></pre>
-    <p>Sätt <strong>Copy to Output Directory</strong> på <code>appsettings.json</code> till <em>Copy if newer</em>, så att filen följer med när programmet körs.</p>
-    <h3>Hemligheter: user secrets</h3>
-    <p>User secrets sparas utanför projektmappen, så de hamnar inte i git. Det är här lösenordet ska ligga:</p>
+    <h3>Kör</h3>
+    <p>Ingen server behövs. Filen <code>webshop.db</code> skapas i projektmappen när du kör migrationerna.</p>
+    <h3>OnConfiguring</h3>
+<pre><code>optionsBuilder.UseSqlite(config.GetConnectionString(&quot;Sqlite&quot;));</code></pre>
+  </div>
+  <div class="category st" id="ef-sqlserver">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">SQL Server</span>
+    </div>
+    <h3>Paket</h3>
+    <p>Kör först konfigurationspaketen:</p>
+<pre><code>dotnet add package Microsoft.Extensions.Configuration.Json
+dotnet add package Microsoft.Extensions.Configuration.UserSecrets
+dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables</code></pre>
+    <p>Sedan Design och SQL Server-providern:</p>
+<pre><code>dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer</code></pre>
+    <h3>Connection string</h3>
+    <p>Lägg till i <code>appsettings.json</code>. Lösenordet hör inte hemma i filen, se avsnittet Hemligheter:</p>
+<pre><code>{
+  &quot;ConnectionStrings&quot;: {
+    &quot;SqlServer&quot;: &quot;Server=localhost,1433;Database=Webshop;User Id=sa;Password=&lt;lösenord&gt;;TrustServerCertificate=True&quot;,
+    &quot;LocalDb&quot;: &quot;Server=(localdb)\\MSSQLLocalDB;Database=Webshop;Trusted_Connection=True;TrustServerCertificate=True&quot;
+  }
+}</code></pre>
+    <h3>Kör: Windows och Visual Studio (LocalDB)</h3>
+    <p>LocalDB följer med Visual Studio. Ingen installation behövs. Använd connection string <code>LocalDb</code>.</p>
+    <h3>Kör: Docker</h3>
+<pre><code>docker run -e &quot;ACCEPT_EULA=Y&quot; -e &quot;MSSQL_SA_PASSWORD=&lt;starkt lösenord&gt;&quot; -p 1433:1433 --name sql1 -d mcr.microsoft.com/mssql/server:2022-latest</code></pre>
+    <p>Lösenordet måste vara minst 8 tecken och innehålla stora och små bokstäver, siffror och ett specialtecken. Det är samma lösenord som i connection string.</p>
+    <p>Kontrollera att containern kör:</p>
+<pre><code>docker ps</code></pre>
+    <p class="note">Starta en stoppad container med <code>docker start sql1</code>.</p>
+    <h3>OnConfiguring</h3>
+<pre><code>optionsBuilder.UseSqlServer(config.GetConnectionString(&quot;SqlServer&quot;));
+// eller, med LocalDB:
+// optionsBuilder.UseSqlServer(config.GetConnectionString(&quot;LocalDb&quot;));</code></pre>
+  </div>
+  <div class="category st" id="ef-mysql">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">MySQL</span>
+    </div>
+    <h3>Paket</h3>
+    <p>Kör först konfigurationspaketen:</p>
+<pre><code>dotnet add package Microsoft.Extensions.Configuration.Json
+dotnet add package Microsoft.Extensions.Configuration.UserSecrets
+dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables</code></pre>
+    <p>Sedan Design och MySQL-providern. <strong>Pomelo.EntityFrameworkCore.MySql</strong> är ett community-paket och används här i stället för Oracles paket:</p>
+<pre><code>dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Pomelo.EntityFrameworkCore.MySql</code></pre>
+    <h3>Connection string</h3>
+    <p>Lägg till i <code>appsettings.json</code>:</p>
+<pre><code>{
+  &quot;ConnectionStrings&quot;: {
+    &quot;MySql&quot;: &quot;Server=localhost;Port=3306;Database=webshop;User=root;Password=&lt;lösenord&gt;&quot;
+  }
+}</code></pre>
+    <h3>Kör: Docker</h3>
+<pre><code>docker run --name mysql1 -e MYSQL_ROOT_PASSWORD=&lt;lösenord&gt; -p 3306:3306 -d mysql:8.4</code></pre>
+    <p>Kontrollera att containern kör med <code>docker ps</code>. Starta en stoppad container med <code>docker start mysql1</code>.</p>
+    <h3>OnConfiguring</h3>
+<pre><code>optionsBuilder.UseMySql(config.GetConnectionString(&quot;MySql&quot;), ServerVersion.AutoDetect(config.GetConnectionString(&quot;MySql&quot;)));</code></pre>
+  </div>
+  <div class="category st" id="ef-hemligheter">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Hemligheter</span>
+    </div>
+    <p>Lösenord ska inte ligga i <code>appsettings.json</code>, eftersom filen kan hamna i git. Gäller för alla databaser.</p>
+    <h3>User secrets</h3>
+    <p>Sparas utanför projektmappen, så de hamnar inte i git. Exemplet gäller SQL Server. Byt nyckelnamn för din databas:</p>
 <pre><code>dotnet user-secrets init
 dotnet user-secrets set &quot;ConnectionStrings:SqlServer&quot; &quot;Server=localhost,1433;Database=Webshop;User Id=sa;Password=&lt;ditt riktiga lösenord&gt;;TrustServerCertificate=True&quot;</code></pre>
-    <h3>Hemligheter: miljövariabler</h3>
-    <p>Alternativet är en miljövariabel. Två understreck (<code>__</code>) betyder ett nivåsteg i JSON:</p>
+    <h3>Miljövariabler</h3>
+    <p>Två understreck (<code>__</code>) betyder ett nivåsteg i JSON:</p>
 <pre><code># PowerShell
 $env:ConnectionStrings__SqlServer = &quot;Server=localhost,1433;Database=Webshop;User Id=sa;Password=&lt;lösenord&gt;;TrustServerCertificate=True&quot;
 
 # bash
 export ConnectionStrings__SqlServer=&quot;Server=localhost,1433;Database=Webshop;User Id=sa;Password=&lt;lösenord&gt;;TrustServerCertificate=True&quot;</code></pre>
-    <p>Så läser programmet konfigurationen. Filen, hemligheterna och miljövariablerna läses i den ordningen, och den senare vinner:</p>
-<pre><code>var config = new ConfigurationBuilder()
-    .AddJsonFile(&quot;appsettings.json&quot;)
-    .AddUserSecrets&lt;Program&gt;(optional: true)
-    .AddEnvironmentVariables()
-    .Build();
-
-var connectionString = config.GetConnectionString(&quot;SqlServer&quot;);
-if (string.IsNullOrEmpty(connectionString))
-{
-    // Tänk på att lägga till Try Catch där något kan gå fel
-    Console.WriteLine(&quot;Hittade ingen connection string. Kontrollera appsettings.json.&quot;);
-    return;
-}</code></pre>
-  </div>
-  <div class="category st" id="ef-databas">
-    <div class="cat-header" style="margin-top:2.25rem;">
-      <span class="cat-title">Databasen: Docker eller LocalDB</span>
-    </div>
-    <h3>Windows och Visual Studio: LocalDB</h3>
-    <p>LocalDB följer med Visual Studio. Ingen installation behövs. Använd connection string <code>LocalDb</code> ovan.</p>
-    <h3>Annars: Docker</h3>
-    <p>Starta SQL Server:</p>
-<pre><code>docker run -e &quot;ACCEPT_EULA=Y&quot; -e &quot;MSSQL_SA_PASSWORD=&lt;starkt lösenord&gt;&quot; -p 1433:1433 --name sql1 -d mcr.microsoft.com/mssql/server:2022-latest</code></pre>
-    <p>Lösenordet måste vara minst 8 tecken och innehålla stora och små bokstäver, siffror och ett specialtecken. Det är samma lösenord som i din connection string.</p>
-    <p>Starta MySQL:</p>
-<pre><code>docker run --name mysql1 -e MYSQL_ROOT_PASSWORD=&lt;lösenord&gt; -p 3306:3306 -d mysql:8.4</code></pre>
-    <p>Kontrollera att containrarna kör:</p>
-<pre><code>docker ps</code></pre>
-    <p class="note">Containrar stoppas inte av sig själva när datorn startas om. Starta dem med <code>docker start sql1</code> eller <code>docker start mysql1</code>. Vill du behålla datan efter <code>docker rm</code> ska du lägga till en volym med <code>-v</code>.</p>
-    <p><strong>SQLite</strong> behöver ingen server. Connection string <code>Sqlite</code> skapar filen <code>webshop.db</code> i projektmappen.</p>
+    <p>Kopiera <code>appsettings.json</code> till output: sätt <strong>Copy to Output Directory</strong> till <em>Copy if newer</em>.</p>
 
   </div>
   <div class="category st" id="ef-kontext">
     <div class="cat-header" style="margin-top:2.25rem;">
       <span class="cat-title">DbContext och modell</span>
     </div>
-    <p>En modell är en vanlig C#-klass. <code>DbContext</code> är klassen som pratar med databasen. <code>DbSet&lt;T&gt;</code> är en tabell.</p>
+    <p>En modell är en vanlig C#-klass. <code>DbContext</code> är klassen som pratar med databasen. <code>DbSet&lt;T&gt;</code> är en tabell. Välj den rad i <code>OnConfiguring</code> som matchar din databas från avsnittet ovan.</p>
 <pre><code>public class Product
 {
     public int Id { get; set; }
@@ -369,11 +400,10 @@ public class WebshopContext : DbContext
             .AddEnvironmentVariables()
             .Build();
 
-        // Välj EN rad beroende på databas. Kommentera bort de andra.
-        optionsBuilder.UseSqlServer(config.GetConnectionString(&quot;SqlServer&quot;));
-        // optionsBuilder.UseSqlServer(config.GetConnectionString(&quot;LocalDb&quot;));
+        // Välj EN rad, beroende på din databas:
+        optionsBuilder.UseSqlite(config.GetConnectionString(&quot;Sqlite&quot;));
+        // optionsBuilder.UseSqlServer(config.GetConnectionString(&quot;SqlServer&quot;));
         // optionsBuilder.UseMySql(config.GetConnectionString(&quot;MySql&quot;), ServerVersion.AutoDetect(config.GetConnectionString(&quot;MySql&quot;)));
-        // optionsBuilder.UseSqlite(config.GetConnectionString(&quot;Sqlite&quot;));
     }
 }</code></pre>
     <p class="note">Konstruktorn är tom, och det är med avsikt. Migrationsverktyget (<code>dotnet ef</code>) behöver kunna skapa kontexten utan argument. Därför läser vi konfigurationen i <code>OnConfiguring</code>.</p>
@@ -441,13 +471,13 @@ dotnet ef database update</code></pre>
     <div class="cat-header" style="margin-top:2.25rem;">
       <span class="cat-title">Koppla på från IDE</span>
     </div>
-    <p>Ibland vill du se tabellerna direkt. Här är tre sätt. Använd samma värden som i din connection string.</p>
+    <p>Ibland vill du se tabellerna direkt. Använd samma värden som i din connection string.</p>
     <h3>Visual Studio</h3>
     <p><strong>Visa</strong> → <strong>SQL Server Object Explorer</strong>. Högerklicka på <em>SQL Server</em> → <em>Add SQL Server</em>. Ange <code>(localdb)\MSSQLLocalDB</code> för LocalDB, eller <code>localhost,1433</code> för Docker.</p>
     <h3>Rider</h3>
     <p><strong>View</strong> → <strong>Tool Windows</strong> → <strong>Database</strong>. Klicka på <em>+</em> → <em>Data Source</em> → <em>SQL Server</em> eller <em>MySQL</em>. Fyll i host, port, användare och lösenord.</p>
     <h3>VS Code</h3>
-    <p>Installera tilläggen <em>SQL Server (mssql)</em> av Microsoft och <em>MySQL</em>. Lägg till en anslutning med host, port, användare och lösenord.</p>
+    <p>Installera tilläggen <em>SQL Server (mssql)</em> av Microsoft och <em>MySQL</em> av cweijan. Lägg till en anslutning med host, port, användare och lösenord.</p>
 
   </div>
   <div class="category st" id="ef-verktyg">
