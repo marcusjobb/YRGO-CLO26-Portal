@@ -514,7 +514,14 @@
      }
     }
    ],
-   "publish": "2026-11-02"
+   "publish": "2026-11-02",
+   "tentafragor": [
+    {
+     "text": "Tentafrågor — klasser, arv, abstract och interface",
+     "href": "00_klasser_och_objekt/tentafragor/00_fragor_oop.md",
+     "publish": "2026-11-02"
+    }
+   ]
   },
   {
    "nr": 46,
@@ -926,8 +933,15 @@
      }
     }
    ],
-   "publish": "2026-11-09",
-   "notering": "Måndag: EF Core på förmiddagen, MongoDB med enkel CRUD på eftermiddagen, genomgång av Inlämning 1. Onsdag: designmönster som snälla verktyg."
+   "publish": "2026-11-06",
+   "notering": "Måndag: EF Core på förmiddagen, MongoDB med enkel CRUD på eftermiddagen, genomgång av Inlämning 1. Onsdag: designmönster som snälla verktyg.",
+   "tentafragor": [
+    {
+     "text": "Tentafrågor — ORM, NoSQL och entiteter",
+     "href": "01_databaskopplingar/tentafragor/01_fragor_orm_nosql.md",
+     "publish": "2026-11-06"
+    }
+   ]
   },
   {
    "nr": 47,
@@ -935,7 +949,7 @@
    "tid": "",
    "mal": "Känner igen code smells, kan refaktorera med Extract Method och Rename och granska kod med en checklista.",
    "amnen": [],
-   "publish": "2026-11-16",
+   "publish": "2026-11-13",
    "notering": "Code smells, SOLID, DRY, KISS, kodgranskning. Onsdag: regex. Kanban introduceras. EF-träningen fortsätter i läxorna."
   },
   {
@@ -944,7 +958,7 @@
    "tid": "",
    "mal": "Känner igen dynamic, pattern matching, tuples, indexers, ?. ?? ??=, extension methods, records och async/await.",
    "amnen": [],
-   "publish": "2026-11-23",
+   "publish": "2026-11-20",
    "notering": "Inte tentastoff. Inlämning 2 (grupparbete) delas ut mån 23 nov. Bufferten i kursen: plats för EF, MongoDB och algoritm-halvdagen [ÖPPEN]."
   },
   {
@@ -977,8 +991,314 @@
      "publish": "2026-11-27"
     }
    ],
-   "publish": "2026-11-30",
+   "publish": "2026-11-27",
    "notering": "Mån 30 nov: repetition av databaser och designmönster. Tenta ons 2 dec 09–12, sedan grupppresentationer. Inlämning 2: sikta på att vara klar fre 4 dec, sista deadline sön 6 dec (extra tid för buggar)."
   }
- ]
+ ],
+ "bedomning": {
+  "kalla": "yrgo/docs/Kursplaner CLO25-27 ver 2025-12-03 wip.pdf (sid 7–9), godkänd 2025-12-03",
+  "betygsprinciper": {
+   "G": "Samtliga lärandemål är uppnådda.",
+   "VG": "Kraven för G är uppfyllda och samtliga VG-kriterier för kursens lärandemål är uppfyllda."
+  },
+  "examinationsregel": "Tentan examinerar endast G-nivå (inga programmerings- eller resonemangsuppgifter). VG bedöms enbart i inlämningsuppgifter.",
+  "tenta": {
+   "namn": "Tenta (ons 2 dec)",
+   "examinerar": "G för K1–K6"
+  },
+  "inlamningar": [
+   {
+    "namn": "Inlämning 1 — Hotel Grandioso (individuell, sön 22 nov)",
+    "individuell": true,
+    "examinerar": [
+     "F1",
+     "F2",
+     "F3",
+     "C4 (G)"
+    ]
+   },
+   {
+    "namn": "Inlämning 2 — grupparbete (sön 6 dec)",
+    "individuell": false,
+    "examinerar": [
+     "F1",
+     "F2",
+     "F3",
+     "F4 (resonemang)",
+     "F5 (resonemang)",
+     "F6 (peer review)",
+     "F7",
+     "F8",
+     "C1",
+     "C2",
+     "C3 (peer review, G+VG)",
+     "C4",
+     "K5 (VG)"
+    ],
+    "inlamning": {
+     "grupp": "En person i gruppen lämnar in: zip av hela projektet (nedladdat från GitHub) + grupplista (medlemmar) + granskningarna (review-feedback.md).",
+     "individuellt": "Alla i gruppen lämnar in egen REFLEKTION.md, som svarar på alla frågor.",
+     "databas": "EF Core (SQLite, MySQL/serverdatabas) eller MongoDB. ADO.NET är inte tillåtet.",
+     "serverdatabas": "Docker-fil eller inloggning/connectionstring skickas som kommentar i Google Classroom, aldrig i koden.",
+     "gränssnitt": "Konsol, Blazor eller MVC (fritt val)"
+    }
+   }
+  ],
+  "mal": [
+   {
+    "id": "K1",
+    "typ": "Kunskap",
+    "mal": "Redogöra för skillnader och likheter mellan fildatabas, minnesdatabas och databasserver.",
+    "G": {
+     "examineras_i": [
+      "Tenta (ons 2 dec)"
+     ]
+    }
+   },
+   {
+    "id": "K2",
+    "typ": "Kunskap",
+    "mal": "Ange de vanligaste ramverken för databaskopplingar i C#.",
+    "G": {
+     "examineras_i": [
+      "Tenta (ons 2 dec)"
+     ]
+    }
+   },
+   {
+    "id": "K3",
+    "typ": "Kunskap",
+    "mal": "Beskriva konceptet refactoring av kod.",
+    "G": {
+     "examineras_i": [
+      "Tenta (ons 2 dec)"
+     ]
+    }
+   },
+   {
+    "id": "K4",
+    "typ": "Kunskap",
+    "mal": "Beskriva hur underhållbar kod skrivs.",
+    "G": {
+     "examineras_i": [
+      "Tenta (ons 2 dec)"
+     ]
+    }
+   },
+   {
+    "id": "K5",
+    "typ": "Kunskap",
+    "mal": "Redogöra för designmönster, deras kännetecken och styrkor.",
+    "G": {
+     "examineras_i": [
+      "Tenta (ons 2 dec)"
+     ]
+    },
+    "VG": {
+     "kriterium": "Kan nyanserat diskutera och redogöra för designmönster, deras kännetecken och styrkor.",
+     "examineras_i": [
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ]
+    }
+   },
+   {
+    "id": "K6",
+    "typ": "Kunskap",
+    "mal": "Redogöra för terminologi i agila metoder såsom Kanban.",
+    "G": {
+     "examineras_i": [
+      "Tenta (ons 2 dec)"
+     ]
+    }
+   },
+   {
+    "id": "F1",
+    "typ": "Färdighet",
+    "mal": "Koppla applikationer till fildatabaser, minnesdatabaser och databasserver.",
+    "G": {
+     "examineras_i": [
+      "Inlämning 1 — Hotel Grandioso (individuell, sön 22 nov)",
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ]
+    }
+   },
+   {
+    "id": "F2",
+    "typ": "Färdighet",
+    "mal": "Använda befintliga ramverk för databaskopplingar.",
+    "G": {
+     "examineras_i": [
+      "Inlämning 1 — Hotel Grandioso (individuell, sön 22 nov)",
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ]
+    }
+   },
+   {
+    "id": "F3",
+    "typ": "Färdighet",
+    "mal": "Utveckla underhållbar, återanvändbar och välkommenterad kod.",
+    "G": {
+     "examineras_i": [
+      "Inlämning 1 — Hotel Grandioso (individuell, sön 22 nov)",
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ]
+    }
+   },
+   {
+    "id": "F4",
+    "typ": "Färdighet",
+    "mal": "Granska befintlig kodbas utifrån designmönster och clean code-konceptet.",
+    "G": {
+     "examineras_i": [
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ],
+     "form": "Resonemangsdel (skriftlig)"
+    }
+   },
+   {
+    "id": "F5",
+    "typ": "Färdighet",
+    "mal": "Genomföra refactoring av befintlig kod.",
+    "G": {
+     "examineras_i": [
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ],
+     "form": "Resonemangsdel (skriftlig)"
+    }
+   },
+   {
+    "id": "F6",
+    "typ": "Färdighet",
+    "mal": "Lösa problem i datalogiska sammanhang genom att bryta ner problemen i samarbete med andra.",
+    "G": {
+     "examineras_i": [
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ],
+     "form": "Peer review: kommentera och köra code review på annans kod"
+    }
+   },
+   {
+    "id": "F7",
+    "typ": "Färdighet",
+    "mal": "Planera, designa och implementera gränssnitt utifrån användaren.",
+    "G": {
+     "examineras_i": [
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ]
+    }
+   },
+   {
+    "id": "F8",
+    "typ": "Färdighet",
+    "mal": "Planera applikationer genom att skapa UML-diagram.",
+    "G": {
+     "examineras_i": [
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ]
+    },
+    "VG": {
+     "kriterium": "Kan resonera kring sin valda arkitektur och alternativa arkitekturer, argumentera för sitt val samt redogöra för konsekvenser.",
+     "examineras_i": [
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ]
+    }
+   },
+   {
+    "id": "C1",
+    "typ": "Kompetens",
+    "mal": "Avgöra vilket designmönster som är bäst lämpat för ett projekt.",
+    "G": {
+     "examineras_i": [
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ]
+    },
+    "VG": {
+     "kriterium": "Kan resonera kring sina alternativ och argumentera för sitt beslut.",
+     "examineras_i": [
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ]
+    }
+   },
+   {
+    "id": "C2",
+    "typ": "Kompetens",
+    "mal": "Avgöra vilken typ av databas som är lämplig i olika situationer.",
+    "G": {
+     "examineras_i": [
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ]
+    },
+    "VG": {
+     "kriterium": "Kan resonera kring sina alternativ och argumentera för sitt beslut.",
+     "examineras_i": [
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ]
+    }
+   },
+   {
+    "id": "C3",
+    "typ": "Kompetens",
+    "mal": "Ta beslut vid kodgranskning som verkar för underhållbar kod och modulära strukturer.",
+    "G": {
+     "examineras_i": [
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ],
+     "form": "Peer review (beslut vid kodgranskning)"
+    },
+    "VG": {
+     "kriterium": "Kan resonera kring sina alternativ och argumentera för sina beslut samt redogöra för konsekvenserna av besluten.",
+     "examineras_i": [
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ]
+    }
+   },
+   {
+    "id": "C4",
+    "typ": "Kompetens",
+    "mal": "Planera och utveckla modulära applikationer med databaskopplingar i C# som följer ett känt designmönster, med tillhörande dokumentation.",
+    "G": {
+     "examineras_i": [
+      "Inlämning 1 — Hotel Grandioso (individuell, sön 22 nov)",
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ]
+    },
+    "VG": {
+     "kriterium": "Kan utveckla genomtänkta, välplanerade och väldokumenterade applikationer med tydlig namngivning och struktur enligt clean code. Samt reflektera över sina val och alternativ.",
+     "examineras_i": [
+      "Inlämning 2 — grupparbete (sön 6 dec)"
+     ]
+    }
+   }
+  ],
+  "luckor": [],
+  "peer_review": {
+   "vem": "Grupper om två, valda av studerande själva. Granskaren ska inte vara någon i den granskade gruppen.",
+   "produkt": "review-feedback.md (samma filnamn för alla), pushad av granskaren till den granskades repo. Ifylld med Reviewed by / Approved by.",
+   "innan_bedomning": "Den granskade måste godkänna granskningen innan läraren bedömer inlämningen. Granskarens namn syns i git-historiken (push).",
+   "krav": [
+    "Kommentera kodbasen",
+    "Köra code review",
+    "Godkänna eller begära ändring"
+   ],
+   "deadline": "2026-12-04T23:59",
+   "deadline_text": "Senast fredag 4 dec 23:59 (sista dag, inte måldag)",
+   "checklista": [
+    "Körbarhet: bygger och kör utan fel; README stämmer med verkligheten",
+    "Editorvarningar: inga varningar i build-utskriften eller i editorn (nullable, oanvända variabler, osv.)",
+    "Clean code: namngivning, metodlängd, SRP, inga magic numbers, ingen kopierad kod (DRY)",
+    "Struktur: klasser och interface har tydliga ansvar; designmönster är motiverade",
+    "Databas: kopplingen fungerar; felhantering där fil, JSON eller databas kan fallera",
+    "Förståelse: granskaren kan förklara koden för någon annan utan att läsa den två gånger",
+    "Git: meningsfulla commits, minst tre (säger sig själv, behöver inte förklaras)",
+    "Kommentarer: på svenska, förklarar varför snarare än vad"
+   ],
+   "beslut": [
+    "Godkänn",
+    "Begär ändring (med konkret punktlista)"
+   ],
+   "antal_granskningar": "1 per grupp. Granskaren får inte vara medlem i den granskade gruppen.",
+   "tidpunkt": "Granskningen ska göras så snart kodaren är redo. Vänta inte till deadline: det är inte schysst att hålla kodaren i väntan.",
+   "verifiering": "Läraren verifierar att den granskade gruppen åtgärdat det som begärts, innan bedömning."
+  }
+ }
 }
