@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>Designmönster</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -202,13 +203,32 @@ code {
   .cls-row { grid-template-columns: 1fr; gap: 0.1rem; }
   .arch-cls-row { grid-template-columns: 1fr; gap: 0.1rem; }
 }
+/* Flytande innehållsförteckning: bara på breda skärmar, så att telefonen inte får horisontell scroll */
+[id] { scroll-margin-top: 1.5rem; }
+.toc { display: none; }
+@media (min-width: 1180px) {
+  .toc { display: block; position: fixed; top: 2.5rem; left: 16px; width: 180px; font-size: 0.85rem; }
+  .toc h4 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 1.05rem; color: var(--muted); margin-bottom: 0.5rem; }
+  .toc a { display: block; padding: 0.3rem 0.6rem; color: var(--muted); text-decoration: none; border-left: 2px solid var(--border); }
+  .toc a:hover, .toc a.active { color: var(--fg); border-left-color: var(--fg); }
+}
 </style>
+
+<nav class="toc" aria-label="Innehåll">
+  <h4>Innehåll</h4>
+  <a href="#grundprincipen">Grundprincipen</a>
+  <a href="#creational">Creational</a>
+  <a href="#structural">Structural</a>
+  <a href="#behavioral">Behavioral</a>
+  <a href="#arkitektur">Arkitekturmönster</a>
+  <a href="#antimonster">Antimönster</a>
+</nav>
 
 <div class="container">
   <h1>Designmönster</h1>
   <p class="subtitle">Fördjupad OOP i C# · Kurs 3 · CLO26 · YRGO</p>
 
-  <h2>Grundprincipen</h2>
+  <h2 id="grundprincipen">Grundprincipen</h2>
 
   <div class="insight">
     <p class="insight-lead">"Oj, jag ska ha en databas — vilka klasser behöver jag?"</p>
@@ -242,7 +262,7 @@ code {
   </div>
 
   <!-- ═══ CREATIONAL ═══ -->
-  <div class="category cr">
+  <div class="category cr" id="creational">
     <h2>De 23 GoF-mönstren</h2>
     <div class="cat-header">
       <span class="cat-title">Creational</span>
@@ -326,7 +346,7 @@ code {
   </div>
 
   <!-- ═══ STRUCTURAL ═══ -->
-  <div class="category st">
+  <div class="category st" id="structural">
     <div class="cat-header">
       <span class="cat-title">Structural</span>
       <span class="cat-sub">Handlar om hur klasser kopplas ihop</span>
@@ -463,7 +483,7 @@ code {
   </div>
 
   <!-- ═══ BEHAVIORAL ═══ -->
-  <div class="category be">
+  <div class="category be" id="behavioral">
     <div class="cat-header">
       <span class="cat-title">Behavioral</span>
       <span class="cat-sub">Handlar om hur klasser kommunicerar</span>
@@ -647,7 +667,7 @@ code {
   </div>
 
   <!-- ═══ ARCHITECTURE ═══ -->
-  <div class="category ar">
+  <div class="category ar" id="arkitektur">
     <div class="cat-header" style="margin-top:2.25rem;">
       <span class="cat-title">Arkitekturmönster</span>
       <span class="cat-sub">Hur hela applikationen är organiserad</span>
@@ -702,7 +722,7 @@ code {
   </div>
 
   <!-- ═══ ANTIPATTERNS ═══ -->
-  <div class="category ar">
+  <div class="category ar" id="antimonster">
     <div class="cat-header" style="margin-top:2.25rem;">
       <span class="cat-title">Antimönster</span>
       <span class="cat-sub">Lösningar som verkar rimliga i stunden men skapar mer problem än de löser</span>
@@ -756,3 +776,20 @@ code {
     <span><strong>du känner det</strong> = du har redan använt det utan att veta om det</span>
   </div>
 </div>
+
+<script>
+(() => {
+  const links = [...document.querySelectorAll('.toc a')];
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  links.forEach(l => {
+    const target = document.querySelector(l.getAttribute('href'));
+    if (target) io.observe(target);
+  });
+})();
+</script>
