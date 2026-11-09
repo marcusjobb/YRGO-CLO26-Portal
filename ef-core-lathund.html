@@ -206,7 +206,17 @@ code {
   .arch-cls-row { grid-template-columns: 1fr; gap: 0.1rem; }
 }
 .back { font-size: 0.9rem; margin-bottom: 0.5rem; }
-.back a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+.back a { display: inline-block; border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.85rem; color: var(--fg); text-decoration: none; }
+.back a:hover { border-color: var(--fg); }
+.menu-btn { display: none; }
+@media (max-width: 1179px) {
+  .menu-btn { display: inline-flex; align-items: center; gap: 0.4rem; position: fixed; top: 12px; right: 16px; z-index: 30;
+              font: inherit; font-size: 0.85rem; padding: 0.4rem 0.85rem; border-radius: 999px; cursor: pointer;
+              border: 1px solid var(--border); background: var(--bg); color: var(--fg); }
+  .toc.open { display: block; position: fixed; top: 52px; left: 16px; right: 16px; width: auto; max-height: 70vh;
+              overflow-y: auto; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+              padding: 0.75rem; z-index: 29; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+}
 /* Flytande innehållsförteckning: bara på breda skärmar, så att telefonen inte får horisontell scroll */
 [id] { scroll-margin-top: 1.5rem; }
 .toc { display: none; }
@@ -227,12 +237,25 @@ table.t { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 0.6
 table.t th, table.t td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--border); vertical-align: top; }
 table.t th { color: var(--muted); font-weight: 600; }
 .step { margin: 0.4rem 0 0.8rem; }
+.back a { display: inline-block; border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.85rem;
+          color: var(--fg); text-decoration: none; }
+.back a:hover { border-color: var(--fg); }
+.menu-btn { display: none; }
+@media (max-width: 1179px) {
+  .menu-btn { display: inline-flex; align-items: center; gap: 0.4rem; position: fixed; top: 12px; right: 16px; z-index: 30;
+              font: inherit; font-size: 0.85rem; padding: 0.4rem 0.85rem; border-radius: 999px; cursor: pointer;
+              border: 1px solid var(--border); background: var(--bg); color: var(--fg); }
+  .toc.open { display: block; position: fixed; top: 52px; left: 16px; right: 16px; width: auto; max-height: 70vh;
+              overflow-y: auto; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+              padding: 0.75rem; z-index: 29; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+}
 .tbl-wrap { overflow-x: auto; margin: 0.6rem 0; }
 .tbl-wrap table.t { margin: 0; min-width: 420px; }
 </style>
 </head>
 <body>
-<nav class="toc" aria-label="Innehåll">
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="toc">☰ Innehåll</button>
+<nav class="toc" id="toc" aria-label="Innehåll">
   <h4>Innehåll</h4>
   <a href="#ef-val">Välj databas</a>
   <a href="#ef-projekt">Skapa projektet</a>
@@ -247,10 +270,10 @@ table.t th { color: var(--muted); font-weight: 600; }
   <a href="#ef-verktyg">Hjälpmedel</a>
   <a href="#ef-termer">Terminologi</a>
   <a href="#ef-tips">Tips och tricks</a>
+  <a class="toc-back" href="kurs.html?kurs=03">← Tillbaka till kurs 3</a>
 </nav>
 
 <div class="container">
-  <p class="back"><a href="kurs.html?kurs=03">← Tillbaka till kurs 3</a></p>
   <h1>Entity Framework Core</h1>
   <p class="subtitle">Fördjupad OOP i C# · Kurs 3 · CLO26 · YRGO</p>
 
@@ -517,7 +540,7 @@ dotnet ef database update</code></pre>
 
 <script>
 (() => {
-  const links = [...document.querySelectorAll('.toc a')];
+  const links = [...document.querySelectorAll('.toc a[href^="#"]')];
   if (!('IntersectionObserver' in window)) return;
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -528,6 +551,20 @@ dotnet ef database update</code></pre>
   links.forEach(l => {
     const target = document.querySelector(l.getAttribute('href'));
     if (target) io.observe(target);
+  });
+})();
+(() => {
+  const btn = document.querySelector('.menu-btn');
+  const toc = document.getElementById('toc');
+  if (!btn || !toc) return;
+  btn.addEventListener('click', () => {
+    const open = toc.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  toc.addEventListener('click', e => {
+    if (e.target.tagName !== 'A') return;
+    toc.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
   });
 })();
 </script>
