@@ -51,17 +51,17 @@
   {
    "icon": "🧰",
    "label": "Lathund — ADO.NET med SQLite",
-   "href": "ado-sqlite-lathund.html"
+   "href": "https://marcusjobb.github.io/YRGO-CLO26-Portal/ado-sqlite-lathund.html"
   },
   {
    "icon": "🗄️",
    "label": "Lathund — Entity Framework Core",
-   "href": "ef-core-lathund.html"
+   "href": "https://marcusjobb.github.io/YRGO-CLO26-Portal/ef-core-lathund.html"
   },
   {
    "icon": "🍃",
    "label": "Lathund — MongoDB",
-   "href": "mongodb-lathund.html"
+   "href": "https://marcusjobb.github.io/YRGO-CLO26-Portal/mongodb-lathund.html"
   }
  ],
  "betyg": {
