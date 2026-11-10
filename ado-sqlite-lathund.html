@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ADO.NET med SQLite</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #F9F9F7;
+  --fg: #1C1C1A;
+  --muted: #64645E;
+  --muted2: #9A9A90;
+  --border: #E4E4DF;
+  --code-bg: #EFEFE8;
+
+  --c-cr:    #B55608;
+  --c-cr-bg: #FEF4EC;
+  --c-st:    #1762A3;
+  --c-st-bg: #EBF2FA;
+  --c-be:    #237055;
+  --c-be-bg: #E9F4EE;
+  --c-ar:    #6040A0;
+  --c-ar-bg: #F0ECFA;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161614;
+    --fg: #E6E6E0;
+    --muted: #8A8A80;
+    --muted2: #5A5A54;
+    --border: #2C2C28;
+    --code-bg: #1E1E1A;
+    --c-cr: #E8922E; --c-cr-bg: #261508;
+    --c-st: #4B9DD4; --c-st-bg: #0C1E30;
+    --c-be: #40B076; --c-be-bg: #0A1F14;
+    --c-ar: #9878D8; --c-ar-bg: #18102A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161614; --fg: #E6E6E0; --muted: #8A8A80; --muted2: #5A5A54;
+  --border: #2C2C28; --code-bg: #1E1E1A;
+  --c-cr: #E8922E; --c-cr-bg: #261508;
+  --c-st: #4B9DD4; --c-st-bg: #0C1E30;
+  --c-be: #40B076; --c-be-bg: #0A1F14;
+  --c-ar: #9878D8; --c-ar-bg: #18102A;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 2.5rem;
+}
+
+.container { max-width: 760px; margin: 0 auto; }
+
+h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 2.6rem; font-weight: 400; line-height: 1.1;
+  text-wrap: balance; margin-bottom: 0.4rem;
+}
+.subtitle { color: var(--muted); font-size: 0.875rem; letter-spacing: 0.03em; margin-bottom: 2.5rem; }
+
+h2 {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 2.75rem; margin-bottom: 1rem;
+}
+
+code {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.82em;
+  background: var(--code-bg); padding: 0.1em 0.4em; border-radius: 3px;
+}
+
+/* ── Insight box (intro) ── */
+.insight {
+  background: var(--code-bg); border-radius: 8px;
+  padding: 1.4rem 1.6rem; margin-bottom: 0.5rem;
+}
+.insight-lead {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.2rem; font-style: italic;
+  margin-bottom: 1.1rem; line-height: 1.4;
+}
+.insight-rows { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.2rem; }
+.insight-row { display: grid; grid-template-columns: 100px 1fr; gap: 0.75rem; font-size: 0.875rem; align-items: start; }
+.insight-row code { background: none; padding: 0; font-weight: 600; font-size: 0.95em; }
+.insight-row-desc strong { color: var(--fg); }
+.insight-row-desc .sub {
+  display: block; color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem; line-height: 1.5;
+}
+.insight-body {
+  font-size: 0.875rem; line-height: 1.6;
+  border-top: 1px solid var(--border); padding-top: 0.9rem;
+}
+
+/* ── Category ── */
+.category { margin-top: 2.25rem; }
+.cat-header {
+  display: flex; align-items: baseline; gap: 0.75rem;
+  padding-bottom: 0.6rem; border-bottom: 2px solid var(--border); margin-bottom: 0.25rem;
+}
+.cat-title { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.5rem; font-weight: 400; }
+.cat-sub { font-size: 0.82rem; color: var(--muted); }
+.cr .cat-title { color: var(--c-cr); }
+.st .cat-title { color: var(--c-st); }
+.be .cat-title { color: var(--c-be); }
+.ar .cat-title { color: var(--c-ar); }
+
+/* ── Pattern row ── */
+.pattern {
+  display: grid; grid-template-columns: 175px 1fr;
+  gap: 0.75rem 1rem; padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border); align-items: start; min-width: 0;
+}
+.pattern:last-child { border-bottom: none; }
+
+.pattern-name {
+  font-weight: 600; font-size: 0.875rem;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; min-width: 0;
+}
+.cr .pattern-name { color: var(--c-cr); }
+.st .pattern-name { color: var(--c-st); }
+.be .pattern-name { color: var(--c-be); }
+.ar .pattern-name { color: var(--c-ar); }
+
+.badge {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; font-weight: 500;
+  letter-spacing: 0.04em; padding: 0.15em 0.55em; border-radius: 999px; white-space: nowrap;
+}
+.badge-lec { background: rgba(23,98,163,0.12); color: var(--c-st); }
+.badge-know { background: rgba(35,112,85,0.12); color: var(--c-be); }
+
+.pattern-body { font-size: 0.875rem; line-height: 1.55; min-width: 0; }
+.pattern-when { display: block; color: var(--muted); font-size: 0.8rem; margin-top: 0.3rem; line-height: 1.5; }
+.pattern-when em { font-style: italic; color: var(--fg); opacity: 0.8; }
+
+/* ── Classes list inside pattern ── */
+.pattern-classes {
+  margin-top: 0.65rem; padding-top: 0.55rem;
+  border-top: 1px dashed var(--border);
+}
+.cls-label {
+  font-size: 0.63rem; font-weight: 600; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--muted2);
+  display: block; margin-bottom: 0.35rem;
+}
+.cls-list { display: flex; flex-direction: column; gap: 0.25rem; }
+.cls-row {
+  display: grid; grid-template-columns: 190px 1fr;
+  gap: 0.4rem; font-size: 0.775rem; align-items: start;
+}
+.cls-row code { background: none; padding: 0; font-weight: 600; font-size: 1em; color: var(--fg); }
+.cls-row span { color: var(--muted); line-height: 1.4; }
+
+/* ── Architecture cards ── */
+.arch-cards { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.25rem; }
+.arch-card { background: var(--c-ar-bg); border-radius: 8px; padding: 1rem 1.25rem; }
+.arch-card h3 { color: var(--c-ar); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+.arch-card p { font-size: 0.875rem; line-height: 1.55; margin-bottom: 0.5rem; }
+.arch-card p:last-child { margin-bottom: 0; }
+.arch-diagram {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem;
+  color: var(--muted); line-height: 1.6;
+  margin-top: 0.5rem; padding: 0.6rem 0.8rem;
+  background: rgba(0,0,0,0.04); border-radius: 4px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .arch-diagram { background: rgba(255,255,255,0.04); }
+}
+:root[data-theme="dark"] .arch-diagram { background: rgba(255,255,255,0.04); }
+
+.arch-classes { margin-top: 0.6rem; }
+.arch-cls-row {
+  display: grid; grid-template-columns: 190px 1fr;
+  gap: 0.4rem; font-size: 0.775rem; align-items: start; margin-bottom: 0.25rem;
+}
+.arch-cls-row code { background: none; padding: 0; font-weight: 600; color: var(--fg); }
+.arch-cls-row span { color: var(--muted); line-height: 1.4; }
+
+/* Legend */
+.legend {
+  margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--border);
+  font-size: 0.775rem; color: var(--muted);
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem;
+}
+
+@media (max-width: 540px) {
+  h1 { font-size: 2rem; }
+  .pattern { grid-template-columns: 1fr; gap: 0.2rem; }
+  .insight-row { grid-template-columns: 1fr; gap: 0.1rem; }
+  .cat-header { flex-direction: column; gap: 0.15rem; align-items: flex-start; }
+  .cls-row { grid-template-columns: 1fr; gap: 0.1rem; }
+  .arch-cls-row { grid-template-columns: 1fr; gap: 0.1rem; }
+}
+.back { font-size: 0.9rem; margin-bottom: 0.5rem; }
+.back a { display: inline-block; border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.85rem; color: var(--fg); text-decoration: none; }
+.back a:hover { border-color: var(--fg); }
+.menu-btn { display: none; }
+@media (max-width: 1179px) {
+  .menu-btn { display: inline-flex; align-items: center; gap: 0.4rem; position: fixed; top: 12px; right: 16px; z-index: 30;
+              font: inherit; font-size: 0.85rem; padding: 0.4rem 0.85rem; border-radius: 999px; cursor: pointer;
+              border: 1px solid var(--border); background: var(--bg); color: var(--fg); }
+  .toc.open { display: block; position: fixed; top: 52px; left: 16px; right: 16px; width: auto; max-height: 70vh;
+              overflow-y: auto; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+              padding: 0.75rem; z-index: 29; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+}
+/* Flytande innehållsförteckning: bara på breda skärmar, så att telefonen inte får horisontell scroll */
+[id] { scroll-margin-top: 1.5rem; }
+.toc { display: none; }
+@media (min-width: 1180px) {
+  .toc { display: block; position: fixed; top: 2.5rem; left: 16px; width: 180px; font-size: 0.85rem; }
+  .toc h4 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 1.05rem; color: var(--muted); margin-bottom: 0.5rem; }
+  .toc a { display: block; padding: 0.3rem 0.6rem; color: var(--muted); text-decoration: none; border-left: 2px solid var(--border); }
+  .toc a:hover, .toc a.active { color: var(--fg); border-left-color: var(--fg); }
+}
+
+pre { background: var(--code-bg); border-radius: 6px; padding: 0.9rem 1rem; overflow-x: auto;
+      font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.82rem; line-height: 1.5;
+      margin: 0.6rem 0 0.2rem; }
+pre code { background: none; padding: 0; }
+.note { border-left: 3px solid var(--c-cr); padding: 0.4rem 0.9rem; margin: 0.8rem 0; color: var(--muted); }
+.warn { border-left: 3px solid var(--c-cr); padding: 0.4rem 0.9rem; margin: 0.8rem 0; }
+table.t { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 0.6rem 0; }
+table.t th, table.t td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+table.t th { color: var(--muted); font-weight: 600; }
+.step { margin: 0.4rem 0 0.8rem; }
+.back a { display: inline-block; border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.85rem;
+          color: var(--fg); text-decoration: none; }
+.back a:hover { border-color: var(--fg); }
+.menu-btn { display: none; }
+@media (max-width: 1179px) {
+  .menu-btn { display: inline-flex; align-items: center; gap: 0.4rem; position: fixed; top: 12px; right: 16px; z-index: 30;
+              font: inherit; font-size: 0.85rem; padding: 0.4rem 0.85rem; border-radius: 999px; cursor: pointer;
+              border: 1px solid var(--border); background: var(--bg); color: var(--fg); }
+  .toc.open { display: block; position: fixed; top: 52px; left: 16px; right: 16px; width: auto; max-height: 70vh;
+              overflow-y: auto; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+              padding: 0.75rem; z-index: 29; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+}
+.tbl-wrap { overflow-x: auto; margin: 0.6rem 0; }
+.tbl-wrap table.t { margin: 0; min-width: 420px; }
+</style>
+</head>
+<body>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="toc">☰ Innehåll</button>
+<nav class="toc" id="toc" aria-label="Innehåll">
+  <h4>Innehåll</h4>
+  <a href="#ado-projekt">Skapa projektet</a>
+  <a href="#ado-anslutning">Connection string</a>
+  <a href="#ado-tabell">Skapa tabellen</a>
+  <a href="#ado-crud">CRUD med ADO.NET</a>
+  <a href="#ado-parametrar">Parametrar</a>
+  <a href="#ado-transaktion">Transaktioner</a>
+  <a href="#ado-verktyg">Hjälpmedel och IDE</a>
+  <a href="#ado-termer">Terminologi</a>
+  <a href="#ado-tips">Tips och tricks</a>
+  <a class="toc-back" href="kurs.html?kurs=03">← Tillbaka till kurs 3</a>
+</nav>
+
+<div class="container">
+  <h1>ADO.NET med SQLite</h1>
+  <p class="subtitle">Fördjupad OOP i C# · Kurs 3 · CLO26 · YRGO</p>
+
+  <div class="category st" id="ado-projekt">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Skapa projektet</span>
+    </div>
+    <p>ADO.NET är det lägsta lagret. Du skriver SQL själv och talar med databasen direkt, utan EF Core som mellanled. Det är bra att kunna innan du använder EF, eftersom EF gör samma saker bakom kulisserna.</p>
+<pre><code>dotnet new console -n AdoLathund
+cd AdoLathund</code></pre>
+    <p>SQLite behöver ingen server. Paketet <strong>Microsoft.Data.Sqlite</strong> innehåller allt som behövs:</p>
+<pre><code>dotnet add package Microsoft.Data.Sqlite</code></pre>
+  </div>
+  <div class="category st" id="ado-anslutning">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Connection string</span>
+    </div>
+    <p>En connection string för SQLite är bara en sökväg till filen. Den hamnar i <code>appsettings.json</code>, precis som i EF-lathunden. SQLite har inget lösenord, så det finns inget hemligt att gömma.</p>
+<pre><code>{
+  &quot;ConnectionStrings&quot;: {
+    &quot;Sqlite&quot;: &quot;Data Source=webshop.db&quot;
+  }
+}</code></pre>
+    <p>Sätt <strong>Copy to Output Directory</strong> på <code>appsettings.json</code> till <em>Copy if newer</em>. Läs strängen i koden:</p>
+<pre><code>dotnet add package Microsoft.Extensions.Configuration.Json</code></pre><pre><code>var config = new ConfigurationBuilder()
+    .AddJsonFile(&quot;appsettings.json&quot;)
+    .Build();
+
+var connectionString = config.GetConnectionString(&quot;Sqlite&quot;);</code></pre>
+    <p class="note">Filen <code>webshop.db</code> skapas automatiskt första gången du öppnar anslutningen.</p>
+
+  </div>
+  <div class="category st" id="ado-tabell">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Skapa tabellen</span>
+    </div>
+    <p>I ADO.NET skriver du SQL själv. Den här koden skapar tabellen om den inte finns. Kör den en gång när programmet startar:</p>
+<pre><code>using var connection = new SqliteConnection(connectionString);
+connection.Open();
+
+using var command = connection.CreateCommand();
+command.CommandText = @&quot;
+    CREATE TABLE IF NOT EXISTS Products (
+        Id    INTEGER PRIMARY KEY AUTOINCREMENT,
+        Name  TEXT    NOT NULL,
+        Price REAL    NOT NULL
+    );&quot;;
+command.ExecuteNonQuery();</code></pre>
+    <p>Lägg märke till <code>ExecuteNonQuery()</code>. Den används för kommandon som inte returnerar rader: CREATE, INSERT, UPDATE och DELETE.</p>
+
+  </div>
+  <div class="category st" id="ado-crud">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">CRUD med ADO.NET</span>
+    </div>
+    <p>Mönstret är alltid detsamma: öppna anslutningen, skapa ett <code>SqliteCommand</code> med SQL-texten, kör det och läs resultatet.</p>
+    <div class="arch-cards">
+      <div class="arch-card">
+        <h3>Create</h3>
+        <p>Lägg till en rad. <code>ExecuteNonQuery()</code> returnerar hur många rader som påverkades.</p>
+        <pre><code>using var connection = new SqliteConnection(connectionString);
+connection.Open();
+
+using var command = connection.CreateCommand();
+command.CommandText = &quot;INSERT INTO Products (Name, Price) VALUES (&#x27;Kaffe&#x27;, 49)&quot;;
+int antal = command.ExecuteNonQuery();</code></pre>
+      </div>
+      <div class="arch-card">
+        <h3>Read</h3>
+        <p>Läs rader med <code>ExecuteReader()</code>. <code>Read()</code> går till nästa rad och returnerar <code>false</code> när det inte finns fler.</p>
+        <pre><code>using var connection = new SqliteConnection(connectionString);
+connection.Open();
+
+using var command = connection.CreateCommand();
+command.CommandText = &quot;SELECT Id, Name, Price FROM Products&quot;;
+
+using var reader = command.ExecuteReader();
+while (reader.Read())
+{
+    Console.WriteLine($&quot;{reader.GetInt32(0)} {reader.GetString(1)} {reader.GetDouble(2)}&quot;);
+}</code></pre>
+      </div>
+      <div class="arch-card">
+        <h3>Update</h3>
+        <p>Ändra en rad. Kontrollera antalet påverkade rader, så att du vet att något faktiskt ändrades.</p>
+        <pre><code>using var connection = new SqliteConnection(connectionString);
+connection.Open();
+
+using var command = connection.CreateCommand();
+command.CommandText = &quot;UPDATE Products SET Price = 39 WHERE Name = &#x27;Kaffe&#x27;&quot;;
+int antal = command.ExecuteNonQuery();</code></pre>
+      </div>
+      <div class="arch-card">
+        <h3>Delete</h3>
+        <p>Ta bort en rad.</p>
+        <pre><code>using var connection = new SqliteConnection(connectionString);
+connection.Open();
+
+using var command = connection.CreateCommand();
+command.CommandText = &quot;DELETE FROM Products WHERE Name = &#x27;Kaffe&#x27;&quot;;
+command.ExecuteNonQuery();</code></pre>
+      </div>
+    </div>
+    <p class="warn">Exemplen ovan bygger SQL-texten direkt i strängen. Det är bara ok för att se hur det fungerar. I riktig kod ska du använda parametrar, se nästa avsnitt.</p>
+
+  </div>
+  <div class="category st" id="ado-parametrar">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Parametrar</span>
+    </div>
+    <p>Om du bygger SQL med strängsammanfogning kan användaren skriva in SQL i ett fält och ta över din fråga. Det kallas SQL-injektion. Parametrar löser det: värdet skickas separat och tolkas aldrig som SQL.</p>
+<pre><code>using var connection = new SqliteConnection(connectionString);
+connection.Open();
+
+using var command = connection.CreateCommand();
+command.CommandText = &quot;INSERT INTO Products (Name, Price) VALUES ($name, $price)&quot;;
+command.Parameters.AddWithValue(&quot;$name&quot;, &quot;Kaffe&quot;);
+command.Parameters.AddWithValue(&quot;$price&quot;, 49);
+command.ExecuteNonQuery();</code></pre>
+    <p>Sök med parameter, till exempel när användaren skriver in ett namn:</p>
+<pre><code>command.CommandText = &quot;SELECT Id, Name, Price FROM Products WHERE Name = $name&quot;;
+command.Parameters.AddWithValue(&quot;$name&quot;, inmatatNamn);</code></pre>
+    <p class="note">Börja alltid med <code>$</code> i SQLite. Parametern måste finnas i kommandot, annars ger SQLite ett fel.</p>
+
+  </div>
+  <div class="category st" id="ado-transaktion">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Transaktioner</span>
+    </div>
+    <p>En transaktion gör flera ändringar som en enda operation. Antingen lyckas alla, eller så ångras alla. Det är användbart när en order ska skapas och lagersaldot ska minskas samtidigt.</p>
+<pre><code>using var connection = new SqliteConnection(connectionString);
+connection.Open();
+
+using var transaction = connection.BeginTransaction();
+try
+{
+    using var command = connection.CreateCommand();
+    command.Transaction = transaction;
+
+    command.CommandText = &quot;UPDATE Products SET Price = Price - 5 WHERE Name = &#x27;Kaffe&#x27;&quot;;
+    command.ExecuteNonQuery();
+
+    command.CommandText = &quot;INSERT INTO Orders (ProductName) VALUES (&#x27;Kaffe&#x27;)&quot;;
+    command.ExecuteNonQuery();
+
+    transaction.Commit();
+}
+catch (SqliteException ex)
+{
+    // Om något steg misslyckas ångras allt som gjorts i transaktionen
+    transaction.Rollback();
+    Console.WriteLine($&quot;Ändringen ångrades: {ex.Message}&quot;);
+}</code></pre>
+    <p class="note">Varje <code>command</code> som ingår i transaktionen måste få <code>Transaction</code> satt till den.</p>
+
+  </div>
+  <div class="category st" id="ado-verktyg">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Hjälpmedel och IDE</span>
+    </div>
+    <p>Vill du se tabellerna direkt behöver du ett grafiskt verktyg. Det finns inget som ska köras i Docker, eftersom SQLite är en fil.</p>
+<div class="tbl-wrap"><table class="t"><thead><tr><th>Verktyg</th><th>Hur du använder det</th></tr></thead><tbody><tr><td><strong>DB Browser for SQLite</strong></td><td>Öppna <code>webshop.db</code> från projektmappen. Fliken <em>Browse Data</em> visar tabellerna. Ladda ner från sqlitebrowser.org.</td></tr><tr><td><strong>Rider</strong></td><td><strong>View</strong> → <strong>Tool Windows</strong> → <strong>Database</strong> → <strong>+</strong> → <strong>Data Source</strong> → <strong>SQLite</strong>. Ange sökvägen till filen.</td></tr><tr><td><strong>VS Code</strong></td><td>Installera tillägget <em>SQLite</em> av alexcvzz. Öppna <code>webshop.db</code> i sidopanelen eller med kommandot <em>SQLite: Open Database</em>.</td></tr><tr><td><strong>Visual Studio</strong></td><td>Inget inbyggt verktyg för SQLite. Använd DB Browser for SQLite vid sidan av.</td></tr></tbody></table></div>
+    <p class="note">Sök i tillägget efter <em>SQLite</em>. Ser du flera med samma namn: välj det av alexcvzz.</p>
+
+  </div>
+  <div class="category st" id="ado-termer">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Terminologi</span>
+    </div>
+<div class="tbl-wrap"><table class="t"><thead><tr><th>Term</th><th>Betydelse</th></tr></thead><tbody><tr><td><strong>Connection</strong></td><td>Den öppna förbindelsen till databasen. Stäng den när du är klar</td></tr><tr><td><strong>Command</strong></td><td>En SQL-sats som ska köras</td></tr><tr><td><strong>Parameter</strong></td><td>Ett värde som skickas separat till en SQL-sats, för att undvika SQL-injektion</td></tr><tr><td><strong>DataReader</strong></td><td>Läser rader ett i taget, framåt. Snabbt och lätt på minnet</td></tr><tr><td><strong>ExecuteNonQuery</strong></td><td>Kör en sats som inte returnerar rader, till exempel INSERT</td></tr><tr><td><strong>Transaction</strong></td><td>Flera ändringar som lyckas eller ångras tillsammans</td></tr><tr><td><strong>Rollback / Commit</strong></td><td>Ångra eller spara alla ändringar i en transaktion</td></tr><tr><td><strong>using</strong></td><td>Stänger och frigör anslutningen, kommandot och läsaren automatiskt</td></tr></tbody></table></div>
+  </div>
+  <div class="category st" id="ado-tips">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Tips och tricks</span>
+    </div>
+    <ul>
+      <li><strong>Använd alltid parametrar.</strong> Strängsammanfogning i SQL är den vanligaste säkerhetsbristen i enkla program.</li>
+      <li><strong>Glöm inte <code>using</code>.</strong> Om anslutningen inte stängs kan filen vara låst för andra program.</li>
+      <li><strong><code>ExecuteScalar()</code></strong> returnerar ett enda värde, till exempel <code>SELECT COUNT(*)</code>.</li>
+      <li><strong>Kontrollera <code>reader.Read()</code>.</strong> Den returnerar <code>false</code> när det inte finns fler rader, inte när något gått fel.</li>
+      <li><strong>Kom ihåg att SQLite är en fil.</strong> Radera <code>webshop.db</code> om du vill börja om från början.</li>
+      <li><strong>Ta hand om felen.</strong> Där något kan gå fel, lägg till <code>// Tänk på att lägga till Try Catch</code>.</li>
+    </ul>
+
+  </div>
+
+</div>
+
+<script>
+(() => {
+  const links = [...document.querySelectorAll('.toc a[href^="#"]')];
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  links.forEach(l => {
+    const target = document.querySelector(l.getAttribute('href'));
+    if (target) io.observe(target);
+  });
+})();
+(() => {
+  const btn = document.querySelector('.menu-btn');
+  const toc = document.getElementById('toc');
+  if (!btn || !toc) return;
+  btn.addEventListener('click', () => {
+    const open = toc.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  toc.addEventListener('click', e => {
+    if (e.target.tagName !== 'A') return;
+    toc.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  });
+})();
+</script>
+
+</body>
+</html>

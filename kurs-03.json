@@ -49,6 +49,11 @@
    "href": "designmonster-lathund.html"
   },
   {
+   "icon": "🧰",
+   "label": "Lathund — ADO.NET med SQLite",
+   "href": "ado-sqlite-lathund.html"
+  },
+  {
    "icon": "🗄️",
    "label": "Lathund — Entity Framework Core",
    "href": "ef-core-lathund.html"
