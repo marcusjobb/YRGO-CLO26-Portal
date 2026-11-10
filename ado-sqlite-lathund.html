@@ -263,6 +263,7 @@ table.t th { color: var(--muted); font-weight: 600; }
   <a href="#ado-crud">CRUD med ADO.NET</a>
   <a href="#ado-parametrar">Parametrar</a>
   <a href="#ado-transaktion">Transaktioner</a>
+  <a href="#ado-seeder">Seeder: startdata</a>
   <a href="#ado-verktyg">Hjälpmedel och IDE</a>
   <a href="#ado-termer">Terminologi</a>
   <a href="#ado-tips">Tips och tricks</a>
@@ -424,6 +425,39 @@ catch (SqliteException ex)
     Console.WriteLine($&quot;Ändringen ångrades: {ex.Message}&quot;);
 }</code></pre>
     <p class="note">Varje <code>command</code> som ingår i transaktionen måste få <code>Transaction</code> satt till den.</p>
+
+  </div>
+  <div class="category st" id="ado-seeder">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Seeder: startdata</span>
+    </div>
+    <p>Kontrollera först om tabellen är tom. Skriv startdatan i en transaktion, så blir det antingen alla rader eller ingen:</p>
+<pre><code>using var connection = new SqliteConnection(connectionString);
+connection.Open();
+
+using var check = connection.CreateCommand();
+check.CommandText = &quot;SELECT COUNT(*) FROM Products&quot;;
+int antal = Convert.ToInt32(check.ExecuteScalar());
+
+if (antal == 0)
+{
+    using var transaction = connection.BeginTransaction();
+    using var insert = connection.CreateCommand();
+    insert.Transaction = transaction;
+    insert.CommandText = &quot;INSERT INTO Products (Name, Price) VALUES ($name, $price)&quot;;
+
+    insert.Parameters.AddWithValue(&quot;$name&quot;, &quot;Kaffe&quot;);
+    insert.Parameters.AddWithValue(&quot;$price&quot;, 49);
+    insert.ExecuteNonQuery();
+
+    insert.Parameters.Clear();
+    insert.Parameters.AddWithValue(&quot;$name&quot;, &quot;Te&quot;);
+    insert.Parameters.AddWithValue(&quot;$price&quot;, 35);
+    insert.ExecuteNonQuery();
+
+    transaction.Commit();
+}</code></pre>
+    <p class="note">Samma mönster som i de andra lathundarna: kontrollera först, skriv sedan. Här syns transaktionen tydligast, eftersom det är du som skriver SQL.</p>
 
   </div>
   <div class="category st" id="ado-verktyg">

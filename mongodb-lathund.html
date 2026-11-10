@@ -264,6 +264,8 @@ table.t th { color: var(--muted); font-weight: 600; }
   <a href="#mongo-ip">IP-adress i Atlas</a>
   <a href="#mongo-compass">MongoDB Compass</a>
   <a href="#mongo-crud">CRUD</a>
+  <a href="#mongo-transaktion">Transaktioner och replica set</a>
+  <a href="#mongo-seeder">Seeder: startdata</a>
   <a href="#mongo-ide">Koppla på från IDE</a>
   <a href="#mongo-termer">Terminologi</a>
   <a href="#mongo-tips">Tips och tricks</a>
@@ -402,6 +404,46 @@ public class Product
       </div>
     </div>
     <p class="note">Till skillnad från EF Core sparar varje operation direkt. Det finns inget <code>SaveChanges()</code>.</p>
+
+  </div>
+  <div class="category st" id="mongo-transaktion">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Transaktioner och replica set</span>
+    </div>
+    <p>Transaktioner över flera dokument kräver ett <strong>replica set</strong>. Atlas är redan ett replica set, så där fungerar det direkt. En lokal Docker-container med en enda nod måste startas som ett replica set:</p>
+<pre><code>docker run --name mongo-rs -p 27017:27017 -d mongo --replSet rs0
+docker exec mongo-rs mongosh --eval &quot;rs.initiate()&quot;</code></pre>
+    <p>Sedan körs transaktionen i en <em>session</em>:</p>
+<pre><code>using var session = client.StartSession();
+session.StartTransaction();
+try
+{
+    products.UpdateOne(session, p =&gt; p.Name == &quot;Kaffe&quot;, Builders&lt;Product&gt;.Update.Inc(p =&gt; p.Price, -5m));
+    orders.InsertOne(session, new Order { ProductName = &quot;Kaffe&quot; });
+    session.CommitTransaction();
+}
+catch
+{
+    session.AbortTransaction();
+    throw;
+}</code></pre>
+    <p class="note">Varje operation i transaktionen får <code>session</code> som första argument. Glömmer du det körs den utanför transaktionen.</p>
+
+  </div>
+  <div class="category st" id="mongo-seeder">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Seeder: startdata</span>
+    </div>
+    <p>Fyll collectionen med startdata bara om den är tom. Då blir det inga dubbletter när du startar programmet igen:</p>
+<pre><code>if (products.CountDocuments(p =&gt; true) == 0)
+{
+    products.InsertMany(new[]
+    {
+        new Product { Name = &quot;Kaffe&quot;, Price = 49m },
+        new Product { Name = &quot;Te&quot;, Price = 35m }
+    });
+}</code></pre>
+    <p class="note">Samma mönster som i EF-lathunden: kontrollera först, skriv sedan.</p>
 
   </div>
   <div class="category st" id="mongo-ide">

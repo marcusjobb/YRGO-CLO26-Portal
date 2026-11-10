@@ -265,7 +265,10 @@ table.t th { color: var(--muted); font-weight: 600; }
   <a href="#ef-hemligheter">Hemligheter</a>
   <a href="#ef-kontext">DbContext och modell</a>
   <a href="#ef-crud">CRUD</a>
+  <a href="#ef-transaktion">Transaktioner</a>
   <a href="#ef-migrationer">Migrationer</a>
+  <a href="#ef-relationer">Avancerat: relationer med Fluent API</a>
+  <a href="#ef-seeder">Seeder: startdata</a>
   <a href="#ef-anslut-ide">Koppla på från IDE</a>
   <a href="#ef-verktyg">Hjälpmedel</a>
   <a href="#ef-termer">Terminologi</a>
@@ -478,6 +481,28 @@ db.SaveChanges();</code></pre>
     <p class="warn">Glöm inte <code>SaveChanges()</code>. Utan det händer ingenting i databasen, och programmet ger ingen felsignal.</p>
 
   </div>
+  <div class="category st" id="ef-transaktion">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Transaktioner</span>
+    </div>
+    <p><code>SaveChanges()</code> körs redan i en transaktion, så alla ändringar i ett anrop lyckas eller misslyckas tillsammans. Vill du styra flera anrop själv använder du en egen transaktion:</p>
+<pre><code>using var db = new WebshopContext();
+using var transaction = db.Database.BeginTransaction();
+try
+{
+    db.Products.First(p =&gt; p.Name == &quot;Kaffe&quot;).Price -= 5;
+    db.Orders.Add(new Order { ProductId = 1 });
+    db.SaveChanges();
+    transaction.Commit();
+}
+catch
+{
+    transaction.Rollback();
+    throw;
+}</code></pre>
+    <p class="note">Samma idé som i ADO.NET-lathunden. Skillnaden är att EF Core skriver SQL:en åt dig.</p>
+
+  </div>
   <div class="category st" id="ef-migrationer">
     <div class="cat-header" style="margin-top:2.25rem;">
       <span class="cat-title">Migrationer</span>
@@ -488,6 +513,69 @@ dotnet ef database update</code></pre>
     <p>Ändrar du modellen (till exempel lägger till en egenskap) gör du en ny migration med ett nytt namn:</p>
 <pre><code>dotnet ef migrations add LaggTillDescription</code></pre>
     <p class="note">Om <code>dotnet ef</code> inte hittas: kör <code>dotnet tool install --global dotnet-ef</code> igen och öppna terminalen på nytt.</p>
+
+  </div>
+  <div class="category st" id="ef-relationer">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Avancerat: relationer med Fluent API</span>
+    </div>
+    <p>Det mesta kan du göra direkt i klasserna. Lägger du en navigationsegenskap och ett främmande nyckelfält, förstår EF Core relationen av sig själv:</p>
+<pre><code>public class Order
+{
+    public int Id { get; set; }
+    public int ProductId { get; set; }
+    public Product Product { get; set; } = null!;
+}
+
+public class Product
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = &quot;&quot;;
+    public decimal Price { get; set; }
+    public List&lt;Order&gt; Orders { get; set; } = new();
+}</code></pre>
+    <p>För specialfall använder du <strong>Fluent API</strong> i <code>OnModelCreating</code>. Där kan du styra saker som klasserna inte visar: vad som händer vid borttagning, längdgränser och index.</p>
+<pre><code>protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity&lt;Order&gt;()
+        .HasOne(o =&gt; o.Product)
+        .WithMany(p =&gt; p.Orders)
+        .HasForeignKey(o =&gt; o.ProductId)
+        .OnDelete(DeleteBehavior.Restrict);
+
+    modelBuilder.Entity&lt;Product&gt;()
+        .Property(p =&gt; p.Name)
+        .HasMaxLength(100)
+        .IsRequired();
+}</code></pre>
+    <p class="note"><code>DeleteBehavior.Restrict</code> hindrar att en produkt tas bort så länge det finns ordrar som pekar på den. Utan den inställningen kan borttagning kaskadera och ta bort ordrar med.</p>
+
+  </div>
+  <div class="category st" id="ef-seeder">
+    <div class="cat-header" style="margin-top:2.25rem;">
+      <span class="cat-title">Seeder: startdata</span>
+    </div>
+    <p>En seeder fyller databasen med startdata, men bara om den är tom. Då kan du köra programmet hur många gånger du vill utan att få dubbletter:</p>
+<pre><code>public static class DbSeeder
+{
+    public static void Seed(WebshopContext db)
+    {
+        if (db.Products.Any())
+        {
+            return;
+        }
+
+        db.Products.AddRange(
+            new Product { Name = &quot;Kaffe&quot;, Price = 49m },
+            new Product { Name = &quot;Te&quot;, Price = 35m });
+        db.SaveChanges();
+    }
+}</code></pre>
+    <p>Anropa den efter migrationerna, till exempel i <code>Program.cs</code>:</p>
+<pre><code>using var db = new WebshopContext();
+db.Database.Migrate();
+DbSeeder.Seed(db);</code></pre>
+    <p class="note">EF Core har också <code>HasData</code> i <code>OnModelCreating</code>. Då blir startdatan en del av migrationen, och varje ändring av datan kräver en ny migration. Varje rad måste ha ett fast <code>Id</code>. Dokumentationen kallar det nu "model managed data". För allmän seeding rekommenderas <code>UseSeeding</code> och <code>UseAsyncSeeding</code> i <code>DbContextOptionsBuilder</code>.</p>
 
   </div>
   <div class="category st" id="ef-anslut-ide">
