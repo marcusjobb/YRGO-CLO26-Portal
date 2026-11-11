@@ -67,6 +67,11 @@
    "icon": "🤖",
    "label": "OpenCode — installation och gratis modeller",
    "href": "00_kursintro/notes/opencode_installation.md"
+  },
+  {
+   "icon": "✅",
+   "label": "Innan du lämnar in — vanliga misstag och checklista",
+   "href": "https://marcusjobb.github.io/YRGO-CLO26-Portal/innan-du-lamnar-in.html"
   }
  ],
  "betyg": {
