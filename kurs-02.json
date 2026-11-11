@@ -58,7 +58,7 @@
      "notes": [
       {
        "text": "Veckans guide — SQL-boot",
-       "href": "00_sql_boot/README.md",
+       "href": "week_41/notes/sql_boot.md",
        "tags": [
         "boot",
         "installation",
@@ -68,7 +68,7 @@
       },
       {
        "text": "Installera DB Browser for SQLite",
-       "href": "01_intro_databaser/notes/sqlite_browser_installation.md",
+       "href": "week_41/notes/sqlite_browser_installation.md",
        "tags": [
         "installation",
         "Windows",
@@ -190,7 +190,7 @@
      "notes": [
       {
        "text": "Intro till databaser",
-       "href": "01_intro_databaser/notes/intro_databaser.md",
+       "href": "week_41/terms/intro_databaser.md",
        "tags": [
         "begrepp",
         "tabell",
@@ -226,7 +226,7 @@
      "notes": [
       {
        "text": "Databastyper",
-       "href": "01_intro_databaser/notes/databastyper.md",
+       "href": "week_41/notes/databastyper.md",
        "tags": [
         "server",
         "fil",
@@ -275,37 +275,7 @@
       "dbdiagram",
       "C#"
      ],
-     "examples": [
-      {
-       "text": "Första SQLite-databasen",
-       "href": "01_intro_databaser/examples/2026-10-07_forsta_sqlite_databasen.md",
-       "tags": [
-        "SQLite",
-        "INSERT",
-        "UPDATE",
-        "DROP TABLE"
-       ]
-      },
-      {
-       "text": "SQL jämfört med C#",
-       "href": "01_intro_databaser/examples/2026-10-07_sql_jamfort_med_csharp.md",
-       "tags": [
-        "C#",
-        "List",
-        "foreach",
-        "LIKE"
-       ]
-      },
-      {
-       "text": "Rita databasen med dbdiagram.io",
-       "href": "01_intro_databaser/examples/2026-10-07_dbdiagram_intro.md",
-       "tags": [
-        "dbdiagram",
-        "DBML",
-        "ER-diagram"
-       ]
-      }
-     ],
+     "examples": [],
      "ovningar": {
       "green": [],
       "amber": [],
@@ -338,27 +308,7 @@
        ]
       }
      ],
-     "examples": [
-      {
-       "text": "SQLite i C#",
-       "href": "01_intro_databaser/examples/2026-10-07_sqlite_i_csharp.md",
-       "tags": [
-        "NuGet",
-        "csproj",
-        "parametrar",
-        "ExecuteReader"
-       ]
-      },
-      {
-       "text": "SQLite-handler",
-       "href": "01_intro_databaser/examples/2026-10-07_sqlite_handler.md",
-       "tags": [
-        "klass",
-        "namespace",
-        "refaktorering"
-       ]
-      }
-     ],
+     "examples": [],
      "ovningar": {
       "green": [],
       "amber": [
@@ -521,7 +471,7 @@
      ],
      "lektion": {
       "text": "Föreläsning: SQL-intro",
-      "href": "01_intro_databaser/lectures/sql_intro_marp.md",
+      "href": "week_42/lectures/sql_intro_marp.md",
       "tags": [
        "SELECT",
        "WHERE",
@@ -532,7 +482,7 @@
      "notes": [
       {
        "text": "Installera DB Browser for SQLite",
-       "href": "01_intro_databaser/notes/sqlite_browser_installation.md",
+       "href": "week_42/notes/sqlite_browser_installation.md",
        "tags": [
         "installation",
         "Windows",
@@ -542,7 +492,7 @@
       },
       {
        "text": "SQL-intro",
-       "href": "01_intro_databaser/notes/sql_intro.md",
+       "href": "week_42/notes/sql_intro.md",
        "tags": [
         "SELECT",
         "WHERE",
@@ -704,7 +654,7 @@
      "notes": [
       {
        "text": "Termer: normalisering och GDPR",
-       "href": "termer/normalisering.md",
+       "href": "week_42/notes/normalisering.md",
        "tags": [
         "1NF",
         "2NF",
@@ -770,7 +720,7 @@
      "notes": [
       {
        "text": "SQL-intro",
-       "href": "01_intro_databaser/notes/sql_intro.md",
+       "href": "week_42/notes/sql_intro.md",
        "tags": [
         "SELECT",
         "WHERE",
@@ -921,7 +871,7 @@
      ],
      "lektion": {
       "text": "SQL JOINs — extraföreläsning",
-      "href": "01_intro_databaser/lectures/databaser_joins_marp.md",
+      "href": "week_42/lectures/databaser_joins_marp.md",
       "tags": [
        "INNER JOIN",
        "LEFT JOIN",
@@ -933,7 +883,7 @@
      "examples": [
       {
        "text": "Demobas — skapa joins_demo.db",
-       "href": "01_intro_databaser/examples/skapa_joins_demo.py",
+       "href": "week_42/examples/skapa_joins_demo.py",
        "tags": [
         "Python",
         "SQLite",
@@ -942,7 +892,7 @@
       },
       {
        "text": "SQL-schema för demobasen",
-       "href": "01_intro_databaser/examples/joins_demo.sql",
+       "href": "week_42/examples/joins_demo.sql",
        "tags": [
         "CREATE TABLE",
         "INSERT",
@@ -971,7 +921,7 @@
      "notes": [
       {
        "text": "Inlämning 1 — Diskografi (uppgiftsbeskrivning)",
-       "href": "assignment/inlamning_1_diskografi.md",
+       "href": "week_42/assignment/inlamning_1_diskografi.md",
        "tags": [
         "G",
         "VG",
@@ -1011,7 +961,7 @@
      "notes": [
       {
        "text": "Normalisering — teori och termer",
-       "href": "termer/normalisering.md",
+       "href": "week_42/notes/normalisering.md",
        "tags": [
         "normalisering",
         "anomalier",
