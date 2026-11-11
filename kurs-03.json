@@ -538,7 +538,7 @@
    "tentafragor": [
     {
      "text": "Tentafrågor — klasser, arv, abstract och interface",
-     "href": "week_45/pre-exam/00_fragor_oop.md",
+     "href": "week_45/tentafragor/00_fragor_oop.md",
      "publish": "2026-11-02"
     }
    ]
@@ -1068,12 +1068,12 @@
    "tentafragor": [
     {
      "text": "Tentafrågor — ORM, NoSQL och entiteter",
-     "href": "week_46/pre-exam/01_fragor_orm_nosql.md",
+     "href": "week_46/tentafragor/01_fragor_orm_nosql.md",
      "publish": "2026-11-06"
     },
     {
      "text": "Tentafrågor — designmönster och UML",
-     "href": "week_46/pre-exam/01_fragor_designmonster.md",
+     "href": "week_46/tentafragor/01_fragor_designmonster.md",
      "publish": "2026-11-06"
     }
    ]

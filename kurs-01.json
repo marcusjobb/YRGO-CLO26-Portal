@@ -143,6 +143,30 @@
       "amber": [],
       "red": []
      }
+    },
+    {
+     "titel": "Programmeringstermer",
+     "beskrivning": "Veckans termer som uppslagsord.",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Git",
+       "href": "week_36/terms/git.md"
+      },
+      {
+       "text": "Git-konflikter",
+       "href": "week_36/terms/git_konflikter.md"
+      },
+      {
+       "text": "Git och Markdown",
+       "href": "week_36/terms/git_och_markdown.md"
+      },
+      {
+       "text": "Verktyg",
+       "href": "week_36/terms/verktyg.md"
+      }
+     ],
+     "ovningar": []
     }
    ],
    "publish": "2026-08-31"
@@ -155,15 +179,15 @@
    "tentafragor": [
     {
      "text": "01 Git & verktyg",
-     "href": "week_37/pre-exam/01_fragor_git.md"
+     "href": "week_37/tentafragor/01_fragor_git.md"
     },
     {
      "text": "02 Variabler",
-     "href": "week_37/pre-exam/02_fragor_variabler.md"
+     "href": "week_37/tentafragor/02_fragor_variabler.md"
     },
     {
      "text": "03 Villkor & loopar",
-     "href": "week_37/pre-exam/03_fragor_villkor.md"
+     "href": "week_37/tentafragor/03_fragor_villkor.md"
     }
    ],
    "amnen": [
@@ -894,6 +918,58 @@
       "week_37/exercises/conditions/diagrams/ratt_halsning_1.png",
       "week_37/exercises/conditions/diagrams/kalkylator_1.png"
      ]
+    },
+    {
+     "titel": "Programmeringstermer",
+     "beskrivning": "Veckans termer som uppslagsord.",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Aritmetik",
+       "href": "week_37/terms/aritmetik.md"
+      },
+      {
+       "text": "Bool och logik",
+       "href": "week_37/terms/bool.md"
+      },
+      {
+       "text": "Console",
+       "href": "week_37/terms/console.md"
+      },
+      {
+       "text": "Console (fördjupning)",
+       "href": "week_37/terms/console_fordjupning.md"
+      },
+      {
+       "text": "Datatyper",
+       "href": "week_37/terms/datatyper.md"
+      },
+      {
+       "text": "If-satser",
+       "href": "week_37/terms/if_else.md"
+      },
+      {
+       "text": "Loopar",
+       "href": "week_37/terms/loopar.md"
+      },
+      {
+       "text": "Operatorer",
+       "href": "week_37/terms/operatorer.md"
+      },
+      {
+       "text": "Strängmetoder",
+       "href": "week_37/terms/strangar.md"
+      },
+      {
+       "text": "Switch",
+       "href": "week_37/terms/switch.md"
+      },
+      {
+       "text": "Variabler",
+       "href": "week_37/terms/variabler.md"
+      }
+     ],
+     "ovningar": []
     }
    ],
    "publish": "2026-09-07"
@@ -907,7 +983,7 @@
    "tentafragor": [
     {
      "text": "05 Klasser och OOP",
-     "href": "week_38/pre-exam/fragor.md"
+     "href": "week_38/tentafragor/fragor.md"
     }
    ],
    "amnen": [
@@ -1260,6 +1336,22 @@
       "amber": [],
       "red": []
      }
+    },
+    {
+     "titel": "Programmeringstermer",
+     "beskrivning": "Veckans termer som uppslagsord.",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Klasser och objekt",
+       "href": "week_38/terms/klasser.md"
+      },
+      {
+       "text": "Metoder",
+       "href": "week_38/terms/metoder.md"
+      }
+     ],
+     "ovningar": []
     }
    ],
    "publish": "2026-09-14"
@@ -1606,6 +1698,26 @@
       ],
       "red": []
      }
+    },
+    {
+     "titel": "Programmeringstermer",
+     "beskrivning": "Veckans termer som uppslagsord.",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Arrayer",
+       "href": "week_39/terms/arrayer.md"
+      },
+      {
+       "text": "Dictionary",
+       "href": "week_39/terms/dictionary.md"
+      },
+      {
+       "text": "Listor",
+       "href": "week_39/terms/listor.md"
+      }
+     ],
+     "ovningar": []
     }
    ],
    "publish": "2026-09-21"
