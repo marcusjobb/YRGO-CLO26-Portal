@@ -93,7 +93,7 @@
      "notes": [
       {
        "text": "Bildspel — Klass och objekt",
-       "href": "week_45/lectures/01_klass_och_objekt_marp.md",
+       "href": "45_trygg_start_oop/lectures/01_klass_och_objekt_marp.md",
        "tags": [
         "klass",
         "objekt"
@@ -101,7 +101,7 @@
       },
       {
        "text": "Läsversion — Klass och objekt",
-       "href": "week_45/notes/klass_och_objekt.md",
+       "href": "45_trygg_start_oop/notes/klass_och_objekt.md",
        "tags": [
         "klass",
         "objekt",
@@ -113,7 +113,7 @@
       "green": [
        {
         "text": "Övning 1 — din egen hjälte",
-        "href": "week_45/exercises/ovning_1_hjalten.md",
+        "href": "45_trygg_start_oop/exercises/ovning_1_hjalten.md",
         "tags": [
          "klass",
          "objekt",
@@ -138,7 +138,7 @@
      "notes": [
       {
        "text": "Bildspel — Arv",
-       "href": "week_45/lectures/02_arv_marp.md",
+       "href": "45_trygg_start_oop/lectures/02_arv_marp.md",
        "tags": [
         "arv",
         "override"
@@ -146,7 +146,7 @@
       },
       {
        "text": "Läsversion — Arv",
-       "href": "week_45/notes/arv.md",
+       "href": "45_trygg_start_oop/notes/arv.md",
        "tags": [
         "arv",
         "virtual",
@@ -159,7 +159,7 @@
       "green": [
        {
         "text": "Övning 2 — arv",
-        "href": "week_45/exercises/ovning_2_arv.md",
+        "href": "45_trygg_start_oop/exercises/ovning_2_arv.md",
         "tags": [
          "arv",
          "override",
@@ -184,7 +184,7 @@
      "notes": [
       {
        "text": "Bildspel — Abstract och interface",
-       "href": "week_45/lectures/03_abstract_och_interface_marp.md",
+       "href": "45_trygg_start_oop/lectures/03_abstract_och_interface_marp.md",
        "tags": [
         "abstract",
         "interface"
@@ -192,7 +192,7 @@
       },
       {
        "text": "Läsversion — Abstract och interface",
-       "href": "week_45/notes/abstract_och_interface.md",
+       "href": "45_trygg_start_oop/notes/abstract_och_interface.md",
        "tags": [
         "abstract",
         "interface",
@@ -201,7 +201,7 @@
       },
       {
        "text": "Termer — OOP-repetition",
-       "href": "week_45/terms/oop_repetition.md",
+       "href": "45_trygg_start_oop/terms/oop_repetition.md",
        "tags": [
         "termer"
        ]
@@ -211,7 +211,7 @@
       "green": [
        {
         "text": "Övning 3 — abstract och interface",
-        "href": "week_45/exercises/ovning_3_abstract_interface.md",
+        "href": "45_trygg_start_oop/exercises/ovning_3_abstract_interface.md",
         "tags": [
          "abstract",
          "interface",
@@ -222,7 +222,7 @@
        },
        {
         "text": "Övning 4 — garaget",
-        "href": "week_45/exercises/ovning_4_garaget.md",
+        "href": "45_trygg_start_oop/exercises/ovning_4_garaget.md",
         "tags": [
          "abstract",
          "interface",
@@ -232,7 +232,7 @@
        },
        {
         "text": "Övning 5 — personalsystemet",
-        "href": "week_45/exercises/ovning_5_personal.md",
+        "href": "45_trygg_start_oop/exercises/ovning_5_personal.md",
         "tags": [
          "abstract",
          "interface",
@@ -258,7 +258,7 @@
      "notes": [
       {
        "text": "Läxa A — Hjältens äventyr",
-       "href": "week_45/exercises/lara_a_hjaltens_aventyr.md",
+       "href": "45_trygg_start_oop/exercises/lara_a_hjaltens_aventyr.md",
        "tags": [
         "läxa",
         "kapitel 1"
@@ -283,7 +283,7 @@
      "notes": [
       {
        "text": "Bildspel — Spara ett objekt som JSON, del 1",
-       "href": "week_45/lectures/json_spara_ett_objekt_del1_marp.md",
+       "href": "45_trygg_start_oop/lectures/json_spara_ett_objekt_del1_marp.md",
        "tags": [
         "JSON",
         "serialisering"
@@ -291,7 +291,7 @@
       },
       {
        "text": "Bildspel — Spara ett objekt som JSON, del 2",
-       "href": "week_45/lectures/json_spara_ett_objekt_del2_marp.md",
+       "href": "45_trygg_start_oop/lectures/json_spara_ett_objekt_del2_marp.md",
        "tags": [
         "JSON",
         "serialisering"
@@ -299,7 +299,7 @@
       },
       {
        "text": "Läsversion — Spara ett objekt som JSON",
-       "href": "week_45/notes/json_spara_ett_objekt.md",
+       "href": "45_trygg_start_oop/notes/json_spara_ett_objekt.md",
        "tags": [
         "JSON",
         "serialisering",
@@ -308,7 +308,7 @@
       },
       {
        "text": "Termer — JSON och serialisering",
-       "href": "week_45/terms/json_spara_objekt.md",
+       "href": "45_trygg_start_oop/terms/json_spara_objekt.md",
        "tags": [
         "termer"
        ]
@@ -318,7 +318,7 @@
       "green": [
        {
         "text": "Övning — spara och ladda hjälten",
-        "href": "week_45/exercises/ovning_json_spara_hjalten.md",
+        "href": "45_trygg_start_oop/exercises/ovning_json_spara_hjalten.md",
         "tags": [
          "JSON",
          "fil",
@@ -331,10 +331,10 @@
       "red": []
      },
      "assets": [
-      "week_45/lectures/images/01_klass_till_json.png",
-      "week_45/lectures/images/02_falt_ger_tom_json.png",
-      "week_45/lectures/images/03_spara_och_ladda.png",
-      "week_45/lectures/images/04_vad_ser_man.png"
+      "45_trygg_start_oop/lectures/images/01_klass_till_json.png",
+      "45_trygg_start_oop/lectures/images/02_falt_ger_tom_json.png",
+      "45_trygg_start_oop/lectures/images/03_spara_och_ladda.png",
+      "45_trygg_start_oop/lectures/images/04_vad_ser_man.png"
      ]
     },
     {
@@ -348,7 +348,7 @@
      "notes": [
       {
        "text": "Läxa B — Sparfilen",
-       "href": "week_45/exercises/lara_b_sparfilen.md",
+       "href": "45_trygg_start_oop/exercises/lara_b_sparfilen.md",
        "tags": [
         "läxa",
         "kapitel 2"
@@ -376,7 +376,7 @@
      "notes": [
       {
        "text": "Livekodning: från hjälte till fil",
-       "href": "week_45/notes/livekodning_hero_till_json.md",
+       "href": "45_trygg_start_oop/notes/livekodning_hero_till_json.md",
        "tags": [
         "arv",
         "abstract",
@@ -386,7 +386,7 @@
       },
       {
        "text": "Livekodning: repository-mönstret med katter",
-       "href": "week_45/notes/livekodning_catjson_repository.md",
+       "href": "45_trygg_start_oop/notes/livekodning_catjson_repository.md",
        "tags": [
         "repository",
         "JSON",
@@ -415,7 +415,7 @@
      "notes": [
       {
        "text": "Notes — Spara och ladda en lista (steg för steg)",
-       "href": "week_45/notes/json_lista_spara_och_ladda.md",
+       "href": "45_trygg_start_oop/notes/json_lista_spara_och_ladda.md",
        "tags": [
         "JSON",
         "serialize",
@@ -428,7 +428,7 @@
       "green": [
        {
         "text": "json01 — Objekt → JSON",
-        "href": "week_45/exercises/repetition.json01.md",
+        "href": "45_trygg_start_oop/exercises/repetition.json01.md",
         "tags": [
          "JSON",
          "serialize"
@@ -437,7 +437,7 @@
        },
        {
         "text": "json02 — JSON → Objekt",
-        "href": "week_45/exercises/repetition.json02.md",
+        "href": "45_trygg_start_oop/exercises/repetition.json02.md",
         "tags": [
          "JSON",
          "deserialize"
@@ -446,7 +446,7 @@
        },
        {
         "text": "json03 — Lista → JSON",
-        "href": "week_45/exercises/repetition.json03.md",
+        "href": "45_trygg_start_oop/exercises/repetition.json03.md",
         "tags": [
          "JSON",
          "serialize",
@@ -456,7 +456,7 @@
        },
        {
         "text": "json04 — JSON → Lista",
-        "href": "week_45/exercises/repetition.json04.md",
+        "href": "45_trygg_start_oop/exercises/repetition.json04.md",
         "tags": [
          "JSON",
          "deserialize",
@@ -466,7 +466,7 @@
        },
        {
         "text": "lista01 — List<T>-operationer",
-        "href": "week_45/exercises/repetition.lista01.md",
+        "href": "45_trygg_start_oop/exercises/repetition.lista01.md",
         "tags": [
          "lista",
          "Add",
@@ -477,7 +477,7 @@
        },
        {
         "text": "fil01 — WriteAllText och ReadAllText",
-        "href": "week_45/exercises/repetition.fil01.md",
+        "href": "45_trygg_start_oop/exercises/repetition.fil01.md",
         "tags": [
          "fil",
          "WriteAllText",
@@ -487,7 +487,7 @@
        },
        {
         "text": "substring01 — Klipp ut delar av en sträng",
-        "href": "week_45/exercises/repetition.substring01.md",
+        "href": "45_trygg_start_oop/exercises/repetition.substring01.md",
         "tags": [
          "substring",
          "sträng"
@@ -498,7 +498,7 @@
       "amber": [
        {
         "text": "lista02 — Lista: spara och ladda",
-        "href": "week_45/exercises/repetition.lista02.md",
+        "href": "45_trygg_start_oop/exercises/repetition.lista02.md",
         "tags": [
          "lista",
          "JSON",
@@ -508,7 +508,7 @@
        },
        {
         "text": "fil02 — WriteAllLines, ReadAllLines och enskilda rader",
-        "href": "week_45/exercises/repetition.fil02.md",
+        "href": "45_trygg_start_oop/exercises/repetition.fil02.md",
         "tags": [
          "fil",
          "WriteAllLines",
@@ -538,7 +538,7 @@
    "tentafragor": [
     {
      "text": "Tentafrågor — klasser, arv, abstract och interface",
-     "href": "week_45/pre-exam/00_fragor_oop.md",
+     "href": "45_trygg_start_oop/pre-exam/00_fragor_oop.md",
      "publish": "2026-11-02"
     }
    ]
@@ -560,7 +560,7 @@
      "notes": [
       {
        "text": "Dagen — måndag 9 november",
-       "href": "week_46/lectures/v46_mandag_dagen_marp.md",
+       "href": "46_ef_mongodb_designmonster/lectures/v46_mandag_dagen_marp.md",
        "tags": [
         "agenda"
        ]
@@ -584,14 +584,14 @@
      "notes": [
       {
        "text": "Bildspel — EF Core: spara objekt",
-       "href": "week_46/lectures/ef_core_hello_marp.md",
+       "href": "46_ef_mongodb_designmonster/lectures/ef_core_hello_marp.md",
        "tags": [
         "EF Core"
        ]
       },
       {
        "text": "Läsversion — EF Core: spara objekt",
-       "href": "week_46/notes/ef_core_hello.md",
+       "href": "46_ef_mongodb_designmonster/notes/ef_core_hello.md",
        "tags": [
         "EF Core"
        ]
@@ -601,7 +601,7 @@
       "green": [
        {
         "text": "Övning — hjältarna i databasen",
-        "href": "week_46/exercises/ovning_ef_core_hjaltarna.md",
+        "href": "46_ef_mongodb_designmonster/exercises/ovning_ef_core_hjaltarna.md",
         "tags": [
          "EF Core",
          "SQLite"
@@ -625,7 +625,7 @@
      "notes": [
       {
        "text": "Bildspel — EF Core: relationer",
-       "href": "week_46/lectures/ef_core_relationer_marp.md",
+       "href": "46_ef_mongodb_designmonster/lectures/ef_core_relationer_marp.md",
        "tags": [
         "EF Core",
         "relationer"
@@ -633,7 +633,7 @@
       },
       {
        "text": "Läsversion — EF Core: relationer",
-       "href": "week_46/notes/ef_core_relationer.md",
+       "href": "46_ef_mongodb_designmonster/notes/ef_core_relationer.md",
        "tags": [
         "EF Core",
         "relationer"
@@ -644,7 +644,7 @@
       "green": [
        {
         "text": "Övning — hjältarnas uppdrag",
-        "href": "week_46/exercises/ovning_ef_core_uppdrag.md",
+        "href": "46_ef_mongodb_designmonster/exercises/ovning_ef_core_uppdrag.md",
         "tags": [
          "EF Core",
          "relationer"
@@ -668,14 +668,14 @@
      "notes": [
       {
        "text": "Bildspel — MongoDB i lätt version",
-       "href": "week_46/lectures/mongodb_light_marp.md",
+       "href": "46_ef_mongodb_designmonster/lectures/mongodb_light_marp.md",
        "tags": [
         "MongoDB"
        ]
       },
       {
        "text": "Läsversion — MongoDB i lätt version",
-       "href": "week_46/notes/mongodb_light.md",
+       "href": "46_ef_mongodb_designmonster/notes/mongodb_light.md",
        "tags": [
         "MongoDB"
        ]
@@ -698,7 +698,7 @@
      "notes": [
       {
        "text": "Bildspel — genomgång av Inlämning 1",
-       "href": "week_46/lectures/inlamning_1_genomgang_marp.md",
+       "href": "46_ef_mongodb_designmonster/lectures/inlamning_1_genomgang_marp.md",
        "tags": [
         "inlämning"
        ]
@@ -711,7 +711,7 @@
      },
      "inlamning": {
       "text": "Inlämning 1 — Hotel Grandioso",
-      "href": "week_46/assignment/inlamning_1_hotel_grandioso.md",
+      "href": "46_ef_mongodb_designmonster/assignment/inlamning_1_hotel_grandioso.md",
       "tags": [
        "EF Core",
        "individuell"
@@ -730,7 +730,7 @@
      "notes": [
       {
        "text": "Läxa C — Tildas bibliotek",
-       "href": "week_46/exercises/lara_c_tildas_bibliotek.md",
+       "href": "46_ef_mongodb_designmonster/exercises/lara_c_tildas_bibliotek.md",
        "tags": [
         "läxa"
        ]
@@ -754,7 +754,7 @@
      "notes": [
       {
        "text": "Dagen — onsdag 11 november",
-       "href": "week_46/lectures/v46_onsdag_dagen_marp.md",
+       "href": "46_ef_mongodb_designmonster/lectures/v46_onsdag_dagen_marp.md",
        "tags": [
         "agenda"
        ]
@@ -778,21 +778,21 @@
      "notes": [
       {
        "text": "Bildspel — UML: klassdiagram och ERD",
-       "href": "week_46/lectures/uml_klassdiagram_marp.md",
+       "href": "46_ef_mongodb_designmonster/lectures/uml_klassdiagram_marp.md",
        "tags": [
         "UML"
        ]
       },
       {
        "text": "Läsversion — UML: klassdiagram och ERD",
-       "href": "week_46/notes/uml_klassdiagram.md",
+       "href": "46_ef_mongodb_designmonster/notes/uml_klassdiagram.md",
        "tags": [
         "UML"
        ]
       },
       {
        "text": "Prompt — UML med AI (använd den, men förklara diagrammet)",
-       "href": "week_46/notes/uml_prompt.md",
+       "href": "46_ef_mongodb_designmonster/notes/uml_prompt.md",
        "tags": [
         "UML",
         "AI"
@@ -806,26 +806,26 @@
      },
      "publish": "2026-11-06",
      "assets": [
-      "week_46/lectures/diagrams/uml_klassdiagram_marp_1.mmd",
-      "week_46/lectures/diagrams/uml_klassdiagram_marp_1.png",
-      "week_46/lectures/diagrams/uml_klassdiagram_marp_2.mmd",
-      "week_46/lectures/diagrams/uml_klassdiagram_marp_2.png",
-      "week_46/lectures/diagrams/uml_klassdiagram_marp_3.mmd",
-      "week_46/lectures/diagrams/uml_klassdiagram_marp_3.png",
-      "week_46/lectures/diagrams/uml_klassdiagram_marp_4.mmd",
-      "week_46/lectures/diagrams/uml_klassdiagram_marp_4.png",
-      "week_46/notes/diagrams/uml_klassdiagram_1.mmd",
-      "week_46/notes/diagrams/uml_klassdiagram_1.png",
-      "week_46/notes/diagrams/uml_klassdiagram_2.mmd",
-      "week_46/notes/diagrams/uml_klassdiagram_2.png",
-      "week_46/notes/diagrams/uml_klassdiagram_3.mmd",
-      "week_46/notes/diagrams/uml_klassdiagram_3.png",
-      "week_46/notes/diagrams/uml_klassdiagram_4.mmd",
-      "week_46/notes/diagrams/uml_klassdiagram_4.png",
-      "week_46/notes/diagrams/uml_klassdiagram_5.mmd",
-      "week_46/notes/diagrams/uml_klassdiagram_5.png",
-      "week_46/notes/diagrams/uml_klassdiagram_6.mmd",
-      "week_46/notes/diagrams/uml_klassdiagram_6.png"
+      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_1.mmd",
+      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_1.png",
+      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_2.mmd",
+      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_2.png",
+      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_3.mmd",
+      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_3.png",
+      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_4.mmd",
+      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_4.png",
+      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_1.mmd",
+      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_1.png",
+      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_2.mmd",
+      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_2.png",
+      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_3.mmd",
+      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_3.png",
+      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_4.mmd",
+      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_4.png",
+      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_5.mmd",
+      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_5.png",
+      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_6.mmd",
+      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_6.png"
      ]
     },
     {
@@ -839,14 +839,14 @@
      "notes": [
       {
        "text": "Bildspel — Strategy",
-       "href": "week_46/lectures/strategy_marp.md",
+       "href": "46_ef_mongodb_designmonster/lectures/strategy_marp.md",
        "tags": [
         "Strategy"
        ]
       },
       {
        "text": "Läsversion — Strategy",
-       "href": "week_46/notes/strategy.md",
+       "href": "46_ef_mongodb_designmonster/notes/strategy.md",
        "tags": [
         "Strategy"
        ]
@@ -856,7 +856,7 @@
       "green": [
        {
         "text": "Övning — Strategy",
-        "href": "week_46/exercises/ovning_strategy.md",
+        "href": "46_ef_mongodb_designmonster/exercises/ovning_strategy.md",
         "tags": [
          "Strategy"
         ],
@@ -868,8 +868,8 @@
      },
      "publish": "2026-11-06",
      "assets": [
-      "week_46/exercises/diagrams/ovning_strategy_1.mmd",
-      "week_46/exercises/diagrams/ovning_strategy_1.png"
+      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_strategy_1.mmd",
+      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_strategy_1.png"
      ]
     },
     {
@@ -882,14 +882,14 @@
      "notes": [
       {
        "text": "Bildspel — Factory",
-       "href": "week_46/lectures/factory_marp.md",
+       "href": "46_ef_mongodb_designmonster/lectures/factory_marp.md",
        "tags": [
         "Factory"
        ]
       },
       {
        "text": "Läsversion — Factory",
-       "href": "week_46/notes/factory.md",
+       "href": "46_ef_mongodb_designmonster/notes/factory.md",
        "tags": [
         "Factory"
        ]
@@ -899,7 +899,7 @@
       "green": [
        {
         "text": "Övning — Factory",
-        "href": "week_46/exercises/ovning_factory.md",
+        "href": "46_ef_mongodb_designmonster/exercises/ovning_factory.md",
         "tags": [
          "Factory"
         ],
@@ -911,10 +911,10 @@
      },
      "publish": "2026-11-06",
      "assets": [
-      "week_46/exercises/diagrams/ovning_factory_1.mmd",
-      "week_46/exercises/diagrams/ovning_factory_1.png",
-      "week_46/exercises/diagrams/ovning_factory_2.mmd",
-      "week_46/exercises/diagrams/ovning_factory_2.png"
+      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_factory_1.mmd",
+      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_factory_1.png",
+      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_factory_2.mmd",
+      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_factory_2.png"
      ]
     },
     {
@@ -928,28 +928,28 @@
      "notes": [
       {
        "text": "Bildspel — Observer",
-       "href": "week_46/lectures/observer_marp.md",
+       "href": "46_ef_mongodb_designmonster/lectures/observer_marp.md",
        "tags": [
         "Observer"
        ]
       },
       {
        "text": "Läsversion — Observer",
-       "href": "week_46/notes/observer.md",
+       "href": "46_ef_mongodb_designmonster/notes/observer.md",
        "tags": [
         "Observer"
        ]
       },
       {
        "text": "Läsversion — Builder",
-       "href": "week_46/notes/builder.md",
+       "href": "46_ef_mongodb_designmonster/notes/builder.md",
        "tags": [
         "Builder"
        ]
       },
       {
        "text": "Bildspel — Builder",
-       "href": "week_46/lectures/builder_marp.md",
+       "href": "46_ef_mongodb_designmonster/lectures/builder_marp.md",
        "tags": [
         "Builder"
        ]
@@ -972,7 +972,7 @@
      "notes": [
       {
        "text": "Övning — Builder",
-       "href": "week_46/exercises/ovning_builder.md",
+       "href": "46_ef_mongodb_designmonster/exercises/ovning_builder.md",
        "tags": [
         "Builder"
        ]
@@ -982,7 +982,7 @@
       "green": [
        {
         "text": "Övning — Builder",
-        "href": "week_46/exercises/ovning_builder.md",
+        "href": "46_ef_mongodb_designmonster/exercises/ovning_builder.md",
         "tags": [
          "Builder"
         ],
@@ -994,8 +994,8 @@
      },
      "publish": "2026-11-06",
      "assets": [
-      "week_46/exercises/diagrams/ovning_builder_1.mmd",
-      "week_46/exercises/diagrams/ovning_builder_1.png"
+      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_builder_1.mmd",
+      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_builder_1.png"
      ]
     },
     {
@@ -1008,7 +1008,7 @@
      "notes": [
       {
        "text": "Quiz — mönstren",
-       "href": "week_46/lectures/quiz_patterns_marp.md",
+       "href": "46_ef_mongodb_designmonster/lectures/quiz_patterns_marp.md",
        "tags": [
         "quiz",
         "backspegel"
@@ -1032,7 +1032,7 @@
      "notes": [
       {
        "text": "Läxa D — Mira och verktygslådan",
-       "href": "week_46/exercises/lara_d_mira_och_verktygsladan.md",
+       "href": "46_ef_mongodb_designmonster/exercises/lara_d_mira_och_verktygsladan.md",
        "tags": [
         "läxa"
        ]
@@ -1045,8 +1045,8 @@
      },
      "publish": "2026-11-06",
      "assets": [
-      "week_46/exercises/diagrams/lara_d_mira_och_verktygsladan_1.mmd",
-      "week_46/exercises/diagrams/lara_d_mira_och_verktygsladan_1.png"
+      "46_ef_mongodb_designmonster/exercises/diagrams/lara_d_mira_och_verktygsladan_1.mmd",
+      "46_ef_mongodb_designmonster/exercises/diagrams/lara_d_mira_och_verktygsladan_1.png"
      ]
     },
     {
@@ -1068,12 +1068,12 @@
    "tentafragor": [
     {
      "text": "Tentafrågor — ORM, NoSQL och entiteter",
-     "href": "week_46/pre-exam/01_fragor_orm_nosql.md",
+     "href": "46_ef_mongodb_designmonster/pre-exam/01_fragor_orm_nosql.md",
      "publish": "2026-11-06"
     },
     {
      "text": "Tentafrågor — designmönster och UML",
-     "href": "week_46/pre-exam/01_fragor_designmonster.md",
+     "href": "46_ef_mongodb_designmonster/pre-exam/01_fragor_designmonster.md",
      "publish": "2026-11-06"
     }
    ]
@@ -1112,7 +1112,7 @@
      "notes": [
       {
        "text": "Bildspel — Databaskopplingar i C# (repetition)",
-       "href": "week_49/lectures/01_databaskopplingar_marp.md",
+       "href": "49_tenta_och_presentationer/lectures/01_databaskopplingar_marp.md",
        "tags": [
         "repetition"
        ]
