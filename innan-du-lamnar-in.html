@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Innan du lämnar in</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root {
+  --bg: #F9F9F7;
+  --fg: #1C1C1A;
+  --muted: #64645E;
+  --border: #E4E4DF;
+  --code-bg: #EFEFE8;
+  --accent: #1762A3;
+  --accent-bg: #EBF2FA;
+  --warm: #B55608;
+  --warm-bg: #FEF4EC;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161614;
+    --fg: #E6E6E0;
+    --muted: #8A8A80;
+    --border: #2C2C28;
+    --code-bg: #1E1E1A;
+    --accent: #4B9DD4;
+    --accent-bg: #0C1E30;
+    --warm: #E8922E;
+    --warm-bg: #261508;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161614; --fg: #E6E6E0; --muted: #8A8A80; --border: #2C2C28; --code-bg: #1E1E1A;
+  --accent: #4B9DD4; --accent-bg: #0C1E30; --warm: #E8922E; --warm-bg: #261508;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 2.5rem;
+}
+.container { max-width: 720px; margin: 0 auto; }
+
+h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 2.6rem; font-weight: 400; line-height: 1.1;
+  text-wrap: balance; margin-bottom: 0.6rem;
+}
+.lead { color: var(--muted); font-size: 1rem; margin-bottom: 2rem; }
+
+h2 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.7rem; font-weight: 400; line-height: 1.2;
+  margin-top: 3rem; margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem; border-bottom: 2px solid var(--border);
+}
+h3 { font-size: 1rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.4rem; }
+p { margin-bottom: 0.9rem; }
+ul, ol { margin: 0 0 1rem 1.3rem; }
+li { margin-bottom: 0.35rem; }
+strong { font-weight: 600; }
+
+code {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.85em;
+  background: var(--code-bg); padding: 0.1em 0.4em; border-radius: 3px;
+}
+pre {
+  background: var(--code-bg); border-radius: 8px;
+  padding: 1rem 1.2rem; overflow-x: auto; margin-bottom: 1rem;
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; line-height: 1.55;
+}
+pre code { background: none; padding: 0; font-size: inherit; }
+
+.box {
+  border-radius: 8px; padding: 1rem 1.25rem; margin: 1.2rem 0;
+  background: var(--accent-bg);
+}
+.box-title { font-weight: 600; margin-bottom: 0.3rem; color: var(--accent); }
+.box.warm { background: var(--warm-bg); }
+.box.warm .box-title { color: var(--warm); }
+
+.quote {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.25rem; font-style: italic; line-height: 1.45;
+  padding: 1.2rem 0 1.2rem 1.2rem; margin: 1.5rem 0;
+  border-left: 3px solid var(--accent);
+}
+
+table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.92rem; }
+th, td { text-align: left; padding: 0.55rem 0.6rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.checklist { list-style: none; margin-left: 0; }
+.checklist li { padding-left: 1.6rem; position: relative; margin-bottom: 0.5rem; }
+.checklist li::before {
+  content: "☐"; position: absolute; left: 0; top: 0; color: var(--muted);
+}
+
+.toc { font-size: 0.92rem; margin-bottom: 2rem; }
+.toc a { color: var(--accent); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+
+footer { margin-top: 3.5rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+</style>
+</head>
+<body>
+<main class="container">
+
+<h1>Innan du lämnar in</h1>
+<p class="lead">Det som avgör om din kod håller, och vad som gör att någon vill anställa dig. Läs det en gång, och sedan innan varje inlämning.</p>
+
+<p class="toc">
+  <a href="#varfor">Varför det här</a> ·
+  <a href="#repot">1. Repot</a> ·
+  <a href="#hemligheter">2. Hemligheter</a> ·
+  <a href="#kor">3. Kör det</a> ·
+  <a href="#lasbart">4. Läsbar kod</a> ·
+  <a href="#databas">5. Databasen</a> ·
+  <a href="#leverans">6. Leverans</a> ·
+  <a href="#nasta">Nästa kurs</a> ·
+  <a href="#checklista">Checklista</a>
+</p>
+
+<h2 id="varfor">Varför det här</h2>
+
+<p>De flesta fel som kostar i en inlämning är inte svåra. De är vanor. En <code>bin/</code>-mapp i repot, en lösenordsrad som ligger kvar i historiken, en metod som bara kastar <code>NotImplementedException</code>. Ingen av dem gör koden sämre i stunden. Men den som läser koden ser dem direkt, och den som ska anställa dig läser din kod.</p>
+
+<p>I nästa kurs börjar ni skriva <strong>enhetstester</strong> och <strong>clean code</strong>. Det är de verktyg man använder på riktiga uppdrag. Ett test är ett bevis på att koden gör det den ska. Clean code är det som gör att nästa person kan ändra den utan att vara rädd. Vanorna från den här sidan är grunden för båda.</p>
+
+<div class="quote">
+  Väggarna finns för att stoppa dem som inte vill det tillräckligt mycket. Ni vill det. Annars hade ni inte kommit så här långt.
+</div>
+
+<p>Ni är juniors, och ni är redo att ta på riktiga uppdrag. Det som skiljer en junior som får jobb från en som inte får det är ofta inte kunskapen, utan om koden ser ut som någon har tänkt på den. Det här är ert sätt att visa det.</p>
+
+<h2 id="repot">1. Repot är ert skyltfönster</h2>
+
+<p>Git sparar allt. Även det ni tar bort. Det är både styrkan och risken med versionshantering.</p>
+
+<h3>Byggfiler ska inte vara i repot</h3>
+<p><code>bin/</code>, <code>obj/</code> och <code>.vs/</code> genereras av datorn. De ska stå i <code>.gitignore</code>, inte i repot. Om de redan är incheckade:</p>
+<pre><code>git rm -r --cached bin obj
+git commit -m "fix: ta bort byggfiler ur repot"</code></pre>
+
+<h3>Commits som berättar en historia</h3>
+<p>Kursens krav är minst tre commits. Ska de vara mer än ett krav är det här:</p>
+<ul>
+  <li>Varje commit gör en sak som går att förklara i en mening.</li>
+  <li>Meddelandet säger <em>vad</em> och <em>varför</em>, inte bara "ändrat".</li>
+  <li>Ni kan gå tillbaka till ett fungerande läge, om något går sönder sedan.</li>
+</ul>
+<pre><code>git commit -m "feat: spara hjälten till JSON"
+git commit -m "fix: hjälten laddas korrekt när filen saknas"</code></pre>
+
+<h2 id="hemligheter">2. Hemligheter hör inte hemma i koden</h2>
+
+<p>Ett lösenord i en fil som checkas in ligger kvar i historiken, även om ni tar bort raden sedan. Den som har tillgång till repot har tillgång till lösenordet.</p>
+
+<pre><code>"ConnectionStrings": {
+  "Standard": "Server=localhost;Database=shop;User Id=admin;Password=hemligt123;"
+}</code></pre>
+
+<p>I stället:</p>
+<ul>
+  <li>Använd användarhemligheter lokalt: <code>dotnet user-secrets set</code>.</li>
+  <li>Använd miljövariabler när programmet körs på en server.</li>
+  <li>Om ett lösenord redan har checkats in: <strong>byt lösenordet</strong>. Att ta bort raden räcker inte.</li>
+</ul>
+
+<div class="box warm">
+  <div class="box-title">Det här syns på en gång</div>
+  En granskare söker efter lösenord i koden nästan automatiskt. Att hitta ett i en inlämning är det snabbaste sättet att tappa förtroendet för resten av arbetet.
+</div>
+
+<h2 id="kor">3. Kör det, och testa det som kan gå fel</h2>
+
+<p>Att koden kompilerar säger att den är grammatiskt korrekt. Det säger inte att den gör det ni tänkt.</p>
+
+<ul class="checklist">
+  <li>Kör programmet och gå igenom varje menyval, minst en gång.</li>
+  <li>Prova det som användaren gör fel: tom inmatning, text där det ska vara en siffra, ett id som inte finns.</li>
+  <li>Läs kravlistan rad för rad. Bocka av varje krav, och säg till om du inte kan bocka av ett.</li>
+  <li>Skriv ner hur du testade. Det är inte krångel, det är det en kollega behöver för att kunna göra samma sak.</li>
+</ul>
+
+<h3>Fel inmatning ska inte krascha programmet</h3>
+<pre><code>// Krasch: Convert.ToInt32 kastar undantag vid text och tom sträng
+int val = Convert.ToInt32(Console.ReadLine());
+
+// Bättre: användaren får ett vänligt felmeddelande
+if (!int.TryParse(Console.ReadLine(), out int val))
+{
+    Console.WriteLine("Ogiltigt val. Försök igen.");
+}</code></pre>
+
+<p>Den som använder programmet ska få hjälp, inte en stacktrace.</p>
+
+<h2 id="lasbart">4. Kod som någon annan kan läsa</h2>
+
+<p>Du läser din egen kod idag. Om sex månader är du någon annan. Det är den personen, och den som granskar din kod, som ska kunna förstå den snabbt.</p>
+
+<h3>Namn ska säga vad det är</h3>
+<p><code>hp</code>, <code>temp</code>, <code>x</code> och <code>data</code> säger ingenting. <code>vardetHeltal</code> eller <code>antalRadBokningar</code> gör det. Ett bra namn sparar en kommentar.</p>
+
+<h3>Metoder gör en sak</h3>
+<p>En metod på 200 rader med en <code>if</code>-kedja är svår att läsa, svår att testa och svår att ändra. Dela upp den när den gör mer än en sak, och ge varje del ett namn som säger vad den gör.</p>
+
+<div class="box">
+  <div class="box-title">Tips: när if-kedjan växer</div>
+  Om du lägger till en gren för varje nytt monster, vapen eller betalsätt är det oftast ett designmönster som saknas. Flödesschemat för designmönster i kursmaterialet visar vilket. Fråga först: <em>vad gör den här koden svår att ändra?</em>
+</div>
+
+<h3>Platshållare får inte vara kvar</h3>
+<pre><code>public List&lt;Song&gt; SearchSongs(string searchText)
+{
+    throw new NotImplementedException();   // Den här raden får inte finnas kvar i en inlämning
+}</code></pre>
+<p>Den som läser ser det direkt. Om metoden inte är klar, säg det öppet i <code>README.md</code> och i reflektionen. Det är bättre än en metod som ser klar ut men inte är det.</p>
+
+<h2 id="databas">5. Databasen</h2>
+
+<ul>
+  <li><strong>Frågor med användarens text ska vara parametrar.</strong> Att bygga SQL med strängkonkatenering öppnar för SQL-injektion.</li>
+  <li><strong>Med EF Core skriver du LINQ</strong>, och då blir det parametrar av sig själv. Med MongoDB gäller samma sak: bygg aldrig ett filter av text som användaren skrivit.</li>
+  <li><strong>Migrationer ska vara incheckade.</strong> Ett projekt som inte går att bygga från början, utan att någon kör migrationer för hand, är inte klart.</li>
+  <li><strong>Testa reglerna i databasen med riktiga data.</strong> Om det ska vara omöjligt att dubbelboka ett rum, boka samma rum två gånger och se att det inte går.</li>
+</ul>
+
+<h2 id="leverans">6. Leverans: det som ska fungera hos någon annan</h2>
+
+<p>Den som rättar ska kunna öppna er inlämning och köra den, utan att fråga er något. Det är hela poängen.</p>
+
+<ul class="checklist">
+  <li>Namnet på zip-filen och mappen följer kursens instruktion. Samma för filnamn i rapporten.</li>
+  <li>Packa upp zip-filen i en <strong>ny, tom mapp</strong> och bygg och kör den därifrån. Om något saknas, syns det då.</li>
+  <li>Det finns en <code>README.md</code> med egna ord: vad programmet gör, hur man kör det och vad som inte är klart.</li>
+  <li>Reflektionen är <strong>din egen</strong>, skriven med egna ord, även om den är kort. Du ska kunna förklara varje rad du lämnar in.</li>
+</ul>
+
+<div class="box">
+  <div class="box-title">Att bygga något som fungerar är inte samma sak som att det går att rätta</div>
+  Den som rättar behöver se vad ni gjort och varför. Gör det lätt för dem, så att de kan se hur bra arbetet är.
+</div>
+
+<h2 id="nasta">Nästa kurs: bevisa att det fungerar</h2>
+
+<p>I nästa kurs skriver ni <strong>enhetstester</strong>. Ett test beskriver ett krav, och det går att köra varje gång ni ändrar något.</p>
+
+<pre><code>[Fact]
+public void Withdraw_MerAnSaldot_AndrarInteSaldot()
+{
+    var konto = new BankAccount("Mira");
+    konto.Deposit(100);
+
+    konto.Withdraw(200);
+
+    Assert.Equal(100, konto.Balance);
+}</code></pre>
+
+<p>Testet säger två saker: vad som ska hända, och att det faktiskt händer. Om någon senare ändrar uttaget så att saldot går ner, märks det direkt. Det är en av de viktigaste sakerna man kan visa upp på en arbetsintervju: att man kan bevisa att koden gör det den ska.</p>
+
+<p>Clean code är nästa steg. Det handlar om namn, små metoder och kod som berättar sin egen historia. Det som ni gör i de här inlämningarna är grunden för det.</p>
+
+<h2 id="checklista">Checklista före du lämnar in</h2>
+
+<ul class="checklist">
+  <li><code>bin/</code> och <code>obj/</code> ligger i <code>.gitignore</code> och finns inte i repot</li>
+  <li>Inga lösenord eller nycklar ligger i kod eller i filer som checkas in</li>
+  <li>Varje menyval är körd, och felaktig eller tom inmatning är testad</li>
+  <li>Inga <code>NotImplementedException</code> eller <code>TODO</code> finns kvar, eller så är de beskrivna i <code>README.md</code></li>
+  <li>Filnamn, mappnamn och sökvägar stämmer exakt</li>
+  <li>Databasfrågor med användarens text är parametrar, och migrationer är incheckade</li>
+  <li>Projektet bygger och kör från en ny, tom mapp</li>
+  <li>Det finns minst tre meningsfulla commits</li>
+  <li><code>README.md</code> och reflektionen är skrivna med egna ord</li>
+  <li>Du kan förklara varje rad du lämnar in</li>
+</ul>
+
+<div class="box">
+  <div class="box-title">Till sist</div>
+  Ni har kommit långt. Det som återstår är inte svårt, det är vanor. Den som bygger de här vanorna nu har något att visa upp, och det är precis det som gör att någon vill anställa en junior.
+  <p style="margin-top:0.7rem">Jag vet att ni kan bättre än en första version. Gör den sen igen, och se hur det blir.</p>
+</div>
+
+<footer>
+  Kurs 3 · Fördjupad OOP i C# · CLO26 · YRGO. Den här sidan fylls på i nästa kurs.
+</footer>
+
+</main>
+</body>
+</html>
