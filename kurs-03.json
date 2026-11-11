@@ -76,6 +76,7 @@
  "veckor": [
   {
    "nr": 45,
+   "mapp": "01_trygg_start_oop",
    "titel": "Trygg start: klasser, arv, abstract och interface",
    "tid": "6–8 h",
    "mal": "Kan skapa klasser och objekt, använda arv med virtual/override, välja mellan abstract och interface, filtrera typer med OfType och spara ett objekt som JSON.",
@@ -93,7 +94,7 @@
      "notes": [
       {
        "text": "Bildspel — Klass och objekt",
-       "href": "45_trygg_start_oop/lectures/01_klass_och_objekt_marp.md",
+       "href": "01_trygg_start_oop/lectures/01_klass_och_objekt_marp.md",
        "tags": [
         "klass",
         "objekt"
@@ -101,7 +102,7 @@
       },
       {
        "text": "Läsversion — Klass och objekt",
-       "href": "45_trygg_start_oop/notes/klass_och_objekt.md",
+       "href": "01_trygg_start_oop/notes/klass_och_objekt.md",
        "tags": [
         "klass",
         "objekt",
@@ -113,7 +114,7 @@
       "green": [
        {
         "text": "Övning 1 — din egen hjälte",
-        "href": "45_trygg_start_oop/exercises/ovning_1_hjalten.md",
+        "href": "01_trygg_start_oop/exercises/ovning_1_hjalten.md",
         "tags": [
          "klass",
          "objekt",
@@ -138,7 +139,7 @@
      "notes": [
       {
        "text": "Bildspel — Arv",
-       "href": "45_trygg_start_oop/lectures/02_arv_marp.md",
+       "href": "01_trygg_start_oop/lectures/02_arv_marp.md",
        "tags": [
         "arv",
         "override"
@@ -146,7 +147,7 @@
       },
       {
        "text": "Läsversion — Arv",
-       "href": "45_trygg_start_oop/notes/arv.md",
+       "href": "01_trygg_start_oop/notes/arv.md",
        "tags": [
         "arv",
         "virtual",
@@ -159,7 +160,7 @@
       "green": [
        {
         "text": "Övning 2 — arv",
-        "href": "45_trygg_start_oop/exercises/ovning_2_arv.md",
+        "href": "01_trygg_start_oop/exercises/ovning_2_arv.md",
         "tags": [
          "arv",
          "override",
@@ -184,7 +185,7 @@
      "notes": [
       {
        "text": "Bildspel — Abstract och interface",
-       "href": "45_trygg_start_oop/lectures/03_abstract_och_interface_marp.md",
+       "href": "01_trygg_start_oop/lectures/03_abstract_och_interface_marp.md",
        "tags": [
         "abstract",
         "interface"
@@ -192,7 +193,7 @@
       },
       {
        "text": "Läsversion — Abstract och interface",
-       "href": "45_trygg_start_oop/notes/abstract_och_interface.md",
+       "href": "01_trygg_start_oop/notes/abstract_och_interface.md",
        "tags": [
         "abstract",
         "interface",
@@ -201,7 +202,7 @@
       },
       {
        "text": "Termer — OOP-repetition",
-       "href": "45_trygg_start_oop/terms/oop_repetition.md",
+       "href": "01_trygg_start_oop/terms/oop_repetition.md",
        "tags": [
         "termer"
        ]
@@ -211,7 +212,7 @@
       "green": [
        {
         "text": "Övning 3 — abstract och interface",
-        "href": "45_trygg_start_oop/exercises/ovning_3_abstract_interface.md",
+        "href": "01_trygg_start_oop/exercises/ovning_3_abstract_interface.md",
         "tags": [
          "abstract",
          "interface",
@@ -222,7 +223,7 @@
        },
        {
         "text": "Övning 4 — garaget",
-        "href": "45_trygg_start_oop/exercises/ovning_4_garaget.md",
+        "href": "01_trygg_start_oop/exercises/ovning_4_garaget.md",
         "tags": [
          "abstract",
          "interface",
@@ -232,7 +233,7 @@
        },
        {
         "text": "Övning 5 — personalsystemet",
-        "href": "45_trygg_start_oop/exercises/ovning_5_personal.md",
+        "href": "01_trygg_start_oop/exercises/ovning_5_personal.md",
         "tags": [
          "abstract",
          "interface",
@@ -258,7 +259,7 @@
      "notes": [
       {
        "text": "Läxa A — Hjältens äventyr",
-       "href": "45_trygg_start_oop/exercises/lara_a_hjaltens_aventyr.md",
+       "href": "01_trygg_start_oop/exercises/lara_a_hjaltens_aventyr.md",
        "tags": [
         "läxa",
         "kapitel 1"
@@ -283,7 +284,7 @@
      "notes": [
       {
        "text": "Bildspel — Spara ett objekt som JSON, del 1",
-       "href": "45_trygg_start_oop/lectures/json_spara_ett_objekt_del1_marp.md",
+       "href": "01_trygg_start_oop/lectures/json_spara_ett_objekt_del1_marp.md",
        "tags": [
         "JSON",
         "serialisering"
@@ -291,7 +292,7 @@
       },
       {
        "text": "Bildspel — Spara ett objekt som JSON, del 2",
-       "href": "45_trygg_start_oop/lectures/json_spara_ett_objekt_del2_marp.md",
+       "href": "01_trygg_start_oop/lectures/json_spara_ett_objekt_del2_marp.md",
        "tags": [
         "JSON",
         "serialisering"
@@ -299,7 +300,7 @@
       },
       {
        "text": "Läsversion — Spara ett objekt som JSON",
-       "href": "45_trygg_start_oop/notes/json_spara_ett_objekt.md",
+       "href": "01_trygg_start_oop/notes/json_spara_ett_objekt.md",
        "tags": [
         "JSON",
         "serialisering",
@@ -308,7 +309,7 @@
       },
       {
        "text": "Termer — JSON och serialisering",
-       "href": "45_trygg_start_oop/terms/json_spara_objekt.md",
+       "href": "01_trygg_start_oop/terms/json_spara_objekt.md",
        "tags": [
         "termer"
        ]
@@ -318,7 +319,7 @@
       "green": [
        {
         "text": "Övning — spara och ladda hjälten",
-        "href": "45_trygg_start_oop/exercises/ovning_json_spara_hjalten.md",
+        "href": "01_trygg_start_oop/exercises/ovning_json_spara_hjalten.md",
         "tags": [
          "JSON",
          "fil",
@@ -331,10 +332,10 @@
       "red": []
      },
      "assets": [
-      "45_trygg_start_oop/lectures/images/01_klass_till_json.png",
-      "45_trygg_start_oop/lectures/images/02_falt_ger_tom_json.png",
-      "45_trygg_start_oop/lectures/images/03_spara_och_ladda.png",
-      "45_trygg_start_oop/lectures/images/04_vad_ser_man.png"
+      "01_trygg_start_oop/lectures/images/01_klass_till_json.png",
+      "01_trygg_start_oop/lectures/images/02_falt_ger_tom_json.png",
+      "01_trygg_start_oop/lectures/images/03_spara_och_ladda.png",
+      "01_trygg_start_oop/lectures/images/04_vad_ser_man.png"
      ]
     },
     {
@@ -348,7 +349,7 @@
      "notes": [
       {
        "text": "Läxa B — Sparfilen",
-       "href": "45_trygg_start_oop/exercises/lara_b_sparfilen.md",
+       "href": "01_trygg_start_oop/exercises/lara_b_sparfilen.md",
        "tags": [
         "läxa",
         "kapitel 2"
@@ -373,27 +374,7 @@
       "refaktorering",
       "repository"
      ],
-     "notes": [
-      {
-       "text": "Livekodning: från hjälte till fil",
-       "href": "45_trygg_start_oop/notes/livekodning_hero_till_json.md",
-       "tags": [
-        "arv",
-        "abstract",
-        "JSON",
-        "refaktorering"
-       ]
-      },
-      {
-       "text": "Livekodning: repository-mönstret med katter",
-       "href": "45_trygg_start_oop/notes/livekodning_catjson_repository.md",
-       "tags": [
-        "repository",
-        "JSON",
-        "SQLite"
-       ]
-      }
-     ],
+     "notes": [],
      "ovningar": {
       "green": [],
       "amber": [],
@@ -415,7 +396,7 @@
      "notes": [
       {
        "text": "Notes — Spara och ladda en lista (steg för steg)",
-       "href": "45_trygg_start_oop/notes/json_lista_spara_och_ladda.md",
+       "href": "01_trygg_start_oop/notes/json_lista_spara_och_ladda.md",
        "tags": [
         "JSON",
         "serialize",
@@ -428,7 +409,7 @@
       "green": [
        {
         "text": "json01 — Objekt → JSON",
-        "href": "45_trygg_start_oop/exercises/repetition.json01.md",
+        "href": "01_trygg_start_oop/exercises/repetition.json01.md",
         "tags": [
          "JSON",
          "serialize"
@@ -437,7 +418,7 @@
        },
        {
         "text": "json02 — JSON → Objekt",
-        "href": "45_trygg_start_oop/exercises/repetition.json02.md",
+        "href": "01_trygg_start_oop/exercises/repetition.json02.md",
         "tags": [
          "JSON",
          "deserialize"
@@ -446,7 +427,7 @@
        },
        {
         "text": "json03 — Lista → JSON",
-        "href": "45_trygg_start_oop/exercises/repetition.json03.md",
+        "href": "01_trygg_start_oop/exercises/repetition.json03.md",
         "tags": [
          "JSON",
          "serialize",
@@ -456,7 +437,7 @@
        },
        {
         "text": "json04 — JSON → Lista",
-        "href": "45_trygg_start_oop/exercises/repetition.json04.md",
+        "href": "01_trygg_start_oop/exercises/repetition.json04.md",
         "tags": [
          "JSON",
          "deserialize",
@@ -466,7 +447,7 @@
        },
        {
         "text": "lista01 — List<T>-operationer",
-        "href": "45_trygg_start_oop/exercises/repetition.lista01.md",
+        "href": "01_trygg_start_oop/exercises/repetition.lista01.md",
         "tags": [
          "lista",
          "Add",
@@ -477,7 +458,7 @@
        },
        {
         "text": "fil01 — WriteAllText och ReadAllText",
-        "href": "45_trygg_start_oop/exercises/repetition.fil01.md",
+        "href": "01_trygg_start_oop/exercises/repetition.fil01.md",
         "tags": [
          "fil",
          "WriteAllText",
@@ -487,7 +468,7 @@
        },
        {
         "text": "substring01 — Klipp ut delar av en sträng",
-        "href": "45_trygg_start_oop/exercises/repetition.substring01.md",
+        "href": "01_trygg_start_oop/exercises/repetition.substring01.md",
         "tags": [
          "substring",
          "sträng"
@@ -498,7 +479,7 @@
       "amber": [
        {
         "text": "lista02 — Lista: spara och ladda",
-        "href": "45_trygg_start_oop/exercises/repetition.lista02.md",
+        "href": "01_trygg_start_oop/exercises/repetition.lista02.md",
         "tags": [
          "lista",
          "JSON",
@@ -508,7 +489,7 @@
        },
        {
         "text": "fil02 — WriteAllLines, ReadAllLines och enskilda rader",
-        "href": "45_trygg_start_oop/exercises/repetition.fil02.md",
+        "href": "01_trygg_start_oop/exercises/repetition.fil02.md",
         "tags": [
          "fil",
          "WriteAllLines",
@@ -532,19 +513,188 @@
       "amber": [],
       "red": []
      }
+    },
+    {
+     "titel": "Övrigt material",
+     "beskrivning": "Övrigt material i veckan.",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Workshop: Denormalisering för AI/ML Träningsdata (SQLite-version)",
+       "href": "01_trygg_start_oop/exercises/02_denormalisering_for_ai_sqlite.md"
+      },
+      {
+       "text": "Hello Entity Framework Core",
+       "href": "01_trygg_start_oop/exercises/03_00_hello_ef.md"
+      },
+      {
+       "text": "Pre-Flight Checklist: Förbered din EF Core-miljö",
+       "href": "01_trygg_start_oop/exercises/03_01_pre_flight_checklist.md"
+      },
+      {
+       "text": "Workshop: Code First-magi med EF Core",
+       "href": "01_trygg_start_oop/exercises/03_02_code_first_workshop.md"
+      },
+      {
+       "text": "Fort Knox Protocol: Säkra din EF Core-lösning",
+       "href": "01_trygg_start_oop/exercises/03_04_fort_knox_protocol.md"
+      },
+      {
+       "text": "🐾 Entity Framework 8 – Djursjukhus",
+       "href": "01_trygg_start_oop/exercises/03_05_pethospital.md"
+      },
+      {
+       "text": "🪴 Vattningslogg – Håll koll på dina växter",
+       "href": "01_trygg_start_oop/exercises/03_09_vattningslogg.md"
+      },
+      {
+       "text": "C#_ovningar_databas_ef_hur_man_slipper_update_database_i_ef",
+       "href": "01_trygg_start_oop/exercises/C#_ovningar_databas_ef_hur_man_slipper_update_database_i_ef.md"
+      },
+      {
+       "text": "games",
+       "href": "01_trygg_start_oop/exercises/C#_ovningar_databas_sql_sqlite_c_ovningar.md"
+      },
+      {
+       "text": "Övning 2: Entity Framework Smärtpunkter",
+       "href": "01_trygg_start_oop/exercises/document_database_exercise_2.md"
+      },
+      {
+       "text": "Entity Framework Dagbok",
+       "href": "01_trygg_start_oop/exercises/entity_framework_dagbok.md"
+      },
+      {
+       "text": "Entity Framework Övning",
+       "href": "01_trygg_start_oop/exercises/entity_framework_superhjaltar.md"
+      },
+      {
+       "text": "Gruppuppgift: Halloween Webshop Database Design",
+       "href": "01_trygg_start_oop/exercises/halloween_webshop_database.md"
+      },
+      {
+       "text": "Mer OOP",
+       "href": "01_trygg_start_oop/exercises/oop_kennel.md"
+      },
+      {
+       "text": "Övning: Datum och tid i Brf Solgläntan",
+       "href": "01_trygg_start_oop/exercises/ovning_datum_och_tid.md"
+      },
+      {
+       "text": "Övning: Parkeringskön i Brf Solgläntan",
+       "href": "01_trygg_start_oop/exercises/ovning_linq_parkering.md"
+      },
+      {
+       "text": "Övning: Mira i en låda",
+       "href": "01_trygg_start_oop/exercises/ovning_mongodb_light.md"
+      },
+      {
+       "text": "Specialpizza EF version",
+       "href": "01_trygg_start_oop/exercises/specialpizza_ef_ovning.md"
+      },
+      {
+       "text": "Träningsuppgifter: Fördjupad OOP — Vecka 1",
+       "href": "01_trygg_start_oop/exercises/training_vecka1.md"
+      },
+      {
+       "text": "1. Designmönster för Databashantering i C#",
+       "href": "01_trygg_start_oop/lectures/1_design_patterns_for_database_management_in_c.md"
+      },
+      {
+       "text": "2. Relationsmodellen och ER-diagram",
+       "href": "01_trygg_start_oop/lectures/2_relations_er_diagram.md"
+      },
+      {
+       "text": "3. Skapa och hantera SQLite-databaser i C#",
+       "href": "01_trygg_start_oop/lectures/3_create_and_manage_sqlite_databases_in_c.md"
+      },
+      {
+       "text": "Algoritmer och komplexitet",
+       "href": "01_trygg_start_oop/lectures/algoritmer_marp.md"
+      },
+      {
+       "text": "Snippets",
+       "href": "01_trygg_start_oop/lectures/hur_man_skapar_snippets.md"
+      },
+      {
+       "text": "Hur man slipper Update-Database",
+       "href": "01_trygg_start_oop/lectures/hur_man_slipper_update_database_i_ef.md"
+      },
+      {
+       "text": "Hur man slipper Update-Database",
+       "href": "01_trygg_start_oop/lectures/hur_man_slipper_update_database_i_ef_2.md"
+      },
+      {
+       "text": "Live Coding 3: SQL vs MongoDB Design Showdown",
+       "href": "01_trygg_start_oop/lectures/livecode_3_design_showdown.md"
+      },
+      {
+       "text": "Databas-Kaos: Analysera Dålig Design",
+       "href": "01_trygg_start_oop/notes/01_databas_kaos_analys.md"
+      },
+      {
+       "text": "1. Avancerad Databashantering med Repository Pattern i C#",
+       "href": "01_trygg_start_oop/notes/1_advanced_database_management_with_repository_pattern_in_c.md"
+      },
+      {
+       "text": "Entity Framework Core",
+       "href": "01_trygg_start_oop/notes/clo22_docs_entityframework_entityframeworkcore.md"
+      },
+      {
+       "text": "Code-First Dagbok med Entity Framework",
+       "href": "01_trygg_start_oop/notes/clo22_docs_entityframework_exempel.md"
+      },
+      {
+       "text": "Entity Framework",
+       "href": "01_trygg_start_oop/notes/clo22_docs_entityframework_index.md"
+      },
+      {
+       "text": "Kontext",
+       "href": "01_trygg_start_oop/notes/clo22_docs_entityframework_kontext_index.md"
+      },
+      {
+       "text": "ADO.NET och SQLite i C#",
+       "href": "01_trygg_start_oop/notes/csharp_cmyh_c_sharp_databases_ado_net_sqlite.md"
+      },
+      {
+       "text": "Förord",
+       "href": "01_trygg_start_oop/notes/csharp_cmyh_c_sharp_databases_brief_00_forord.md"
+      },
+      {
+       "text": "UML för databasdesign",
+       "href": "01_trygg_start_oop/notes/csharp_cmyh_c_sharp_databases_uml_database_design.md"
+      },
+      {
+       "text": "LINQ: beskriv vad du vill ha",
+       "href": "01_trygg_start_oop/notes/linq_soka_i_data.md"
+      },
+      {
+       "text": "UML för databasdesign",
+       "href": "01_trygg_start_oop/notes/uml_database_design.md"
+      },
+      {
+       "text": "Tentafrågor — JSON och data",
+       "href": "01_trygg_start_oop/pre-exam/00_fragor_json.md"
+      },
+      {
+       "text": "Tentafrågor — Databaser: fil, minne och server",
+       "href": "01_trygg_start_oop/pre-exam/02_fragor_databaser.md"
+      }
+     ],
+     "ovningar": []
     }
    ],
    "publish": "2026-11-02",
    "tentafragor": [
     {
      "text": "Tentafrågor — klasser, arv, abstract och interface",
-     "href": "45_trygg_start_oop/pre-exam/00_fragor_oop.md",
+     "href": "01_trygg_start_oop/pre-exam/00_fragor_oop.md",
      "publish": "2026-11-02"
     }
    ]
   },
   {
    "nr": 46,
+   "mapp": "02_ef_mongodb_designmonster",
    "titel": "EF Core, MongoDB och designmönster",
    "tid": "6–8 h",
    "mal": "Kan spara och hämta objekt med EF Core, koppla ihop två tabeller, prova MongoDB och känna igen Strategy, Factory och Observer.",
@@ -560,7 +710,7 @@
      "notes": [
       {
        "text": "Dagen — måndag 9 november",
-       "href": "46_ef_mongodb_designmonster/lectures/v46_mandag_dagen_marp.md",
+       "href": "02_ef_mongodb_designmonster/lectures/v46_mandag_dagen_marp.md",
        "tags": [
         "agenda"
        ]
@@ -584,14 +734,14 @@
      "notes": [
       {
        "text": "Bildspel — EF Core: spara objekt",
-       "href": "46_ef_mongodb_designmonster/lectures/ef_core_hello_marp.md",
+       "href": "02_ef_mongodb_designmonster/lectures/ef_core_hello_marp.md",
        "tags": [
         "EF Core"
        ]
       },
       {
        "text": "Läsversion — EF Core: spara objekt",
-       "href": "46_ef_mongodb_designmonster/notes/ef_core_hello.md",
+       "href": "02_ef_mongodb_designmonster/notes/ef_core_hello.md",
        "tags": [
         "EF Core"
        ]
@@ -601,7 +751,7 @@
       "green": [
        {
         "text": "Övning — hjältarna i databasen",
-        "href": "46_ef_mongodb_designmonster/exercises/ovning_ef_core_hjaltarna.md",
+        "href": "02_ef_mongodb_designmonster/exercises/ovning_ef_core_hjaltarna.md",
         "tags": [
          "EF Core",
          "SQLite"
@@ -625,7 +775,7 @@
      "notes": [
       {
        "text": "Bildspel — EF Core: relationer",
-       "href": "46_ef_mongodb_designmonster/lectures/ef_core_relationer_marp.md",
+       "href": "02_ef_mongodb_designmonster/lectures/ef_core_relationer_marp.md",
        "tags": [
         "EF Core",
         "relationer"
@@ -633,7 +783,7 @@
       },
       {
        "text": "Läsversion — EF Core: relationer",
-       "href": "46_ef_mongodb_designmonster/notes/ef_core_relationer.md",
+       "href": "02_ef_mongodb_designmonster/notes/ef_core_relationer.md",
        "tags": [
         "EF Core",
         "relationer"
@@ -644,7 +794,7 @@
       "green": [
        {
         "text": "Övning — hjältarnas uppdrag",
-        "href": "46_ef_mongodb_designmonster/exercises/ovning_ef_core_uppdrag.md",
+        "href": "02_ef_mongodb_designmonster/exercises/ovning_ef_core_uppdrag.md",
         "tags": [
          "EF Core",
          "relationer"
@@ -668,14 +818,14 @@
      "notes": [
       {
        "text": "Bildspel — MongoDB i lätt version",
-       "href": "46_ef_mongodb_designmonster/lectures/mongodb_light_marp.md",
+       "href": "02_ef_mongodb_designmonster/lectures/mongodb_light_marp.md",
        "tags": [
         "MongoDB"
        ]
       },
       {
        "text": "Läsversion — MongoDB i lätt version",
-       "href": "46_ef_mongodb_designmonster/notes/mongodb_light.md",
+       "href": "02_ef_mongodb_designmonster/notes/mongodb_light.md",
        "tags": [
         "MongoDB"
        ]
@@ -698,7 +848,7 @@
      "notes": [
       {
        "text": "Bildspel — genomgång av Inlämning 1",
-       "href": "46_ef_mongodb_designmonster/lectures/inlamning_1_genomgang_marp.md",
+       "href": "02_ef_mongodb_designmonster/lectures/inlamning_1_genomgang_marp.md",
        "tags": [
         "inlämning"
        ]
@@ -711,7 +861,7 @@
      },
      "inlamning": {
       "text": "Inlämning 1 — Hotel Grandioso",
-      "href": "46_ef_mongodb_designmonster/assignment/inlamning_1_hotel_grandioso.md",
+      "href": "02_ef_mongodb_designmonster/assignment/inlamning_1_hotel_grandioso.md",
       "tags": [
        "EF Core",
        "individuell"
@@ -730,7 +880,7 @@
      "notes": [
       {
        "text": "Läxa C — Tildas bibliotek",
-       "href": "46_ef_mongodb_designmonster/exercises/lara_c_tildas_bibliotek.md",
+       "href": "02_ef_mongodb_designmonster/exercises/lara_c_tildas_bibliotek.md",
        "tags": [
         "läxa"
        ]
@@ -754,7 +904,7 @@
      "notes": [
       {
        "text": "Dagen — onsdag 11 november",
-       "href": "46_ef_mongodb_designmonster/lectures/v46_onsdag_dagen_marp.md",
+       "href": "02_ef_mongodb_designmonster/lectures/v46_onsdag_dagen_marp.md",
        "tags": [
         "agenda"
        ]
@@ -778,21 +928,21 @@
      "notes": [
       {
        "text": "Bildspel — UML: klassdiagram och ERD",
-       "href": "46_ef_mongodb_designmonster/lectures/uml_klassdiagram_marp.md",
+       "href": "02_ef_mongodb_designmonster/lectures/uml_klassdiagram_marp.md",
        "tags": [
         "UML"
        ]
       },
       {
        "text": "Läsversion — UML: klassdiagram och ERD",
-       "href": "46_ef_mongodb_designmonster/notes/uml_klassdiagram.md",
+       "href": "02_ef_mongodb_designmonster/notes/uml_klassdiagram.md",
        "tags": [
         "UML"
        ]
       },
       {
        "text": "Prompt — UML med AI (använd den, men förklara diagrammet)",
-       "href": "46_ef_mongodb_designmonster/notes/uml_prompt.md",
+       "href": "02_ef_mongodb_designmonster/notes/uml_prompt.md",
        "tags": [
         "UML",
         "AI"
@@ -806,26 +956,26 @@
      },
      "publish": "2026-11-06",
      "assets": [
-      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_1.mmd",
-      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_1.png",
-      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_2.mmd",
-      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_2.png",
-      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_3.mmd",
-      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_3.png",
-      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_4.mmd",
-      "46_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_4.png",
-      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_1.mmd",
-      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_1.png",
-      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_2.mmd",
-      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_2.png",
-      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_3.mmd",
-      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_3.png",
-      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_4.mmd",
-      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_4.png",
-      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_5.mmd",
-      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_5.png",
-      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_6.mmd",
-      "46_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_6.png"
+      "02_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_1.mmd",
+      "02_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_1.png",
+      "02_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_2.mmd",
+      "02_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_2.png",
+      "02_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_3.mmd",
+      "02_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_3.png",
+      "02_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_4.mmd",
+      "02_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_4.png",
+      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_1.mmd",
+      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_1.png",
+      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_2.mmd",
+      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_2.png",
+      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_3.mmd",
+      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_3.png",
+      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_4.mmd",
+      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_4.png",
+      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_5.mmd",
+      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_5.png",
+      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_6.mmd",
+      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_6.png"
      ]
     },
     {
@@ -839,14 +989,14 @@
      "notes": [
       {
        "text": "Bildspel — Strategy",
-       "href": "46_ef_mongodb_designmonster/lectures/strategy_marp.md",
+       "href": "02_ef_mongodb_designmonster/lectures/strategy_marp.md",
        "tags": [
         "Strategy"
        ]
       },
       {
        "text": "Läsversion — Strategy",
-       "href": "46_ef_mongodb_designmonster/notes/strategy.md",
+       "href": "02_ef_mongodb_designmonster/notes/strategy.md",
        "tags": [
         "Strategy"
        ]
@@ -856,7 +1006,7 @@
       "green": [
        {
         "text": "Övning — Strategy",
-        "href": "46_ef_mongodb_designmonster/exercises/ovning_strategy.md",
+        "href": "02_ef_mongodb_designmonster/exercises/ovning_strategy.md",
         "tags": [
          "Strategy"
         ],
@@ -868,8 +1018,8 @@
      },
      "publish": "2026-11-06",
      "assets": [
-      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_strategy_1.mmd",
-      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_strategy_1.png"
+      "02_ef_mongodb_designmonster/exercises/diagrams/ovning_strategy_1.mmd",
+      "02_ef_mongodb_designmonster/exercises/diagrams/ovning_strategy_1.png"
      ]
     },
     {
@@ -882,14 +1032,14 @@
      "notes": [
       {
        "text": "Bildspel — Factory",
-       "href": "46_ef_mongodb_designmonster/lectures/factory_marp.md",
+       "href": "02_ef_mongodb_designmonster/lectures/factory_marp.md",
        "tags": [
         "Factory"
        ]
       },
       {
        "text": "Läsversion — Factory",
-       "href": "46_ef_mongodb_designmonster/notes/factory.md",
+       "href": "02_ef_mongodb_designmonster/notes/factory.md",
        "tags": [
         "Factory"
        ]
@@ -899,7 +1049,7 @@
       "green": [
        {
         "text": "Övning — Factory",
-        "href": "46_ef_mongodb_designmonster/exercises/ovning_factory.md",
+        "href": "02_ef_mongodb_designmonster/exercises/ovning_factory.md",
         "tags": [
          "Factory"
         ],
@@ -911,10 +1061,10 @@
      },
      "publish": "2026-11-06",
      "assets": [
-      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_factory_1.mmd",
-      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_factory_1.png",
-      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_factory_2.mmd",
-      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_factory_2.png"
+      "02_ef_mongodb_designmonster/exercises/diagrams/ovning_factory_1.mmd",
+      "02_ef_mongodb_designmonster/exercises/diagrams/ovning_factory_1.png",
+      "02_ef_mongodb_designmonster/exercises/diagrams/ovning_factory_2.mmd",
+      "02_ef_mongodb_designmonster/exercises/diagrams/ovning_factory_2.png"
      ]
     },
     {
@@ -928,28 +1078,28 @@
      "notes": [
       {
        "text": "Bildspel — Observer",
-       "href": "46_ef_mongodb_designmonster/lectures/observer_marp.md",
+       "href": "02_ef_mongodb_designmonster/lectures/observer_marp.md",
        "tags": [
         "Observer"
        ]
       },
       {
        "text": "Läsversion — Observer",
-       "href": "46_ef_mongodb_designmonster/notes/observer.md",
+       "href": "02_ef_mongodb_designmonster/notes/observer.md",
        "tags": [
         "Observer"
        ]
       },
       {
        "text": "Läsversion — Builder",
-       "href": "46_ef_mongodb_designmonster/notes/builder.md",
+       "href": "02_ef_mongodb_designmonster/notes/builder.md",
        "tags": [
         "Builder"
        ]
       },
       {
        "text": "Bildspel — Builder",
-       "href": "46_ef_mongodb_designmonster/lectures/builder_marp.md",
+       "href": "02_ef_mongodb_designmonster/lectures/builder_marp.md",
        "tags": [
         "Builder"
        ]
@@ -972,7 +1122,7 @@
      "notes": [
       {
        "text": "Övning — Builder",
-       "href": "46_ef_mongodb_designmonster/exercises/ovning_builder.md",
+       "href": "02_ef_mongodb_designmonster/exercises/ovning_builder.md",
        "tags": [
         "Builder"
        ]
@@ -982,7 +1132,7 @@
       "green": [
        {
         "text": "Övning — Builder",
-        "href": "46_ef_mongodb_designmonster/exercises/ovning_builder.md",
+        "href": "02_ef_mongodb_designmonster/exercises/ovning_builder.md",
         "tags": [
          "Builder"
         ],
@@ -994,8 +1144,8 @@
      },
      "publish": "2026-11-06",
      "assets": [
-      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_builder_1.mmd",
-      "46_ef_mongodb_designmonster/exercises/diagrams/ovning_builder_1.png"
+      "02_ef_mongodb_designmonster/exercises/diagrams/ovning_builder_1.mmd",
+      "02_ef_mongodb_designmonster/exercises/diagrams/ovning_builder_1.png"
      ]
     },
     {
@@ -1008,7 +1158,7 @@
      "notes": [
       {
        "text": "Quiz — mönstren",
-       "href": "46_ef_mongodb_designmonster/lectures/quiz_patterns_marp.md",
+       "href": "02_ef_mongodb_designmonster/lectures/quiz_patterns_marp.md",
        "tags": [
         "quiz",
         "backspegel"
@@ -1032,7 +1182,7 @@
      "notes": [
       {
        "text": "Läxa D — Mira och verktygslådan",
-       "href": "46_ef_mongodb_designmonster/exercises/lara_d_mira_och_verktygsladan.md",
+       "href": "02_ef_mongodb_designmonster/exercises/lara_d_mira_och_verktygsladan.md",
        "tags": [
         "läxa"
        ]
@@ -1045,8 +1195,8 @@
      },
      "publish": "2026-11-06",
      "assets": [
-      "46_ef_mongodb_designmonster/exercises/diagrams/lara_d_mira_och_verktygsladan_1.mmd",
-      "46_ef_mongodb_designmonster/exercises/diagrams/lara_d_mira_och_verktygsladan_1.png"
+      "02_ef_mongodb_designmonster/exercises/diagrams/lara_d_mira_och_verktygsladan_1.mmd",
+      "02_ef_mongodb_designmonster/exercises/diagrams/lara_d_mira_och_verktygsladan_1.png"
      ]
     },
     {
@@ -1061,6 +1211,135 @@
       "amber": [],
       "red": []
      }
+    },
+    {
+     "titel": "Övrigt material",
+     "beskrivning": "Övrigt material i veckan.",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Exempel: designmönster i C#",
+       "href": "02_ef_mongodb_designmonster/examples/README.md"
+      },
+      {
+       "text": "Builder: exempel med förklaringar",
+       "href": "02_ef_mongodb_designmonster/examples/builder.md"
+      },
+      {
+       "text": "Factory: exempel med förklaringar",
+       "href": "02_ef_mongodb_designmonster/examples/factory.md"
+      },
+      {
+       "text": "Observer: exempel med förklaringar",
+       "href": "02_ef_mongodb_designmonster/examples/observer.md"
+      },
+      {
+       "text": "Strategy: exempel med förklaringar",
+       "href": "02_ef_mongodb_designmonster/examples/strategy.md"
+      },
+      {
+       "text": "UML för skojs skull",
+       "href": "02_ef_mongodb_designmonster/examples/uml.md"
+      },
+      {
+       "text": "C#_ovningar_oop_oop_repetition",
+       "href": "02_ef_mongodb_designmonster/exercises/C#_ovningar_oop_oop_repetition.md"
+      },
+      {
+       "text": "bonden_och_djuren",
+       "href": "02_ef_mongodb_designmonster/exercises/bonden_och_djuren.md"
+      },
+      {
+       "text": "Övningar och annat skoj",
+       "href": "02_ef_mongodb_designmonster/exercises/challenge_of_the_brains_blackbox_testing.md"
+      },
+      {
+       "text": "Fler övningar på variabler",
+       "href": "02_ef_mongodb_designmonster/exercises/exercises2.md"
+      },
+      {
+       "text": "Beskrivning:",
+       "href": "02_ef_mongodb_designmonster/exercises/filtrering_med_interface.md"
+      },
+      {
+       "text": "Beskrivning:",
+       "href": "02_ef_mongodb_designmonster/exercises/halloweenspecial_scramblerspel.md"
+      },
+      {
+       "text": "Övning: Observer",
+       "href": "02_ef_mongodb_designmonster/exercises/ovning_observer.md"
+      },
+      {
+       "text": "Träningsuppgifter: Fördjupad OOP — Vecka 2",
+       "href": "02_ef_mongodb_designmonster/exercises/training_vecka2.md"
+      },
+      {
+       "text": "Designmönster i C#",
+       "href": "02_ef_mongodb_designmonster/lectures/02_designmonster_marp.md"
+      },
+      {
+       "text": "1. Avancerad Databashantering med Repository Pattern i C#",
+       "href": "02_ef_mongodb_designmonster/lectures/1_advanced_database_management_with_repository_pattern_in_c.md"
+      },
+      {
+       "text": "Repository Pattern Implementation",
+       "href": "02_ef_mongodb_designmonster/lectures/2.md"
+      },
+      {
+       "text": "2. Builder-mönstret",
+       "href": "02_ef_mongodb_designmonster/lectures/2_builder_pattern.md"
+      },
+      {
+       "text": "2. Repository Pattern Implementation",
+       "href": "02_ef_mongodb_designmonster/lectures/2_example.md"
+      },
+      {
+       "text": "2. Repository Pattern Implementation",
+       "href": "02_ef_mongodb_designmonster/lectures/2_quiz.md"
+      },
+      {
+       "text": "2. Repository Pattern Implementation",
+       "href": "02_ef_mongodb_designmonster/lectures/2_repository_pattern_implementation.md"
+      },
+      {
+       "text": "1. Avancerad Databashantering med Repository Pattern",
+       "href": "02_ef_mongodb_designmonster/lectures/summary_06.md"
+      },
+      {
+       "text": "Vanliga misstag med designmönster",
+       "href": "02_ef_mongodb_designmonster/lectures/vanliga_misstag_marp.md"
+      },
+      {
+       "text": "Exempel - Webscraping",
+       "href": "02_ef_mongodb_designmonster/notes/clo22_docs_oop_polymorfism_abstraktaklasser_exempel.md"
+      },
+      {
+       "text": "Exempel på Pluginsystem med interfaces",
+       "href": "02_ef_mongodb_designmonster/notes/clo22_docs_oop_polymorfism_interfaces_plugins.md"
+      },
+      {
+       "text": "Plugins",
+       "href": "02_ef_mongodb_designmonster/notes/csharp_cmyh_c_sharp_oop_polymorphism_interfaces_plugins.md"
+      },
+      {
+       "text": "Designmönster — hur vi tänker",
+       "href": "02_ef_mongodb_designmonster/notes/designmonster_oversikt.md"
+      },
+      {
+       "text": "Plugins",
+       "href": "02_ef_mongodb_designmonster/notes/devbook_docs_csharp_oop_polymorfism_interfaces_plugins.md"
+      },
+      {
+       "text": "Flödesscheman: när passar vilket mönster?",
+       "href": "02_ef_mongodb_designmonster/notes/flodesschema_designmonster.md"
+      }
+     ],
+     "ovningar": [],
+     "assets": [
+      "02_ef_mongodb_designmonster/exercises/diagrams/ovning_observer_1.mmd",
+      "02_ef_mongodb_designmonster/exercises/diagrams/ovning_observer_1.png",
+      "02_ef_mongodb_designmonster/pre-exam/fragor_designmonster.json"
+     ]
     }
    ],
    "publish": "2026-11-06",
@@ -1068,12 +1347,12 @@
    "tentafragor": [
     {
      "text": "Tentafrågor — ORM, NoSQL och entiteter",
-     "href": "46_ef_mongodb_designmonster/pre-exam/01_fragor_orm_nosql.md",
+     "href": "02_ef_mongodb_designmonster/pre-exam/01_fragor_orm_nosql.md",
      "publish": "2026-11-06"
     },
     {
      "text": "Tentafrågor — designmönster och UML",
-     "href": "46_ef_mongodb_designmonster/pre-exam/01_fragor_designmonster.md",
+     "href": "02_ef_mongodb_designmonster/pre-exam/01_fragor_designmonster.md",
      "publish": "2026-11-06"
     }
    ]
@@ -1098,6 +1377,7 @@
   },
   {
    "nr": 49,
+   "mapp": "05_tenta_och_presentationer",
    "titel": "Tenta och presentationer",
    "tid": "",
    "mal": "Kan refaktorera enligt clean code, granska kod och har gjort tentan.",
@@ -1112,7 +1392,7 @@
      "notes": [
       {
        "text": "Bildspel — Databaskopplingar i C# (repetition)",
-       "href": "49_tenta_och_presentationer/lectures/01_databaskopplingar_marp.md",
+       "href": "05_tenta_och_presentationer/lectures/01_databaskopplingar_marp.md",
        "tags": [
         "repetition"
        ]

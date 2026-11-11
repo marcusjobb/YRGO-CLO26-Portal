@@ -41,6 +41,7 @@
  "veckor": [
   {
    "nr": 41,
+   "mapp": "01_sql_boot",
    "titel": "SQL-boot",
    "tid": "3–6 h",
    "mal": "Har installerat SQLite Browser och lekt med SQL i minst ett spel. Vet ungefär vad SELECT gör.",
@@ -58,7 +59,7 @@
      "notes": [
       {
        "text": "Veckans guide — SQL-boot",
-       "href": "41_sql_boot/notes/sql_boot.md",
+       "href": "01_sql_boot/notes/sql_boot.md",
        "tags": [
         "boot",
         "installation",
@@ -68,7 +69,7 @@
       },
       {
        "text": "Installera DB Browser for SQLite",
-       "href": "41_sql_boot/notes/sqlite_browser_installation.md",
+       "href": "01_sql_boot/notes/sqlite_browser_installation.md",
        "tags": [
         "installation",
         "Windows",
@@ -181,7 +182,7 @@
      ],
      "lektion": {
       "text": "Bildspel — Databaser",
-      "href": "41_sql_boot/lectures/01_intro_csi_marp.md",
+      "href": "01_sql_boot/lectures/01_intro_csi_marp.md",
       "tags": [
        "intro",
        "databas"
@@ -190,7 +191,7 @@
      "notes": [
       {
        "text": "Intro till databaser",
-       "href": "41_sql_boot/notes/intro_databaser.md",
+       "href": "01_sql_boot/notes/intro_databaser.md",
        "tags": [
         "begrepp",
         "tabell",
@@ -217,7 +218,7 @@
      ],
      "lektion": {
       "text": "Bildspel — Vilken databas väljer du?: SQLite, MySQL och PostgreSQL",
-      "href": "41_sql_boot/lectures/databastyper_val_av_databasmotor_marp.md",
+      "href": "01_sql_boot/lectures/databastyper_val_av_databasmotor_marp.md",
       "tags": [
        "databastyper",
        "val av motor"
@@ -226,7 +227,7 @@
      "notes": [
       {
        "text": "Databastyper",
-       "href": "41_sql_boot/notes/databastyper.md",
+       "href": "01_sql_boot/notes/databastyper.md",
        "tags": [
         "server",
         "fil",
@@ -251,7 +252,7 @@
      ],
      "lektion": {
       "text": "Bildspel — Gummiankemetoden",
-      "href": "41_sql_boot/lectures/gummiankemetoden_marp.md",
+      "href": "01_sql_boot/lectures/gummiankemetoden_marp.md",
       "tags": [
        "debugging",
        "gummianka"
@@ -297,7 +298,7 @@
      "notes": [
       {
        "text": "Quicksheet — NuGet-paket och connection strings",
-       "href": "41_sql_boot/notes/ado_quicksheet.md",
+       "href": "01_sql_boot/notes/ado_quicksheet.md",
        "tags": [
         "NuGet",
         "connection string",
@@ -314,7 +315,7 @@
       "amber": [
        {
         "text": "C# + SQL-övningar",
-        "href": "41_sql_boot/exercises/csharp_och_sql_ovningar.md",
+        "href": "01_sql_boot/exercises/csharp_och_sql_ovningar.md",
         "tags": [
          "DatabaseHandler",
          "DataTable",
@@ -341,7 +342,7 @@
      "notes": [
       {
        "text": "SQL från C# — en rymdmanga",
-       "href": "41_sql_boot/notes/sql_fran_csharp_rymdmanga.md",
+       "href": "01_sql_boot/notes/sql_fran_csharp_rymdmanga.md",
        "tags": [
         "ExecuteNonQuery",
         "ExecuteReader",
@@ -351,7 +352,7 @@
       },
       {
        "text": "Lastmanifestet — klasser till databasen",
-       "href": "41_sql_boot/notes/sqlite_lastmanifestet.md",
+       "href": "01_sql_boot/notes/sqlite_lastmanifestet.md",
        "tags": [
         "klasser",
         "CargoHandler",
@@ -361,7 +362,7 @@
       },
       {
        "text": "Quicksheet — ADO.NET-objekt",
-       "href": "41_sql_boot/notes/ado_objects_quicksheet.md",
+       "href": "01_sql_boot/notes/ado_objects_quicksheet.md",
        "tags": [
         "ExecuteNonQuery",
         "ExecuteScalar",
@@ -394,7 +395,7 @@
       "green": [
        {
         "text": "SQL-filmdatabas",
-        "href": "41_sql_boot/exercises/sql_filmdatabas.md",
+        "href": "01_sql_boot/exercises/sql_filmdatabas.md",
         "tags": [
          "CREATE",
          "INSERT",
@@ -407,7 +408,7 @@
       "amber": [
        {
         "text": "Mer sökningar",
-        "href": "41_sql_boot/exercises/mer_sokningar.md",
+        "href": "01_sql_boot/exercises/mer_sokningar.md",
         "tags": [
          "Mockaroo",
          "COUNT",
@@ -433,7 +434,7 @@
      "notes": [
       {
        "text": "GitHub Student Developer Pack — så verifierar du dig",
-       "href": "41_sql_boot/notes/github_student_developer_pack.md",
+       "href": "01_sql_boot/notes/github_student_developer_pack.md",
        "tags": [
         "GitHub",
         "verifiering",
@@ -455,16 +456,361 @@
      "notes": [
       {
        "text": "intro_databaser",
-       "href": "41_sql_boot/terms/intro_databaser.md"
+       "href": "01_sql_boot/terms/intro_databaser.md"
       }
      ],
      "ovningar": []
+    },
+    {
+     "titel": "Övrigt material",
+     "beskrivning": "Övrigt material i veckan.",
+     "tags": [],
+     "notes": [
+      {
+       "text": "MangaDB Live — SQLite från C# i fyra funktioner",
+       "href": "01_sql_boot/examples/manga_db_live.md"
+      },
+      {
+       "text": "Nordbanken — säkert inloggningssystem™",
+       "href": "01_sql_boot/examples/nordbanken_login.md"
+      },
+      {
+       "text": "Anslut till TiDB Cloud",
+       "href": "01_sql_boot/examples/tidb_anslutning.md"
+      },
+      {
+       "text": "Try-Catch Live",
+       "href": "01_sql_boot/examples/try_catch_live.md"
+      },
+      {
+       "text": "Workshop: Rädda Kaos-Databasen",
+       "href": "01_sql_boot/exercises/01_radda_kaos_databasen.md"
+      },
+      {
+       "text": "Workshop: Denormalisering för AI/ML Träningsdata (SQLite-version)",
+       "href": "01_sql_boot/exercises/02_denormalisering_for_ai_sqlite.md"
+      },
+      {
+       "text": "Allsvenskan-databasen — Lösningsförslag",
+       "href": "01_sql_boot/exercises/allsvenskan_databasen_teacher.md"
+      },
+      {
+       "text": "Labbserie — Databaser i C# (kurs 02)",
+       "href": "01_sql_boot/exercises/hero_databas/README.md"
+      },
+      {
+       "text": "Labb 1 — Raw SQL 🟢",
+       "href": "01_sql_boot/exercises/hero_databas/labb_01_raw_sql.md"
+      },
+      {
+       "text": "Labb 2 — SQLiteHandler 🟢",
+       "href": "01_sql_boot/exercises/hero_databas/labb_02_sqlitehandler.md"
+      },
+      {
+       "text": "Labb 3 — Hero-klassen 🟡",
+       "href": "01_sql_boot/exercises/hero_databas/labb_03_hero_klassen.md"
+      },
+      {
+       "text": "Labb 4 — TiDBHandler + Interface 🟡",
+       "href": "01_sql_boot/exercises/hero_databas/labb_04_tidbhandler_interface.md"
+      },
+      {
+       "text": "Labb 5 — Generics 🔴",
+       "href": "01_sql_boot/exercises/hero_databas/labb_05_generics.md"
+      },
+      {
+       "text": "Labb 6 — Dependency Injection 🔴",
+       "href": "01_sql_boot/exercises/hero_databas/labb_06_dependency_injection.md"
+      },
+      {
+       "text": "Labb 7 — Fler servrar 🔴 (valfri fördjupning)",
+       "href": "01_sql_boot/exercises/hero_databas/labb_07_fler_servrar.md"
+      },
+      {
+       "text": "ovningar_lektion_2",
+       "href": "01_sql_boot/exercises/ovningar_lektion_2.md"
+      },
+      {
+       "text": "ovningar_lektion_3",
+       "href": "01_sql_boot/exercises/ovningar_lektion_3.md"
+      },
+      {
+       "text": "Show me the money!",
+       "href": "01_sql_boot/exercises/show_me_the_money.md"
+      },
+      {
+       "text": "Sök bland 1000 personer",
+       "href": "01_sql_boot/exercises/sok_bland_1000_personer.md"
+      },
+      {
+       "text": "Specialpizza",
+       "href": "01_sql_boot/exercises/specialpizza_sql_ovning.md"
+      },
+      {
+       "text": "Natten då produktionsdatabasen försvann — Halloween-mysteriet",
+       "href": "01_sql_boot/exercises/sql_mysteriet.md"
+      },
+      {
+       "text": "tankeovningar_om_databaser",
+       "href": "01_sql_boot/exercises/tankeovningar_om_databaser.md"
+      },
+      {
+       "text": "Övningar — MySQL i molnet med TiDB Cloud",
+       "href": "01_sql_boot/exercises/tidb_cloud_ovningar.md"
+      },
+      {
+       "text": "Träningsuppgifter: Databaser — Vecka 1",
+       "href": "01_sql_boot/exercises/training_vecka1.md"
+      },
+      {
+       "text": "Docker + MySQL",
+       "href": "01_sql_boot/lectures/docker_mysql_marp.md"
+      },
+      {
+       "text": "Hemligheter i git",
+       "href": "01_sql_boot/lectures/hemligheter_i_git_marp.md"
+      },
+      {
+       "text": "🦸 Hero-databasen",
+       "href": "01_sql_boot/lectures/hero_databas_marp.md"
+      },
+      {
+       "text": "2. Installation och konfiguration av MySQL med Docker",
+       "href": "01_sql_boot/lectures/mysql_installation_marp.md"
+      },
+      {
+       "text": "5. Prepared Statements, Views och Indexering",
+       "href": "01_sql_boot/lectures/mysql_syntax_marp.md"
+      },
+      {
+       "text": "Vad gjorde vi egentligen?",
+       "href": "01_sql_boot/lectures/sql_genomgang_marp.md"
+      },
+      {
+       "text": "3. Introduktion till SQLite",
+       "href": "01_sql_boot/lectures/sqlite_intro_marp.md"
+      },
+      {
+       "text": "Lagrade procedurer i MySQL för .NET-utvecklare (45 min)",
+       "href": "01_sql_boot/lectures/stored_procedures_marp.md"
+      },
+      {
+       "text": "TiDB Cloud",
+       "href": "01_sql_boot/lectures/tidb_cloud_marp.md"
+      },
+      {
+       "text": "2. Transaktioner och ACID-egenskaper (45 min)",
+       "href": "01_sql_boot/lectures/transaktioner_marp.md"
+      },
+      {
+       "text": "ADO.NET och SQLite i C#",
+       "href": "01_sql_boot/notes/ado_net_sqlite.md"
+      },
+      {
+       "text": "Exempel på appsettings.json",
+       "href": "01_sql_boot/notes/appsettings_exempel.md"
+      },
+      {
+       "text": "CRUD-kodexempel",
+       "href": "01_sql_boot/notes/crud_kodexempel.md"
+      },
+      {
+       "text": "Docker — installation och databaser",
+       "href": "01_sql_boot/notes/docker_installation.md"
+      },
+      {
+       "text": "Docker-kommandon",
+       "href": "01_sql_boot/notes/docker_kommandon.md"
+      },
+      {
+       "text": "En liten saga om en databas",
+       "href": "01_sql_boot/notes/en_liten_saga_om_en_databas.md"
+      },
+      {
+       "text": "Felhantering med try-catch",
+       "href": "01_sql_boot/notes/felhantering_try_catch.md"
+      },
+      {
+       "text": "Format-jämförelse",
+       "href": "01_sql_boot/notes/format_jamforelse.md"
+      },
+      {
+       "text": "Kapitel 2 – MySQL: den klassiska serversidan",
+       "href": "01_sql_boot/notes/mysql_docker_installation.md"
+      },
+      {
+       "text": "NuGet-paket för databaser",
+       "href": "01_sql_boot/notes/nuget_paket.md"
+      },
+      {
+       "text": "Ordförklaringar",
+       "href": "01_sql_boot/notes/ordforklaringar.md"
+      },
+      {
+       "text": "Folklore",
+       "href": "01_sql_boot/notes/saga_folklore.md"
+      },
+      {
+       "text": "Fredagen den 13:e",
+       "href": "01_sql_boot/notes/saga_fredagen_den_13e.md"
+      },
+      {
+       "text": "Aggregatfunktioner: många rader blir ett värde",
+       "href": "01_sql_boot/notes/sql/aggregat.md"
+      },
+      {
+       "text": "COALESCE: ett reservvärde för NULL",
+       "href": "01_sql_boot/notes/sql/coalesce.md"
+      },
+      {
+       "text": "DELETE: ta bort rader",
+       "href": "01_sql_boot/notes/sql/delete.md"
+      },
+      {
+       "text": "GROUP BY: räkna per grupp",
+       "href": "01_sql_boot/notes/sql/group-by.md"
+      },
+      {
+       "text": "INSERT: lägg till rader",
+       "href": "01_sql_boot/notes/sql/insert.md"
+      },
+      {
+       "text": "ORDER BY: sortera och begränsa",
+       "href": "01_sql_boot/notes/sql/order-by.md"
+      },
+      {
+       "text": "Övningsdata",
+       "href": "01_sql_boot/notes/sql/ovningsdata.md"
+      },
+      {
+       "text": "SELECT: välj kolumner",
+       "href": "01_sql_boot/notes/sql/select.md"
+      },
+      {
+       "text": "Subquery: en fråga inuti en fråga",
+       "href": "01_sql_boot/notes/sql/subquery.md"
+      },
+      {
+       "text": "UPDATE: ändra rader",
+       "href": "01_sql_boot/notes/sql/update.md"
+      },
+      {
+       "text": "WHERE: välj rader",
+       "href": "01_sql_boot/notes/sql/where.md"
+      },
+      {
+       "text": "SQL-genomgång: vad gjorde vi egentligen?",
+       "href": "01_sql_boot/notes/sql_genomgang.md"
+      },
+      {
+       "text": "TiDB Cloud — gemensam databas i molnet",
+       "href": "01_sql_boot/notes/tidb_cloud_setup.md"
+      },
+      {
+       "text": "Tentafrågor — Intro Databaser",
+       "href": "01_sql_boot/pre-exam/fragor.md"
+      }
+     ],
+     "ovningar": [],
+     "assets": [
+      "01_sql_boot/examples/image-1.png",
+      "01_sql_boot/examples/image-2.png",
+      "01_sql_boot/examples/image-3.png",
+      "01_sql_boot/examples/image-4.png",
+      "01_sql_boot/examples/image-5.png",
+      "01_sql_boot/examples/image-6.png",
+      "01_sql_boot/examples/image-7.png",
+      "01_sql_boot/examples/image-8.png",
+      "01_sql_boot/examples/image.png",
+      "01_sql_boot/exercises/bilder/csharp_sql_mockaroo_data.png",
+      "01_sql_boot/exercises/bilder/csharp_sql_mockaroo_falt.png",
+      "01_sql_boot/exercises/bilder/mer_sokningar_mockaroo.png",
+      "01_sql_boot/notes/diagrams/sql_aggregat.png",
+      "01_sql_boot/notes/diagrams/sql_and.png",
+      "01_sql_boot/notes/diagrams/sql_between.png",
+      "01_sql_boot/notes/diagrams/sql_delete_fore.png",
+      "01_sql_boot/notes/diagrams/sql_distinct.png",
+      "01_sql_boot/notes/diagrams/sql_fallan_and_or.png",
+      "01_sql_boot/notes/diagrams/sql_fem_familjer.png",
+      "01_sql_boot/notes/diagrams/sql_group_by_efter.png",
+      "01_sql_boot/notes/diagrams/sql_group_by_fore.png",
+      "01_sql_boot/notes/diagrams/sql_having.png",
+      "01_sql_boot/notes/diagrams/sql_insert_efter.png",
+      "01_sql_boot/notes/diagrams/sql_join_filter.png",
+      "01_sql_boot/notes/diagrams/sql_korordning.png",
+      "01_sql_boot/notes/diagrams/sql_left_join.png",
+      "01_sql_boot/notes/diagrams/sql_like.png",
+      "01_sql_boot/notes/diagrams/sql_null_fallan.png",
+      "01_sql_boot/notes/diagrams/sql_or.png",
+      "01_sql_boot/notes/diagrams/sql_order_by.png",
+      "01_sql_boot/notes/diagrams/sql_select_kolumner.png",
+      "01_sql_boot/notes/diagrams/sql_update_efter.png",
+      "01_sql_boot/notes/diagrams/sql_update_utan_where.png",
+      "01_sql_boot/notes/diagrams/sql_village_tabell.png",
+      "01_sql_boot/notes/diagrams/sql_where_efter.png",
+      "01_sql_boot/notes/diagrams/sql_where_fore.png",
+      "01_sql_boot/notes/manga/hoshi.jpg",
+      "01_sql_boot/notes/manga/kenta.jpg",
+      "01_sql_boot/notes/manga/mamo.jpg",
+      "01_sql_boot/notes/manga/raiko.jpg",
+      "01_sql_boot/notes/manga/sora.jpg",
+      "01_sql_boot/notes/manga/tetsu.jpg",
+      "01_sql_boot/notes/manga/yuki.jpg",
+      "01_sql_boot/notes/sql/diagrams/sql_aggregat.png",
+      "01_sql_boot/notes/sql/diagrams/sql_aggregat_where.png",
+      "01_sql_boot/notes/sql/diagrams/sql_alias.png",
+      "01_sql_boot/notes/sql/diagrams/sql_and.png",
+      "01_sql_boot/notes/sql/diagrams/sql_as.png",
+      "01_sql_boot/notes/sql/diagrams/sql_between.png",
+      "01_sql_boot/notes/sql/diagrams/sql_delete_efter.png",
+      "01_sql_boot/notes/sql/diagrams/sql_delete_fore.png",
+      "01_sql_boot/notes/sql/diagrams/sql_delete_utan_where.png",
+      "01_sql_boot/notes/sql/diagrams/sql_distinct.png",
+      "01_sql_boot/notes/sql/diagrams/sql_fallan_and_or.png",
+      "01_sql_boot/notes/sql/diagrams/sql_fem_familjer.png",
+      "01_sql_boot/notes/sql/diagrams/sql_group_by_efter.png",
+      "01_sql_boot/notes/sql/diagrams/sql_group_by_fore.png",
+      "01_sql_boot/notes/sql/diagrams/sql_gyllene_regeln.png",
+      "01_sql_boot/notes/sql/diagrams/sql_having.png",
+      "01_sql_boot/notes/sql/diagrams/sql_in.png",
+      "01_sql_boot/notes/sql/diagrams/sql_insert_efter.png",
+      "01_sql_boot/notes/sql/diagrams/sql_insert_fore.png",
+      "01_sql_boot/notes/sql/diagrams/sql_is_null.png",
+      "01_sql_boot/notes/sql/diagrams/sql_join.png",
+      "01_sql_boot/notes/sql/diagrams/sql_join_filter.png",
+      "01_sql_boot/notes/sql/diagrams/sql_join_group_by.png",
+      "01_sql_boot/notes/sql/diagrams/sql_korordning.png",
+      "01_sql_boot/notes/sql/diagrams/sql_left_join.png",
+      "01_sql_boot/notes/sql/diagrams/sql_like.png",
+      "01_sql_boot/notes/sql/diagrams/sql_like_jokertecken.png",
+      "01_sql_boot/notes/sql/diagrams/sql_limit.png",
+      "01_sql_boot/notes/sql/diagrams/sql_null_fallan.png",
+      "01_sql_boot/notes/sql/diagrams/sql_or.png",
+      "01_sql_boot/notes/sql/diagrams/sql_order_by.png",
+      "01_sql_boot/notes/sql/diagrams/sql_parenteser.png",
+      "01_sql_boot/notes/sql/diagrams/sql_person_tabell.png",
+      "01_sql_boot/notes/sql/diagrams/sql_select_kolumner_efter.png",
+      "01_sql_boot/notes/sql/diagrams/sql_select_kolumner_fore.png",
+      "01_sql_boot/notes/sql/diagrams/sql_select_stjarna.png",
+      "01_sql_boot/notes/sql/diagrams/sql_subquery.png",
+      "01_sql_boot/notes/sql/diagrams/sql_update_efter.png",
+      "01_sql_boot/notes/sql/diagrams/sql_update_flera.png",
+      "01_sql_boot/notes/sql/diagrams/sql_update_fore.png",
+      "01_sql_boot/notes/sql/diagrams/sql_update_utan_where.png",
+      "01_sql_boot/notes/sql/diagrams/sql_village_tabell.png",
+      "01_sql_boot/notes/sql/diagrams/sql_where_efter.png",
+      "01_sql_boot/notes/sql/diagrams/sql_where_eller_having.png",
+      "01_sql_boot/notes/sql/diagrams/sql_where_fore.png",
+      "01_sql_boot/notes/sql/diagrams/sql_where_jamforelser.png",
+      "01_sql_boot/notes/sql/diagrams/sql_where_text.png"
+     ]
     }
    ],
    "publish": "2026-10-05"
   },
   {
    "nr": 42,
+   "mapp": "02_er_normalisering_sql_grunder",
    "titel": "ER-diagram, normalisering och SQL-grunder",
    "tid": "8–10 h",
    "mal": "Kan rita ett ER-diagram, förklara 1NF/2NF/3NF och skriva CREATE TABLE + INSERT i SQLite Browser.",
@@ -483,7 +829,7 @@
      ],
      "lektion": {
       "text": "Föreläsning: SQL-intro",
-      "href": "42_er_normalisering_sql_grunder/lectures/sql_intro_marp.md",
+      "href": "02_er_normalisering_sql_grunder/lectures/sql_intro_marp.md",
       "tags": [
        "SELECT",
        "WHERE",
@@ -494,7 +840,7 @@
      "notes": [
       {
        "text": "Installera DB Browser for SQLite",
-       "href": "42_er_normalisering_sql_grunder/notes/sqlite_browser_installation.md",
+       "href": "02_er_normalisering_sql_grunder/notes/sqlite_browser_installation.md",
        "tags": [
         "installation",
         "Windows",
@@ -504,7 +850,7 @@
       },
       {
        "text": "SQL-intro",
-       "href": "42_er_normalisering_sql_grunder/notes/sql_intro.md",
+       "href": "02_er_normalisering_sql_grunder/notes/sql_intro.md",
        "tags": [
         "SELECT",
         "WHERE",
@@ -517,7 +863,7 @@
       "green": [
        {
         "text": "SQL-filmdatabas",
-        "href": "41_sql_boot/exercises/sql_filmdatabas.md",
+        "href": "01_sql_boot/exercises/sql_filmdatabas.md",
         "tags": [
          "CREATE",
          "INSERT",
@@ -530,7 +876,7 @@
       "amber": [
        {
         "text": "Mer sökningar",
-        "href": "41_sql_boot/exercises/mer_sokningar.md",
+        "href": "01_sql_boot/exercises/mer_sokningar.md",
         "tags": [
          "Mockaroo",
          "COUNT",
@@ -559,7 +905,7 @@
      "notes": [
       {
        "text": "SQL — ett kommando i taget (översikt)",
-       "href": "42_er_normalisering_sql_grunder/notes/sql/index.md",
+       "href": "02_er_normalisering_sql_grunder/notes/sql/index.md",
        "tags": [
         "SELECT",
         "JOIN",
@@ -572,7 +918,7 @@
       },
       {
        "text": "JOIN — koppla ihop tabeller",
-       "href": "42_er_normalisering_sql_grunder/notes/sql/join.md",
+       "href": "02_er_normalisering_sql_grunder/notes/sql/join.md",
        "tags": [
         "JOIN",
         "LEFT JOIN",
@@ -583,7 +929,7 @@
       },
       {
        "text": "Från tabell till klass — SQL och C# sida vid sida",
-       "href": "42_er_normalisering_sql_grunder/notes/sql/tabeller-och-klasser.md",
+       "href": "02_er_normalisering_sql_grunder/notes/sql/tabeller-och-klasser.md",
        "tags": [
         "C#",
         "klass",
@@ -613,7 +959,7 @@
      "notes": [
       {
        "text": "Termer: ER-diagram",
-       "href": "42_er_normalisering_sql_grunder/terms/er-diagram.md",
+       "href": "02_er_normalisering_sql_grunder/terms/er-diagram.md",
        "tags": [
         "ERD",
         "entitet",
@@ -627,7 +973,7 @@
       "green": [
        {
         "text": "Övning: Djurparken",
-        "href": "42_er_normalisering_sql_grunder/exercises/ovning_erd_djurpark.md",
+        "href": "02_er_normalisering_sql_grunder/exercises/ovning_erd_djurpark.md",
         "tags": [
          "ER-diagram",
          "djurpark",
@@ -639,7 +985,7 @@
       "amber": [
        {
         "text": "Övning: Spelbutiken",
-        "href": "42_er_normalisering_sql_grunder/exercises/ovning_erd_spelbutik.md",
+        "href": "02_er_normalisering_sql_grunder/exercises/ovning_erd_spelbutik.md",
         "tags": [
          "ER-diagram",
          "N:M",
@@ -666,7 +1012,7 @@
      "notes": [
       {
        "text": "Termer: normalisering och GDPR",
-       "href": "42_er_normalisering_sql_grunder/terms/normalisering.md",
+       "href": "02_er_normalisering_sql_grunder/terms/normalisering.md",
        "tags": [
         "1NF",
         "2NF",
@@ -681,7 +1027,7 @@
       "green": [
        {
         "text": "Övning: Normalisera orderdata",
-        "href": "42_er_normalisering_sql_grunder/exercises/ovning_normalisering_order.md",
+        "href": "02_er_normalisering_sql_grunder/exercises/ovning_normalisering_order.md",
         "tags": [
          "1NF",
          "2NF",
@@ -694,7 +1040,7 @@
       "amber": [
        {
         "text": "Övning: Spelsamling",
-        "href": "42_er_normalisering_sql_grunder/exercises/ovning_normalisering_spelsamling.md",
+        "href": "02_er_normalisering_sql_grunder/exercises/ovning_normalisering_spelsamling.md",
         "tags": [
          "normalisering",
          "mellantabell",
@@ -721,7 +1067,7 @@
      ],
      "lektion": {
       "text": "SQL-repetition (Del 1)",
-      "href": "42_er_normalisering_sql_grunder/lectures/sql_repetition_marp.md",
+      "href": "02_er_normalisering_sql_grunder/lectures/sql_repetition_marp.md",
       "tags": [
        "SELECT",
        "CRUD",
@@ -732,7 +1078,7 @@
      "notes": [
       {
        "text": "SQL-intro",
-       "href": "42_er_normalisering_sql_grunder/notes/sql_intro.md",
+       "href": "02_er_normalisering_sql_grunder/notes/sql_intro.md",
        "tags": [
         "SELECT",
         "WHERE",
@@ -742,7 +1088,7 @@
       },
       {
        "text": "SQLite-grunder",
-       "href": "42_er_normalisering_sql_grunder/notes/sqlite_grund.md",
+       "href": "02_er_normalisering_sql_grunder/notes/sqlite_grund.md",
        "tags": [
         "CREATE TABLE",
         "PRIMARY KEY",
@@ -754,7 +1100,7 @@
       "green": [
        {
         "text": "SQL-repetitionsövningar",
-        "href": "42_er_normalisering_sql_grunder/exercises/sql_repetition_ovningar.md",
+        "href": "02_er_normalisering_sql_grunder/exercises/sql_repetition_ovningar.md",
         "tags": [
          "SELECT",
          "INSERT",
@@ -783,7 +1129,7 @@
      ],
      "lektion": {
       "text": "ERD & Normalisering (Del 2)",
-      "href": "42_er_normalisering_sql_grunder/lectures/erd_normalisering_repetition_marp.md",
+      "href": "02_er_normalisering_sql_grunder/lectures/erd_normalisering_repetition_marp.md",
       "tags": [
        "ERD",
        "normalisering",
@@ -794,7 +1140,7 @@
      "notes": [
       {
        "text": "Normalisering",
-       "href": "42_er_normalisering_sql_grunder/notes/normalisering.md",
+       "href": "02_er_normalisering_sql_grunder/notes/normalisering.md",
        "tags": [
         "1NF",
         "2NF",
@@ -823,7 +1169,7 @@
      ],
      "lektion": {
       "text": "C# och databaser (Del 3)",
-      "href": "42_er_normalisering_sql_grunder/lectures/csharp_databaser_marp.md",
+      "href": "02_er_normalisering_sql_grunder/lectures/csharp_databaser_marp.md",
       "tags": [
        "C#",
        "connection",
@@ -835,7 +1181,7 @@
      "notes": [
       {
        "text": "Quicksheet — NuGet-paket och connection strings",
-       "href": "41_sql_boot/notes/ado_quicksheet.md",
+       "href": "01_sql_boot/notes/ado_quicksheet.md",
        "tags": [
         "NuGet",
         "connection string",
@@ -844,7 +1190,7 @@
       },
       {
        "text": "Quicksheet — ADO.NET-objekt",
-       "href": "41_sql_boot/notes/ado_objects_quicksheet.md",
+       "href": "01_sql_boot/notes/ado_objects_quicksheet.md",
        "tags": [
         "ExecuteNonQuery",
         "ExecuteReader",
@@ -855,7 +1201,7 @@
       },
       {
        "text": "Från tabell till klass — SQL och C# sida vid sida",
-       "href": "42_er_normalisering_sql_grunder/notes/sql/tabeller-och-klasser.md",
+       "href": "02_er_normalisering_sql_grunder/notes/sql/tabeller-och-klasser.md",
        "tags": [
         "C#",
         "klass",
@@ -883,7 +1229,7 @@
      ],
      "lektion": {
       "text": "SQL JOINs — extraföreläsning",
-      "href": "42_er_normalisering_sql_grunder/lectures/databaser_joins_marp.md",
+      "href": "02_er_normalisering_sql_grunder/lectures/databaser_joins_marp.md",
       "tags": [
        "INNER JOIN",
        "LEFT JOIN",
@@ -895,7 +1241,7 @@
      "examples": [
       {
        "text": "Demobas — skapa joins_demo.db",
-       "href": "42_er_normalisering_sql_grunder/examples/skapa_joins_demo.py",
+       "href": "02_er_normalisering_sql_grunder/examples/skapa_joins_demo.py",
        "tags": [
         "Python",
         "SQLite",
@@ -904,7 +1250,7 @@
       },
       {
        "text": "SQL-schema för demobasen",
-       "href": "42_er_normalisering_sql_grunder/examples/joins_demo.sql",
+       "href": "02_er_normalisering_sql_grunder/examples/joins_demo.sql",
        "tags": [
         "CREATE TABLE",
         "INSERT",
@@ -933,7 +1279,7 @@
      "notes": [
       {
        "text": "Inlämning 1 — Diskografi (uppgiftsbeskrivning)",
-       "href": "42_er_normalisering_sql_grunder/assignment/inlamning_1_diskografi.md",
+       "href": "02_er_normalisering_sql_grunder/assignment/inlamning_1_diskografi.md",
        "tags": [
         "G",
         "VG",
@@ -957,20 +1303,105 @@
      "notes": [
       {
        "text": "ddl",
-       "href": "42_er_normalisering_sql_grunder/terms/ddl.md"
+       "href": "02_er_normalisering_sql_grunder/terms/ddl.md"
       },
       {
        "text": "erd",
-       "href": "42_er_normalisering_sql_grunder/terms/erd.md"
+       "href": "02_er_normalisering_sql_grunder/terms/erd.md"
       }
      ],
      "ovningar": []
+    },
+    {
+     "titel": "Övrigt material",
+     "beskrivning": "Övrigt material i veckan.",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Inlämning 2 — Din filmdatabas som app",
+       "href": "02_er_normalisering_sql_grunder/assignment/inlamning_2_filmdatabas_app.md"
+      },
+      {
+       "text": "Enkel CRUD med Entity Framework Core",
+       "href": "02_er_normalisering_sql_grunder/exercises/03_00_simple_crud.md"
+      },
+      {
+       "text": "Övning: CRUD - Skapa, Läsa, Uppdatera, Ta bort 📝",
+       "href": "02_er_normalisering_sql_grunder/exercises/crud_operations_ovning.md"
+      },
+      {
+       "text": "C# + SQL Övningar",
+       "href": "02_er_normalisering_sql_grunder/exercises/csharp_och_sql_ovningar.md"
+      },
+      {
+       "text": "Mer sökningar",
+       "href": "02_er_normalisering_sql_grunder/exercises/mer_sokningar.md"
+      },
+      {
+       "text": "ovningar_lektion_3",
+       "href": "02_er_normalisering_sql_grunder/exercises/ovningar_lektion_3.md"
+      },
+      {
+       "text": "ovningar_lektion_4",
+       "href": "02_er_normalisering_sql_grunder/exercises/ovningar_lektion_4.md"
+      },
+      {
+       "text": "ovningar_lektion_5",
+       "href": "02_er_normalisering_sql_grunder/exercises/ovningar_lektion_5.md"
+      },
+      {
+       "text": "SQL-CRUD — Heroes",
+       "href": "02_er_normalisering_sql_grunder/exercises/sql_crud_for_nyborjare.md"
+      },
+      {
+       "text": "Träningsuppgifter: Databaser — Vecka 2",
+       "href": "02_er_normalisering_sql_grunder/exercises/training_vecka2.md"
+      },
+      {
+       "text": "![bg left:40%](https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg)",
+       "href": "02_er_normalisering_sql_grunder/lectures/databaser_crud.md"
+      },
+      {
+       "text": "Sammanfattning av SQL-lektionen",
+       "href": "02_er_normalisering_sql_grunder/lectures/sammanfattning_av_sql.md"
+      },
+      {
+       "text": "CRUD-operationer",
+       "href": "02_er_normalisering_sql_grunder/notes/crud_operations.md"
+      },
+      {
+       "text": "Constraints",
+       "href": "02_er_normalisering_sql_grunder/notes/sql_constraints.md"
+      },
+      {
+       "text": "Skapa en databas",
+       "href": "02_er_normalisering_sql_grunder/notes/sql_databas.md"
+      },
+      {
+       "text": "Tabeller",
+       "href": "02_er_normalisering_sql_grunder/notes/sql_tabeller.md"
+      },
+      {
+       "text": "Tentafrågor — SQL Hardcore",
+       "href": "02_er_normalisering_sql_grunder/pre-exam/fragor.md"
+      }
+     ],
+     "ovningar": [],
+     "assets": [
+      "02_er_normalisering_sql_grunder/exercises/bilder/crud_full_join.png",
+      "02_er_normalisering_sql_grunder/exercises/bilder/crud_inner_join.png",
+      "02_er_normalisering_sql_grunder/exercises/bilder/crud_left_join.png",
+      "02_er_normalisering_sql_grunder/exercises/bilder/crud_marvel.png",
+      "02_er_normalisering_sql_grunder/exercises/bilder/crud_right_join.png",
+      "02_er_normalisering_sql_grunder/exercises/bilder/joins.svg"
+     ]
     }
    ],
    "publish": "2026-10-12"
   },
   {
    "nr": 43,
+   "mapp": "03_sql_avancerat",
    "titel": "SQL avancerat, normalisering och säkerhet",
    "tid": "10–12 h",
    "mal": "Kan JOIN:a, aggregera och normalisera. Förstår SQL injection och hur man skyddar sig.",
@@ -989,7 +1420,7 @@
      "notes": [
       {
        "text": "Normalisering — teori och termer",
-       "href": "42_er_normalisering_sql_grunder/notes/normalisering.md",
+       "href": "02_er_normalisering_sql_grunder/notes/normalisering.md",
        "tags": [
         "normalisering",
         "anomalier",
@@ -1015,7 +1446,7 @@
      "notes": [
       {
        "text": "Hämta seed-filen — Klösarvet Djursjukhus AB",
-       "href": "43_sql_avancerat/examples/djursjukhus_seed.sql",
+       "href": "03_sql_avancerat/examples/djursjukhus_seed.sql",
        "tags": [
         "SQLite",
         "seed",
@@ -1028,7 +1459,7 @@
       "green": [
        {
         "text": "JOINs i klassrummet 🐾",
-        "href": "43_sql_avancerat/exercises/ovning_joins_klassrum.md",
+        "href": "03_sql_avancerat/exercises/ovning_joins_klassrum.md",
         "tags": [
          "JOIN",
          "GROUP BY",
@@ -1040,7 +1471,7 @@
       "amber": [
        {
         "text": "JOINs och aggregat — hemövning 🏠",
-        "href": "43_sql_avancerat/exercises/ovning_joins_hem.md",
+        "href": "03_sql_avancerat/exercises/ovning_joins_hem.md",
         "tags": [
          "JOIN",
          "HAVING",
@@ -1086,7 +1517,7 @@
      "notes": [
       {
        "text": "GDPR i praktiken — riktiga scenarier",
-       "href": "43_sql_avancerat/notes/gdpr_praktik_scenarier.md",
+       "href": "03_sql_avancerat/notes/gdpr_praktik_scenarier.md",
        "tags": [
         "GDPR",
         "garanti",
@@ -1100,7 +1531,7 @@
       "green": [
        {
         "text": "GDPR i klassrummet 🔒",
-        "href": "43_sql_avancerat/exercises/ovning_gdpr_klassrum.md",
+        "href": "03_sql_avancerat/exercises/ovning_gdpr_klassrum.md",
         "tags": [
          "GDPR",
          "gymappen",
@@ -1128,7 +1559,7 @@
      "notes": [
       {
        "text": "MoSCoW — prioritering av krav",
-       "href": "43_sql_avancerat/notes/moscow_prioritering.md",
+       "href": "03_sql_avancerat/notes/moscow_prioritering.md",
        "tags": [
         "MoSCoW",
         "MVP",
@@ -1149,24 +1580,81 @@
      "notes": [
       {
        "text": "normalisering_gdpr",
-       "href": "43_sql_avancerat/terms/normalisering_gdpr.md"
+       "href": "03_sql_avancerat/terms/normalisering_gdpr.md"
       },
       {
        "text": "sql_avancerat",
-       "href": "43_sql_avancerat/terms/sql_avancerat.md"
+       "href": "03_sql_avancerat/terms/sql_avancerat.md"
       },
       {
        "text": "sql_hardcore",
-       "href": "43_sql_avancerat/terms/sql_hardcore.md"
+       "href": "03_sql_avancerat/terms/sql_hardcore.md"
       }
      ],
      "ovningar": []
+    },
+    {
+     "titel": "Övrigt material",
+     "beskrivning": "Övrigt material i veckan.",
+     "tags": [],
+     "notes": [
+      {
+       "text": "ERD-diagram — Webshop",
+       "href": "03_sql_avancerat/examples/erd_webshop.md"
+      },
+      {
+       "text": "Workshop: Denormalisering för AI/ML Träningsdata (SQLite-version)",
+       "href": "03_sql_avancerat/exercises/02_denormalisering_for_ai_sqlite.md"
+      },
+      {
+       "text": "Normalisering",
+       "href": "03_sql_avancerat/lectures/01_normalisering_marp.md"
+      },
+      {
+       "text": "Djursjukhuset 🐾",
+       "href": "03_sql_avancerat/lectures/02_djursjukhus_joins_marp.md"
+      },
+      {
+       "text": "GDPR och databaser 🔒",
+       "href": "03_sql_avancerat/lectures/03_gdpr_databaser_marp.md"
+      },
+      {
+       "text": "GDPR — snabbrepetition 🔒",
+       "href": "03_sql_avancerat/lectures/03b_gdpr_repetition_marp.md"
+      },
+      {
+       "text": "GROUP BY och aggregat 📊",
+       "href": "03_sql_avancerat/lectures/04_group_by_aggregat_marp.md"
+      },
+      {
+       "text": "lankar_till_ovningssidor_och_annat",
+       "href": "03_sql_avancerat/lectures/lankar_till_ovningssidor_och_annat.md"
+      },
+      {
+       "text": "Från Excelfil till riktig databas — hundar, adresser och normalformer",
+       "href": "03_sql_avancerat/notes/normalform_hundar.md"
+      },
+      {
+       "text": "Från kaos till kvitto — normalisering, ordrar och GDPR",
+       "href": "03_sql_avancerat/notes/normalform_order_gdpr.md"
+      },
+      {
+       "text": "Tentafrågor — Normalisering och GDPR",
+       "href": "03_sql_avancerat/pre-exam/fragor.md"
+      }
+     ],
+     "ovningar": [],
+     "assets": [
+      "03_sql_avancerat/examples/djursjukhus_seed_tidb.sql",
+      "03_sql_avancerat/notes/gdpr_i_graven.pdf"
+     ]
     }
    ],
    "publish": "2026-10-19"
   },
   {
    "nr": 44,
+   "mapp": "04_transaktioner_och_sakerhet",
    "titel": "Transaktioner och säkerhet",
    "tid": "4–5 h",
    "mal": "Förstår UPDATE och DELETE med WHERE, kan skriva säker SQL med parametrar och vet vad en transaktion gör.",
@@ -1243,19 +1731,119 @@
      "notes": [
       {
        "text": "dcl",
-       "href": "44_transaktioner_och_sakerhet/terms/dcl.md"
+       "href": "04_transaktioner_och_sakerhet/terms/dcl.md"
       },
       {
        "text": "dml",
-       "href": "44_transaktioner_och_sakerhet/terms/dml.md"
+       "href": "04_transaktioner_och_sakerhet/terms/dml.md"
       },
       {
        "text": "Tentatermer och repetition",
-       "href": "44_transaktioner_och_sakerhet/terms/repetition_tenta.md"
+       "href": "04_transaktioner_och_sakerhet/terms/repetition_tenta.md"
       },
       {
        "text": "sakerhet_och_backup",
-       "href": "44_transaktioner_och_sakerhet/terms/sakerhet_och_backup.md"
+       "href": "04_transaktioner_och_sakerhet/terms/sakerhet_och_backup.md"
+      }
+     ],
+     "ovningar": []
+    },
+    {
+     "titel": "Övrigt material",
+     "beskrivning": "Övrigt material i veckan.",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Inlämning 1 — Din favoritartists diskografi",
+       "href": "04_transaktioner_och_sakerhet/assignment/inlamning_1_diskografi.md"
+      },
+      {
+       "text": "Inlämningsuppgift 1",
+       "href": "04_transaktioner_och_sakerhet/assignment/inlamningsuppgift_1_avancerad_sql.md"
+      },
+      {
+       "text": "inlamningsuppgift_1_sql",
+       "href": "04_transaktioner_och_sakerhet/assignment/inlamningsuppgift_1_sql.md"
+      },
+      {
+       "text": "losningsforslag_lektion_2",
+       "href": "04_transaktioner_och_sakerhet/assignment/losningsforslag_lektion_2.md"
+      },
+      {
+       "text": "Övning 1 — Konsolmenyn 🟢",
+       "href": "04_transaktioner_och_sakerhet/exercises/ovning_01_konsollmeny.md"
+      },
+      {
+       "text": "Övning 2 — Visa låtar från SQLite 🟢",
+       "href": "04_transaktioner_och_sakerhet/exercises/ovning_02_visa_fran_sqlite.md"
+      },
+      {
+       "text": "Övning 3 — Lägg till en låt 🟢",
+       "href": "04_transaktioner_och_sakerhet/exercises/ovning_03_lagg_till.md"
+      },
+      {
+       "text": "Övning 4 — Ta bort en låt 🟡",
+       "href": "04_transaktioner_och_sakerhet/exercises/ovning_04_ta_bort.md"
+      },
+      {
+       "text": "Övning 5 — Flytta databaskoden till en egen klass 🟡",
+       "href": "04_transaktioner_och_sakerhet/exercises/ovning_05_repository_klass.md"
+      },
+      {
+       "text": "Övning 6 — SQL Zoo 🟡",
+       "href": "04_transaktioner_och_sakerhet/exercises/ovning_06_sql_zoo.md"
+      },
+      {
+       "text": "Övning 7 — Bobby Tables 🔴",
+       "href": "04_transaktioner_och_sakerhet/exercises/ovning_07_bobby_tables.md"
+      },
+      {
+       "text": "Övning 8 — BT Security 🔴",
+       "href": "04_transaktioner_och_sakerhet/exercises/ovning_08_bt_security.md"
+      },
+      {
+       "text": "ovningar_lektion_10",
+       "href": "04_transaktioner_och_sakerhet/exercises/ovningar_lektion_10.md"
+      },
+      {
+       "text": "ovningar_lektion_5",
+       "href": "04_transaktioner_och_sakerhet/exercises/ovningar_lektion_5.md"
+      },
+      {
+       "text": "ovningar_lektion_6",
+       "href": "04_transaktioner_och_sakerhet/exercises/ovningar_lektion_6.md"
+      },
+      {
+       "text": "Show me the money!",
+       "href": "04_transaktioner_och_sakerhet/exercises/show_me_the_money.md"
+      },
+      {
+       "text": "Övning — Subqueries i diskografin",
+       "href": "04_transaktioner_och_sakerhet/exercises/subqueries_diskografi.md"
+      },
+      {
+       "text": "Träningsuppgifter: Databaser — Vecka 3",
+       "href": "04_transaktioner_och_sakerhet/exercises/training_vecka3.md"
+      },
+      {
+       "text": "GROUP BY, HAVING och aggregering 📊",
+       "href": "04_transaktioner_och_sakerhet/lectures/databaser_aggregering.md"
+      },
+      {
+       "text": "SQL JOINs 🔗",
+       "href": "04_transaktioner_och_sakerhet/lectures/databaser_joins.md"
+      },
+      {
+       "text": "GROUP BY, HAVING och aggregering",
+       "href": "04_transaktioner_och_sakerhet/notes/sql_aggregation.md"
+      },
+      {
+       "text": "GROUP BY, HAVING och aggregering",
+       "href": "04_transaktioner_och_sakerhet/notes/sql_aggregering.md"
+      },
+      {
+       "text": "Tentafrågor — SQL Avancerat",
+       "href": "04_transaktioner_och_sakerhet/pre-exam/fragor.md"
       }
      ],
      "ovningar": []
