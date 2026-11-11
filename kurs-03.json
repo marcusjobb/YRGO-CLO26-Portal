@@ -1270,28 +1270,24 @@
        "href": "02_ef_mongodb_designmonster/lectures/02_designmonster_marp.md"
       },
       {
-       "text": "1. Avancerad Databashantering med Repository Pattern i C#",
-       "href": "02_ef_mongodb_designmonster/lectures/1_advanced_database_management_with_repository_pattern_in_c.md"
-      },
-      {
        "text": "Repository Pattern Implementation",
-       "href": "02_ef_mongodb_designmonster/lectures/2.md"
+       "href": "02_ef_mongodb_designmonster/lectures/repository_pattern_marp.md"
       },
       {
        "text": "2. Builder-mönstret",
-       "href": "02_ef_mongodb_designmonster/lectures/2_builder_pattern.md"
+       "href": "02_ef_mongodb_designmonster/lectures/builder_pattern.md"
       },
       {
        "text": "2. Repository Pattern Implementation",
-       "href": "02_ef_mongodb_designmonster/lectures/2_example.md"
+       "href": "02_ef_mongodb_designmonster/lectures/repository_pattern_exempel.md"
       },
       {
        "text": "2. Repository Pattern Implementation",
-       "href": "02_ef_mongodb_designmonster/lectures/2_quiz.md"
+       "href": "02_ef_mongodb_designmonster/lectures/repository_pattern_quiz.md"
       },
       {
        "text": "2. Repository Pattern Implementation",
-       "href": "02_ef_mongodb_designmonster/lectures/2_repository_pattern_implementation.md"
+       "href": "02_ef_mongodb_designmonster/lectures/repository_pattern_genomgang.md"
       },
       {
        "text": "1. Avancerad Databashantering med Repository Pattern",
