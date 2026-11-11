@@ -668,10 +668,6 @@
        "href": "01_trygg_start_oop/notes/linq_soka_i_data.md"
       },
       {
-       "text": "UML för databasdesign",
-       "href": "01_trygg_start_oop/notes/uml_database_design.md"
-      },
-      {
        "text": "Tentafrågor — JSON och data",
        "href": "01_trygg_start_oop/pre-exam/00_fragor_json.md"
       },
@@ -964,13 +960,9 @@
       "02_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_3.png",
       "02_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_4.mmd",
       "02_ef_mongodb_designmonster/lectures/diagrams/uml_klassdiagram_marp_4.png",
-      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_1.mmd",
       "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_1.png",
-      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_2.mmd",
       "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_2.png",
-      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_3.mmd",
       "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_3.png",
-      "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_4.mmd",
       "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_4.png",
       "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_5.mmd",
       "02_ef_mongodb_designmonster/notes/diagrams/uml_klassdiagram_5.png",
