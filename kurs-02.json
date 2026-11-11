@@ -181,7 +181,7 @@
      ],
      "lektion": {
       "text": "Bildspel — Databaser",
-      "href": "01_intro_databaser/lectures/01_intro_csi_marp.md",
+      "href": "week_41/lectures/01_intro_csi_marp.md",
       "tags": [
        "intro",
        "databas"
@@ -217,7 +217,7 @@
      ],
      "lektion": {
       "text": "Bildspel — Vilken databas väljer du?: SQLite, MySQL och PostgreSQL",
-      "href": "01_intro_databaser/lectures/databastyper_val_av_databasmotor_marp.md",
+      "href": "week_41/lectures/databastyper_val_av_databasmotor_marp.md",
       "tags": [
        "databastyper",
        "val av motor"
@@ -251,7 +251,7 @@
      ],
      "lektion": {
       "text": "Bildspel — Gummiankemetoden",
-      "href": "01_intro_databaser/lectures/gummiankemetoden_marp.md",
+      "href": "week_41/lectures/gummiankemetoden_marp.md",
       "tags": [
        "debugging",
        "gummianka"
@@ -327,7 +327,7 @@
      "notes": [
       {
        "text": "Quicksheet — NuGet-paket och connection strings",
-       "href": "01_intro_databaser/notes/ado_quicksheet.md",
+       "href": "week_41/notes/ado_quicksheet.md",
        "tags": [
         "NuGet",
         "connection string",
@@ -364,7 +364,7 @@
       "amber": [
        {
         "text": "C# + SQL-övningar",
-        "href": "01_intro_databaser/exercises/csharp_och_sql_ovningar.md",
+        "href": "week_41/exercises/csharp_och_sql_ovningar.md",
         "tags": [
          "DatabaseHandler",
          "DataTable",
@@ -391,7 +391,7 @@
      "notes": [
       {
        "text": "SQL från C# — en rymdmanga",
-       "href": "01_intro_databaser/notes/sql_fran_csharp_rymdmanga.md",
+       "href": "week_41/notes/sql_fran_csharp_rymdmanga.md",
        "tags": [
         "ExecuteNonQuery",
         "ExecuteReader",
@@ -401,7 +401,7 @@
       },
       {
        "text": "Lastmanifestet — klasser till databasen",
-       "href": "01_intro_databaser/notes/sqlite_lastmanifestet.md",
+       "href": "week_41/notes/sqlite_lastmanifestet.md",
        "tags": [
         "klasser",
         "CargoHandler",
@@ -411,7 +411,7 @@
       },
       {
        "text": "Quicksheet — ADO.NET-objekt",
-       "href": "01_intro_databaser/notes/ado_objects_quicksheet.md",
+       "href": "week_41/notes/ado_objects_quicksheet.md",
        "tags": [
         "ExecuteNonQuery",
         "ExecuteScalar",
@@ -444,7 +444,7 @@
       "green": [
        {
         "text": "SQL-filmdatabas",
-        "href": "01_intro_databaser/exercises/sql_filmdatabas.md",
+        "href": "week_41/exercises/sql_filmdatabas.md",
         "tags": [
          "CREATE",
          "INSERT",
@@ -457,7 +457,7 @@
       "amber": [
        {
         "text": "Mer sökningar",
-        "href": "01_intro_databaser/exercises/mer_sokningar.md",
+        "href": "week_41/exercises/mer_sokningar.md",
         "tags": [
          "Mockaroo",
          "COUNT",
@@ -483,7 +483,7 @@
      "notes": [
       {
        "text": "GitHub Student Developer Pack — så verifierar du dig",
-       "href": "01_intro_databaser/notes/github_student_developer_pack.md",
+       "href": "week_41/notes/github_student_developer_pack.md",
        "tags": [
         "GitHub",
         "verifiering",
@@ -555,7 +555,7 @@
       "green": [
        {
         "text": "SQL-filmdatabas",
-        "href": "01_intro_databaser/exercises/sql_filmdatabas.md",
+        "href": "week_41/exercises/sql_filmdatabas.md",
         "tags": [
          "CREATE",
          "INSERT",
@@ -568,7 +568,7 @@
       "amber": [
        {
         "text": "Mer sökningar",
-        "href": "01_intro_databaser/exercises/mer_sokningar.md",
+        "href": "week_41/exercises/mer_sokningar.md",
         "tags": [
          "Mockaroo",
          "COUNT",
@@ -597,7 +597,7 @@
      "notes": [
       {
        "text": "SQL — ett kommando i taget (översikt)",
-       "href": "01_intro_databaser/notes/sql/index.md",
+       "href": "week_42/notes/sql/index.md",
        "tags": [
         "SELECT",
         "JOIN",
@@ -610,7 +610,7 @@
       },
       {
        "text": "JOIN — koppla ihop tabeller",
-       "href": "01_intro_databaser/notes/sql/join.md",
+       "href": "week_42/notes/sql/join.md",
        "tags": [
         "JOIN",
         "LEFT JOIN",
@@ -621,7 +621,7 @@
       },
       {
        "text": "Från tabell till klass — SQL och C# sida vid sida",
-       "href": "01_intro_databaser/notes/sql/tabeller-och-klasser.md",
+       "href": "week_42/notes/sql/tabeller-och-klasser.md",
        "tags": [
         "C#",
         "klass",
@@ -651,7 +651,7 @@
      "notes": [
       {
        "text": "Termer: ER-diagram",
-       "href": "termer/er-diagram.md",
+       "href": "week_42/terms/er-diagram.md",
        "tags": [
         "ERD",
         "entitet",
@@ -665,7 +665,7 @@
       "green": [
        {
         "text": "Övning: Djurparken",
-        "href": "03_normalisering_gdpr/exercises/ovning_erd_djurpark.md",
+        "href": "week_42/exercises/ovning_erd_djurpark.md",
         "tags": [
          "ER-diagram",
          "djurpark",
@@ -677,7 +677,7 @@
       "amber": [
        {
         "text": "Övning: Spelbutiken",
-        "href": "03_normalisering_gdpr/exercises/ovning_erd_spelbutik.md",
+        "href": "week_42/exercises/ovning_erd_spelbutik.md",
         "tags": [
          "ER-diagram",
          "N:M",
@@ -719,7 +719,7 @@
       "green": [
        {
         "text": "Övning: Normalisera orderdata",
-        "href": "03_normalisering_gdpr/exercises/ovning_normalisering_order.md",
+        "href": "week_42/exercises/ovning_normalisering_order.md",
         "tags": [
          "1NF",
          "2NF",
@@ -732,7 +732,7 @@
       "amber": [
        {
         "text": "Övning: Spelsamling",
-        "href": "03_normalisering_gdpr/exercises/ovning_normalisering_spelsamling.md",
+        "href": "week_42/exercises/ovning_normalisering_spelsamling.md",
         "tags": [
          "normalisering",
          "mellantabell",
@@ -759,7 +759,7 @@
      ],
      "lektion": {
       "text": "SQL-repetition (Del 1)",
-      "href": "01_intro_databaser/lectures/sql_repetition_marp.md",
+      "href": "week_42/lectures/sql_repetition_marp.md",
       "tags": [
        "SELECT",
        "CRUD",
@@ -780,7 +780,7 @@
       },
       {
        "text": "SQLite-grunder",
-       "href": "01_intro_databaser/notes/sqlite_grund.md",
+       "href": "week_42/notes/sqlite_grund.md",
        "tags": [
         "CREATE TABLE",
         "PRIMARY KEY",
@@ -792,7 +792,7 @@
       "green": [
        {
         "text": "SQL-repetitionsövningar",
-        "href": "01_intro_databaser/exercises/sql_repetition_ovningar.md",
+        "href": "week_42/exercises/sql_repetition_ovningar.md",
         "tags": [
          "SELECT",
          "INSERT",
@@ -821,7 +821,7 @@
      ],
      "lektion": {
       "text": "ERD & Normalisering (Del 2)",
-      "href": "01_intro_databaser/lectures/erd_normalisering_repetition_marp.md",
+      "href": "week_42/lectures/erd_normalisering_repetition_marp.md",
       "tags": [
        "ERD",
        "normalisering",
@@ -832,7 +832,7 @@
      "notes": [
       {
        "text": "Normalisering",
-       "href": "03_normalisering_gdpr/notes/normalisering.md",
+       "href": "week_42/notes/normalisering.md",
        "tags": [
         "1NF",
         "2NF",
@@ -861,7 +861,7 @@
      ],
      "lektion": {
       "text": "C# och databaser (Del 3)",
-      "href": "01_intro_databaser/lectures/csharp_databaser_marp.md",
+      "href": "week_42/lectures/csharp_databaser_marp.md",
       "tags": [
        "C#",
        "connection",
@@ -873,7 +873,7 @@
      "notes": [
       {
        "text": "Quicksheet — NuGet-paket och connection strings",
-       "href": "01_intro_databaser/notes/ado_quicksheet.md",
+       "href": "week_41/notes/ado_quicksheet.md",
        "tags": [
         "NuGet",
         "connection string",
@@ -882,7 +882,7 @@
       },
       {
        "text": "Quicksheet — ADO.NET-objekt",
-       "href": "01_intro_databaser/notes/ado_objects_quicksheet.md",
+       "href": "week_41/notes/ado_objects_quicksheet.md",
        "tags": [
         "ExecuteNonQuery",
         "ExecuteReader",
@@ -893,7 +893,7 @@
       },
       {
        "text": "Från tabell till klass — SQL och C# sida vid sida",
-       "href": "01_intro_databaser/notes/sql/tabeller-och-klasser.md",
+       "href": "week_42/notes/sql/tabeller-och-klasser.md",
        "tags": [
         "C#",
         "klass",
@@ -1037,7 +1037,7 @@
      "notes": [
       {
        "text": "Hämta seed-filen — Klösarvet Djursjukhus AB",
-       "href": "03_normalisering_gdpr/examples/djursjukhus_seed.sql",
+       "href": "week_43/examples/djursjukhus_seed.sql",
        "tags": [
         "SQLite",
         "seed",
@@ -1050,7 +1050,7 @@
       "green": [
        {
         "text": "JOINs i klassrummet 🐾",
-        "href": "03_normalisering_gdpr/exercises/ovning_joins_klassrum.md",
+        "href": "week_43/exercises/ovning_joins_klassrum.md",
         "tags": [
          "JOIN",
          "GROUP BY",
@@ -1062,7 +1062,7 @@
       "amber": [
        {
         "text": "JOINs och aggregat — hemövning 🏠",
-        "href": "03_normalisering_gdpr/exercises/ovning_joins_hem.md",
+        "href": "week_43/exercises/ovning_joins_hem.md",
         "tags": [
          "JOIN",
          "HAVING",
@@ -1108,7 +1108,7 @@
      "notes": [
       {
        "text": "GDPR i praktiken — riktiga scenarier",
-       "href": "03_normalisering_gdpr/notes/gdpr_praktik_scenarier.md",
+       "href": "week_43/notes/gdpr_praktik_scenarier.md",
        "tags": [
         "GDPR",
         "garanti",
@@ -1122,7 +1122,7 @@
       "green": [
        {
         "text": "GDPR i klassrummet 🔒",
-        "href": "03_normalisering_gdpr/exercises/ovning_gdpr_klassrum.md",
+        "href": "week_43/exercises/ovning_gdpr_klassrum.md",
         "tags": [
          "GDPR",
          "gymappen",
@@ -1150,7 +1150,7 @@
      "notes": [
       {
        "text": "MoSCoW — prioritering av krav",
-       "href": "03_normalisering_gdpr/notes/moscow_prioritering.md",
+       "href": "week_43/notes/moscow_prioritering.md",
        "tags": [
         "MoSCoW",
         "MVP",

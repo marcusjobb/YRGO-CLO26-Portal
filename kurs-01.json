@@ -44,7 +44,7 @@
      "lektion": null,
      "notes": {
       "text": "Läsversion — Git: Versionshantering",
-      "href": "01_verktyg_och_git/notes/git_grunder.md",
+      "href": "week_36/notes/git_grunder.md",
       "tags": [
        "git",
        "versionshantering",
@@ -55,7 +55,7 @@
       "green": [
        {
         "text": "Övning 1 — Git installation och konfiguration",
-        "href": "01_verktyg_och_git/exercises/ovning_01_git_setup.md",
+        "href": "week_36/exercises/ovning_01_git_setup.md",
         "tags": [
          "git",
          "init",
@@ -66,7 +66,7 @@
        },
        {
         "text": "Övning 2 — Ditt första repository",
-        "href": "01_verktyg_och_git/exercises/ovning_02_forsta_repot.md",
+        "href": "week_36/exercises/ovning_02_forsta_repot.md",
         "tags": [
          "git",
          "add",
@@ -80,7 +80,7 @@
       "amber": [
        {
         "text": "Övning — Git-konflikter",
-        "href": "01_verktyg_och_git/notes/git_konflikter.md",
+        "href": "week_36/notes/git_konflikter.md",
         "tags": [
          "git",
          "merge",
@@ -93,7 +93,7 @@
       "red": [
        {
         "text": "Träning — Vecka 1: Verktyg och Git",
-        "href": "01_verktyg_och_git/exercises/training_vecka1.md",
+        "href": "week_36/exercises/training_vecka1.md",
         "tags": [
          "git",
          "branch",
@@ -118,7 +118,7 @@
      "lektion": null,
      "notes": {
       "text": "Läsversion — Installationsguide: Gör detta innan dag 2",
-      "href": "01_verktyg_och_git/notes/installationsguide.md",
+      "href": "week_36/notes/installationsguide.md",
       "tags": [
        "installation",
        "dotnet",
@@ -130,7 +130,7 @@
       "green": [
        {
         "text": "Övning 3 — Hello World",
-        "href": "01_verktyg_och_git/exercises/ovning_03_hello_world.md",
+        "href": "week_36/exercises/ovning_03_hello_world.md",
         "tags": [
          "csharp",
          "Console.WriteLine",
@@ -155,15 +155,15 @@
    "tentafragor": [
     {
      "text": "01 Git & verktyg",
-     "href": "01_verktyg_och_git/tentafragor/01_fragor_git.md"
+     "href": "week_37/pre-exam/01_fragor_git.md"
     },
     {
      "text": "02 Variabler",
-     "href": "02_syntax_och_variabler/tentafragor/02_fragor_variabler.md"
+     "href": "week_37/pre-exam/02_fragor_variabler.md"
     },
     {
      "text": "03 Villkor & loopar",
-     "href": "03_villkor_och_loopar/tentafragor/03_fragor_villkor.md"
+     "href": "week_37/pre-exam/03_fragor_villkor.md"
     }
    ],
    "amnen": [
@@ -181,7 +181,7 @@
      ],
      "lektion": {
       "text": "Bildspel — Variabler och datatyper",
-      "href": "02_syntax_och_variabler/lectures/variabler_marp.md",
+      "href": "week_37/lectures/variabler_marp.md",
       "tags": [
        "int",
        "string",
@@ -193,7 +193,7 @@
      },
      "notes": {
       "text": "Läsversion — Variabler",
-      "href": "02_syntax_och_variabler/notes/variabler.md",
+      "href": "week_37/notes/variabler.md",
       "tags": [
        "variabler",
        "datatyp",
@@ -204,7 +204,7 @@
      "examples": [
       {
        "text": "VariableExamples.cs",
-       "href": "02_syntax_och_variabler/examples/VariableExamples.cs",
+       "href": "week_37/examples/VariableExamples.cs",
        "tags": [
         "int",
         "string",
@@ -219,7 +219,7 @@
       "green": [
        {
         "text": "Övning — Rita flödesschemat",
-        "href": "02_syntax_och_variabler/exercises/flowchart/rita_flodesschemat.md",
+        "href": "week_37/exercises/flowchart/rita_flodesschemat.md",
         "tags": [
          "flödesschema",
          "algoritm",
@@ -229,7 +229,7 @@
        },
        {
         "text": "Berättelse 1 — Trollets styrka",
-        "href": "02_syntax_och_variabler/exercises/stories/story_01_grlub_the_troll.md",
+        "href": "week_37/exercises/stories/story_01_grlub_the_troll.md",
         "tags": [
          "string",
          "Console.WriteLine",
@@ -240,7 +240,7 @@
        },
        {
         "text": "Övning — Den saknade kronan",
-        "href": "02_syntax_och_variabler/exercises/arithmetic/missing_crown.md",
+        "href": "week_37/exercises/arithmetic/missing_crown.md",
         "tags": [
          "int",
          "aritmetik",
@@ -251,7 +251,7 @@
        },
        {
         "text": "Övning — Telefonplanen",
-        "href": "02_syntax_och_variabler/exercises/arithmetic/telefonplanen.md",
+        "href": "week_37/exercises/arithmetic/telefonplanen.md",
         "tags": [
          "double",
          "int",
@@ -263,7 +263,7 @@
        },
        {
         "text": "Övning — Filmkvällen",
-        "href": "02_syntax_och_variabler/exercises/arithmetic/filmkvaellen.md",
+        "href": "week_37/exercises/arithmetic/filmkvaellen.md",
         "tags": [
          "int",
          "aritmetik",
@@ -276,7 +276,7 @@
       "amber": [
        {
         "text": "Berättelse 2 — Anakin och Kristallgrottan på Ilum",
-        "href": "02_syntax_och_variabler/exercises/stories/story_02_anakin.md",
+        "href": "week_37/exercises/stories/story_02_anakin.md",
         "tags": [
          "string",
          "variabler",
@@ -289,7 +289,7 @@
       "red": [
        {
         "text": "Berättelse 4 — Arsène Lupin och Bankvalvets gåta",
-        "href": "02_syntax_och_variabler/exercises/stories/story_04_arsene_lupin.md",
+        "href": "week_37/exercises/stories/story_04_arsene_lupin.md",
         "tags": [
          "string",
          "variabler",
@@ -300,7 +300,7 @@
        },
        {
         "text": "Träning — Vecka 2: C# repetition",
-        "href": "02_syntax_och_variabler/exercises/training_vecka2.md",
+        "href": "week_37/exercises/training_vecka2.md",
         "tags": [
          "variabler",
          "datatyp",
@@ -312,7 +312,7 @@
       ]
      },
      "assets": [
-      "02_syntax_och_variabler/res/memes/omg.jpg"
+      "week_37/exercises/images/omg.jpg"
      ]
     },
     {
@@ -328,7 +328,7 @@
      ],
      "lektion": {
       "text": "Bildspel — Konsolen och strängar",
-      "href": "02_syntax_och_variabler/lectures/konsol_marp.md",
+      "href": "week_37/lectures/konsol_marp.md",
       "tags": [
        "Console",
        "ReadLine",
@@ -341,7 +341,7 @@
      "notes": [
       {
        "text": "Läsversion — Enkla utskrifter",
-       "href": "02_syntax_och_variabler/notes/konsol.md",
+       "href": "week_37/notes/konsol.md",
        "tags": [
         "Console",
         "ReadLine",
@@ -352,7 +352,7 @@
       },
       {
        "text": "Läsversion — Konsol: färg, position och cursor",
-       "href": "02_syntax_och_variabler/notes/konsol_avancerat.md",
+       "href": "week_37/notes/konsol_avancerat.md",
        "tags": [
         "Console.Clear",
         "BackgroundColor",
@@ -384,7 +384,7 @@
      ],
      "lektion": {
       "text": "Bildspel — if / else if / else",
-      "href": "03_villkor_och_loopar/lectures/if_else_marp.md",
+      "href": "week_37/lectures/if_else_marp.md",
       "tags": [
        "if",
        "else",
@@ -395,7 +395,7 @@
      },
      "notes": {
       "text": "Läsversion — if / else",
-      "href": "03_villkor_och_loopar/notes/if_else.md",
+      "href": "week_37/notes/if_else.md",
       "tags": [
        "if",
        "else",
@@ -406,7 +406,7 @@
      "examples": [
       {
        "text": "Biobiljett.cs",
-       "href": "03_villkor_och_loopar/examples/Biobiljett.cs",
+       "href": "week_37/examples/Biobiljett.cs",
        "tags": [
         "if",
         "else",
@@ -417,7 +417,7 @@
       },
       {
        "text": "ConditionExamples.cs",
-       "href": "03_villkor_och_loopar/examples/ConditionExamples.cs",
+       "href": "week_37/examples/ConditionExamples.cs",
        "tags": [
         "if",
         "else",
@@ -428,7 +428,7 @@
       },
       {
        "text": "KaraktärsSkapare.cs",
-       "href": "03_villkor_och_loopar/examples/KaraktärsSkapare.cs",
+       "href": "week_37/examples/KaraktärsSkapare.cs",
        "tags": [
         "if",
         "else",
@@ -442,7 +442,7 @@
       "green": [
        {
         "text": "Övning — Biobiljetten",
-        "href": "03_villkor_och_loopar/exercises/conditions/biobiljetten.md",
+        "href": "week_37/exercises/conditions/biobiljetten.md",
         "tags": [
          "if",
          "else",
@@ -454,7 +454,7 @@
        },
        {
         "text": "Övning — Ska vi grilla?",
-        "href": "03_villkor_och_loopar/exercises/conditions/ska_vi_grilla.md",
+        "href": "week_37/exercises/conditions/ska_vi_grilla.md",
         "tags": [
          "if",
          "else",
@@ -466,7 +466,7 @@
        },
        {
         "text": "Övning — Temperaturkollen",
-        "href": "03_villkor_och_loopar/exercises/conditions/temperature_check.md",
+        "href": "week_37/exercises/conditions/temperature_check.md",
         "tags": [
          "if",
          "else",
@@ -478,7 +478,7 @@
        },
        {
         "text": "Övning — Varberg vs Sisjön",
-        "href": "03_villkor_och_loopar/exercises/conditions/varberg_vs_sisjoen.md",
+        "href": "week_37/exercises/conditions/varberg_vs_sisjoen.md",
         "tags": [
          "if",
          "else",
@@ -490,7 +490,7 @@
        },
        {
         "text": "Testa dig själv — If-satser",
-        "href": "03_villkor_och_loopar/exercises/self_test/self_test_if.md",
+        "href": "week_37/exercises/self_test/self_test_if.md",
         "tags": [
          "if",
          "else",
@@ -503,7 +503,7 @@
       "amber": [
        {
         "text": "Övning — Tärningsspelet",
-        "href": "03_villkor_och_loopar/exercises/ovning_tarningsspelet.md",
+        "href": "week_37/exercises/ovning_tarningsspelet.md",
         "tags": [
          "random",
          "if",
@@ -516,7 +516,7 @@
        },
        {
         "text": "Övning — Väderprognosen",
-        "href": "03_villkor_och_loopar/exercises/conditions/vaderprognosen.md",
+        "href": "week_37/exercises/conditions/vaderprognosen.md",
         "tags": [
          "if",
          "else",
@@ -528,7 +528,7 @@
        },
        {
         "text": "Övning — Karaktärsklass",
-        "href": "03_villkor_och_loopar/exercises/conditions/character_class.md",
+        "href": "week_37/exercises/conditions/character_class.md",
         "tags": [
          "if",
          "else",
@@ -542,7 +542,7 @@
       "red": [
        {
         "text": "Övning — Betty",
-        "href": "03_villkor_och_loopar/exercises/conditions/betty.md",
+        "href": "week_37/exercises/conditions/betty.md",
         "tags": [
          "if",
          "else",
@@ -555,7 +555,7 @@
        },
        {
         "text": "Draken",
-        "href": "03_villkor_och_loopar/exercises/conditions/Draken.md",
+        "href": "week_37/exercises/conditions/Draken.md",
         "tags": [
          "if",
          "else",
@@ -568,7 +568,7 @@
        },
        {
         "text": "ManicMonday",
-        "href": "03_villkor_och_loopar/exercises/conditions/ManicMonday.md",
+        "href": "week_37/exercises/conditions/ManicMonday.md",
         "tags": [
          "if",
          "else",
@@ -581,7 +581,7 @@
        },
        {
         "text": "Övning — Biokvällen",
-        "href": "03_villkor_och_loopar/exercises/conditions/biokvallen.md",
+        "href": "week_37/exercises/conditions/biokvallen.md",
         "tags": [
          "if",
          "else",
@@ -595,8 +595,8 @@
       ]
      },
      "assets": [
-      "03_villkor_och_loopar/lectures/res/boolean_meme.jpg",
-      "03_villkor_och_loopar/lectures/res/spaghetti_code.jpg"
+      "week_37/lectures/res/boolean_meme.jpg",
+      "week_37/lectures/res/spaghetti_code.jpg"
      ]
     },
     {
@@ -612,7 +612,7 @@
      ],
      "lektion": {
       "text": "Bildspel — Loopar",
-      "href": "03_villkor_och_loopar/lectures/loopar_marp.md",
+      "href": "week_37/lectures/loopar_marp.md",
       "tags": [
        "for",
        "while",
@@ -623,7 +623,7 @@
      },
      "notes": {
       "text": "Läsversion — Loopar",
-      "href": "03_villkor_och_loopar/notes/loopar.md",
+      "href": "week_37/notes/loopar.md",
       "tags": [
        "for",
        "while",
@@ -634,7 +634,7 @@
      "examples": [
       {
        "text": "KonsolAnimation.cs",
-       "href": "03_villkor_och_loopar/examples/KonsolAnimation.cs",
+       "href": "week_37/examples/KonsolAnimation.cs",
        "tags": [
         "for",
         "while",
@@ -649,7 +649,7 @@
       "green": [
        {
         "text": "Övning — Nedräkning",
-        "href": "03_villkor_och_loopar/exercises/loops/countdown.md",
+        "href": "week_37/exercises/loops/countdown.md",
         "tags": [
          "for",
          "while",
@@ -661,7 +661,7 @@
        },
        {
         "text": "Övning — Bankräntan",
-        "href": "03_villkor_och_loopar/exercises/loops/bankrantan.md",
+        "href": "week_37/exercises/loops/bankrantan.md",
         "tags": [
          "for",
          "double",
@@ -674,7 +674,7 @@
        },
        {
         "text": "Övning — Multiplikationstabellen",
-        "href": "03_villkor_och_loopar/exercises/loops/multiplikationstabellen.md",
+        "href": "week_37/exercises/loops/multiplikationstabellen.md",
         "tags": [
          "for",
          "int",
@@ -686,7 +686,7 @@
        },
        {
         "text": "Övning — Summera poäng",
-        "href": "03_villkor_och_loopar/exercises/loops/summera_poang.md",
+        "href": "week_37/exercises/loops/summera_poang.md",
         "tags": [
          "while",
          "int",
@@ -700,7 +700,7 @@
       "amber": [
        {
         "text": "Övning — Gissa ett tal",
-        "href": "03_villkor_och_loopar/exercises/random/gissa_talet.md",
+        "href": "week_37/exercises/random/gissa_talet.md",
         "tags": [
          "do-while",
          "random",
@@ -713,7 +713,7 @@
        },
        {
         "text": "Övning — Lösenordsförsöket",
-        "href": "03_villkor_och_loopar/exercises/loops/lossenordsforsoket.md",
+        "href": "week_37/exercises/loops/lossenordsforsoket.md",
         "tags": [
          "for",
          "while",
@@ -726,7 +726,7 @@
        },
        {
         "text": "Övning — Rymdfärja-start",
-        "href": "03_villkor_och_loopar/exercises/loops/rymdfarja_start.md",
+        "href": "week_37/exercises/loops/rymdfarja_start.md",
         "tags": [
          "for",
          "random",
@@ -739,7 +739,7 @@
        },
        {
         "text": "Astro Naut",
-        "href": "03_villkor_och_loopar/exercises/loops/astro_naut.md",
+        "href": "week_37/exercises/loops/astro_naut.md",
         "tags": [
          "for",
          "switch",
@@ -754,14 +754,14 @@
       "red": []
      },
      "assets": [
-      "03_villkor_och_loopar/lectures/res/netflix_while.png",
-      "03_villkor_och_loopar/lectures/res/the_count.jpg",
-      "03_villkor_och_loopar/exercises/loops/diagrams/bankrantan_1.png",
-      "03_villkor_och_loopar/exercises/loops/diagrams/multiplikationstabellen_1.png",
-      "03_villkor_och_loopar/exercises/loops/diagrams/summera_poang_1.png",
-      "03_villkor_och_loopar/exercises/loops/diagrams/lossenordsforsoket_1.png",
-      "03_villkor_och_loopar/exercises/loops/diagrams/rymdfarja_start_1.png",
-      "03_villkor_och_loopar/exercises/loops/diagrams/astro_naut_1.png"
+      "week_37/lectures/res/netflix_while.png",
+      "week_37/lectures/res/the_count.jpg",
+      "week_37/exercises/loops/diagrams/bankrantan_1.png",
+      "week_37/exercises/loops/diagrams/multiplikationstabellen_1.png",
+      "week_37/exercises/loops/diagrams/summera_poang_1.png",
+      "week_37/exercises/loops/diagrams/lossenordsforsoket_1.png",
+      "week_37/exercises/loops/diagrams/rymdfarja_start_1.png",
+      "week_37/exercises/loops/diagrams/astro_naut_1.png"
      ]
     },
     {
@@ -777,7 +777,7 @@
      ],
      "lektion": {
       "text": "Bildspel — switch",
-      "href": "03_villkor_och_loopar/lectures/switch_marp.md",
+      "href": "week_37/lectures/switch_marp.md",
       "tags": [
        "switch",
        "case",
@@ -787,7 +787,7 @@
      },
      "notes": {
       "text": "Läsversion — switch",
-      "href": "03_villkor_och_loopar/notes/switch.md",
+      "href": "week_37/notes/switch.md",
       "tags": [
        "switch",
        "case",
@@ -798,7 +798,7 @@
      "examples": [
       {
        "text": "Betyg.cs",
-       "href": "03_villkor_och_loopar/examples/Betyg.cs",
+       "href": "week_37/examples/Betyg.cs",
        "tags": [
         "switch",
         "case",
@@ -812,7 +812,7 @@
       "green": [
        {
         "text": "Övning — Veckodagen",
-        "href": "03_villkor_och_loopar/exercises/conditions/veckodagen.md",
+        "href": "week_37/exercises/conditions/veckodagen.md",
         "tags": [
          "switch",
          "case",
@@ -824,7 +824,7 @@
        },
        {
         "text": "Övning — Årstiden",
-        "href": "03_villkor_och_loopar/exercises/conditions/arstiden.md",
+        "href": "week_37/exercises/conditions/arstiden.md",
         "tags": [
          "switch",
          "case",
@@ -836,7 +836,7 @@
        },
        {
         "text": "Övning — Rätt hälsning",
-        "href": "03_villkor_och_loopar/exercises/conditions/ratt_halsning.md",
+        "href": "week_37/exercises/conditions/ratt_halsning.md",
         "tags": [
          "switch",
          "case",
@@ -850,7 +850,7 @@
       "amber": [
        {
         "text": "Övning — Restaurangmenyn",
-        "href": "03_villkor_och_loopar/exercises/conditions/restaurangmenyn.md",
+        "href": "week_37/exercises/conditions/restaurangmenyn.md",
         "tags": [
          "switch",
          "case",
@@ -862,7 +862,7 @@
        },
        {
         "text": "Övning — Tentabetyget",
-        "href": "03_villkor_och_loopar/exercises/conditions/tenta_betyget.md",
+        "href": "week_37/exercises/conditions/tenta_betyget.md",
         "tags": [
          "switch",
          "case",
@@ -875,7 +875,7 @@
        },
        {
         "text": "Övning — Kalkylatorn",
-        "href": "03_villkor_och_loopar/exercises/conditions/kalkylator.md",
+        "href": "week_37/exercises/conditions/kalkylator.md",
         "tags": [
          "switch",
          "case",
@@ -890,9 +890,9 @@
       "red": []
      },
      "assets": [
-      "03_villkor_och_loopar/exercises/conditions/diagrams/arstiden_1.png",
-      "03_villkor_och_loopar/exercises/conditions/diagrams/ratt_halsning_1.png",
-      "03_villkor_och_loopar/exercises/conditions/diagrams/kalkylator_1.png"
+      "week_37/exercises/conditions/diagrams/arstiden_1.png",
+      "week_37/exercises/conditions/diagrams/ratt_halsning_1.png",
+      "week_37/exercises/conditions/diagrams/kalkylator_1.png"
      ]
     }
    ],
@@ -907,7 +907,7 @@
    "tentafragor": [
     {
      "text": "05 Klasser och OOP",
-     "href": "05_klasser_och_oop/tentafragor/fragor.md"
+     "href": "week_38/pre-exam/fragor.md"
     }
    ],
    "amnen": [
@@ -928,7 +928,7 @@
      },
      "lektion": {
       "text": "Bildspel — Klasser och Objekt",
-      "href": "05_klasser_och_oop/lectures/klasser_och_objekt_marp.md",
+      "href": "week_38/lectures/klasser_och_objekt_marp.md",
       "tags": [
        "klass",
        "objekt",
@@ -938,7 +938,7 @@
      },
      "notes": {
       "text": "Läsversion — Klasser och objekt",
-      "href": "05_klasser_och_oop/notes/klasser_och_oop.md",
+      "href": "week_38/notes/klasser_och_oop.md",
       "tags": [
        "klass",
        "objekt",
@@ -949,7 +949,7 @@
      "examples": [
       {
        "text": "BankAccount.cs",
-       "href": "05_klasser_och_oop/examples/BankAccount.cs",
+       "href": "week_38/examples/BankAccount.cs",
        "tags": [
         "klass",
         "konstruktor",
@@ -962,7 +962,7 @@
       "green": [
        {
         "text": "Intro — Varför OOP?",
-        "href": "05_klasser_och_oop/exercises/intro_varfor_oop.md",
+        "href": "week_38/exercises/intro_varfor_oop.md",
         "tags": [
          "oop",
          "intro"
@@ -971,7 +971,7 @@
        },
        {
         "text": "Övning — Bilen",
-        "href": "05_klasser_och_oop/exercises/ovning_01_car.md",
+        "href": "week_38/exercises/ovning_01_car.md",
         "tags": [
          "klass",
          "konstruktor",
@@ -981,7 +981,7 @@
        },
        {
         "text": "Övning — Personen",
-        "href": "05_klasser_och_oop/exercises/ovning_person.md",
+        "href": "week_38/exercises/ovning_person.md",
         "tags": [
          "klass",
          "property",
@@ -993,7 +993,7 @@
       "amber": [
        {
         "text": "Övning — Rymdskeppet",
-        "href": "05_klasser_och_oop/exercises/ovning_02_spaceship.md",
+        "href": "week_38/exercises/ovning_02_spaceship.md",
         "tags": [
          "klass",
          "konstruktor",
@@ -1003,7 +1003,7 @@
        },
        {
         "text": "Övning — Tärningen",
-        "href": "05_klasser_och_oop/exercises/ovning_tarning.md",
+        "href": "week_38/exercises/ovning_tarning.md",
         "tags": [
          "klass",
          "static",
@@ -1014,7 +1014,7 @@
        },
        {
         "text": "Övning — Personen och dagräknaren",
-        "href": "05_klasser_och_oop/exercises/ovning_person_datum.md",
+        "href": "week_38/exercises/ovning_person_datum.md",
         "tags": [
          "klass",
          "DateTime",
@@ -1024,7 +1024,7 @@
        },
        {
         "text": "Övning — Build-A-Bear",
-        "href": "05_klasser_och_oop/exercises/ovning_build_a_bear.md",
+        "href": "week_38/exercises/ovning_build_a_bear.md",
         "tags": [
          "klass",
          "datatyp",
@@ -1036,7 +1036,7 @@
       "red": [
        {
         "text": "Övning — Husdjuren",
-        "href": "05_klasser_och_oop/exercises/ovning_pets.md",
+        "href": "week_38/exercises/ovning_pets.md",
         "tags": [
          "klass",
          "DRY",
@@ -1048,7 +1048,7 @@
      },
      "inlamning": {
       "text": "Inlämning 1 — Drömmatchen",
-      "href": "05_klasser_och_oop/assignment/inlamningsuppgift_1_drommatchen.md",
+      "href": "week_38/assignment/inlamningsuppgift_1_drommatchen.md",
       "tags": [
        "klass",
        "samarbete",
@@ -1074,7 +1074,7 @@
      },
      "notes": {
       "text": "Läsversion — Programmeringstermer: OOP",
-      "href": "termer/oop.md",
+      "href": "week_38/terms/oop.md",
       "tags": [
        "inkapsling",
        "abstraktion",
@@ -1105,7 +1105,7 @@
      },
      "lektion": {
       "text": "Bildspel — Arv",
-      "href": "05_klasser_och_oop/lectures/arv_marp.md",
+      "href": "week_38/lectures/arv_marp.md",
       "tags": [
        "arv",
        "virtual",
@@ -1118,7 +1118,7 @@
       "green": [
        {
         "text": "Träningspass — Klasser",
-        "href": "05_klasser_och_oop/exercises/traningspass_klasser.md",
+        "href": "week_38/exercises/traningspass_klasser.md",
         "tags": [
          "klass",
          "konstruktor",
@@ -1129,7 +1129,7 @@
        },
        {
         "text": "Träningspass — Metoder",
-        "href": "05_klasser_och_oop/exercises/traningspass_metoder.md",
+        "href": "week_38/exercises/traningspass_metoder.md",
         "tags": [
          "metod",
          "return",
@@ -1139,7 +1139,7 @@
        },
        {
         "text": "Övning — Djursjukhuset (förmiddag)",
-        "href": "05_klasser_och_oop/exercises/ovning_arv_och_metoder.md",
+        "href": "week_38/exercises/ovning_arv_och_metoder.md",
         "tags": [
          "arv",
          "virtual",
@@ -1152,7 +1152,7 @@
       "amber": [
        {
         "text": "Träningspass — Arv",
-        "href": "05_klasser_och_oop/exercises/traningspass_arv.md",
+        "href": "week_38/exercises/traningspass_arv.md",
         "tags": [
          "arv",
          "virtual",
@@ -1163,7 +1163,7 @@
        },
        {
         "text": "Träningspass — Konstruktoröverlagring",
-        "href": "05_klasser_och_oop/exercises/traningspass_konstruktor_overlagring.md",
+        "href": "week_38/exercises/traningspass_konstruktor_overlagring.md",
         "tags": [
          "konstruktor",
          "this",
@@ -1174,7 +1174,7 @@
        },
        {
         "text": "Övning — Lönesystemet",
-        "href": "05_klasser_och_oop/exercises/ovning_lon.md",
+        "href": "week_38/exercises/ovning_lon.md",
         "tags": [
          "arv",
          "virtual",
@@ -1187,7 +1187,7 @@
       "red": [
        {
         "text": "Övning — Arv fördjupning (eftermiddag)",
-        "href": "05_klasser_och_oop/exercises/ovning_arv_fordjupning.md",
+        "href": "week_38/exercises/ovning_arv_fordjupning.md",
         "tags": [
          "arv",
          "base.Metod",
@@ -1198,7 +1198,7 @@
        },
        {
         "text": "Träningspass — Klasser extra",
-        "href": "05_klasser_och_oop/exercises/traningspass_klasser_extra.md",
+        "href": "week_38/exercises/traningspass_klasser_extra.md",
         "tags": [
          "klass",
          "konstruktor",
@@ -1209,7 +1209,7 @@
        },
        {
         "text": "Träningspass — Metoder extra",
-        "href": "05_klasser_och_oop/exercises/traningspass_metoder_extra.md",
+        "href": "week_38/exercises/traningspass_metoder_extra.md",
         "tags": [
          "metod",
          "return",
@@ -1247,7 +1247,7 @@
      ],
      "lektion": {
       "text": "Bildspel — Arv + överlagring: tips och tricks",
-      "href": "05_klasser_och_oop/lectures/arv_tips_marp.md",
+      "href": "week_38/lectures/arv_tips_marp.md",
       "tags": [
        "överlagring",
        "this",
@@ -1288,7 +1288,7 @@
      ],
      "notes": {
       "text": "Läsversion — Repetition: variabler, strängar och klasser",
-      "href": "06_datastrukturer/notes/repetition_v37_v38.md",
+      "href": "week_39/notes/repetition_v37_v38.md",
       "tags": [
        "variabler",
        "string",
@@ -1318,7 +1318,7 @@
      ],
      "lektion": {
       "text": "Bildspel — Arrayer och listor",
-      "href": "06_datastrukturer/lectures/arrayer_listor_marp.md",
+      "href": "week_39/lectures/arrayer_listor_marp.md",
       "tags": [
        "array",
        "List",
@@ -1330,7 +1330,7 @@
      "notes": [
       {
        "text": "Läsversion — Arrayer och listor",
-       "href": "06_datastrukturer/notes/arrayer_och_listor.md",
+       "href": "week_39/notes/arrayer_och_listor.md",
        "tags": [
         "array",
         "List",
@@ -1340,7 +1340,7 @@
       },
       {
        "text": "Läsversion — List<T>: instansiering och foreach",
-       "href": "06_datastrukturer/notes/list_instansiering_och_foreach.md",
+       "href": "week_39/notes/list_instansiering_och_foreach.md",
        "tags": [
         "List",
         "new()",
@@ -1357,7 +1357,7 @@
       "green": [
        {
         "text": "Avengers-registret",
-        "href": "06_datastrukturer/exercises/array_avengers.md",
+        "href": "week_39/exercises/array_avengers.md",
         "tags": [
          "array",
          "for",
@@ -1368,7 +1368,7 @@
        },
        {
         "text": "Övning — Plocka ut en del av en array",
-        "href": "06_datastrukturer/exercises/arraycopy.md",
+        "href": "week_39/exercises/arraycopy.md",
         "tags": [
          "array",
          "index",
@@ -1378,7 +1378,7 @@
        },
        {
         "text": "Self-test — Arrayer",
-        "href": "06_datastrukturer/exercises/self_test_arrayer.md",
+        "href": "week_39/exercises/self_test_arrayer.md",
         "tags": [
          "array",
          "self-test",
@@ -1390,7 +1390,7 @@
        },
        {
         "text": "Self-test — List<T>",
-        "href": "06_datastrukturer/exercises/self_test_listor.md",
+        "href": "week_39/exercises/self_test_listor.md",
         "tags": [
          "List",
          "self-test",
@@ -1405,7 +1405,7 @@
       "amber": [
        {
         "text": "Övning — Arrayövningar",
-        "href": "06_datastrukturer/exercises/array_exercises.md",
+        "href": "week_39/exercises/array_exercises.md",
         "tags": [
          "array",
          "foreach",
@@ -1416,7 +1416,7 @@
        },
        {
         "text": "Piratskatten",
-        "href": "06_datastrukturer/exercises/pirate_game.md",
+        "href": "week_39/exercises/pirate_game.md",
         "tags": [
          "while",
          "List",
@@ -1430,7 +1430,7 @@
       "red": [
        {
         "text": "Träningsuppgifter v4 (blandat)",
-        "href": "06_datastrukturer/exercises/training_vecka4.md",
+        "href": "week_39/exercises/training_vecka4.md",
         "tags": [
          "array",
          "List",
@@ -1457,7 +1457,7 @@
      ],
      "lektion": {
       "text": "Bildspel — Dictionary och enum",
-      "href": "06_datastrukturer/lectures/dictionary_enum_marp.md",
+      "href": "week_39/lectures/dictionary_enum_marp.md",
       "tags": [
        "Dictionary",
        "enum",
@@ -1468,7 +1468,7 @@
      "notes": [
       {
        "text": "Läsversion — Dictionary",
-       "href": "06_datastrukturer/notes/dictionary.md",
+       "href": "week_39/notes/dictionary.md",
        "tags": [
         "Dictionary",
         "key",
@@ -1478,7 +1478,7 @@
       },
       {
        "text": "Läsversion — Enum",
-       "href": "06_datastrukturer/notes/enum.md",
+       "href": "week_39/notes/enum.md",
        "tags": [
         "enum",
         "konstanter",
@@ -1487,7 +1487,7 @@
       },
       {
        "text": "Läsversion — Enum: labyrinten",
-       "href": "06_datastrukturer/notes/enum_labyrinten.md",
+       "href": "week_39/notes/enum_labyrinten.md",
        "tags": [
         "enum",
         "Enum.Parse",
@@ -1498,7 +1498,7 @@
       },
       {
        "text": "Läsversion — Dictionary: genomgång",
-       "href": "06_datastrukturer/notes/dictionary_genomgang.md",
+       "href": "week_39/notes/dictionary_genomgang.md",
        "tags": [
         "Dictionary",
         "ContainsKey",
@@ -1511,7 +1511,7 @@
       },
       {
        "text": "Läsversion — Dictionary med objekt som värde",
-       "href": "06_datastrukturer/notes/dictionary_med_objekt.md",
+       "href": "week_39/notes/dictionary_med_objekt.md",
        "tags": [
         "Dictionary",
         "objekt",
@@ -1525,7 +1525,7 @@
       "green": [
        {
         "text": "Telefonkatalog",
-        "href": "06_datastrukturer/exercises/dictionary_phonebook.md",
+        "href": "week_39/exercises/dictionary_phonebook.md",
         "tags": [
          "Dictionary",
          "Add",
@@ -1536,7 +1536,7 @@
        },
        {
         "text": "SG-1 personalregister",
-        "href": "06_datastrukturer/exercises/dictionary_stargate.md",
+        "href": "week_39/exercises/dictionary_stargate.md",
         "tags": [
          "Dictionary",
          "key",
@@ -1547,7 +1547,7 @@
        },
        {
         "text": "Trafikljuset",
-        "href": "06_datastrukturer/exercises/ovning_enum_trafikljus.md",
+        "href": "week_39/exercises/ovning_enum_trafikljus.md",
         "tags": [
          "enum",
          "switch",
@@ -1557,7 +1557,7 @@
        },
        {
         "text": "Väderstationen",
-        "href": "06_datastrukturer/exercises/ovning_enum_vader.md",
+        "href": "week_39/exercises/ovning_enum_vader.md",
         "tags": [
          "enum",
          "switch",
@@ -1568,7 +1568,7 @@
        },
        {
         "text": "Self-test — Dictionary",
-        "href": "06_datastrukturer/exercises/self_test_dictionary.md",
+        "href": "week_39/exercises/self_test_dictionary.md",
         "tags": [
          "Dictionary",
          "self-test",
@@ -1580,7 +1580,7 @@
        },
        {
         "text": "Self-test — Enum",
-        "href": "06_datastrukturer/exercises/self_test_enum.md",
+        "href": "week_39/exercises/self_test_enum.md",
         "tags": [
          "enum",
          "self-test",
@@ -1594,7 +1594,7 @@
       "amber": [
        {
         "text": "Kafé Nionit — betalningssystem",
-        "href": "06_datastrukturer/exercises/ovning_enum_kafebetalning.md",
+        "href": "week_39/exercises/ovning_enum_kafebetalning.md",
         "tags": [
          "enum",
          "Dictionary",
