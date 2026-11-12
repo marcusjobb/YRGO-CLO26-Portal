@@ -492,7 +492,7 @@
       },
       {
        "text": "Allsvenskan-databasen — Lösningsförslag",
-       "href": "01_sql_boot/exercises/allsvenskan_databasen_teacher.md"
+       "href": "01_sql_boot/examples/allsvenskan_databasen_losningsforslag.md"
       },
       {
        "text": "Labbserie — Databaser i C# (kurs 02)",
@@ -1729,7 +1729,7 @@
       },
       {
        "text": "losningsforslag_lektion_2",
-       "href": "04_transaktioner_och_sakerhet/assignment/losningsforslag_lektion_2.md"
+       "href": "04_transaktioner_och_sakerhet/examples/losningsforslag_lektion_2.md"
       },
       {
        "text": "Övning 1 — Konsolmenyn 🟢",
