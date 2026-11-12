@@ -823,16 +823,6 @@
      },
      "notes": [
       {
-       "text": "Installera DB Browser for SQLite",
-       "href": "02_er_normalisering_sql_grunder/notes/sqlite_browser_installation.md",
-       "tags": [
-        "installation",
-        "Windows",
-        "Mac",
-        "Linux"
-       ]
-      },
-      {
        "text": "SQL-intro",
        "href": "02_er_normalisering_sql_grunder/notes/sql_intro.md",
        "tags": [
@@ -1322,10 +1312,6 @@
        "href": "02_er_normalisering_sql_grunder/exercises/mer_sokningar.md"
       },
       {
-       "text": "ovningar_lektion_3",
-       "href": "02_er_normalisering_sql_grunder/exercises/ovningar_lektion_3.md"
-      },
-      {
        "text": "ovningar_lektion_4",
        "href": "02_er_normalisering_sql_grunder/exercises/ovningar_lektion_4.md"
       },
@@ -1587,10 +1573,6 @@
        "href": "03_sql_avancerat/examples/erd_webshop.md"
       },
       {
-       "text": "Workshop: Denormalisering för AI/ML Träningsdata (SQLite-version)",
-       "href": "03_sql_avancerat/exercises/02_denormalisering_for_ai_sqlite.md"
-      },
-      {
        "text": "Normalisering",
        "href": "03_sql_avancerat/lectures/01_normalisering_marp.md"
       },
@@ -1738,10 +1720,6 @@
      "tags": [],
      "notes": [
       {
-       "text": "Inlämning 1 — Din favoritartists diskografi",
-       "href": "04_transaktioner_och_sakerhet/assignment/inlamning_1_diskografi.md"
-      },
-      {
        "text": "Inlämningsuppgift 1",
        "href": "04_transaktioner_och_sakerhet/assignment/inlamningsuppgift_1_avancerad_sql.md"
       },
@@ -1790,16 +1768,8 @@
        "href": "04_transaktioner_och_sakerhet/exercises/ovningar_lektion_10.md"
       },
       {
-       "text": "ovningar_lektion_5",
-       "href": "04_transaktioner_och_sakerhet/exercises/ovningar_lektion_5.md"
-      },
-      {
        "text": "ovningar_lektion_6",
        "href": "04_transaktioner_och_sakerhet/exercises/ovningar_lektion_6.md"
-      },
-      {
-       "text": "Show me the money!",
-       "href": "04_transaktioner_och_sakerhet/exercises/show_me_the_money.md"
       },
       {
        "text": "Övning — Subqueries i diskografin",

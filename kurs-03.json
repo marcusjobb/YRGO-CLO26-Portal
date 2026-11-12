@@ -620,10 +620,6 @@
        "href": "01_trygg_start_oop/lectures/hur_man_slipper_update_database_i_ef.md"
       },
       {
-       "text": "Hur man slipper Update-Database",
-       "href": "01_trygg_start_oop/lectures/hur_man_slipper_update_database_i_ef_2.md"
-      },
-      {
        "text": "Live Coding 3: SQL vs MongoDB Design Showdown",
        "href": "01_trygg_start_oop/lectures/livecode_3_design_showdown.md"
       },
@@ -637,19 +633,19 @@
       },
       {
        "text": "Entity Framework Core",
-       "href": "01_trygg_start_oop/notes/clo22_docs_entityframework_entityframeworkcore.md"
+       "href": "01_trygg_start_oop/notes/entityframework_entityframeworkcore.md"
       },
       {
        "text": "Code-First Dagbok med Entity Framework",
-       "href": "01_trygg_start_oop/notes/clo22_docs_entityframework_exempel.md"
+       "href": "01_trygg_start_oop/notes/entityframework_exempel.md"
       },
       {
        "text": "Entity Framework",
-       "href": "01_trygg_start_oop/notes/clo22_docs_entityframework_index.md"
+       "href": "01_trygg_start_oop/notes/entityframework_index.md"
       },
       {
        "text": "Kontext",
-       "href": "01_trygg_start_oop/notes/clo22_docs_entityframework_kontext_index.md"
+       "href": "01_trygg_start_oop/notes/entityframework_kontext_index.md"
       },
       {
        "text": "ADO.NET och SQLite i C#",
@@ -1283,11 +1279,11 @@
       },
       {
        "text": "Exempel - Webscraping",
-       "href": "02_ef_mongodb_designmonster/notes/clo22_docs_oop_polymorfism_abstraktaklasser_exempel.md"
+       "href": "02_ef_mongodb_designmonster/notes/webscraping_exempel.md"
       },
       {
        "text": "Exempel på Pluginsystem med interfaces",
-       "href": "02_ef_mongodb_designmonster/notes/clo22_docs_oop_polymorfism_interfaces_plugins.md"
+       "href": "02_ef_mongodb_designmonster/notes/plugins_exempel.md"
       },
       {
        "text": "Plugins",
