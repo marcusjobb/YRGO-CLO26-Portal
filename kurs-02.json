@@ -1789,10 +1789,6 @@
       },
       {
        "text": "GROUP BY, HAVING och aggregering",
-       "href": "04_transaktioner_och_sakerhet/notes/sql_aggregation.md"
-      },
-      {
-       "text": "GROUP BY, HAVING och aggregering",
        "href": "04_transaktioner_och_sakerhet/notes/sql_aggregering.md"
       },
       {
