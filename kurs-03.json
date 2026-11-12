@@ -1322,18 +1322,140 @@
    "titel": "Refactoring, clean code och Kanban",
    "tid": "",
    "mal": "Känner igen code smells, kan refaktorera med Extract Method och Rename och granska kod med en checklista.",
-   "amnen": [],
+   "amnen": [
+    {
+     "titel": "Code smells",
+     "beskrivning": "Känna igen dåliga mönster i kod",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Code smells",
+       "href": "03_refactoring_clean_code_kanban/notes/code_smells.md"
+      }
+     ],
+     "ovningar": {}
+    },
+    {
+     "titel": "Extract Method och Rename",
+     "beskrivning": "Refaktorera med två säkra steg",
+     "tags": [],
+     "notes": [],
+     "ovningar": {
+      "Övningar": [
+       {
+        "text": "Refaktorering: Extract Method och Rename",
+        "href": "03_refactoring_clean_code_kanban/exercises/refaktorering_extract_method.md"
+       }
+      ]
+     }
+    },
+    {
+     "titel": "SOLID, DRY och KISS",
+     "beskrivning": "Tre principer för ren kod",
+     "tags": [],
+     "notes": [
+      {
+       "text": "SOLID, DRY och KISS",
+       "href": "03_refactoring_clean_code_kanban/notes/solid_dry_kiss.md"
+      }
+     ],
+     "ovningar": {}
+    },
+    {
+     "titel": "Kodgranskning med checklista",
+     "beskrivning": "Granska kod systematiskt",
+     "tags": [],
+     "notes": [],
+     "ovningar": {
+      "Övningar": [
+       {
+        "text": "Kodgranskning med checklista",
+        "href": "03_refactoring_clean_code_kanban/exercises/kodgranskning_checklista.md"
+       }
+      ]
+     }
+    },
+    {
+     "titel": "Regex",
+     "beskrivning": "Mönster i text, onsdagens pass",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Regex",
+       "href": "03_refactoring_clean_code_kanban/notes/regex.md"
+      }
+     ],
+     "ovningar": {}
+    },
+    {
+     "titel": "Kanban",
+     "beskrivning": "Ett visuellt sätt att följa arbete",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Kanban",
+       "href": "03_refactoring_clean_code_kanban/notes/kanban.md"
+      }
+     ],
+     "ovningar": {}
+    },
+    {
+     "titel": "AI-planering och Trello",
+     "beskrivning": "Planera med AI, granska, skapa kort i Trello",
+     "tags": [],
+     "notes": [],
+     "ovningar": {
+      "Övningar": [
+       {
+        "text": "AI-planering och Trello",
+        "href": "03_refactoring_clean_code_kanban/exercises/ai_planering_trello.md"
+       }
+      ]
+     }
+    }
+   ],
    "publish": "2026-11-13",
-   "notering": "Code smells, SOLID, DRY, KISS, kodgranskning. Onsdag: regex. Kanban introduceras. EF-träningen fortsätter i läxorna."
+   "notering": "Code smells, SOLID, DRY, KISS, kodgranskning. Onsdag: regex. Kanban introduceras. EF-träningen fortsätter i läxorna.",
+   "mapp": "03_refactoring_clean_code_kanban"
   },
   {
    "nr": 48,
    "titel": "Hellweek: C# hidden gems",
    "tid": "",
    "mal": "Känner igen dynamic, pattern matching, tuples, indexers, ?. ?? ??=, extension methods, records och async/await.",
-   "amnen": [],
+   "amnen": [
+    {
+     "titel": "Spabokning med två entiteter",
+     "beskrivning": "Boka en behandling kopplad till en gäst",
+     "tags": [],
+     "notes": [],
+     "ovningar": {
+      "Övningar": [
+       {
+        "text": "Spabokning: Treatment och SpaBooking",
+        "href": "04_csharp_hidden_gems/exercises/spa_bokning.md"
+       }
+      ]
+     }
+    },
+    {
+     "titel": "GDPR: vilka uppgifter behöver hotellet?",
+     "beskrivning": "Utvärdera fälten i gästregistret",
+     "tags": [],
+     "notes": [],
+     "ovningar": {
+      "Övningar": [
+       {
+        "text": "GDPR: utvärdera gästens uppgifter",
+        "href": "04_csharp_hidden_gems/exercises/gdpr_gastuppgifter.md"
+       }
+      ]
+     }
+    }
+   ],
    "publish": "2026-11-20",
-   "notering": "Inte tentastoff. Inlämning 2 (grupparbete) delas ut mån 23 nov. Bufferten i kursen: plats för EF, MongoDB och algoritm-halvdagen [ÖPPEN]."
+   "notering": "Inte tentastoff. Inlämning 2 (grupparbete) delas ut mån 23 nov. Bufferten i kursen: plats för EF, MongoDB och algoritm-halvdagen [ÖPPEN].",
+   "mapp": "04_csharp_hidden_gems"
   },
   {
    "nr": 49,
