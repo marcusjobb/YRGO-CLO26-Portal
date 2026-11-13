@@ -1324,6 +1324,18 @@
    "mal": "Känner igen code smells, kan refaktorera med Extract Method och Rename och granska kod med en checklista.",
    "amnen": [
     {
+     "titel": "Berättelsen: verkstaden Hjulet",
+     "beskrivning": "Veckans röda tråd: platsen, människorna och bokningsappen",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Berättelsen om Hjulet",
+       "href": "03_refactoring_clean_code_kanban/notes/berattelsen_hjulet.md"
+      }
+     ],
+     "ovningar": {}
+    },
+    {
      "titel": "Code smells",
      "beskrivning": "Känna igen dåliga mönster i kod",
      "tags": [],
@@ -1333,7 +1345,13 @@
        "href": "03_refactoring_clean_code_kanban/notes/code_smells.md"
       }
      ],
-     "ovningar": {}
+     "ovningar": {},
+     "lektion": [
+      {
+       "text": "01 Code smells (bildspel)",
+       "href": "03_refactoring_clean_code_kanban/lectures/01_code_smells_marp.md"
+      }
+     ]
     },
     {
      "titel": "Extract Method och Rename",
@@ -1347,7 +1365,13 @@
         "href": "03_refactoring_clean_code_kanban/exercises/refaktorering_extract_method.md"
        }
       ]
-     }
+     },
+     "lektion": [
+      {
+       "text": "02 Refaktorering: Extract Method och Rename (bildspel)",
+       "href": "03_refactoring_clean_code_kanban/lectures/02_refaktorering_marp.md"
+      }
+     ]
     },
     {
      "titel": "SOLID, DRY och KISS",
@@ -1359,7 +1383,13 @@
        "href": "03_refactoring_clean_code_kanban/notes/solid_dry_kiss.md"
       }
      ],
-     "ovningar": {}
+     "ovningar": {},
+     "lektion": [
+      {
+       "text": "03 SOLID, DRY och KISS (bildspel)",
+       "href": "03_refactoring_clean_code_kanban/lectures/03_solid_dry_kiss_marp.md"
+      }
+     ]
     },
     {
      "titel": "Kodgranskning med checklista",
@@ -1373,7 +1403,13 @@
         "href": "03_refactoring_clean_code_kanban/exercises/kodgranskning_checklista.md"
        }
       ]
-     }
+     },
+     "lektion": [
+      {
+       "text": "04 Kodgranskning med checklista (bildspel)",
+       "href": "03_refactoring_clean_code_kanban/lectures/04_kodgranskning_marp.md"
+      }
+     ]
     },
     {
      "titel": "Regex",
@@ -1385,7 +1421,17 @@
        "href": "03_refactoring_clean_code_kanban/notes/regex.md"
       }
      ],
-     "ovningar": {}
+     "ovningar": {},
+     "lektion": [
+      {
+       "text": "07 Regex: grund (bildspel)",
+       "href": "03_refactoring_clean_code_kanban/lectures/07_regex_grund_marp.md"
+      },
+      {
+       "text": "08 Regex: ankare och misstag (bildspel)",
+       "href": "03_refactoring_clean_code_kanban/lectures/08_regex_monster_marp.md"
+      }
+     ]
     },
     {
      "titel": "Kanban",
@@ -1397,7 +1443,13 @@
        "href": "03_refactoring_clean_code_kanban/notes/kanban.md"
       }
      ],
-     "ovningar": {}
+     "ovningar": {},
+     "lektion": [
+      {
+       "text": "05 Kanban (bildspel)",
+       "href": "03_refactoring_clean_code_kanban/lectures/05_kanban_marp.md"
+      }
+     ]
     },
     {
      "titel": "AI-planering och Trello",
@@ -1411,12 +1463,66 @@
         "href": "03_refactoring_clean_code_kanban/exercises/ai_planering_trello.md"
        }
       ]
-     }
+     },
+     "lektion": [
+      {
+       "text": "06 AI-planering och Trello (bildspel)",
+       "href": "03_refactoring_clean_code_kanban/lectures/06_ai_trello_marp.md"
+      }
+     ]
+    },
+    {
+     "titel": "Programmeringstermer",
+     "beskrivning": "Veckans termer som uppslagsord.",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Kodkvalitet",
+       "href": "03_refactoring_clean_code_kanban/terms/kodkvalitet.md"
+      },
+      {
+       "text": "Kanban och regex",
+       "href": "03_refactoring_clean_code_kanban/terms/kanban_och_regex.md"
+      }
+     ],
+     "ovningar": {}
+    },
+    {
+     "titel": "Dagsram måndag",
+     "beskrivning": "Agenda, repetition och backspegel för måndagen",
+     "tags": [],
+     "notes": [],
+     "ovningar": {},
+     "lektion": [
+      {
+       "text": "Måndag vecka 47 (dagsram)",
+       "href": "03_refactoring_clean_code_kanban/lectures/v47_mandag_dagen_marp.md"
+      }
+     ]
+    },
+    {
+     "titel": "Dagsram onsdag",
+     "beskrivning": "Agenda, repetition och backspegel för onsdagen",
+     "tags": [],
+     "notes": [],
+     "ovningar": {},
+     "lektion": [
+      {
+       "text": "Onsdag vecka 47 (dagsram)",
+       "href": "03_refactoring_clean_code_kanban/lectures/v47_onsdag_dagen_marp.md"
+      }
+     ]
     }
    ],
    "publish": "2026-11-13",
    "notering": "Code smells, SOLID, DRY, KISS, kodgranskning. Onsdag: regex. Kanban introduceras. EF-träningen fortsätter i läxorna.",
-   "mapp": "03_refactoring_clean_code_kanban"
+   "mapp": "03_refactoring_clean_code_kanban",
+   "tentafragor": [
+    {
+     "text": "Tentafrågor: refaktorering, kodkvalitet och Kanban",
+     "href": "03_refactoring_clean_code_kanban/pre-exam/01_refaktorering_och_kanban.md"
+    }
+   ]
   },
   {
    "nr": 48,
@@ -1424,6 +1530,18 @@
    "tid": "",
    "mal": "Känner igen dynamic, pattern matching, tuples, indexers, ?. ?? ??=, extension methods, records och async/await.",
    "amnen": [
+    {
+     "titel": "Hellweek: översikt",
+     "beskrivning": "Vad veckan handlar om och hur den är upplagd",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Hellweek: C# hidden gems",
+       "href": "04_csharp_hidden_gems/notes/hellweek_oversikt.md"
+      }
+     ],
+     "ovningar": {}
+    },
     {
      "titel": "Spabokning med två entiteter",
      "beskrivning": "Boka en behandling kopplad till en gäst",
@@ -1451,6 +1569,290 @@
        }
       ]
      }
+    },
+    {
+     "titel": "Dynamic",
+     "beskrivning": "Dynamic: kort bildspel och frivillig övning",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Dynamic (artikel)",
+       "href": "04_csharp_hidden_gems/notes/dynamic.md"
+      }
+     ],
+     "lektion": [
+      {
+       "text": "Dynamic (bildspel)",
+       "href": "04_csharp_hidden_gems/lectures/dynamic_marp.md"
+      }
+     ],
+     "ovningar": {
+      "Frivillig övning": [
+       {
+        "text": "Dynamic: frivillig övning",
+        "href": "04_csharp_hidden_gems/exercises/dynamic_ovning.md"
+       },
+       {
+        "text": "Dynamiska fält med ExpandoObject",
+        "href": "04_csharp_hidden_gems/exercises/dynamic_ovning_2.md"
+       },
+       {
+        "text": "Kontrollera typen innan du använder den",
+        "href": "04_csharp_hidden_gems/exercises/dynamic_ovning_3.md"
+       }
+      ]
+     }
+    },
+    {
+     "titel": "Pattern matching",
+     "beskrivning": "Pattern matching: kort bildspel och frivillig övning",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Pattern matching (artikel)",
+       "href": "04_csharp_hidden_gems/notes/pattern_matching.md"
+      }
+     ],
+     "lektion": [
+      {
+       "text": "Pattern matching (bildspel)",
+       "href": "04_csharp_hidden_gems/lectures/pattern_matching_marp.md"
+      }
+     ],
+     "ovningar": {
+      "Frivillig övning": [
+       {
+        "text": "Pattern matching: frivillig övning",
+        "href": "04_csharp_hidden_gems/exercises/pattern_matching_ovning.md"
+       },
+       {
+        "text": "Beskriv ett objekt",
+        "href": "04_csharp_hidden_gems/exercises/pattern_matching_ovning_2.md"
+       },
+       {
+        "text": "Property pattern på en record",
+        "href": "04_csharp_hidden_gems/exercises/pattern_matching_ovning_3.md"
+       }
+      ]
+     }
+    },
+    {
+     "titel": "Tuples",
+     "beskrivning": "Tuples: kort bildspel och frivillig övning",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Tuples (artikel)",
+       "href": "04_csharp_hidden_gems/notes/tuples.md"
+      }
+     ],
+     "lektion": [
+      {
+       "text": "Tuples (bildspel)",
+       "href": "04_csharp_hidden_gems/lectures/tuples_marp.md"
+      }
+     ],
+     "ovningar": {
+      "Frivillig övning": [
+       {
+        "text": "Tuples: frivillig övning",
+        "href": "04_csharp_hidden_gems/exercises/tuples_ovning.md"
+       },
+       {
+        "text": "Räkna jämna och udda",
+        "href": "04_csharp_hidden_gems/exercises/tuples_ovning_2.md"
+       },
+       {
+        "text": "Billigaste produkten",
+        "href": "04_csharp_hidden_gems/exercises/tuples_ovning_3.md"
+       }
+      ]
+     }
+    },
+    {
+     "titel": "Indexers",
+     "beskrivning": "Indexers: kort bildspel och frivillig övning",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Indexers (artikel)",
+       "href": "04_csharp_hidden_gems/notes/indexers.md"
+      }
+     ],
+     "lektion": [
+      {
+       "text": "Indexers (bildspel)",
+       "href": "04_csharp_hidden_gems/lectures/indexers_marp.md"
+      }
+     ],
+     "ovningar": {
+      "Frivillig övning": [
+       {
+        "text": "Indexers: frivillig övning",
+        "href": "04_csharp_hidden_gems/exercises/indexers_ovning.md"
+       },
+       {
+        "text": "En spellista",
+        "href": "04_csharp_hidden_gems/exercises/indexers_ovning_2.md"
+       },
+       {
+        "text": "Inställningar med nyckel",
+        "href": "04_csharp_hidden_gems/exercises/indexers_ovning_3.md"
+       }
+      ]
+     }
+    },
+    {
+     "titel": "Null-operatorerna",
+     "beskrivning": "Null-operatorerna: kort bildspel och frivillig övning",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Null-operatorerna (artikel)",
+       "href": "04_csharp_hidden_gems/notes/null_operators.md"
+      }
+     ],
+     "lektion": [
+      {
+       "text": "Null-operatorerna (bildspel)",
+       "href": "04_csharp_hidden_gems/lectures/null_operators_marp.md"
+      }
+     ],
+     "ovningar": {
+      "Frivillig övning": [
+       {
+        "text": "Null-operatorerna: frivillig övning",
+        "href": "04_csharp_hidden_gems/exercises/null_operators_ovning.md"
+       },
+       {
+        "text": "Antal i en lista som kan vara null",
+        "href": "04_csharp_hidden_gems/exercises/null_operators_ovning_2.md"
+       },
+       {
+        "text": "Cache med ??=",
+        "href": "04_csharp_hidden_gems/exercises/null_operators_ovning_3.md"
+       }
+      ]
+     }
+    },
+    {
+     "titel": "Extension methods",
+     "beskrivning": "Extension methods: kort bildspel och frivillig övning",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Extension methods (artikel)",
+       "href": "04_csharp_hidden_gems/notes/extension_methods.md"
+      }
+     ],
+     "lektion": [
+      {
+       "text": "Extension methods (bildspel)",
+       "href": "04_csharp_hidden_gems/lectures/extension_methods_marp.md"
+      }
+     ],
+     "ovningar": {
+      "Frivillig övning": [
+       {
+        "text": "Extension methods: frivillig övning",
+        "href": "04_csharp_hidden_gems/exercises/extension_methods_ovning.md"
+       },
+       {
+        "text": "WordCount på string",
+        "href": "04_csharp_hidden_gems/exercises/extension_methods_ovning_2.md"
+       },
+       {
+        "text": "IsWeekend på DateTime",
+        "href": "04_csharp_hidden_gems/exercises/extension_methods_ovning_3.md"
+       },
+       {
+        "text": "Stjärntecken från ett datum",
+        "href": "04_csharp_hidden_gems/exercises/extension_methods_ovning_4.md"
+       },
+       {
+        "text": "Klockan i text (TimeOnly)",
+        "href": "04_csharp_hidden_gems/exercises/time_only_ovning.md"
+       }
+      ]
+     }
+    },
+    {
+     "titel": "Records",
+     "beskrivning": "Records: kort bildspel och frivillig övning",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Records (artikel)",
+       "href": "04_csharp_hidden_gems/notes/records.md"
+      }
+     ],
+     "lektion": [
+      {
+       "text": "Records (bildspel)",
+       "href": "04_csharp_hidden_gems/lectures/records_marp.md"
+      }
+     ],
+     "ovningar": {
+      "Frivillig övning": [
+       {
+        "text": "Records: frivillig övning",
+        "href": "04_csharp_hidden_gems/exercises/records_ovning.md"
+       },
+       {
+        "text": "Produkter och lika värden",
+        "href": "04_csharp_hidden_gems/exercises/records_ovning_2.md"
+       },
+       {
+        "text": "Rabatt med with",
+        "href": "04_csharp_hidden_gems/exercises/records_ovning_3.md"
+       }
+      ]
+     }
+    },
+    {
+     "titel": "async och await",
+     "beskrivning": "async och await: kort bildspel och frivillig övning",
+     "tags": [],
+     "notes": [
+      {
+       "text": "async och await (artikel)",
+       "href": "04_csharp_hidden_gems/notes/async_await.md"
+      }
+     ],
+     "lektion": [
+      {
+       "text": "async och await (bildspel)",
+       "href": "04_csharp_hidden_gems/lectures/async_await_marp.md"
+      }
+     ],
+     "ovningar": {
+      "Frivillig övning": [
+       {
+        "text": "async och await: frivillig övning",
+        "href": "04_csharp_hidden_gems/exercises/async_await_ovning.md"
+       },
+       {
+        "text": "Tre samtidiga väntanden",
+        "href": "04_csharp_hidden_gems/exercises/async_await_ovning_2.md"
+       },
+       {
+        "text": "Fel i en asynkron metod",
+        "href": "04_csharp_hidden_gems/exercises/async_await_ovning_3.md"
+       }
+      ]
+     }
+    },
+    {
+     "titel": "Programmeringstermer",
+     "beskrivning": "Termer för veckans C#-funktioner",
+     "tags": [],
+     "notes": [
+      {
+       "text": "C# hidden gems",
+       "href": "04_csharp_hidden_gems/terms/csharp_hidden_gems.md"
+      }
+     ],
+     "ovningar": {}
     }
    ],
    "publish": "2026-11-20",
