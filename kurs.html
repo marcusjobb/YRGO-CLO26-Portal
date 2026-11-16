@@ -488,7 +488,7 @@ mark { background:rgba(42,94,196,.2); color:inherit; border-radius:2px; padding:
     }).join('');
     if ((data.links || []).length) {
       h += '<span class="sb-label">Resurser</span>' + data.links.map(function (l) {
-        return '<a class="sb-item" href="' + esc(l.href) + '" target="_blank" rel="noopener"><span class="n">' + esc(l.icon || '🔗') + '</span><span class="t">' + esc(l.label) + '</span></a>';
+        return '<a class="sb-item" href="' + esc(ref(l.href)) + '" target="_blank" rel="noopener"><span class="n">' + esc(l.icon || '🔗') + '</span><span class="t">' + esc(l.label) + '</span></a>';
       }).join('');
     }
     $('sbBody').innerHTML = h;
