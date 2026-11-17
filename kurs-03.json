@@ -1454,7 +1454,14 @@
        "href": "03_refactoring_clean_code_kanban/notes/regex.md"
       }
      ],
-     "ovningar": {},
+     "ovningar": {
+      "Övningar": [
+       {
+        "text": "Regex: små övningar för att känna igen mönster",
+        "href": "03_refactoring_clean_code_kanban/exercises/regex_ovningar.md"
+       }
+      ]
+     },
      "lektion": [
       {
        "text": "07 Regex: grund (bildspel)",
