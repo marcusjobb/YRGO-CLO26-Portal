@@ -1357,7 +1357,17 @@
      "titel": "Extract Method och Rename",
      "beskrivning": "Refaktorera med två säkra steg",
      "tags": [],
-     "notes": [],
+     "notes": [
+      {
+       "text": "Läsversion — Refaktorering: Extract Method och Rename",
+       "href": "03_refactoring_clean_code_kanban/notes/refaktorering.md",
+       "tags": [
+        "refaktorering",
+        "extract method",
+        "rename"
+       ]
+      }
+     ],
      "ovningar": {
       "Övningar": [
        {
@@ -1395,7 +1405,16 @@
      "titel": "Kodgranskning med checklista",
      "beskrivning": "Granska kod systematiskt",
      "tags": [],
-     "notes": [],
+     "notes": [
+      {
+       "text": "Läsversion — Kodgranskning med checklista",
+       "href": "03_refactoring_clean_code_kanban/notes/kodgranskning.md",
+       "tags": [
+        "kodgranskning",
+        "checklista"
+       ]
+      }
+     ],
      "ovningar": {
       "Övningar": [
        {
@@ -1410,6 +1429,20 @@
        "href": "03_refactoring_clean_code_kanban/lectures/04_kodgranskning_marp.md"
       }
      ]
+    },
+    {
+     "titel": "AI-chatt i C# (valfri övning)",
+     "beskrivning": "Bygg en egen AI-chatt i konsolen: historik, tokens, komprimering och verktyg. Kod och guide ligger i ett eget repo.",
+     "tags": [],
+     "notes": [
+      {
+       "text": "AI-chatt i C# — kod och guide (eget repo)",
+       "href": "03_refactoring_clean_code_kanban/examples/ai_chat_csharp/README.md",
+       "tags": []
+      }
+     ],
+     "ovningar": {},
+     "lektion": []
     },
     {
      "titel": "Regex",
@@ -1455,7 +1488,24 @@
      "titel": "AI-planering och Trello",
      "beskrivning": "Planera med AI, granska, skapa kort i Trello",
      "tags": [],
-     "notes": [],
+     "notes": [
+      {
+       "text": "Läsversion — AI-planering och Trello",
+       "href": "03_refactoring_clean_code_kanban/notes/ai_planering_trello.md",
+       "tags": [
+        "AI",
+        "Trello",
+        "Kanban"
+       ]
+      },
+      {
+       "text": "Guide — Så skapar du ett Trello-konto",
+       "href": "03_refactoring_clean_code_kanban/notes/trello_konto.md",
+       "tags": [
+        "Trello"
+       ]
+      }
+     ],
      "ovningar": {
       "Övningar": [
        {
@@ -1470,6 +1520,40 @@
        "href": "03_refactoring_clean_code_kanban/lectures/06_ai_trello_marp.md"
       }
      ]
+    },
+    {
+     "titel": "Extra övning: repetition av arv, interface och designmönster",
+     "beskrivning": "Extra övning för att öva mer på abstrakta klasser, interfaces, arv, Builder och Factory",
+     "tags": [],
+     "notes": [],
+     "ovningar": {
+      "Extra övning": [
+       {
+        "text": "Builder: bygg en bokning steg för steg",
+        "href": "03_refactoring_clean_code_kanban/exercises/builder_bokning.md"
+       },
+       {
+        "text": "Factory: en fabrik för verkstadsjobb",
+        "href": "03_refactoring_clean_code_kanban/exercises/factory_verkstadsjobb.md"
+       },
+       {
+        "text": "Refaktorering: från enbokstavsvariabler till namngivna delar",
+        "href": "03_refactoring_clean_code_kanban/exercises/refaktorering_enbokstav.md"
+       },
+       {
+        "text": "Städa med analysverktygen: warnings och info",
+        "href": "03_refactoring_clean_code_kanban/exercises/analysverktyg_varningar.md"
+       },
+       {
+        "text": "Projekt: dela upp bokningsappen i klasser och metoder",
+        "href": "03_refactoring_clean_code_kanban/exercises/projekt_uppdelning.md"
+       },
+       {
+        "text": "Arv, abstrakta klasser och interfaces (tre små projekt)",
+        "href": "03_refactoring_clean_code_kanban/exercises/arv_abstrakta_klasser_interface.md"
+       }
+      ]
+     }
     },
     {
      "titel": "Programmeringstermer",
