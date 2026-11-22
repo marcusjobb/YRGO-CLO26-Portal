@@ -1622,6 +1622,19 @@
    "mal": "Känner igen dynamic, pattern matching, tuples, indexers, ?. ?? ??=, extension methods, records och async/await.",
    "amnen": [
     {
+     "titel": "Måndag 23 nov: dagsram",
+     "beskrivning": "Agenda, repetition och backspegel för måndagen",
+     "tags": [],
+     "notes": [],
+     "ovningar": {},
+     "lektion": [
+      {
+       "text": "Måndag vecka 48 (dagsram)",
+       "href": "04_csharp_hidden_gems/lectures/v48_mandag_dagen_marp.md"
+      }
+     ]
+    },
+    {
      "titel": "Hellweek: översikt",
      "beskrivning": "Vad veckan handlar om och hur den är upplagd",
      "tags": [],
@@ -1629,6 +1642,145 @@
       {
        "text": "Hellweek: C# hidden gems",
        "href": "04_csharp_hidden_gems/notes/hellweek_oversikt.md"
+      }
+     ],
+     "ovningar": {}
+    },
+    {
+     "titel": "Tuples",
+     "beskrivning": "Tuples: kort bildspel och frivillig övning",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Tuples (artikel)",
+       "href": "04_csharp_hidden_gems/notes/tuples.md"
+      }
+     ],
+     "lektion": [
+      {
+       "text": "Tuples (bildspel)",
+       "href": "04_csharp_hidden_gems/lectures/01_tuples_marp.md"
+      }
+     ],
+     "ovningar": {
+      "Frivillig övning": [
+       {
+        "text": "Tuples: frivillig övning",
+        "href": "04_csharp_hidden_gems/exercises/tuples_ovning.md"
+       },
+       {
+        "text": "Räkna jämna och udda",
+        "href": "04_csharp_hidden_gems/exercises/tuples_ovning_2.md"
+       },
+       {
+        "text": "Billigaste produkten",
+        "href": "04_csharp_hidden_gems/exercises/tuples_ovning_3.md"
+       }
+      ]
+     }
+    },
+    {
+     "titel": "Pattern matching",
+     "beskrivning": "Pattern matching: kort bildspel och frivillig övning",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Pattern matching (artikel)",
+       "href": "04_csharp_hidden_gems/notes/pattern_matching.md"
+      }
+     ],
+     "lektion": [
+      {
+       "text": "Pattern matching (bildspel)",
+       "href": "04_csharp_hidden_gems/lectures/02_pattern_matching_marp.md"
+      }
+     ],
+     "ovningar": {
+      "Frivillig övning": [
+       {
+        "text": "Pattern matching: frivillig övning",
+        "href": "04_csharp_hidden_gems/exercises/pattern_matching_ovning.md"
+       },
+       {
+        "text": "Beskriv ett objekt",
+        "href": "04_csharp_hidden_gems/exercises/pattern_matching_ovning_2.md"
+       },
+       {
+        "text": "Property pattern på en record",
+        "href": "04_csharp_hidden_gems/exercises/pattern_matching_ovning_3.md"
+       }
+      ]
+     }
+    },
+    {
+     "titel": "Dynamic",
+     "beskrivning": "Dynamic: kort bildspel och frivillig övning",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Dynamic (artikel)",
+       "href": "04_csharp_hidden_gems/notes/dynamic.md"
+      }
+     ],
+     "lektion": [
+      {
+       "text": "Dynamic (bildspel)",
+       "href": "04_csharp_hidden_gems/lectures/03_dynamic_marp.md"
+      }
+     ],
+     "ovningar": {
+      "Frivillig övning": [
+       {
+        "text": "Dynamic: frivillig övning",
+        "href": "04_csharp_hidden_gems/exercises/dynamic_ovning.md"
+       },
+       {
+        "text": "Dynamiska fält med ExpandoObject",
+        "href": "04_csharp_hidden_gems/exercises/dynamic_ovning_2.md"
+       },
+       {
+        "text": "Kontrollera typen innan du använder den",
+        "href": "04_csharp_hidden_gems/exercises/dynamic_ovning_3.md"
+       }
+      ]
+     }
+    },
+    {
+     "titel": "Inlämning 2: grupparbete",
+     "beskrivning": "Grupparbetet delas ut måndag 23 nov, presentation ons 2 dec, inlämning sön 6 dec 23:59",
+     "tags": [
+      "grupp",
+      "databas",
+      "UML"
+     ],
+     "notes": [
+      {
+       "text": "Beställning: hushållsbudget",
+       "href": "04_csharp_hidden_gems/assignment/bestallning_hushallsbudget.md"
+      },
+      {
+       "text": "Reflektionsmall (privat)",
+       "href": "04_csharp_hidden_gems/assignment/reflektion_mall.md"
+      }
+     ],
+     "ovningar": {},
+     "inlamning": {
+      "text": "Inlämning 2: grupparbete",
+      "href": "04_csharp_hidden_gems/assignment/inlamning_2_grupparbete.md",
+      "tags": [
+       "grupp"
+      ],
+      "desc": "Databas + UML, grupp två personer. Inlämning sön 6 dec 23:59."
+     }
+    },
+    {
+     "titel": "AI-verktyg: installation",
+     "beskrivning": "Installera ett AI-verktyg för kodkontrollen inför inlämning 2",
+     "tags": [],
+     "notes": [
+      {
+       "text": "AI-verktyg: installation",
+       "href": "04_csharp_hidden_gems/notes/ai_verktyg_installation.md"
       }
      ],
      "ovningar": {}
@@ -1657,105 +1809,6 @@
        {
         "text": "GDPR: utvärdera gästens uppgifter",
         "href": "04_csharp_hidden_gems/exercises/gdpr_gastuppgifter.md"
-       }
-      ]
-     }
-    },
-    {
-     "titel": "Dynamic",
-     "beskrivning": "Dynamic: kort bildspel och frivillig övning",
-     "tags": [],
-     "notes": [
-      {
-       "text": "Dynamic (artikel)",
-       "href": "04_csharp_hidden_gems/notes/dynamic.md"
-      }
-     ],
-     "lektion": [
-      {
-       "text": "Dynamic (bildspel)",
-       "href": "04_csharp_hidden_gems/lectures/dynamic_marp.md"
-      }
-     ],
-     "ovningar": {
-      "Frivillig övning": [
-       {
-        "text": "Dynamic: frivillig övning",
-        "href": "04_csharp_hidden_gems/exercises/dynamic_ovning.md"
-       },
-       {
-        "text": "Dynamiska fält med ExpandoObject",
-        "href": "04_csharp_hidden_gems/exercises/dynamic_ovning_2.md"
-       },
-       {
-        "text": "Kontrollera typen innan du använder den",
-        "href": "04_csharp_hidden_gems/exercises/dynamic_ovning_3.md"
-       }
-      ]
-     }
-    },
-    {
-     "titel": "Pattern matching",
-     "beskrivning": "Pattern matching: kort bildspel och frivillig övning",
-     "tags": [],
-     "notes": [
-      {
-       "text": "Pattern matching (artikel)",
-       "href": "04_csharp_hidden_gems/notes/pattern_matching.md"
-      }
-     ],
-     "lektion": [
-      {
-       "text": "Pattern matching (bildspel)",
-       "href": "04_csharp_hidden_gems/lectures/pattern_matching_marp.md"
-      }
-     ],
-     "ovningar": {
-      "Frivillig övning": [
-       {
-        "text": "Pattern matching: frivillig övning",
-        "href": "04_csharp_hidden_gems/exercises/pattern_matching_ovning.md"
-       },
-       {
-        "text": "Beskriv ett objekt",
-        "href": "04_csharp_hidden_gems/exercises/pattern_matching_ovning_2.md"
-       },
-       {
-        "text": "Property pattern på en record",
-        "href": "04_csharp_hidden_gems/exercises/pattern_matching_ovning_3.md"
-       }
-      ]
-     }
-    },
-    {
-     "titel": "Tuples",
-     "beskrivning": "Tuples: kort bildspel och frivillig övning",
-     "tags": [],
-     "notes": [
-      {
-       "text": "Tuples (artikel)",
-       "href": "04_csharp_hidden_gems/notes/tuples.md"
-      }
-     ],
-     "lektion": [
-      {
-       "text": "Tuples (bildspel)",
-       "href": "04_csharp_hidden_gems/lectures/tuples_marp.md"
-      }
-     ],
-     "ovningar": {
-      "Frivillig övning": [
-       {
-        "text": "Tuples: frivillig övning",
-        "href": "04_csharp_hidden_gems/exercises/tuples_ovning.md"
-       },
-       {
-        "text": "Räkna jämna och udda",
-        "href": "04_csharp_hidden_gems/exercises/tuples_ovning_2.md"
-       },
-       {
-        "text": "Billigaste produkten",
-        "href": "04_csharp_hidden_gems/exercises/tuples_ovning_3.md"
        }
       ]
      }
@@ -2026,11 +2079,12 @@
      "K5 (VG)"
     ],
     "inlamning": {
-     "grupp": "En person i gruppen lämnar in: zip av hela projektet (nedladdat från GitHub) + grupplista (medlemmar) + granskningarna (review-feedback.md).",
-     "individuellt": "Alla i gruppen lämnar in egen REFLEKTION.md, som svarar på alla frågor.",
-     "databas": "EF Core (SQLite, MySQL/serverdatabas) eller MongoDB. ADO.NET är inte tillåtet.",
-     "serverdatabas": "Docker-fil eller inloggning/connectionstring skickas som kommentar i Google Classroom, aldrig i koden.",
-     "gränssnitt": "Konsol, Blazor eller MVC (fritt val)"
+     "grupp": "En person lämnar in zip av projektet (GitHub-forken, branch main) med GRUPP.md och peer_review_log.md ifyllda. Granskaren pushar review-feedback.md till den granskade gruppens repo.",
+     "individuellt": "Varje person lämnar in egen reflektion privat på Classroom, namngiven <fornamn>-reflektion.md (mall: assignment/reflektion_mall.md). Reflektionen ligger inte i repot.",
+     "databas": "Fritt val: SQLite, MySQL, SQL Server, PostgreSQL, MongoDB eller minnesdatabas. ADO.NET är inte tillåtet. Databastypen (fil, minne eller server) ska vara en annan än i Inlämning 1 (F1). Koden bygger och seedar databasen själv vid första start (vid varje start för minnesdatabas). Connectionstring från user-secrets, nyckel DB_CONNECTION.",
+     "serverdatabas": "Läraren kör studenternas kod mot sin egen Docker-server och sätter DB_CONNECTION själv. Studenterna lämnar ingen connectionstring. Koden ska bygga och seeda hela databasen vid första start. (Beslut 2026-11-22.)",
+     "gränssnitt": "Konsol, Blazor eller MVC (fritt val)",
+     "menyer": "Varje projektmapp har minimimenyer och minimal modell i sin README, som måste byggas ut."
     }
    }
   ],
@@ -2262,7 +2316,7 @@
   ],
   "luckor": [],
   "peer_review": {
-   "vem": "Grupper om två, valda av studerande själva. Granskaren ska inte vara någon i den granskade gruppen.",
+   "vem": "Grupper om två. Den granskande gruppen väljs av de studerande själva. Två grupper granskar inte varandra. Granskaren ska inte vara någon i den granskade gruppen.",
    "produkt": "review-feedback.md (samma filnamn för alla), pushad av granskaren till den granskades repo. Ifylld med Reviewed by / Approved by.",
    "innan_bedomning": "Den granskade måste godkänna granskningen innan läraren bedömer inlämningen. Granskarens namn syns i git-historiken (push).",
    "krav": [
@@ -2286,9 +2340,10 @@
     "Godkänn",
     "Begär ändring (med konkret punktlista)"
    ],
-   "antal_granskningar": "1 per grupp. Granskaren får inte vara medlem i den granskade gruppen.",
+   "antal_granskningar": "1 extern granskning per grupp, av en annan grupp. Testning inom gruppen loggas men ersätter inte den externa granskningen.",
    "tidpunkt": "Granskningen ska göras så snart kodaren är redo. Vänta inte till deadline: det är inte schysst att hålla kodaren i väntan.",
-   "verifiering": "Läraren verifierar att den granskade gruppen åtgärdat det som begärts, innan bedömning."
+   "verifiering": "Läraren verifierar att den granskade gruppen åtgärdat det som begärts, innan bedömning.",
+   "logg": "peer_review_log.md i den granskade gruppens repo. Innehåller granskningen, alla glitchar, quirks, buggar och krångel, och hur varje sak lösts. Även testning som gruppen gjort själv loggas där."
   }
  }
 }
