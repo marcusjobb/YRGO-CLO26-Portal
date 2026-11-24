@@ -1619,7 +1619,7 @@
    "nr": 48,
    "titel": "Hellweek: C# hidden gems",
    "tid": "",
-   "mal": "Känner igen dynamic, pattern matching, tuples, indexers, ?. ?? ??=, extension methods, records och async/await.",
+   "mal": "Känner igen dynamic, pattern matching, tuples, indexers, ?. ?? ??=, extension methods, records, async/await och reflection (demo).",
    "amnen": [
     {
      "titel": "Måndag 23 nov: dagsram",
@@ -1826,41 +1826,24 @@
      }
     },
     {
-     "titel": "Indexers",
-     "beskrivning": "Indexers: kort bildspel och frivillig övning",
+     "titel": "Onsdag 25 nov: dagsram",
+     "beskrivning": "Agenda, dagens ämnen och backspegel för onsdagen",
      "tags": [],
-     "notes": [
-      {
-       "text": "Indexers (artikel)",
-       "href": "04_csharp_hidden_gems/notes/indexers.md"
-      }
-     ],
+     "notes": [],
+     "ovningar": {},
      "lektion": [
       {
-       "text": "Indexers (bildspel)",
-       "href": "04_csharp_hidden_gems/lectures/indexers_marp.md"
+       "text": "Onsdag vecka 48 (dagsram)",
+       "href": "04_csharp_hidden_gems/lectures/v48_onsdag_dagen_marp.md"
       }
      ],
-     "ovningar": {
-      "Frivillig övning": [
-       {
-        "text": "Indexers: frivillig övning",
-        "href": "04_csharp_hidden_gems/exercises/indexers_ovning.md"
-       },
-       {
-        "text": "En spellista",
-        "href": "04_csharp_hidden_gems/exercises/indexers_ovning_2.md"
-       },
-       {
-        "text": "Inställningar med nyckel",
-        "href": "04_csharp_hidden_gems/exercises/indexers_ovning_3.md"
-       }
-      ]
-     }
+     "assets": [
+      "04_csharp_hidden_gems/lectures/images/anders_dagsram.png"
+     ]
     },
     {
      "titel": "Null-operatorerna",
-     "beskrivning": "Null-operatorerna: kort bildspel och frivillig övning",
+     "beskrivning": "Anders app kraschar: ett problem först, sedan ?. ?? ??=, och en frivillig övning",
      "tags": [],
      "notes": [
       {
@@ -1871,7 +1854,7 @@
      "lektion": [
       {
        "text": "Null-operatorerna (bildspel)",
-       "href": "04_csharp_hidden_gems/lectures/null_operators_marp.md"
+       "href": "04_csharp_hidden_gems/lectures/04_null_operators_marp.md"
       }
      ],
      "ovningar": {
@@ -1889,11 +1872,52 @@
         "href": "04_csharp_hidden_gems/exercises/null_operators_ovning_3.md"
        }
       ]
-     }
+     },
+     "assets": [
+      "04_csharp_hidden_gems/lectures/images/anders_null.png",
+      "04_csharp_hidden_gems/lectures/images/koncept_null.png"
+     ]
+    },
+    {
+     "titel": "Indexers",
+     "beskrivning": "Anders bokhylla: ett problem först, sedan indexers, och en frivillig övning",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Indexers (artikel)",
+       "href": "04_csharp_hidden_gems/notes/indexers.md"
+      }
+     ],
+     "lektion": [
+      {
+       "text": "Indexers (bildspel)",
+       "href": "04_csharp_hidden_gems/lectures/05_indexers_marp.md"
+      }
+     ],
+     "ovningar": {
+      "Frivillig övning": [
+       {
+        "text": "Indexers: frivillig övning",
+        "href": "04_csharp_hidden_gems/exercises/indexers_ovning.md"
+       },
+       {
+        "text": "En spellista",
+        "href": "04_csharp_hidden_gems/exercises/indexers_ovning_2.md"
+       },
+       {
+        "text": "Inställningar med nyckel",
+        "href": "04_csharp_hidden_gems/exercises/indexers_ovning_3.md"
+       }
+      ]
+     },
+     "assets": [
+      "04_csharp_hidden_gems/lectures/images/anders_indexers.png",
+      "04_csharp_hidden_gems/lectures/images/koncept_indexers.png"
+     ]
     },
     {
      "titel": "Extension methods",
-     "beskrivning": "Extension methods: kort bildspel och frivillig övning",
+     "beskrivning": "Burken som inte går att öppna: string är sealed, extension methods löser det. Frivillig övning",
      "tags": [],
      "notes": [
       {
@@ -1904,7 +1928,7 @@
      "lektion": [
       {
        "text": "Extension methods (bildspel)",
-       "href": "04_csharp_hidden_gems/lectures/extension_methods_marp.md"
+       "href": "04_csharp_hidden_gems/lectures/06_extension_methods_marp.md"
       }
      ],
      "ovningar": {
@@ -1930,11 +1954,15 @@
         "href": "04_csharp_hidden_gems/exercises/time_only_ovning.md"
        }
       ]
-     }
+     },
+     "assets": [
+      "04_csharp_hidden_gems/lectures/images/anders_extension.png",
+      "04_csharp_hidden_gems/lectures/images/koncept_extension.png"
+     ]
     },
     {
      "titel": "Records",
-     "beskrivning": "Records: kort bildspel och frivillig övning",
+     "beskrivning": "Samma beställning två gånger: ett problem först, sedan records, och en frivillig övning",
      "tags": [],
      "notes": [
       {
@@ -1945,7 +1973,7 @@
      "lektion": [
       {
        "text": "Records (bildspel)",
-       "href": "04_csharp_hidden_gems/lectures/records_marp.md"
+       "href": "04_csharp_hidden_gems/lectures/07_records_marp.md"
       }
      ],
      "ovningar": {
@@ -1963,11 +1991,15 @@
         "href": "04_csharp_hidden_gems/exercises/records_ovning_3.md"
        }
       ]
-     }
+     },
+     "assets": [
+      "04_csharp_hidden_gems/lectures/images/anders_records.png",
+      "04_csharp_hidden_gems/lectures/images/koncept_records.png"
+     ]
     },
     {
      "titel": "async och await",
-     "beskrivning": "async och await: kort bildspel och frivillig övning",
+     "beskrivning": "Kön vid kaffemaskinen: ett problem först, sedan async och await, och en frivillig övning",
      "tags": [],
      "notes": [
       {
@@ -1978,7 +2010,7 @@
      "lektion": [
       {
        "text": "async och await (bildspel)",
-       "href": "04_csharp_hidden_gems/lectures/async_await_marp.md"
+       "href": "04_csharp_hidden_gems/lectures/08_async_await_marp.md"
       }
      ],
      "ovningar": {
@@ -1996,7 +2028,52 @@
         "href": "04_csharp_hidden_gems/exercises/async_await_ovning_3.md"
        }
       ]
-     }
+     },
+     "assets": [
+      "04_csharp_hidden_gems/lectures/images/anders_async.png",
+      "04_csharp_hidden_gems/lectures/images/koncept_async.png"
+     ]
+    },
+    {
+     "titel": "Reflection (demo)",
+     "beskrivning": "Anders loggar fel: reflection som kort demo, byggd på extension methods. Inte tentastoff",
+     "tags": [],
+     "notes": [
+      {
+       "text": "Reflection (artikel)",
+       "href": "04_csharp_hidden_gems/notes/reflection.md"
+      }
+     ],
+     "ovningar": {
+      "Frivillig övning": [
+       {
+        "text": "Reflection: frivillig övning",
+        "href": "04_csharp_hidden_gems/exercises/reflection_ovning.md"
+       },
+       {
+        "text": "ToDebugString",
+        "href": "04_csharp_hidden_gems/exercises/reflection_ovning_2.md"
+       },
+       {
+        "text": "Standardvärden med SetDefaults",
+        "href": "04_csharp_hidden_gems/exercises/reflection_ovning_3.md"
+       },
+       {
+        "text": "Ninja: en fabrik som kan vilken klass som helst",
+        "href": "04_csharp_hidden_gems/exercises/reflection_ovning_4.md"
+       }
+      ]
+     },
+     "lektion": [
+      {
+       "text": "Reflection (bildspel)",
+       "href": "04_csharp_hidden_gems/lectures/09_reflection_marp.md"
+      }
+     ],
+     "assets": [
+      "04_csharp_hidden_gems/lectures/images/anders_reflection.png",
+      "04_csharp_hidden_gems/lectures/images/koncept_reflection.png"
+     ]
     },
     {
      "titel": "Programmeringstermer",
