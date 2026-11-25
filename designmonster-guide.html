@@ -970,8 +970,249 @@ var booking = new BookingBuilder()
   ]
 };
 
-const PATTERNS = [STRATEGY, OBSERVER, EVENT, BUILDER];
-const COMING = ['Factory', 'Repository'];
+const CH = (x, y, w, t, o) => ({ x, y, w, h:30, o:(o === undefined ? 1 : o), cls:'chunk', t, s:'' });
+const REPO = {
+  id: 'repository', name: 'Repository', codeTitle: 'Program.cs',
+  blurb: '<b>Repository:</b> en klass som sköter allt kring databasen, så att resten av koden slipper veta hur den fungerar. Exemplet är ett enkelt kundregister (CRM) med företag.',
+  elements: ['svc','repo','repo2','db','iface','c1','c2','c3','c4','note'],
+  steps: [
+    { title: 'CRM: kunder i en databas',
+      text: '<p>Ett CRM är ett kundregister. Här aktiverar vi en kund: en <b>lead</b> (blivande kund) blir <b>aktiv</b>. Kunderna ligger i en databas.</p><p>Här sköter <b>CrmService</b> allt själv: den pratar SQL <i>och</i> kan reglerna för kunder. Titta på bilden: SQL och regel ligger om vartannat i samma klass.</p>',
+      code: `class CrmService
+{
+    public void Activate(int id)
+    {
+        // Tänk på att lägga till Try Catch
+        using var connection = new SqliteConnection("Data Source=crm.db");
+        connection.Open();
+
+        // 1. Hämta kunden
+        var select = connection.CreateCommand();
+        select.CommandText = "SELECT Name, Status FROM Customers WHERE Id = @id";
+        select.Parameters.AddWithValue("@id", id);
+        using var reader = select.ExecuteReader();
+        reader.Read();
+        var name = reader.GetString(0);
+        var status = reader.GetString(1);
+        reader.Close();
+
+        // 2. CRM-regeln: en lead blir aktiv kund
+        if (status == "Lead") status = "Aktiv";
+
+        // 3. Spara
+        var update = connection.CreateCommand();
+        update.CommandText = "UPDATE Customers SET Status = @status WHERE Id = @id";
+        update.Parameters.AddWithValue("@status", status);
+        update.Parameters.AddWithValue("@id", id);
+        update.ExecuteNonQuery();
+
+        Console.WriteLine($"{name} är nu {status}");
+    }
+}`,
+      hl: [9, 27],
+      set: {
+        svc: { x:10, y:25, w:420, h:290, o:1, cls:'hero', t:'CrmService', s:'SQL och CRM-regler om vartannat' },
+        c1:  CH(30, 90,  380, 'SELECT Name, Status … WHERE Id = @id'),
+        c2:  CH(30, 134, 380, 'if (status == "Lead") status = "Aktiv";'),
+        c3:  CH(30, 178, 380, 'UPDATE Customers SET Status = @status'),
+        c4:  CH(225, 190, 175, 'Add(customer)', 0),
+        db:  { x:495, y:110, w:135, h:130, o:1, cls:'', t:'Databasen', s:'crm.db (SQLite)' }
+      },
+      arrows: [ { a:'svc', b:'db', label:'SQL' } ]
+    },
+    { title: 'Vad är problemet?',
+      text: '<p>Det fungerar, men två saker blir svåra:</p><p><b>1.</b> Vill du <b>byta databas</b> måste du ändra SQL i hela CrmService.<br><b>2.</b> Vill du <b>testa</b> regeln “lead blir aktiv” måste du ha en riktig databas igång.</p><p>CrmService borde kunna <i>reglerna</i>, inte databasen.</p>',
+      code: `// Servicen blandar två saker:
+//
+//  SQL (hur databasen funkar)    <- ändras om du byter databas
+//  CRM-regeln (lead blir aktiv)  <- det du vill kunna testa
+//
+// Båda ligger i samma metod. Ändrar du det ena
+// riskerar du det andra.`,
+      hl: [3, 4],
+      set: {
+        svc:  { cls:'hero bad', s:'svårt att byta och svårt att testa' },
+        note: { x:30, y:235, w:380, h:56, o:1, cls:'note bad', t:'Byta databas? Testa utan databas? Ändra i hela servicen.', s:'' }
+      },
+      arrows: [ { a:'svc', b:'db', label:'SQL' } ]
+    },
+    { title: 'Dela upp: en klass bara för databasen',
+      text: '<p>Plocka ut allt som rör databasen och lägg det i en egen klass: ett <b>Repository</b>. Ordet betyder ungefär <b>förvaring</b>: platsen där kunderna förvaras.</p><p>Titta på bilden: SQL-bitarna flyttar ut ur CrmService. Kvar blir bara regeln, <i>Lead → Aktiv</i>.</p>',
+      code: `class CustomerRepository
+{
+    private const string ConnectionString = "Data Source=crm.db";
+
+    public Customer GetById(int id)
+    {
+        // Tänk på att lägga till Try Catch
+        using var connection = new SqliteConnection(ConnectionString);
+        connection.Open();
+        var command = connection.CreateCommand();
+        command.CommandText = "SELECT Name, Status FROM Customers WHERE Id = @id";
+        command.Parameters.AddWithValue("@id", id);
+        using var reader = command.ExecuteReader();
+        reader.Read();
+        return new Customer { Id = id, Name = reader.GetString(0), Status = reader.GetString(1) };
+    }
+
+    public void Update(Customer customer)
+    {
+        using var connection = new SqliteConnection(ConnectionString);
+        connection.Open();
+        var command = connection.CreateCommand();
+        command.CommandText = "UPDATE Customers SET Status = @status WHERE Id = @id";
+        command.Parameters.AddWithValue("@status", customer.Status);
+        command.Parameters.AddWithValue("@id", customer.Id);
+        command.ExecuteNonQuery();
+    }
+
+    // Add(customer) gör vi på samma sätt
+}`,
+      hl: [1, 30],
+      set: {
+        svc:  { x:10, y:130, w:140, h:110, cls:'hero ok', t:'CrmService', s:'bara CRM-reglerna' },
+        note: { o:0 },
+        c2:   CH(20, 195, 120, 'Lead → Aktiv'),
+        repo: { x:215, y:90, w:195, h:220, o:1, cls:'weapon', t:'CustomerRepository', s:'allt som rör databasen' },
+        c1:   CH(225, 150, 175, 'GetById(id)'),
+        c4:   CH(225, 190, 175, 'Add(customer)'),
+        c3:   CH(225, 230, 175, 'Update(customer)'),
+        db:   { x:495, y:130, w:135, h:130 }
+      },
+      arrows: [ { a:'repo', b:'db', label:'SQL' } ]
+    },
+    { title: 'CrmService ber hyllan, inte databasen',
+      text: '<p>Nu pratar CrmService aldrig med databasen. Den <b>ber Repositoryt</b> om en kund (<code>GetById</code>), tillämpar regeln och ber Repositoryt spara (<code>Update</code>).</p><p>Följ prickarna: servicen frågar Repositoryt. <b>Repositoryt</b> är det enda som pratar med databasen, och det kommer tillbaka med kunden.</p>',
+      code: `class CrmService
+{
+    private readonly CustomerRepository _repository = new();
+
+    public void Activate(int id)
+    {
+        var customer = _repository.GetById(id);
+
+        if (customer.Status == "Lead")
+            customer.Status = "Aktiv";
+
+        _repository.Update(customer);
+        Console.WriteLine($"{customer.Name} är nu {customer.Status}");
+    }
+}
+
+new CrmService().Activate(2);`,
+      hl: [7, 12],
+      arrows: [ { a:'svc', b:'repo' }, { a:'repo', b:'db' } ],
+      msgs: [
+        { a:'svc',  b:'repo', out:'GetById(2)', dur:1200 },
+        { a:'repo', b:'db',   out:'SELECT …', back:'raden', delay:1400, dur:1300 },
+        { a:'repo', b:'svc',  out:'Kund 2', delay:4300, dur:1200 }
+      ],
+      lines: ['Kaffekoppen AB är nu Aktiv']
+    },
+    { title: 'Ett löfte: interface',
+      text: '<p>CrmService håller just nu i en <i>specifik</i> klass. Gör vi ett <b>interface</b> kan den hålla i <i>vilket</i> Repository som helst. Löftet säger vad ett Repository kan: <code>GetById</code>, <code>Add</code> och <code>Update</code>.</p><p>Klassen som pratar med SQLite får heta <code>SqliteCustomerRepository</code> och lovar att följa löftet. CrmService känner bara löftet.</p>',
+      code: `interface ICustomerRepository
+{
+    Customer GetById(int id);
+    void Add(Customer customer);
+    void Update(Customer customer);
+}
+
+class SqliteCustomerRepository : ICustomerRepository
+{
+    // samma SQL-kod som förut
+}
+
+class CrmService
+{
+    private readonly ICustomerRepository _repository;
+
+    public CrmService(ICustomerRepository repository)
+        => _repository = repository;
+
+    // Activate(...) är exakt som förut
+}`,
+      hl: [1, 6],
+      set: {
+        svc:  { x:10, y:140, w:130, h:100, s:'känner bara löftet' },
+        c2:   CH(18, 200, 114, 'Lead → Aktiv'),
+        c1:   { o:0 }, c3: { o:0 }, c4: { o:0 },
+        repo: { x:170, y:30, w:300, h:80, t:'SqliteCustomerRepository', s:'pratar med databasen' },
+        iface:{ x:170, y:150, w:300, h:70, o:1, cls:'iface', t:'ICustomerRepository', s:'löftet: GetById, Add, Update' },
+        db:   { x:500, y:30, w:130, h:80 }
+      },
+      arrows: [ { a:'repo', b:'iface', dash:true }, { a:'svc', b:'iface' }, { a:'repo', b:'db' } ]
+    },
+    { title: 'En andra hylla: i minnet, utan databas',
+      text: '<p>Nu kan vi göra <b>ett Repository till</b>: <code>InMemoryCustomerRepository</code>. Det sparar kunderna i en vanlig <code>List</code> i minnet. Ingen databas alls, och det följer samma löfte.</p><p>Det är perfekt för test: det går snabbt, och ingen databas behöver finnas.</p>',
+      code: `class InMemoryCustomerRepository : ICustomerRepository
+{
+    private readonly List<Customer> _customers = new();
+
+    public Customer GetById(int id)
+        => _customers.First(c => c.Id == id);
+
+    public void Add(Customer customer)
+        => _customers.Add(customer);
+
+    public void Update(Customer customer)
+    {
+        var index = _customers.FindIndex(c => c.Id == customer.Id);
+        _customers[index] = customer;
+    }
+}`,
+      hl: [1, 3],
+      set: {
+        repo2: { x:170, y:260, w:300, h:80, o:1, cls:'weapon', t:'InMemoryCustomerRepository', s:'en lista i minnet, ingen databas' }
+      },
+      arrows: [ { a:'repo', b:'iface', dash:true }, { a:'repo2', b:'iface', dash:true }, { a:'svc', b:'iface' }, { a:'repo', b:'db' } ]
+    },
+    { title: 'Byt hylla utan att röra servicen',
+      text: '<p>I appen får CrmService det riktiga Repositoryt med databasen. I ett test får den listan i minnet. <b>CrmService är exakt densamma</b> i båda fallen. Den vet inte skillnaden.</p><p>Följ prickarna: nu går anropet till listan, och ingen databas är inblandad.</p>',
+      code: `// I appen, med riktig databas:
+var service = new CrmService(new SqliteCustomerRepository());
+
+// I ett test, utan databas:
+var repo = new InMemoryCustomerRepository();
+repo.Add(new Customer { Id = 2, Name = "Kaffekoppen AB" });
+var testService = new CrmService(repo);
+testService.Activate(2);
+// Kaffekoppen AB är nu Aktiv`,
+      hl: [4, 9],
+      set: {
+        repo:  { o:0.4 }, db: { o:0.3 },
+        repo2: { cls:'weapon active' },
+        note:  { x:490, y:258, w:140, h:84, o:1, cls:'note', t:'Ingen databas. CrmService oförändrad ✓', s:'' }
+      },
+      arrows: [ { a:'repo', b:'iface', dash:true }, { a:'repo2', b:'iface', dash:true }, { a:'svc', b:'repo2', color:'ok' } ],
+      msgs: [
+        { a:'svc',   b:'repo2', out:'GetById(2)', dur:1400 },
+        { a:'repo2', b:'svc',   out:'Kund 2', delay:1600, dur:1400 }
+      ],
+      lines: ['Kaffekoppen AB är nu Aktiv']
+    },
+    { title: 'Det här löste vi',
+      text: '<p><b>Repository</b> betyder: en klass som sköter allt kring databasen, så att resten av koden slipper veta hur den fungerar. Du kan byta databas, eller byta till en lista för test, utan att röra CRM-reglerna.</p><p><b>Vardagsliknelse:</b> ett bibliotek. Du ber bibliotekarien om en bok. Du går inte själv in i magasinet, och du märker inte om biblioteket byter hyllsystem.</p>',
+      tip: '<b>Proffsens tips:</b> På föreläsningen såg du <code>IRepository&lt;TEntity, TKey&gt;</code> med generics och <code>async</code>. Det är <b>samma idé</b>, bara mer generell. Börja enkelt som här. I ett litet program kan SQL direkt i koden vara okej. Repository lönar sig när du vill testa utan databas eller kan tänkas byta. I EF Core är <code>DbContext</code> dessutom redan en sorts repository, så lägg inte ett till ovanpå utan en anledning.',
+      code: `// Repository i en mening:
+// en klass som sköter allt kring databasen,
+// så att resten av koden slipper veta hur den fungerar.
+//
+// ICustomerRepository = löftet
+// Sqlite…Repository   = riktig databas
+// InMemory…Repository = lista i minnet (för test)`,
+      hl: [1, 3],
+      set: {
+        repo: { o:1 }, db: { o:1 }, repo2: { cls:'weapon' }, note: { o:0 }
+      },
+      keepOut: true,
+      arrows: [ { a:'repo', b:'iface', dash:true }, { a:'repo2', b:'iface', dash:true }, { a:'svc', b:'iface' }, { a:'repo', b:'db' } ]
+    }
+  ]
+};
+
+const PATTERNS = [STRATEGY, OBSERVER, EVENT, BUILDER, REPO];
+const COMING = ['Factory'];
 
 /* ============ HJÄLPFUNKTIONER ============ */
 const $ = id => document.getElementById(id);
