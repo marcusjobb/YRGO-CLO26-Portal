@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Designmönster – visuell guide</title>
+<style>
+:root{
+  color-scheme: light dark;
+  --bg:#f7f6f2; --card:#ffffff; --ink:#1d1d1f; --muted:#62666d; --line:#dedbd1;
+  --accent:#4f46e5; --accent-bg:#e9e7fd;
+  --bad:#dc2626; --bad-bg:#fde8e8;
+  --ok:#16a34a; --ok-bg:#e2f6e8;
+  --warn:#f59e0b; --warn-bg:#fff4dc;
+  --iface:#7c3aed; --iface-bg:#efe7fd;
+  --weapon:#0284c7; --weapon-bg:#e0f2fd;
+  --code-bg:#14161a; --code-ink:#e8e8ea; --code-line:#2a2d35; --code-hl:#2f3550;
+  --k:#c792ea; --t:#82aaff; --s:#c3e88d; --c:#7f8794; --n:#f78c6c;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#15161a; --card:#1f2127; --ink:#f0f0f2; --muted:#a0a4ab; --line:#33363e;
+    --accent:#818cf8; --accent-bg:#2a2c4a;
+    --bad:#f87171; --bad-bg:#3b2224;
+    --ok:#4ade80; --ok-bg:#1f3527;
+    --warn:#fbbf24; --warn-bg:#3b3220;
+    --iface:#a78bfa; --iface-bg:#2d2547;
+    --weapon:#38bdf8; --weapon-bg:#1c3342;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:0 16px 40px}
+.wrap{max-width:1180px;margin:0 auto}
+header{padding:24px 0 8px}
+h1{margin:0 0 4px;font-size:1.6rem}
+.lead{margin:0;color:var(--muted)}
+.picker{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 6px}
+.picker .lbl{color:var(--muted);font-size:.9rem}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-size:.92rem;cursor:pointer}
+.chip[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.chip[disabled]{opacity:.5;cursor:default}
+.blurb{margin:6px 0 0;padding:8px 12px;border-left:3px solid var(--accent);background:var(--accent-bg);border-radius:0 8px 8px 0;font-size:.95rem}
+.steps{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 14px}
+.dot{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--muted);font:inherit;font-size:.85rem;cursor:pointer}
+.dot[aria-current="step"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.dot.done{color:var(--ink);border-color:var(--accent)}
+.main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:16px;align-items:start}
+@media (max-width:860px){.main{grid-template-columns:1fr}.stagecol{order:-1}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.cardhead{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-bottom:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+.cardhead button{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:2px 10px;font:inherit;font-size:.8rem;cursor:pointer}
+pre.code{margin:0;padding:12px 0;background:var(--code-bg);color:var(--code-ink);font:13.5px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-x:auto;min-height:340px}
+pre.code .ln{display:block;padding:0 14px 0 8px;white-space:pre;border-left:3px solid transparent;opacity:.72;transition:opacity .4s,background .4s}
+pre.code .ln.hl{opacity:1;background:var(--code-hl);border-left-color:var(--accent)}
+pre.code .ln b{display:inline-block;width:2.2em;color:var(--c);font-weight:400;user-select:none}
+.k{color:var(--k)}.t{color:var(--t)}.s{color:var(--s)}.c{color:var(--c);font-style:italic}.n{color:var(--n)}
+.stagewrap{position:relative;width:100%;background:var(--card)}
+.stage{position:absolute;left:0;top:0;width:640px;height:400px;transform-origin:0 0}
+.box{position:absolute;border-radius:12px;border:2px solid var(--line);background:var(--card);padding:8px 10px;
+  transition:left .8s ease,top .8s ease,width .8s ease,height .8s ease,opacity .5s ease,background .5s,border-color .5s;overflow:hidden}
+.box .bt{font-weight:700;font-size:15px;line-height:1.2}
+.box .bs{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.25}
+.box.hero{background:var(--accent-bg);border-color:var(--accent)}
+.box.hero .bt{font-size:18px}
+.box.bad{background:var(--bad-bg);border-color:var(--bad)}
+.box.ok{background:var(--ok-bg);border-color:var(--ok)}
+.box.chunk{background:var(--warn-bg);border-color:var(--warn);padding:5px 10px;z-index:2}
+.box.chunk .bt{font:600 13px/1.3 ui-monospace,Menlo,Consolas,monospace;white-space:nowrap}
+.box.weapon{background:var(--weapon-bg);border-color:var(--weapon);z-index:2;padding:8px 6px;text-align:center}
+.box.weapon .bt{font-size:13px}
+.box.weapon.active{box-shadow:0 0 0 4px color-mix(in srgb,var(--weapon) 35%,transparent)}
+.box.iface{background:var(--iface-bg);border-color:var(--iface);border-style:dashed;text-align:center}
+.box.note{background:var(--ok-bg);border-color:var(--ok);text-align:center;padding:6px}
+.box.note .bt{font-size:14px;color:var(--ok)}
+svg.arrows{position:absolute;left:0;top:0;width:640px;height:400px;pointer-events:none;z-index:1}
+svg.arrows .a{opacity:0;transition:opacity .4s}
+svg.arrows .a.on{opacity:1}
+.packet{position:absolute;left:0;top:0;z-index:5;opacity:0;pointer-events:none}
+.packet span{display:block;transform:translate(-50%,-50%);background:var(--ink);color:var(--bg);border-radius:999px;padding:3px 10px;font:600 12.5px ui-monospace,Menlo,Consolas,monospace;white-space:nowrap}
+.explain{padding:14px 16px;border-top:1px solid var(--line)}
+.explain h2{margin:0 0 4px;font-size:1.1rem}
+.explain p{margin:4px 0}
+.tip{margin-top:10px;padding:10px 12px;border-radius:10px;background:var(--warn-bg);border:1px solid var(--warn);font-size:.95rem}
+.out{margin:0;padding:10px 14px;background:var(--code-bg);color:var(--code-ink);font:13.5px/1.6 ui-monospace,Menlo,Consolas,monospace;min-height:84px;border-top:1px solid var(--line)}
+.out[hidden]{display:none}
+.out .p{color:var(--c)}
+.out .l{display:block;animation:fade .5s both}
+@keyframes fade{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+.bar{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;margin:10px 0 14px}
+.bar .steps{margin:0}
+.controls{display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 16px;font:inherit;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:disabled{opacity:.45;cursor:default}
+.btn:focus-visible,.chip:focus-visible,.dot:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+footer{margin-top:22px;color:var(--muted);font-size:.9rem}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:reduce){
+  .box,svg.arrows .a,pre.code .ln{transition:none}
+  .out .l{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Designmönster – visuell guide</h1>
+    <p class="lead">Se hur en klass som gör för mycket delas upp, och hur klasserna sedan pratar med varandra. Klicka dig igenom eller tryck Spela upp. Gör gärna i ordning: Strategy, Observer och sist Observer med event.</p>
+  </header>
+
+  <div class="picker" id="patterns" role="tablist" aria-label="Mönster"><span class="lbl">Mönster:</span></div>
+  <p class="blurb" id="blurb"></p>
+  <div class="bar">
+    <div class="steps" id="steps" aria-label="Steg"></div>
+    <div class="controls">
+      <button class="btn" id="back" type="button">← Tillbaka</button>
+      <button class="btn primary" id="play" type="button">▶ Spela upp</button>
+      <button class="btn" id="next" type="button">Nästa →</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <section class="card" aria-label="C#-kod">
+      <div class="cardhead"><span id="codeTitle">Program.cs</span><button id="copy" type="button">Kopiera</button></div>
+      <pre class="code" id="code" tabindex="0"></pre>
+    </section>
+
+    <section class="card stagecol" aria-label="Animerad bild">
+      <div class="stagewrap" id="stagewrap">
+        <div class="stage" id="stage">
+          <svg class="arrows" id="arrows" viewBox="0 0 640 400" aria-hidden="true">
+            <defs>
+              <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+      <pre class="out" id="out" aria-live="polite" hidden></pre>
+      <div class="explain" aria-live="polite">
+        <h2 id="title"></h2>
+        <div id="text"></div>
+        <div class="tip" id="tip" hidden></div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    Vill du slå upp fler mönster? Se <a href="designmonster-lathund.html">lathunden med alla designmönster</a>.
+    Tips: pilknapparna på tangentbordet fungerar också.
+  </footer>
+</div>
+
+<script>
+/* ============ DATA ============ */
+const W = 640, H = 400;
+
+/* Varje steg ändrar bara det som ska ändras. Resten ärvs från steget innan. */
+const STRATEGY = {
+  id: 'strategy', name: 'Strategy', codeTitle: 'Program.cs',
+  blurb: '<b>Strategy:</b> samma uppgift, flera sätt att göra den. Du byter sätt utan att röra klassen som använder det.',
+  elements: ['hero','sword','bow','axe','dots','magic','iface','note'],
+  steps: [
+    { title: 'Mira ska slåss',
+      text: '<p>Det här är en <b>Hero</b>-klass som kan attackera. Hon väljer vapen med en <code>if</code>. Det fungerar fint.</p><p>Men titta: <b>Hero vet allt om alla vapen</b>. Varje gren i <code>if</code> är en liten bit av vapenkunskap som bor inne i hjälten.</p>',
+      code: `class Hero
+{
+    public string Name;
+    public string Weapon;
+
+    public string Attack()
+    {
+        if (Weapon == "sword")
+            return $"{Name} svingar svärdet!";
+        else if (Weapon == "bow")
+            return $"{Name} skjuter en pil!";
+        // ... och så vidare
+    }
+}`,
+      hl: [8, 12],
+      set: {
+        hero:  { x:120, y:30, w:400, h:170, o:1, cls:'hero', t:'Hero', s:'gör allt själv' },
+        sword: { x:140, y:90, w:360, h:34, o:1, cls:'chunk', t:'if (Weapon == "sword")', s:'' },
+        bow:   { x:140, y:134, w:360, h:34, o:1, cls:'chunk', t:'else if (Weapon == "bow")', s:'' }
+      }
+    },
+    { title: 'Tio vapen senare',
+      text: '<p>Spelet får fler vapen: yxa, trollstav, dolk … Varje nytt vapen betyder att vi <b>öppnar Hero igen</b> och lägger till en gren.</p><p>Hero växer, och en miss i en gren kan förstöra de andra. Hero borde handla om <i>hjälten</i>, inte om alla vapen i hela spelet.</p>',
+      code: `class Hero
+{
+    public string Name;
+    public string Weapon;
+
+    public string Attack()
+    {
+        if (Weapon == "sword")
+            return $"{Name} svingar svärdet!";
+        else if (Weapon == "bow")
+            return $"{Name} skjuter en pil!";
+        else if (Weapon == "axe")
+            return $"{Name} hugger med yxan!";
+        // ... och sju vapen till
+    }
+}`,
+      hl: [12, 14],
+      set: {
+        hero: { h:250, cls:'hero bad', s:'växer för varje nytt vapen' },
+        axe:  { x:140, y:178, w:360, h:34, o:1, cls:'chunk', t:'else if (Weapon == "axe")', s:'' },
+        dots: { x:140, y:222, w:360, h:34, o:1, cls:'chunk', t:'// ... och sju vapen till', s:'' }
+      }
+    },
+    { title: 'Dela upp: varje vapen får en egen klass',
+      text: '<p>Lösningen: plocka ut varje gren och gör den till en <b>egen klass</b>. Titta på bilden: bitarna flyttar ut ur Hero.</p><p>Nu kan <code>SwordAttack</code> sitt svärd och inget annat. Hero blir liten och handlar bara om hjälten.</p>',
+      code: `class SwordAttack
+{
+    public string Attack(string name)
+        => $"{name} svingar svärdet!";
+}
+
+class BowAttack
+{
+    public string Attack(string name)
+        => $"{name} skjuter en pil!";
+}
+
+// AxeAttack gör vi på samma sätt`,
+      hl: [1, 11],
+      set: {
+        hero:  { x:240, y:290, w:150, h:80, cls:'hero ok', t:'Hero', s:'bara hjälten' },
+        sword: { x:80,  y:130, w:110, h:70, cls:'weapon', t:'SwordAttack', s:'svärdet' },
+        bow:   { x:200, y:130, w:110, h:70, cls:'weapon', t:'BowAttack', s:'pilbågen' },
+        axe:   { x:320, y:130, w:110, h:70, cls:'weapon', t:'AxeAttack', s:'yxan' },
+        dots:  { o:0 }
+      }
+    },
+    { title: 'Ett löfte: interface',
+      text: '<p>Hero måste kunna använda <i>vilket</i> vapen som helst, utan att veta vilket. Därför behövs ett <b>löfte</b>: ett <code>interface</code>.</p><p>Alla vapen lovar att de har en metod <code>Attack</code>. De streckade pilarna betyder “lovar”. Du har sett det förut, till exempel <code>IHealer</code>.</p>',
+      code: `interface IAttackStrategy
+{
+    string Attack(string name);
+}
+
+class SwordAttack : IAttackStrategy
+{
+    public string Attack(string name)
+        => $"{name} svingar svärdet!";
+}
+
+class BowAttack : IAttackStrategy
+{
+    public string Attack(string name)
+        => $"{name} skjuter en pil!";
+}`,
+      hl: [1, 4],
+      set: {
+        iface: { x:110, y:20, w:410, h:60, o:1, cls:'iface', t:'IAttackStrategy', s:'löftet: string Attack(string name)' }
+      },
+      arrows: [
+        { a:'sword', b:'iface', dash:true }, { a:'bow', b:'iface', dash:true }, { a:'axe', b:'iface', dash:true }
+      ]
+    },
+    { title: 'Hero frågar “något som kan attackera”',
+      text: '<p>Hero håller nu i ett löfte, inte i ett vapen: <code>IAttackStrategy _weapon</code>. Hero vet inte om det är ett svärd eller en pilbåge, och behöver inte veta.</p><p>Det är hela idén: <b>Hero pratar med löftet</b>.</p>',
+      code: `class Hero
+{
+    public string Name;
+    private IAttackStrategy _weapon;
+
+    public Hero(string name, IAttackStrategy weapon)
+    {
+        Name = name;
+        _weapon = weapon;
+    }
+
+    public string Attack()
+        => _weapon.Attack(Name);
+}`,
+      hl: [4, 10],
+      arrows: [
+        { a:'sword', b:'iface', dash:true }, { a:'bow', b:'iface', dash:true }, { a:'axe', b:'iface', dash:true },
+        { a:'hero', b:'iface', label:'_weapon' }
+      ]
+    },
+    { title: 'Kör: Hero anropar vapnet',
+      text: '<p>Nu händer det: Hero skickar ett anrop till vapnet i handen. Följ pricken i bilden. Svärdet svarar med en text, och Hero skriver ut den.</p><p>Hero gjorde <b>inget val</b>. Vapnet bestämde själv hur attacken ser ut.</p>',
+      code: `var mira = new Hero("Mira", new SwordAttack());
+Console.WriteLine(mira.Attack());
+
+// Utskrift:
+// Mira svingar svärdet!`,
+      hl: [1, 2],
+      set: { sword: { cls:'weapon active' } },
+      arrows: [
+        { a:'sword', b:'iface', dash:true }, { a:'bow', b:'iface', dash:true }, { a:'axe', b:'iface', dash:true },
+        { a:'hero', b:'sword' }
+      ],
+      msg: { a:'hero', b:'sword', out:'Attack("Mira")', back:'"svingar svärdet!"' },
+      lines: ['Mira svingar svärdet!']
+    },
+    { title: 'Byt vapen medan spelet körs',
+      text: '<p>Mira hittar en pilbåge. Vi lägger bara en annan <b>strategi</b> i handen, och Hero är fortfarande exakt samma klass.</p><p>Det här är poängen med Strategy: <b>samma uppgift, flera sätt att göra den</b>, och du byter sätt utan att röra Hero.</p>',
+      code: `// i Hero:
+public void SetWeapon(IAttackStrategy weapon)
+    => _weapon = weapon;
+
+// i Program:
+mira.SetWeapon(new BowAttack());
+Console.WriteLine(mira.Attack());
+
+// Utskrift:
+// Mira skjuter en pil!`,
+      hl: [1, 7],
+      set: { sword: { cls:'weapon' }, bow: { cls:'weapon active' } },
+      arrows: [
+        { a:'sword', b:'iface', dash:true }, { a:'bow', b:'iface', dash:true }, { a:'axe', b:'iface', dash:true },
+        { a:'hero', b:'bow' }
+      ],
+      msg: { a:'hero', b:'bow', out:'Attack("Mira")', back:'"skjuter en pil!"' },
+      lines: ['Mira svingar svärdet!', 'Mira skjuter en pil!']
+    },
+    { title: 'Nytt vapen = ny klass, ingenting annat ändras',
+      text: '<p>Spelet får trollkraft. Vi skriver <b>en ny klass</b> som lovar <code>Attack</code>. Det är allt.</p><p>Hero öppnades aldrig. Inga <code>if</code> behövde läggas till, och inget gammalt kan gå sönder.</p>',
+      code: `class MagicAttack : IAttackStrategy
+{
+    public string Attack(string name)
+        => $"{name} kastar en eldboll!";
+}
+
+mira.SetWeapon(new MagicAttack());
+Console.WriteLine(mira.Attack());
+
+// Utskrift:
+// Mira kastar en eldboll!`,
+      hl: [1, 5],
+      set: {
+        bow:   { cls:'weapon' },
+        magic: { x:440, y:130, w:110, h:70, o:1, cls:'weapon active', t:'MagicAttack', s:'trollkraft' },
+        note:  { x:420, y:300, w:190, h:44, o:1, cls:'note', t:'Hero ändrades inte ✓', s:'' }
+      },
+      arrows: [
+        { a:'sword', b:'iface', dash:true }, { a:'bow', b:'iface', dash:true }, { a:'axe', b:'iface', dash:true },
+        { a:'magic', b:'iface', dash:true },
+        { a:'hero', b:'magic' }
+      ],
+      msg: { a:'hero', b:'magic', out:'Attack("Mira")', back:'"kastar en eldboll!"' },
+      lines: ['Mira svingar svärdet!', 'Mira skjuter en pil!', 'Mira kastar en eldboll!']
+    },
+    { title: 'Det här löste vi',
+      text: '<p><b>Strategy</b> betyder: samma uppgift, flera sätt att göra den, och varje sätt bor i en egen klass.</p><p><b>Vardagsliknelse:</b> en skruvdragare. Dragaren är densamma, men du byter bits beroende på skruven. Dragaren behöver inte veta vilken bit det är, bara att biten passar.</p>',
+      tip: '<b>Proffsens tips:</b> Börja inte med ett interface. Skriv en vanlig <code>if</code> först. När den tredje grenen kommer är det dags att dela upp. Mönster är verktyg du tar fram när du behöver dem, inte regler du måste följa.',
+      code: `// Strategy i en mening:
+// samma uppgift (Attack), flera sätt att göra den,
+// och du byter sätt utan att röra Hero.
+//
+// Hero      = den som använder strategin
+// IAttack…  = löftet
+// Sword…    = en strategi per sätt`,
+      hl: [1, 3],
+      keepOut: true,
+      set: { magic: { cls:'weapon' } },
+      arrows: [
+        { a:'sword', b:'iface', dash:true }, { a:'bow', b:'iface', dash:true }, { a:'axe', b:'iface', dash:true },
+        { a:'magic', b:'iface', dash:true },
+        { a:'hero', b:'iface', label:'_weapon' }
+      ]
+    }
+  ]
+};
+
+
+const A3 = [ { a:'stats', b:'iface', dash:true }, { a:'alert', b:'iface', dash:true }, { a:'shop', b:'iface', dash:true } ];
+const SUB3 = [ { a:'stats', b:'wh', color:'ok' }, { a:'alert', b:'wh', color:'ok' }, { a:'shop', b:'wh', color:'ok' } ];
+const OBSERVER = {
+  id: 'observer', name: 'Observer', codeTitle: 'Program.cs',
+  blurb: '<b>Observer:</b> något händer på ett ställe, och alla som lyssnar får veta. Här bygger vi det <i>själva</i>, med interface och lista, så du förstår hur det fungerar.',
+  elements: ['wh','stats','alert','shop','dots','mail','iface','note'],
+  steps: [
+    { title: 'Lagret säljer en vara',
+      text: '<p>Ett <b>Warehouse</b> (lager) håller reda på saldot. När något säljs vill flera delar veta det: statistiken, inköpslarmet och webbshopen.</p><p>Här har Warehouse tagit på sig att <b>ringa alla själv</b>. Det fungerar, men Warehouse måste känna till varenda en.</p>',
+      code: `class Warehouse
+{
+    private int _stock = 10;
+    private Statistics _statistics = new Statistics();
+    private ReorderAlert _alert = new ReorderAlert();
+    private WebShop _webShop = new WebShop();
+
+    public void Sell(int amount)
+    {
+        _stock -= amount;
+        _statistics.Update(_stock);
+        _alert.Check(_stock);
+        _webShop.Refresh(_stock);
+    }
+}`,
+      hl: [11, 13],
+      set: {
+        wh:    { x:120, y:30, w:400, h:215, o:1, cls:'hero', t:'Warehouse', s:'ringer alla själv' },
+        stats: { x:140, y:90,  w:360, h:34, o:1, cls:'chunk', t:'_statistics.Update(_stock);', s:'' },
+        alert: { x:140, y:134, w:360, h:34, o:1, cls:'chunk', t:'_alert.Check(_stock);', s:'' },
+        shop:  { x:140, y:178, w:360, h:34, o:1, cls:'chunk', t:'_webShop.Refresh(_stock);', s:'' }
+      }
+    },
+    { title: 'Ett önskemål till = öppna Warehouse igen',
+      text: '<p>Nu vill inköp ha ett mejl när saldot är lågt. Det betyder att vi <b>öppnar Warehouse igen</b>, lägger till ett fält och ännu en rad.</p><p>Varje ny lyssnare ändrar lagret, och lagret blir större och svårare att ha koll på. Warehouse borde bara handla om <i>lagret</i>.</p>',
+      code: `class Warehouse
+{
+    private int _stock = 10;
+    private Statistics _statistics = new Statistics();
+    private ReorderAlert _alert = new ReorderAlert();
+    private WebShop _webShop = new WebShop();
+    private Mailer _mailer = new Mailer();   // nytt
+
+    public void Sell(int amount)
+    {
+        _stock -= amount;
+        _statistics.Update(_stock);
+        _alert.Check(_stock);
+        _webShop.Refresh(_stock);
+        _mailer.Send(_stock);                // nytt
+        // ... och nästa önskemål
+    }
+}`,
+      hl: [15, 16],
+      set: {
+        wh:   { h:255, cls:'hero bad', s:'växer för varje önskemål' },
+        dots: { x:140, y:222, w:360, h:34, o:1, cls:'chunk', t:'_mailer.Send(_stock);  // nytt', s:'' }
+      }
+    },
+    { title: 'Dela upp: varje lyssnare får en egen klass',
+      text: '<p>Vi plockar ut raderna och gör varje del till en <b>egen klass</b>. Titta på bilden: bitarna flyttar ut ur Warehouse.</p><p>Nu kan <code>Statistics</code> sin statistik och <code>WebShop</code> sin webbshop. Warehouse blir litet och handlar bara om lagret.</p><p>Men de har olika metodnamn: <code>Update</code>, <code>Check</code>, <code>Refresh</code>. Det löser vi härnäst.</p>',
+      code: `class Statistics
+{
+    public void Update(int stock)
+        => Console.WriteLine($"Statistik: {stock} kvar");
+}
+
+class ReorderAlert
+{
+    public void Check(int stock)
+        => Console.WriteLine(stock <= 5
+            ? $"Inköpslarm: LÅGT saldo ({stock})! Beställ mer"
+            : $"Inköpslarm: {stock} kvar, allt bra");
+}
+
+class WebShop
+{
+    public void Refresh(int stock)
+        => Console.WriteLine($"Webbshop: {stock} st i lager");
+}`,
+      hl: [1, 19],
+      set: {
+        wh:    { x:240, y:290, w:150, h:80, cls:'hero ok', t:'Warehouse', s:'bara lagret' },
+        stats: { x:80,  y:130, w:110, h:70, cls:'weapon', t:'Statistics', s:'statistiken' },
+        alert: { x:200, y:130, w:110, h:70, cls:'weapon', t:'ReorderAlert', s:'inköpslarmet' },
+        shop:  { x:320, y:130, w:110, h:70, cls:'weapon', t:'WebShop', s:'webbshopen' },
+        dots:  { o:0 }
+      }
+    },
+    { title: 'Ett löfte: interface',
+      text: '<p>Warehouse ska kunna berätta för <i>vem som helst</i> som lyssnar. Därför behövs ett <b>löfte</b>: ett <code>interface</code> med en enda metod, <code>OnStockChanged</code>.</p><p>Alla lyssnare lovar att kunna ta emot beskedet. De streckade pilarna betyder “lovar”.</p>',
+      code: `interface IStockObserver
+{
+    void OnStockChanged(int stock);
+}
+
+class Statistics : IStockObserver
+{
+    public void OnStockChanged(int stock)
+        => Console.WriteLine($"Statistik: {stock} kvar");
+}
+
+class WebShop : IStockObserver
+{
+    public void OnStockChanged(int stock)
+        => Console.WriteLine($"Webbshop: {stock} st i lager");
+}
+
+// ReorderAlert gör vi på samma sätt`,
+      hl: [1, 4],
+      set: {
+        iface: { x:110, y:20, w:410, h:60, o:1, cls:'iface', t:'IStockObserver', s:'löftet: void OnStockChanged(int stock)' }
+      },
+      arrows: A3
+    },
+    { title: 'Warehouse har en lista med lyssnare',
+      text: '<p>Warehouse håller nu i en <b>lista med löften</b>: <code>List&lt;IStockObserver&gt;</code>. Den vet inte vilka klasser som finns, bara att de kan ta emot beskedet.</p><p>Metoden <code>Subscribe</code> lägger till någon i listan. När något säljs går Warehouse igenom listan och säger till alla.</p>',
+      code: `class Warehouse
+{
+    private int _stock = 10;
+    private List<IStockObserver> _observers = new();
+
+    public void Subscribe(IStockObserver observer)
+        => _observers.Add(observer);
+
+    public void Sell(int amount)
+    {
+        _stock -= amount;
+        foreach (var observer in _observers)
+            observer.OnStockChanged(_stock);
+    }
+}`,
+      hl: [4, 13],
+      arrows: [...A3, { a:'wh', b:'iface', label:'_observers' }]
+    },
+    { title: 'Prenumerera',
+      text: '<p>Nu kan vem som helst <b>prenumerera</b>. De gröna pilarna visar vilka som lyssnar. Det är som ett nyhetsbrev: lagret vet inte vad mottagarna gör med beskedet.</p>',
+      code: `var warehouse = new Warehouse();
+warehouse.Subscribe(new Statistics());
+warehouse.Subscribe(new ReorderAlert());
+warehouse.Subscribe(new WebShop());`,
+      hl: [2, 4],
+      arrows: [...A3, ...SUB3]
+    },
+    { title: 'Sälj: alla får veta samtidigt',
+      text: '<p>Nu händer det: lagret säljer tre varor, och saldot blir 7. Följ prickarna i bilden: <b>ett besked går ut till alla lyssnare samtidigt</b>.</p><p>Varje lyssnare gör sitt eget. Lagret bryr sig inte om vad.</p>',
+      code: `warehouse.Sell(3);
+
+// Utskrift:
+// Statistik: 7 kvar
+// Inköpslarm: 7 kvar, allt bra
+// Webbshop: 7 st i lager`,
+      hl: [1, 1],
+      set: {
+        stats: { cls:'weapon active' }, alert: { cls:'weapon active' }, shop: { cls:'weapon active' }
+      },
+      arrows: [...A3, ...SUB3],
+      msgs: [ { a:'wh', b:'stats', out:'stock = 7' }, { a:'wh', b:'alert', out:'stock = 7' }, { a:'wh', b:'shop', out:'stock = 7' } ],
+      lines: ['Statistik: 7 kvar', 'Inköpslarm: 7 kvar, allt bra', 'Webbshop: 7 st i lager']
+    },
+    { title: 'Ny lyssnare = ny klass, ingenting annat ändras',
+      text: '<p>Inköp vill ha mejl när saldot är lågt. Vi skriver <b>en ny klass</b> och prenumererar den. Det är allt.</p><p>Warehouse öppnades aldrig. Och se: nu säljs fyra varor till, saldot blir 3, och <b>alla fyra</b> får veta det. Larmet och mejlet reagerar på lågt saldo, de andra visar bara siffran.</p>',
+      code: `class MailNotifier : IStockObserver
+{
+    public void OnStockChanged(int stock)
+    {
+        if (stock <= 5)
+            Console.WriteLine($"Mejl: skickat till inköp ({stock} kvar)");
+    }
+}
+
+warehouse.Subscribe(new MailNotifier());
+warehouse.Sell(4);
+
+// Utskrift:
+// Statistik: 3 kvar
+// Inköpslarm: LÅGT saldo (3)! Beställ mer
+// Webbshop: 3 st i lager
+// Mejl: skickat till inköp (3 kvar)`,
+      hl: [1, 10],
+      set: {
+        mail: { x:440, y:130, w:110, h:70, o:1, cls:'weapon active', t:'MailNotifier', s:'mejlet' },
+        note: { x:420, y:300, w:190, h:44, o:1, cls:'note', t:'Warehouse ändrades inte ✓', s:'' }
+      },
+      arrows: [...A3, { a:'mail', b:'iface', dash:true }, ...SUB3, { a:'mail', b:'wh', color:'ok' }],
+      msgs: [ { a:'wh', b:'stats', out:'stock = 3' }, { a:'wh', b:'alert', out:'stock = 3' }, { a:'wh', b:'shop', out:'stock = 3' }, { a:'wh', b:'mail', out:'stock = 3' } ],
+      lines: ['Statistik: 3 kvar', 'Inköpslarm: LÅGT saldo (3)! Beställ mer', 'Webbshop: 3 st i lager', 'Mejl: skickat till inköp (3 kvar)']
+    },
+    { title: 'Det här löste vi',
+      text: '<p><b>Observer</b> betyder: något händer på ett ställe, och alla som lyssnar får veta, utan att den som berättar vet vem de är.</p><p><b>Vardagsliknelse:</b> ett nyhetsbrev. Butiken skickar ut det utan att veta vem som läser eller vad de gör med det. Vill du ha det prenumererar du, vill du inte ha det avslutar du.</p>',
+      tip: '<b>Proffsens tips:</b> Behöver bara <i>en</i> sak veta att saldot ändrats? Anropa den direkt. Först när fler och fler vill veta, och listan växer, är det dags för Observer. I C# finns mönstret dessutom inbyggt som <code>event</code> och <code>+=</code>, så du har säkert redan använt det.',
+      code: `// Observer i en mening:
+// något händer på ett ställe, och alla som lyssnar
+// får veta, utan att Warehouse vet vilka de är.
+//
+// Warehouse      = den som berättar
+// IStockObserver = löftet
+// Statistics …   = lyssnarna`,
+      hl: [1, 3],
+      keepOut: true,
+      set: { stats: { cls:'weapon' }, alert: { cls:'weapon' }, shop: { cls:'weapon' }, mail: { cls:'weapon' } },
+      arrows: [...A3, { a:'mail', b:'iface', dash:true }, { a:'wh', b:'iface', label:'_observers' }]
+    }
+  ]
+};
+
+
+const PLUS3 = [ { a:'stats', b:'wh', color:'ok', label:'+=' }, { a:'alert', b:'wh', color:'ok', label:'+=' }, { a:'shop', b:'wh', color:'ok', label:'+=' } ];
+const EVENT = {
+  id: 'event', name: 'Observer med event', codeTitle: 'Program.cs',
+  blurb: '<b>Observer med event:</b> samma idé, men med det som redan finns inbyggt i C#. Gör <i>Observer</i> först, så förstår du vad <code>event</code> gör åt dig.',
+  elements: ['wh','stats','alert','shop','dots','mail','iface','note'],
+  steps: [
+    { title: 'Där vi var: vi byggde Observer själva',
+      text: '<p>Förra gången byggde vi allt för hand: ett <code>interface</code>, en <code>List</code>, en <code>Subscribe</code>-metod och en <code>foreach</code>.</p><p>Det är bra att ha gjort en gång, för då förstår du vad som händer. Men C# har <b>redan en färdig version</b> av exakt det här.</p>',
+      code: `class Warehouse
+{
+    private int _stock = 10;
+    private List<IStockObserver> _observers = new();
+
+    public void Subscribe(IStockObserver observer)
+        => _observers.Add(observer);
+
+    public void Sell(int amount)
+    {
+        _stock -= amount;
+        foreach (var observer in _observers)
+            observer.OnStockChanged(_stock);
+    }
+}`,
+      hl: [4, 7],
+      set: {
+        wh:    { x:240, y:290, w:150, h:80, o:1, cls:'hero ok', t:'Warehouse', s:'berättar' },
+        stats: { x:80,  y:130, w:110, h:70, o:1, cls:'weapon', t:'Statistics', s:'IStockObserver' },
+        alert: { x:200, y:130, w:110, h:70, o:1, cls:'weapon', t:'ReorderAlert', s:'IStockObserver' },
+        shop:  { x:320, y:130, w:110, h:70, o:1, cls:'weapon', t:'WebShop', s:'IStockObserver' },
+        iface: { x:110, y:20, w:410, h:60, o:1, cls:'iface', t:'IStockObserver', s:'eget interface + egen lista' }
+      },
+      arrows: [...A3, { a:'wh', b:'iface', label:'_observers' }]
+    },
+    { title: 'C# har det inbyggt: event',
+      text: '<p>Ordet <code>event</code> betyder: <b>“här kan andra prenumerera på att något händer”</b>. C# sköter listan och prenumerationen åt dig.</p><p>Hela blocket med interface, <code>List</code> och <code>Subscribe</code> blir <b>en enda rad</b>.</p>',
+      code: `// Före: eget interface, egen lista, egen Subscribe
+private List<IStockObserver> _observers = new();
+public void Subscribe(IStockObserver o) => _observers.Add(o);
+
+// Efter: C# har det inbyggt
+public event Action<int> StockChanged;`,
+      hl: [5, 6],
+      set: {
+        iface: { t:'event StockChanged', s:'C# sköter listan och prenumerationen' },
+        stats: { s:'lyssnare' }, alert: { s:'lyssnare' }, shop: { s:'lyssnare' }
+      },
+      arrows: [{ a:'wh', b:'iface', label:'event' }]
+    },
+    { title: 'Vad är Action<int>?',
+      text: '<p>Ett event behöver veta <i>hur en lyssnare ser ut</i>. Det beskriver <code>Action&lt;int&gt;</code>: <b>“en metod som tar en int och inte svarar med något”</b>. Det kallas ett <b>delegate</b>.</p><p>Det är löftet, fast <b>utan interface</b>. Vilken metod som helst som passar får lyssna, och den får heta vad som helst.</p>',
+      code: `// Action<int> = en metod som tar en int
+Action<int> a = stock => Console.WriteLine(stock);
+a(7);   // skriver ut 7
+
+// Vilken metod som helst som passar
+// får vara lyssnare, oavsett namn.`,
+      hl: [1, 3],
+      set: { iface: { t:'Action<int>', s:'löftet: valfri metod som tar en int' } },
+      arrows: [{ a:'wh', b:'iface', label:'event' }]
+    },
+    { title: 'Prenumerera med +=',
+      text: '<p>Nu prenumererar vi med <code>+=</code> (“lägg till mig”). Titta: lyssnarna är <b>vanliga metoder</b> i vanliga klasser, och de behöver inte ett interface.</p><p>De får till och med <b>olika metodnamn</b>: <code>Show</code>, <code>Check</code> och <code>Refresh</code>. Det gick inte med vårt eget interface.</p>',
+      code: `var warehouse = new Warehouse();
+var stats = new Statistics();
+var alert = new ReorderAlert();
+var shop = new WebShop();
+
+warehouse.StockChanged += stats.Show;
+warehouse.StockChanged += alert.Check;
+warehouse.StockChanged += shop.Refresh;`,
+      hl: [6, 8],
+      set: {
+        stats: { s:'Show(int)' }, alert: { s:'Check(int)' }, shop: { s:'Refresh(int)' }
+      },
+      arrows: PLUS3
+    },
+    { title: 'Sälj: Invoke berättar för alla',
+      text: '<p>I Warehouse säger <code>StockChanged?.Invoke(_stock)</code> “berätta för alla som lyssnar”. Följ prickarna: beskedet går ut till alla samtidigt, precis som förut.</p><p>Frågetecknet <code>?.</code> betyder “om ingen lyssnar, gör ingenting”. Utan det kraschar programmet när listan är tom.</p>',
+      code: `class Warehouse
+{
+    private int _stock = 10;
+    public event Action<int> StockChanged;
+
+    public void Sell(int amount)
+    {
+        _stock -= amount;
+        StockChanged?.Invoke(_stock);
+    }
+}
+
+warehouse.Sell(3);
+
+// Utskrift:
+// Statistik: 7 kvar
+// Inköpslarm: 7 kvar, allt bra
+// Webbshop: 7 st i lager`,
+      hl: [9, 9],
+      set: { stats: { cls:'weapon active' }, alert: { cls:'weapon active' }, shop: { cls:'weapon active' } },
+      arrows: PLUS3,
+      msgs: [ { a:'wh', b:'stats', out:'stock = 7' }, { a:'wh', b:'alert', out:'stock = 7' }, { a:'wh', b:'shop', out:'stock = 7' } ],
+      lines: ['Statistik: 7 kvar', 'Inköpslarm: 7 kvar, allt bra', 'Webbshop: 7 st i lager']
+    },
+    { title: 'Avsluta prenumerationen med -=',
+      text: '<p>Webbshopen behöver inte veta mer. Den kan säga upp sig med <code>-=</code> (“ta bort mig”). Nu får bara två lyssnare beskedet.</p><p><b>Glöm inte -=.</b> Den som prenumererar men aldrig säger upp sig stannar kvar i listan, även när den inte behövs längre.</p>',
+      code: `warehouse.StockChanged -= shop.Refresh;  // slutar lyssna
+warehouse.Sell(4);
+
+// Utskrift:
+// Statistik: 3 kvar
+// Inköpslarm: LÅGT saldo (3)! Beställ mer`,
+      hl: [1, 1],
+      set: {
+        stats: { cls:'weapon active' }, alert: { cls:'weapon active' },
+        shop:  { o:0.35, cls:'weapon' },
+        note:  { x:410, y:300, w:210, h:44, o:1, cls:'note', t:'WebShop sa upp sig ✓', s:'' }
+      },
+      arrows: [ { a:'stats', b:'wh', color:'ok', label:'+=' }, { a:'alert', b:'wh', color:'ok', label:'+=' } ],
+      msgs: [ { a:'wh', b:'stats', out:'stock = 3' }, { a:'wh', b:'alert', out:'stock = 3' } ],
+      lines: ['Statistik: 3 kvar', 'Inköpslarm: LÅGT saldo (3)! Beställ mer']
+    },
+    { title: 'Så skriver proffsen det: EventHandler',
+      text: '<p>I riktiga projekt ser du oftast <code>EventHandler</code>. Den skickar med <b>vem som berättade</b> (<code>sender</code>) och en liten <b>låda med uppgifter</b> (<code>EventArgs</code>).</p><p>Det är samma idé som förut, bara med ett standardformat som alla C#-utvecklare känner igen. Du behöver <i>känna igen</i> det, inte kunna det utantill.</p>',
+      code: `public class StockChangedEventArgs : EventArgs
+{
+    public int Stock { get; }
+    public StockChangedEventArgs(int stock) => Stock = stock;
+}
+
+// i Warehouse:
+public event EventHandler<StockChangedEventArgs> StockChanged;
+StockChanged?.Invoke(this, new StockChangedEventArgs(_stock));
+
+// lyssnaren:
+void OnStockChanged(object sender, StockChangedEventArgs e)
+    => Console.WriteLine($"Saldot är nu {e.Stock}");`,
+      hl: [8, 9],
+      set: {
+        shop: { o:1, cls:'weapon' },
+        iface: { t:'EventHandler<…EventArgs>', s:'standardformatet: (sender, args)' }
+      },
+      arrows: [{ a:'wh', b:'iface', label:'event' }]
+    },
+    { title: 'Det här löste vi',
+      text: '<p><b>Event</b> är Observer, inbyggt i C#. Du slipper skriva interface, lista och <code>Subscribe</code> själv.</p><p><b>Vardagsliknelse:</b> en knapp i en app. <code>knapp.Click += SparaKlick;</code> betyder “säg till mig när någon klickar”. Knappen vet inte vem som lyssnar. Du har alltså redan använt Observer.</p>',
+      tip: '<b>Proffsens tips:</b> Välj <code>event</code> när lyssnarna bara behöver ta emot ett enkelt besked. Välj ett eget interface när lyssnaren måste kunna flera saker. Och lägg på minnet: <b>-= när du är klar</b>. Samma idé finns också som <code>INotifyPropertyChanged</code> (när en egenskap ändras) och <code>IObservable&lt;T&gt;</code>, så känn igen namnen när du ser dem.',
+      code: `// event i en mening:
+// Observer, inbyggt i C#.
+//
+// event  = "här kan du prenumerera"
+// +=     = lägg till mig
+// -=     = ta bort mig
+// ?.Invoke(...) = berätta för alla som lyssnar`,
+      hl: [1, 2],
+      keepOut: true,
+      set: { stats: { cls:'weapon' }, alert: { cls:'weapon' }, shop: { cls:'weapon', o:1 }, note: { o:0 }, iface: { t:'event', s:'Observer, inbyggt i C#' } },
+      arrows: [{ a:'wh', b:'iface', label:'event' }, ...PLUS3]
+    }
+  ]
+};
+
+const PATTERNS = [STRATEGY, OBSERVER, EVENT];
+const COMING = ['Factory', 'Builder', 'Repository'];
+
+/* ============ HJÄLPFUNKTIONER ============ */
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const KW = 'class|interface|public|private|new|return|var|string|void|static|else|if|int|bool|using|namespace';
+const TOKEN = new RegExp('(\\/\\/.*$)|(\\$?"(?:[^"\\\\]|\\\\.)*")|\\b('+KW+')\\b|\\b([A-Z][A-Za-z0-9_]*)\\b|\\b(\\d+)\\b','g');
+function highlight(line){
+  let out = '', last = 0, m;
+  TOKEN.lastIndex = 0;
+  while ((m = TOKEN.exec(line))){
+    out += esc(line.slice(last, m.index));
+    const cls = m[1] ? 'c' : m[2] ? 's' : m[3] ? 'k' : m[4] ? 't' : 'n';
+    out += '<span class="'+cls+'">'+esc(m[0])+'</span>';
+    last = m.index + m[0].length;
+  }
+  return out + esc(line.slice(last));
+}
+
+/* ============ TILLSTÅND ============ */
+let pat = STRATEGY, cur = 0, timer = null, token = 0;
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const boxes = {};
+const stage = $('stage'), wrap = $('stagewrap'), svg = $('arrows');
+
+/* Bygg en div per element en gång */
+function buildBoxes(){
+  Object.keys(boxes).forEach(k => { boxes[k].remove(); delete boxes[k]; });
+  pat.elements.forEach(id => {
+    const d = document.createElement('div');
+    d.className = 'box'; d.style.opacity = 0;
+    d.innerHTML = '<div class="bt"></div><div class="bs"></div>';
+    stage.appendChild(d); boxes[id] = d;
+  });
+}
+
+/* Räkna ut tillståndet för ett steg: slå ihop alla steg fram till och med i */
+function stateAt(i){
+  const st = {};
+  pat.elements.forEach(id => st[id] = { x:0, y:0, w:100, h:60, o:0, cls:'', t:'', s:'' });
+  for (let k = 0; k <= i; k++){
+    const set = pat.steps[k].set || {};
+    Object.keys(set).forEach(id => Object.assign(st[id], set[id]));
+  }
+  return st;
+}
+
+function applyState(st){
+  Object.keys(st).forEach(id => {
+    const s = st[id], d = boxes[id];
+    d.style.left = s.x+'px'; d.style.top = s.y+'px';
+    d.style.width = s.w+'px'; d.style.height = s.h+'px';
+    d.style.opacity = s.o;
+    d.className = 'box ' + s.cls;
+    d.firstChild.textContent = s.t;
+    d.lastChild.textContent = s.s;
+    d.lastChild.style.display = s.s ? '' : 'none';
+  });
+}
+
+/* Pilar: från kant till kant mellan två boxars mittpunkter */
+function edge(r, tx, ty){
+  const cx = r.x + r.w/2, cy = r.y + r.h/2, dx = tx - cx, dy = ty - cy;
+  if (!dx && !dy) return {x:cx, y:cy};
+  const k = Math.min((r.w/2)/Math.abs(dx || 1e-9), (r.h/2)/Math.abs(dy || 1e-9));
+  return { x: cx + dx*k, y: cy + dy*k };
+}
+function line(st, a, b){
+  const A = st[a], B = st[b];
+  const ac = {x:A.x+A.w/2, y:A.y+A.h/2}, bc = {x:B.x+B.w/2, y:B.y+B.h/2};
+  return { p: edge(A, bc.x, bc.y), q: edge(B, ac.x, ac.y) };
+}
+function drawArrows(st, list){
+  svg.querySelectorAll('.a').forEach(n => n.remove());
+  (list || []).forEach(ar => {
+    const { p, q } = line(st, ar.a, ar.b);
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('class', 'a');
+    g.style.color = ar.color ? 'var(--'+ar.color+')' : (ar.dash ? 'var(--iface)' : 'var(--accent)');
+    const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    l.setAttribute('x1', p.x); l.setAttribute('y1', p.y); l.setAttribute('x2', q.x); l.setAttribute('y2', q.y);
+    l.setAttribute('stroke', 'currentColor'); l.setAttribute('stroke-width', ar.dash ? 2 : 2.5);
+    if (ar.dash) l.setAttribute('stroke-dasharray', '6 5');
+    l.setAttribute('marker-end', 'url(#ah)');
+    g.appendChild(l);
+    if (ar.label){
+      const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      t.setAttribute('x', (p.x+q.x)/2 + 8); t.setAttribute('y', (p.y+q.y)/2);
+      t.setAttribute('fill', 'currentColor'); t.setAttribute('font-size', '13');
+      t.setAttribute('font-family', 'ui-monospace,Menlo,Consolas,monospace');
+      t.textContent = ar.label; g.appendChild(t);
+    }
+    svg.appendChild(g);
+    requestAnimationFrame(() => requestAnimationFrame(() => g.classList.add('on')));
+  });
+}
+
+/* Pricken(arna) som bär meddelandet. Flera kan åka samtidigt, svar är valfritt. */
+function runMessage(st, msgs, myToken, done){
+  const list = Array.isArray(msgs) ? msgs : [msgs];
+  let left = list.length;
+  const fin = () => { left--; if (left === 0 && myToken === token) done(); };
+  list.forEach(m => {
+    const { p, q } = line(st, m.a, m.b);
+    const el = document.createElement('div');
+    el.className = 'packet'; el.innerHTML = '<span></span>';
+    const span = el.firstChild;
+    stage.appendChild(el);
+    function leg(from, to, text, cb){
+      if (myToken !== token) return;
+      span.textContent = text; el.style.opacity = 1;
+      const anim = el.animate(
+        [{ transform:`translate(${from.x}px,${from.y}px)` }, { transform:`translate(${to.x}px,${to.y}px)` }],
+        { duration: 1100, easing:'ease-in-out', fill:'forwards' });
+      anim.onfinish = () => { if (myToken === token) cb(); };
+    }
+    const end = () => { el.remove(); fin(); };
+    leg(p, q, m.out, () => m.back ? leg(q, p, m.back, end) : end());
+  });
+}
+
+function showOut(lines, animate){
+  const o = $('out');
+  o.hidden = !(lines && lines.length) && !animate;
+  o.innerHTML = '<span class="p">$ dotnet run</span>' +
+    (lines || []).map((l, i) => {
+      const anim = animate === 'all' || (animate && i === lines.length-1);
+      return '<span class="l"'+(anim ? '' : ' style="animation:none"')+'>'+esc(l)+'</span>';
+    }).join('');
+}
+
+/* ============ VISA ETT STEG ============ */
+function show(i){
+  cur = Math.max(0, Math.min(pat.steps.length-1, i));
+  const step = pat.steps[cur], st = stateAt(cur), myToken = ++token;
+  stage.querySelectorAll('.packet').forEach(n => n.remove());
+
+  const lines = step.code.split('\n');
+  $('code').innerHTML = lines.map((l, n) =>
+    '<span class="ln'+(step.hl && n+1 >= step.hl[0] && n+1 <= step.hl[1] ? ' hl' : '')+'"><b>'+(n+1)+'</b>'+highlight(l)+'</span>').join('');
+  $('title').textContent = (cur+1) + '. ' + step.title;
+  $('text').innerHTML = step.text;
+  const tip = $('tip'); tip.hidden = !step.tip; tip.innerHTML = step.tip || '';
+
+  applyState(st);
+  drawArrows(st, []);
+  const prevLines = (pat.steps.slice(0, cur).reverse().find(x => x.lines) || {}).lines;
+  const own = step.lines;
+  const msgs = step.msgs || step.msg;
+
+  const delay = reduce ? 0 : 850;
+  setTimeout(() => {
+    if (myToken !== token) return;
+    drawArrows(st, step.arrows);
+    if (msgs && !reduce){
+      showOut(step.msgs ? [] : (own ? own.slice(0, -1) : []), false);
+      runMessage(st, msgs, myToken, () => showOut(own, step.msgs ? 'all' : true));
+    } else {
+      showOut(own || (step.keepOut ? prevLines : null) || [], false);
+    }
+  }, delay);
+  if (!own && !step.keepOut) showOut([], false);
+
+  document.querySelectorAll('.dot').forEach((d, n) => {
+    d.setAttribute('aria-current', n === cur ? 'step' : 'false');
+    d.classList.toggle('done', n < cur);
+  });
+  $('back').disabled = cur === 0;
+  $('next').disabled = cur === pat.steps.length-1;
+  try { history.replaceState(null, '', '#' + pat.id + '-' + (cur+1)); } catch (e) {}
+}
+
+/* ============ UI ============ */
+function buildSteps(){
+  const sp = $('steps'); sp.innerHTML = '';
+  pat.steps.forEach((st, n) => {
+    const d = document.createElement('button');
+    d.className = 'dot'; d.type = 'button'; d.textContent = n+1; d.title = st.title;
+    d.addEventListener('click', () => { stop(); show(n); });
+    sp.appendChild(d);
+  });
+}
+function buildUI(){
+  const pk = $('patterns');
+  PATTERNS.forEach(p => {
+    const b = document.createElement('button');
+    b.className = 'chip'; b.type = 'button'; b.textContent = p.name; b.dataset.id = p.id;
+    b.setAttribute('role', 'tab');
+    b.addEventListener('click', () => setPattern(p, 0));
+    pk.appendChild(b);
+  });
+  COMING.forEach(n => {
+    const b = document.createElement('button');
+    b.className = 'chip'; b.type = 'button'; b.disabled = true; b.textContent = n + ' (kommer)';
+    pk.appendChild(b);
+  });
+}
+function setPattern(p, step){
+  stop(); token++;
+  pat = p;
+  document.querySelectorAll('#patterns .chip[data-id]').forEach(c =>
+    c.setAttribute('aria-selected', c.dataset.id === p.id ? 'true' : 'false'));
+  $('blurb').innerHTML = p.blurb;
+  buildBoxes(); buildSteps();
+  show(step);
+}
+function fit(){
+  const k = wrap.clientWidth / W;
+  stage.style.transform = 'scale('+k+')';
+  wrap.style.height = (H*k)+'px';
+}
+function stop(){ clearInterval(timer); timer = null; $('play').textContent = '▶ Spela upp'; }
+function play(){
+  if (timer){ stop(); return; }
+  if (cur >= pat.steps.length-1) show(0);
+  $('play').textContent = '⏸ Pausa';
+  timer = setInterval(() => {
+    if (cur >= pat.steps.length-1){ stop(); return; }
+    show(cur+1);
+  }, 6500);
+}
+$('next').addEventListener('click', () => { stop(); show(cur+1); });
+$('back').addEventListener('click', () => { stop(); show(cur-1); });
+$('play').addEventListener('click', play);
+$('copy').addEventListener('click', async () => {
+  const b = $('copy');
+  try { await navigator.clipboard.writeText(pat.steps[cur].code); b.textContent = 'Kopierad ✓'; }
+  catch (e) { b.textContent = 'Markera koden själv'; }
+  setTimeout(() => b.textContent = 'Kopiera', 1800);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight'){ stop(); show(cur+1); }
+  if (e.key === 'ArrowLeft'){ stop(); show(cur-1); }
+});
+window.addEventListener('resize', fit);
+
+buildUI(); fit();
+{
+  const m = /^#([a-z]+)-(\d+)$/.exec(location.hash);
+  const p = m ? (PATTERNS.find(x => x.id === m[1]) || STRATEGY) : STRATEGY;
+  setPattern(p, m ? parseInt(m[2], 10) - 1 : 0);
+}
+</script>
+</body>
+</html>
