@@ -39,6 +39,11 @@
  "githubBase": "https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-03-fordjupad-oop/",
  "links": [
   {
+   "icon": "🌿",
+   "label": "Lär dig Git — visuell guide",
+   "href": "https://marcusjobb.github.io/YRGO-CLO26-Portal/git-visuell-guide.html"
+  },
+  {
    "icon": "🦸",
    "label": "Livekodning — Mira hjälteäventyret",
    "href": "https://github.com/marcusjobb/Mira_hero_01_livekodning"

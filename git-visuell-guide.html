@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Git – visuell guide</title>
+<style>
+:root{
+  --bg:#f7f6f2; --card:#ffffff; --ink:#1d1d1f; --muted:#62666d; --line:#dedbd1;
+  --accent:#4f46e5;
+  --changed:#f59e0b; --changed-bg:#fff4dc;
+  --staged:#16a34a;  --staged-bg:#e2f6e8;
+  --commit:#7c3aed;  --commit-bg:#efe7fd;
+  --remote:#0284c7;  --remote-bg:#e0f2fd;
+  --code-bg:#14161a; --code-ink:#e8e8ea;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#15161a; --card:#1f2127; --ink:#f0f0f2; --muted:#a0a4ac; --line:#363942;
+    --accent:#8b86ff;
+    --changed-bg:#3a2d10; --staged-bg:#12301d; --commit-bg:#2a1f47; --remote-bg:#0f2e42;
+    --code-bg:#0c0d10;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1000px;margin:0 auto;padding:22px 16px 48px}
+h1{font-size:1.7rem;margin:0 0 4px}
+.lead{color:var(--muted);margin:0 0 18px}
+button{font:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* val av lektion och verktyg */
+.picker{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:12px}
+.picker .lbl{font-weight:600;margin-right:4px;min-width:104px}
+.tab,.ltab{border:2px solid var(--line);background:var(--card);color:var(--ink);padding:6px 14px;border-radius:999px;font-weight:600}
+.tab[aria-selected="true"],.ltab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* scenen */
+.stage{position:relative;display:flex;align-items:stretch;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-top:16px}
+.box{flex:1 1 0;min-width:0;border:2px dashed var(--line);border-radius:14px;padding:10px}
+.box-head{text-align:center}
+.box-head .ic{font-size:1.9rem;line-height:1.2}
+.box-head .nm{font-weight:700}
+.box-head .tm{font-size:.8rem;color:var(--muted)}
+.box-head .hint{font-size:.78rem;color:var(--muted);margin-top:2px;line-height:1.25}
+.slot{min-height:104px;margin-top:10px}
+.arrow{flex:0 0 78px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  font:600 .76rem ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--muted);transition:color .3s}
+.arrow .glyph{font-size:1.7rem;line-height:1;font-family:system-ui,sans-serif}
+.arrow span:last-child{text-align:center;line-height:1.2}
+.arrow.on{color:var(--accent)}
+.arrow.on .glyph{animation:nudge 1s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateX(7px)}}
+@keyframes nudgeV{0%,100%{transform:rotate(90deg) translateX(0)}50%{transform:rotate(90deg) translateX(7px)}}
+
+#items{position:absolute;inset:0;pointer-events:none}
+.item{position:absolute;left:0;top:0;height:78px;padding:8px 10px;border-radius:12px;border:2px solid;
+  display:flex;flex-direction:column;justify-content:center;gap:1px;overflow:hidden;will-change:transform;
+  transition:transform .9s cubic-bezier(.25,.8,.25,1),width .5s,opacity .45s,background-color .4s,border-color .4s}
+.item .t{font-weight:700;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item .s{font-size:.78rem;color:var(--muted);line-height:1.2;max-height:2.4em;overflow:hidden}
+.item .b{font-size:.74rem;font-weight:700}
+.item.changed{background:var(--changed-bg);border-color:var(--changed)}
+.item.staged{background:var(--staged-bg);border-color:var(--staged)}
+.item.commit{background:var(--commit-bg);border-color:var(--commit)}
+.item.remote{background:var(--remote-bg);border-color:var(--remote)}
+.item.changed .b{color:var(--changed)} .item.staged .b{color:var(--staged)}
+.item.commit .b{color:var(--commit)}   .item.remote .b{color:var(--remote)}
+.item.pop{animation:pop .6s}
+@keyframes pop{0%{scale:1}40%{scale:1.1}100%{scale:1}}
+.no-anim .item{transition:none !important}
+
+/* grenar (SVG) */
+.stage.branches{display:block;padding:8px 8px 4px}
+.stage svg{width:100%;height:auto;display:block}
+.c-main{--c:var(--staged)} .c-test{--c:var(--changed)} .c-dev{--c:var(--remote)} .c-feature{--c:var(--commit)}
+.lane{opacity:0;transition:opacity .5s}
+.lane.show{opacity:1}
+.lane line{stroke:var(--line);stroke-width:2;stroke-dasharray:3 7}
+.lane .ln{font-size:19px;font-weight:700;fill:var(--c)}
+.lane .ld{fill:var(--muted);font-size:13px}
+.edge path{fill:none;stroke:var(--c);stroke-width:4;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .7s ease}
+.edge.show path{stroke-dashoffset:0}
+.edge polygon{fill:var(--c);opacity:0;transition:opacity .3s}
+.edge.show polygon{opacity:1;transition-delay:.6s}
+.node{opacity:0;transition:opacity .45s}
+.node.show{opacity:1;transition-delay:.5s}
+.node circle{fill:var(--c);stroke:var(--card);stroke-width:3;transform-box:fill-box;transform-origin:center;transform:scale(.3);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.node.show circle{transform:scale(1);transition-delay:.5s}
+.node text{font-size:14px;fill:var(--muted);text-anchor:middle}
+.cloud{opacity:0;font-size:20px;text-anchor:middle;transition:opacity .5s}
+.cloud.show{opacity:1;transition-delay:.3s}
+.tag{opacity:0;font-size:14px;font-weight:700;fill:var(--ink);text-anchor:middle;transition:opacity .5s}
+.tag.show{opacity:1;transition-delay:.3s}
+.node.ghost circle{fill:var(--card);stroke:var(--c);stroke-width:3;stroke-dasharray:5 4}
+.edge.dashed path{stroke-dasharray:.03 .03;stroke-dashoffset:0;opacity:0;transition:opacity .5s}
+.edge.dashed.show path{opacity:1}
+.elabel{font-size:14px;font-weight:700;fill:var(--ink);text-anchor:middle;opacity:0;transition:opacity .4s;paint-order:stroke;stroke:var(--card);stroke-width:5px;stroke-linejoin:round}
+.edge.show .elabel{opacity:1;transition-delay:.3s}
+.head{transition:transform .8s cubic-bezier(.25,.8,.25,1)}
+.head rect{fill:var(--accent)}
+.head text{fill:#fff;font-size:13px;font-weight:700;text-anchor:middle}
+
+/* kodvy (konflikter) */
+.stage.editor{display:block;padding:14px}
+.panels{display:grid;gap:12px;grid-template-columns:1fr}
+.panels.two{grid-template-columns:1fr 1fr}
+.panel{border:2px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg)}
+.panel-h{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 12px;font-weight:700;font-size:.92rem;border-bottom:2px solid var(--line);background:var(--card)}
+.br{font-weight:600;font-size:.78rem;padding:1px 10px;border-radius:999px;border:2px solid var(--line);color:var(--muted)}
+.br.theirs{color:var(--remote);border-color:var(--remote)}
+.br.mine{color:var(--commit);border-color:var(--commit)}
+.br.result{color:var(--staged);border-color:var(--staged)}
+.code{padding:8px 0;font:1rem/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.cl{display:flex;flex-wrap:wrap;column-gap:12px;align-items:baseline;padding:0 12px;opacity:0;animation:lineIn .45s forwards}
+.cl code{font:inherit;white-space:pre-wrap;word-break:break-word}
+.cl .nt{margin-left:auto;font:600 .78rem/1.3 system-ui,sans-serif;color:var(--muted)}
+.cl.theirs{background:var(--remote-bg);box-shadow:inset 4px 0 var(--remote)}
+.cl.mine{background:var(--commit-bg);box-shadow:inset 4px 0 var(--commit)}
+.cl.marker{background:var(--changed-bg);color:var(--changed);font-weight:700;box-shadow:inset 4px 0 var(--changed)}
+.cl.result{background:var(--staged-bg);box-shadow:inset 4px 0 var(--staged)}
+.panel.term{background:var(--code-bg);border-color:var(--code-bg);color:var(--code-ink)}
+.panel.term .panel-h{background:#22252c;border-color:#22252c;color:#e8e8ea}
+.panel.term .cl.cmdline{color:#8be9a8}
+.panel.term .cl.err{color:#ff8a80}
+.panel.term .cl .nt{color:#a9adb5}
+@keyframes lineIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+
+/* kontroller */
+.controls{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:16px 0 10px;flex-wrap:wrap}
+.dots{display:flex;gap:8px;align-items:center}
+.dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--accent);background:transparent;padding:0}
+.dot[aria-current="step"]{background:var(--accent)}
+.btn{border:2px solid var(--accent);background:var(--card);color:var(--accent);padding:8px 18px;border-radius:12px;font-weight:700}
+.btn.primary{background:var(--accent);color:#fff}
+.btn:disabled{opacity:.35;cursor:default}
+.nav{display:flex;gap:8px;align-items:center}
+
+/* förklaring */
+.info{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.stepno{font-size:.82rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.info h2{margin:2px 0 6px;font-size:1.35rem}
+.info p{margin:0 0 12px}
+.cmd{display:flex;align-items:center;gap:10px;background:var(--code-bg);color:var(--code-ink);border-radius:12px;padding:10px 12px}
+.cmd code{flex:1;font:1.02rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-x:auto;white-space:pre}
+.cmd .note{font-size:.8rem;color:#a9adb5;white-space:nowrap}
+.cmd button{background:#2a2d35;color:#e8e8ea;border:0;border-radius:8px;padding:5px 12px;font-size:.85rem}
+.cmd[hidden]{display:none}
+
+.toolpanel{margin-top:14px;border-left:5px solid var(--accent);background:var(--card);border-radius:0 14px 14px 0;padding:12px 16px;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.toolpanel .who{font-size:.82rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.toolpanel p{margin:4px 0 0}
+kbd{font:.85em ui-monospace,Menlo,Consolas,monospace;background:var(--bg);border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px}
+.toolpanel code{font:.92em ui-monospace,Menlo,Consolas,monospace;background:var(--bg);border-radius:5px;padding:1px 6px}
+footer{margin-top:22px;color:var(--muted);font-size:.85rem}
+
+@media (max-width:760px){
+  .picker .lbl{min-width:100%}
+  .stage:not(.branches){flex-direction:column;padding:12px}
+  .box{padding:8px 10px}
+  .box-head{display:flex;gap:10px;align-items:center;text-align:left}
+  .box-head .ic{font-size:1.6rem}
+  .box-head .hint{display:none}
+  .slot{min-height:82px;margin-top:8px}
+  .arrow{flex:0 0 46px;flex-direction:row;gap:10px}
+  .arrow .glyph{transform:rotate(90deg)}
+  .arrow.on .glyph{animation:nudgeV 1s ease-in-out infinite}
+  .lane .ln{font-size:23px}
+  .lane .ld{font-size:16px}
+  .node text{font-size:17px}
+  .tag,.elabel{font-size:16px}
+  .head text{font-size:15px}
+  .panels.two{grid-template-columns:1fr}
+  .code{font-size:.9rem}
+  .cmd .note{display:none}
+  .cmd code{white-space:pre-wrap;word-break:break-word}
+  .btn{padding:8px 12px;white-space:nowrap}
+  .nav{flex-wrap:wrap}
+}
+@media (prefers-reduced-motion:reduce){
+  .item,.head,.node,.node circle,.edge path,.edge polygon{transition-duration:.01s !important;transition-delay:0s !important}
+  .cl{animation:none;opacity:1}
+  .arrow.on .glyph,.item.pop{animation:none}
+}
+</style>
+</head>
+<body>
+<main>
+  <h1>Git – visuell guide</h1>
+  <p class="lead">Välj lektion och verktyg, och klicka dig igenom. Du ser vad som händer och var du klickar.</p>
+
+  <div class="picker" id="lessons" role="tablist" aria-label="Lektion"><span class="lbl">Lektion:</span></div>
+  <div class="picker" id="tools" role="tablist" aria-label="Vilket verktyg använder du?"><span class="lbl">Jag använder:</span></div>
+
+  <div class="stage" id="stage"></div>
+
+  <div class="controls">
+    <div class="dots" id="dots"></div>
+    <div class="nav">
+      <button class="btn" id="play" aria-pressed="false">▶ Spela upp</button>
+      <button class="btn" id="prev">← Tillbaka</button>
+      <button class="btn primary" id="next">Nästa →</button>
+    </div>
+  </div>
+
+  <section class="info" aria-live="polite">
+    <div class="stepno" id="stepno"></div>
+    <h2 id="title"></h2>
+    <p id="text"></p>
+    <div class="cmd" id="cmdbox">
+      <code id="cmd"></code><span class="note" id="cmdnote"></span>
+      <button id="copy" type="button">Kopiera</button>
+    </div>
+  </section>
+
+  <section class="toolpanel" id="toolpanel" role="tabpanel">
+    <div class="who" id="who"></div>
+    <p id="toolbody"></p>
+  </section>
+
+  <footer>Lektion 1–8. Menynamn kan skilja något mellan versioner av verktygen.</footer>
+</main>
+
+<script>
+/* ===================== DATA ===================== */
+const TOOLS = [['console','Konsol'],['vscode','VS Code'],['vs','Visual Studio'],['rider','Rider']];
+
+/* ---------- Lektion 1: spara och skicka (scen "places") ---------- */
+const L1 = {
+  name:'Spara och skicka', scene:'places',
+  boxes:[
+    {icon:'📁', name:'Din mapp',   term:'working directory', hint:'Här jobbar du med dina filer'},
+    {icon:'🛒', name:'Kundvagnen', term:'staging',           hint:'Det som ska med i nästa sparpunkt'},
+    {icon:'💾', name:'Din dator',  term:'lokalt repo',       hint:'Dina sparpunkter, bara hos dig'},
+    {icon:'☁️', name:'GitHub',     term:'remote',            hint:'Delat med alla'}
+  ],
+  arrows:['git add','git commit','git push'],
+  steps:[
+    { title:'Du ändrar en fil',
+      text:'Du har skrivit kod och sparat filen i editorn. Git ser att filen är ändrad, men har inte sparat något än.',
+      cmd:'git status', note:'visar vad som är ändrat', arrow:-1,
+      items:[{id:'f',box:0,cls:'changed',icon:'📄',t:'Program.cs',s:'Ändrad sedan sist',b:'✏️ ändrad'}],
+      tools:{
+        console:'Skriv <code>git status</code>. Ändrade filer listas under <i>Changes not staged for commit</i>.',
+        vscode:'Öppna <b>Källkontroll</b> (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>G</kbd>). Filen syns under <b>Changes</b> med ett <b>M</b> (modified).',
+        vs:'Öppna <b>Git Changes</b> via <b>Visa → Git Changes</b>. Filen syns under <b>Changes</b>.',
+        rider:'Öppna <b>Commit</b>-fönstret (<kbd>Ctrl</kbd>+<kbd>K</kbd>, på Mac <kbd>⌘</kbd>+<kbd>K</kbd>). Filen syns under <b>Changes</b>.'
+      }},
+    { title:'Lägg i kundvagnen',
+      text:'Du väljer vilka ändringar som ska med i nästa sparpunkt. Inget är sparat än, du har bara plockat ut vad som ska med.',
+      cmd:'git add Program.cs', note:'lägg i kundvagnen', arrow:0,
+      items:[{id:'f',box:1,cls:'staged',icon:'📄',t:'Program.cs',s:'Väntar på sparpunkt',b:'✅ redo'}],
+      tools:{
+        console:'Skriv <code>git add Program.cs</code>. Vill du ta med allt som ändrats? <code>git add .</code>',
+        vscode:'Hovra över filen under <b>Changes</b> och klicka på <b>+</b> (Stage Changes). Filen flyttas till <b>Staged Changes</b>.',
+        vs:'Klicka på <b>+</b> bredvid filen i <b>Git Changes</b>. Hoppar du över det tar <b>Commit All</b> med alla ändringar åt dig.',
+        rider:'Kryssa i rutan framför filen i Commit-fönstret. Rider har som standard inget eget &quot;add&quot;-steg: kryssrutan <i>är</i> kundvagnen.'
+      }},
+    { title:'Ta en sparpunkt',
+      text:'Nu sparar du det som ligger i kundvagnen som en sparpunkt, med ett meddelande om vad du gjorde. Den finns fortfarande bara på din dator.',
+      cmd:'git commit -m "Lägg till inloggning"', note:'skapa sparpunkt', arrow:1,
+      items:[{id:'f',box:2,cls:'commit',icon:'💾',t:'Sparpunkt 1',s:'“Lägg till inloggning”',b:'🏠 bara hos dig'}],
+      tools:{
+        console:'Skriv <code>git commit -m "Lägg till inloggning"</code>. Meddelandet ska beskriva vad du gjorde, så att du förstår det om en vecka.',
+        vscode:'Skriv ett meddelande i rutan ovanför filerna och klicka <b>Commit</b> (eller <kbd>Ctrl</kbd>+<kbd>Enter</kbd>).',
+        vs:'Skriv ett meddelande i <b>Git Changes</b> och klicka <b>Commit Staged</b> (eller <b>Commit All</b>).',
+        rider:'Skriv ett meddelande och klicka <b>Commit</b>. Välj inte <i>Commit and Push</i> än, så att du ser skillnaden mellan stegen.'
+      }},
+    { title:'Skicka upp till GitHub',
+      text:'Nu kopieras sparpunkten till GitHub. Först nu kan andra se den, och du har en säkerhetskopia om datorn skulle dö.',
+      cmd:'git push', note:'skicka upp', arrow:2,
+      items:[
+        {id:'f',box:2,cls:'commit',icon:'💾',t:'Sparpunkt 1',s:'“Lägg till inloggning”',b:'🏠 på din dator'},
+        {id:'r',box:3,from:2,cls:'remote',icon:'☁️',t:'Sparpunkt 1',s:'“Lägg till inloggning”',b:'✨ delad'}
+      ],
+      tools:{
+        console:'Skriv <code>git push</code>. Första gången på en ny gren kan Git be dig köra <code>git push -u origin grennamn</code>. Gör som det står.',
+        vscode:'Klicka <b>Sync Changes</b> i statusfältet nere till vänster (cirkelpilarna), eller <b>Push</b> via <b>•••</b> i Källkontroll. Obs: Sync gör både hämta och skicka.',
+        vs:'Klicka på <b>↑ Push</b> i <b>Git Changes</b>, eller välj <b>Git → Push</b>.',
+        rider:'Tryck <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> (Mac: <kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>) eller välj <b>Git → Push…</b> och klicka <b>Push</b>.'
+      }},
+    { title:'Klart! Så här gör du varje gång',
+      text:'Ändra → lägg i kundvagnen → ta sparpunkt → skicka upp. Upprepa varje gång du har kommit en bit. Små och täta sparpunkter är bättre än få och stora.',
+      cmd:null, arrow:'all',
+      items:[
+        {id:'f',box:2,cls:'commit',icon:'💾',t:'Sparpunkt 1',s:'“Lägg till inloggning”',b:'🏠 på din dator'},
+        {id:'r',box:3,cls:'remote',icon:'☁️',t:'Sparpunkt 1',s:'“Lägg till inloggning”',b:'✨ delad'}
+      ],
+      tools:{
+        console:'Genväg: <code>git add .</code> tar med alla ändringar på en gång.',
+        vscode:'Pilen bredvid <b>Commit</b> har valet <b>Commit &amp; Push</b> som gör båda i ett svep.',
+        vs:'Pilen på commit-knappen har valet <b>Commit All and Push</b>.',
+        rider:'<b>Commit and Push…</b> (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>K</kbd>) gör båda på en gång.'
+      }}
+  ]
+};
+
+/* ---------- Lektion 2: grenar (scen "branches") ---------- */
+const L2 = {
+  name:'Grenar', scene:'branches',
+  graph:{
+    lanes:[
+      {id:'main',    desc:'stabilt', at:0},
+      {id:'test',    desc:'testas här',                 at:0},
+      {id:'dev',     desc:'samlar färdigt',         at:0},
+      {id:'feature', desc:'ditt jobb',             at:1}
+    ],
+    nodes:[
+      {id:'m0',lane:'main',   col:0,t:'Start',   at:0},
+      {id:'t0',lane:'test',   col:0,t:'Start',   at:0},
+      {id:'d0',lane:'dev',    col:0,t:'',        at:0},
+      {id:'f0',lane:'feature',col:0,t:'Start',   at:1},
+      {id:'f1',lane:'feature',col:1,t:'Commit 1',at:2},
+      {id:'f2',lane:'feature',col:2,t:'Commit 2',at:2},
+      {id:'d1',lane:'dev',    col:3,t:'Merge',   at:3},
+      {id:'t1',lane:'test',   col:4,t:'Merge',   at:4},
+      {id:'m1',lane:'main',   col:5,t:'Merge',   at:5}
+    ],
+    edges:[
+      {from:'d0',to:'f0',c:'feature',at:1},
+      {from:'f0',to:'f1',c:'feature',at:2},
+      {from:'f1',to:'f2',c:'feature',at:2},
+      {from:'d0',to:'d1',c:'dev',at:3},
+      {from:'f2',to:'d1',c:'feature',merge:true,at:3},
+      {from:'t0',to:'t1',c:'test',at:4},
+      {from:'d1',to:'t1',c:'dev',merge:true,at:4},
+      {from:'m0',to:'m1',c:'main',at:5},
+      {from:'t1',to:'m1',c:'test',merge:true,at:5}
+    ],
+    clouds:[{node:'m1',at:6},{node:'t1',at:6},{node:'d1',at:6},{node:'f2',at:6}]
+  },
+  steps:[
+    { title:'Spåren i projektet', head:'dev',
+      text:'En gren är ett eget spår där du kan jobba utan att störa de andra. Här finns tre från start: main (det som funkar), test (testas här) och dev (samlar det färdiga). Märket “Du är här” visar vilken gren du står på.',
+      cmd:'git branch', note:'visar dina grenar',
+      tools:{
+        console:`<code>git branch</code> listar grenarna. Den med en stjärna (*) är den du står på.`,
+        vscode:`Grennamnet står nere till vänster i statusfältet. Klicka på det för att se alla grenar.`,
+        vs:`Grennamnet står längst ned till höger i statusfältet. Klicka på det för att se alla grenar.`,
+        rider:`Grennamnet står i huvudverktygsfältet högst upp. Klicka på det för att se alla grenar.`
+      }},
+    { title:'Skapa din egen gren', head:'feature',
+      text:'Börja alltid från dev. Skapa en ny gren för just det du ska göra, så rör du inte det andra bygger på.',
+      cmd:['git switch dev','git switch -c feature/login'], note:'gå till dev, skapa gren',
+      tools:{
+        console:`Skriv <code>git switch dev</code> och sedan <code>git switch -c feature/login</code>. <code>-c</code> betyder <i>create</i>.`,
+        vscode:`Klicka på grennamnet nere till vänster och välj <b>dev</b>. Klicka igen, välj <b>Create new branch…</b> och skriv <code>feature/login</code>.`,
+        vs:`Klicka på grennamnet längst ned till höger och byt till <b>dev</b>. Välj sedan <b>Git → New Branch…</b>, skriv namnet och kontrollera att <b>Based on</b> är <i>dev</i>.`,
+        rider:`Klicka på grennamnet högst upp, välj <b>dev</b> och <b>Checkout</b>. Klicka igen, välj <b>New Branch…</b> och skriv <code>feature/login</code>.`
+      }},
+    { title:'Jobba på din gren', head:'feature',
+      text:'Nu gör du som i lektion 2: ändra, lägg i kundvagnen, ta sparpunkt. Sparpunkterna hamnar bara på din gren. Dev, test och main påverkas inte.',
+      cmd:['git add .','git commit -m "Lägg till inloggning"'], note:'upprepa några gånger',
+      tools:{
+        console:`Samma som förut: <code>git add .</code> och <code>git commit -m "…"</code>.`,
+        vscode:`Samma som i lektion 2: <b>+</b>, meddelande, <b>Commit</b>. Titta nere till vänster: du ska stå på <b>feature/login</b>.`,
+        vs:`Samma som i lektion 2 via <b>Git Changes</b>. Kontrollera i statusfältet att du står på <b>feature/login</b>.`,
+        rider:`Samma som i lektion 2 via Commit-fönstret. Kontrollera grennamnet högst upp.`
+      }},
+    { title:'Slå ihop med dev (merge)', head:'dev',
+      text:'När jobbet är klart går du tillbaka till dev och drar in din gren. Det kallas merge, att slå ihop. Har samma rad ändrats på två ställen får du en konflikt. Det tar vi i lektion 6.',
+      cmd:['git switch dev','git merge feature/login'], note:'gå till dev, slå ihop',
+      tools:{
+        console:`<code>git switch dev</code> och sedan <code>git merge feature/login</code>. Git skapar en sparpunkt som visar att spåren möttes.`,
+        vscode:`Byt till <b>dev</b> via grennamnet. Öppna kommandopaletten (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>), skriv <b>Git: Merge Branch…</b> och välj <b>feature/login</b>.`,
+        vs:`Byt till <b>dev</b>. Öppna <b>Git → Manage Branches</b>, högerklicka på <b>feature/login</b> och välj <b>Merge 'feature/login' into 'dev'</b>.`,
+        rider:`Byt till <b>dev</b>. Klicka på grennamnet, välj <b>feature/login</b> och sedan <b>Merge 'feature/login' into 'dev'</b>.`
+      }},
+    { title:'Vidare till test', head:'test',
+      text:'När dev är redo att testas går du till test och drar in dev.',
+      cmd:['git switch test','git merge dev'], note:'gå till test, slå ihop',
+      tools:{
+        console:`<code>git switch test</code> och sedan <code>git merge dev</code>.`,
+        vscode:`Byt till <b>test</b>, kör <b>Git: Merge Branch…</b> och välj <b>dev</b>.`,
+        vs:`Byt till <b>test</b>. I <b>Manage Branches</b>: högerklicka på <b>dev</b> och välj <b>Merge 'dev' into 'test'</b>.`,
+        rider:`Byt till <b>test</b>. Klicka på <b>dev</b> i grenmenyn och välj <b>Merge 'dev' into 'test'</b>.`
+      }},
+    { title:'Sist: main', head:'main',
+      text:'Har testerna gått bra drar du in test i main. Nu är ändringen med i den version alla litar på.',
+      cmd:['git switch main','git merge test'], note:'gå till main, slå ihop',
+      tools:{
+        console:`<code>git switch main</code> och sedan <code>git merge test</code>.`,
+        vscode:`Byt till <b>main</b>, kör <b>Git: Merge Branch…</b> och välj <b>test</b>.`,
+        vs:`Byt till <b>main</b>. I <b>Manage Branches</b>: högerklicka på <b>test</b> och välj <b>Merge 'test' into 'main'</b>.`,
+        rider:`Byt till <b>main</b>. Klicka på <b>test</b> i grenmenyn och välj <b>Merge 'test' into 'main'</b>.`
+      }},
+    { title:'Skicka upp grenarna', head:'main',
+      text:'Allt hittills har hänt på din dator. Med push skickar du upp grenarna till GitHub. En gren finns inte där förrän du har pushat den.',
+      cmd:'git push --all', note:'skickar upp alla grenar',
+      tools:{
+        console:`<code>git push --all</code> skickar alla dina grenar. Nya grenar skapas på GitHub automatiskt.`,
+        vscode:`Står du på en ny gren visas <b>Publish Branch</b> i stället för Sync. Klicka på den. Gör det för varje gren du ändrat.`,
+        vs:`Byt till varje gren du ändrat och klicka <b>↑ Push</b> i <b>Git Changes</b>. Nya grenar publiceras första gången.`,
+        rider:`<b>Git → Push…</b> (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>) visar vad som skickas. Gör det för varje gren du ändrat.`
+      }}
+  ]
+};
+
+/* ---------- Lektion 3: konflikter (scen "editor") ---------- */
+const CTX = t => ({t, cls:'ctx'});
+const IND = (t, cls, note) => ({t:'    ' + t, cls, note});
+const TOP = [CTX('static void Main()'), CTX('{')];
+const BOT = [CTX('}')];
+
+const L3 = {
+  name:'Konflikter', scene:'editor',
+  steps:[
+    { title:'Så uppstår en konflikt',
+      text:'Du och en kompis har utgått från samma fil. Så länge ni ändrar olika ställen slår Git ihop det av sig självt. Problemet uppstår när ni ändrar exakt samma rad.',
+      cmd:null,
+      tools:'Inget att klicka på här än. Det handlar bara om att förstå varför det händer.',
+      panels:[{title:'📄 Program.cs', badge:{t:'så såg filen ut', cls:''}, lines:[...TOP, IND('Console.WriteLine("Hej");','ctx'), ...BOT]}] },
+    { title:'Ni ändrar samma rad',
+      text:'Kompisen ändrar raden på dev. Du ändrar samma rad på din gren. Båda gör commit, och båda är nöjda tills ni ska slå ihop.',
+      cmd:null,
+      tools:'Båda har gjort commit på sin egen gren. Än så länge är allt som det ska.',
+      panels:[
+        {title:'📄 Program.cs', badge:{t:'dev (kompisen)', cls:'theirs'}, lines:[...TOP, IND('Console.WriteLine("Hej världen");','theirs','← kompisen'), ...BOT]},
+        {title:'📄 Program.cs', badge:{t:'feature/login (du)', cls:'mine'}, lines:[...TOP, IND('Console.WriteLine("Hej Marcus");','mine','← du'), ...BOT]}
+      ] },
+    { title:'Du försöker slå ihop',
+      text:'Du står på dev och slår ihop din gren. Git hittar två olika versioner av samma rad och stannar: jag vet inte vilken som ska gälla. Inget är förstört, du får bestämma.',
+      cmd:['git switch dev','git merge feature/login'], note:'samma som i lektion 4',
+      tools:{
+        console:`Kör kommandona. Vilka filer som har konflikt ser du med <code>git status</code>, under <i>Unmerged paths</i>.`,
+        vscode:`Slå ihop som i lektion 4. Filen hamnar under <b>Merge Changes</b> i Källkontroll, markerad med <b>C</b> (conflict).`,
+        vs:`Slå ihop som i lektion 4. <b>Git Changes</b> visar en sektion <b>Unmerged Changes</b> med filen.`,
+        rider:`Slå ihop som i lektion 4. Rider visar en ruta med filer som har konflikt och en knapp <b>Merge…</b>.`
+      },
+      panels:[{title:'⌨️ Terminal', kind:'term', lines:[
+        {t:'$ git merge feature/login', cls:'cmdline'},
+        {t:'Auto-merging Program.cs', cls:'ctx'},
+        {t:'CONFLICT (content): Merge conflict in Program.cs', cls:'err', note:'← Git ber om hjälp'},
+        {t:'Automatic merge failed; fix conflicts and then commit the result.', cls:'err'}
+      ]}] },
+    { title:'Så ser konflikten ut i filen',
+      text:'Git har lagt in båda versionerna i filen, med markeringar. Överst det som redan finns på dev, nederst det från din gren.',
+      cmd:null,
+      tools:{
+        console:`Öppna <code>Program.cs</code> i din editor. Markeringsraderna är en del av filen just nu.`,
+        vscode:`Över konflikten visas knappar: <b>Accept Current Change</b> (dev), <b>Accept Incoming Change</b> (din gren) och <b>Accept Both Changes</b>.`,
+        vs:`Dubbelklicka filen och välj <b>Open Merge Editor</b>. <b>Current</b> är dev, <b>Incoming</b> är din gren, och <b>Result</b> längst ned är det som sparas.`,
+        rider:`Klicka <b>Merge…</b>. Du får tre kolumner: de två versionerna på sidorna och resultatet i mitten.`
+      },
+      panels:[{title:'📄 Program.cs', badge:{t:'konflikt!', cls:'marker'}, lines:[
+        ...TOP,
+        IND('<<<<<<< HEAD','marker','← här börjar dev-versionen'),
+        IND('Console.WriteLine("Hej världen");','theirs','← från dev'),
+        IND('=======','marker','← skiljelinje'),
+        IND('Console.WriteLine("Hej Marcus");','mine','← från din gren'),
+        IND('>>>>>>> feature/login','marker','← här slutar din version'),
+        ...BOT
+      ]}] },
+    { title:'Välj och städa',
+      text:'Du väljer den ena versionen, den andra, eller skriver något nytt som passar båda. Viktigt: raderna med <<<<<<<, ======= och >>>>>>> måste bort, annars är konflikten inte löst.',
+      cmd:null,
+      tools:{
+        console:`Redigera filen: behåll de rader du vill ha, ta bort de tre markeringsraderna och spara.`,
+        vscode:`Klicka <b>Accept Both Changes</b> (eller välj en sida) och justera raden. Spara filen (<kbd>Ctrl</kbd>+<kbd>S</kbd>).`,
+        vs:`I <b>Merge Editor</b> kryssar du för <b>Incoming</b> och/eller <b>Current</b>. Resultatet visas längst ned och går att redigera.`,
+        rider:`Klicka på pilarna för att ta över en sida, eller redigera mittenkolumnen direkt. Klicka sedan <b>Apply</b>.`
+      },
+      panels:[{title:'📄 Program.cs', badge:{t:'löst ✓', cls:'result'}, lines:[
+        ...TOP,
+        IND('Console.WriteLine("Hej världen, Marcus");','result','✨ du bestämde'),
+        ...BOT
+      ]}] },
+    { title:'Avsluta med en sparpunkt',
+      text:'När filen är rätt och markeringarna är borta lägger du den i kundvagnen och tar en sparpunkt. Då är merge klar och konflikten löst.',
+      cmd:['git add Program.cs','git commit -m "Slå ihop feature/login"'], note:'konflikten löst',
+      tools:{
+        console:`Kör de två kommandona. Skriver du bara <code>git commit</code> öppnas en editor med ett färdigt meddelande.`,
+        vscode:`Klicka <b>+</b> på filen under <b>Merge Changes</b>, skriv ett meddelande och klicka <b>Commit</b>.`,
+        vs:`Klicka <b>Accept Merge</b> i Merge Editor och sedan <b>Commit Staged</b> i <b>Git Changes</b>.`,
+        rider:`Klicka <b>Apply</b> i lösaren. Öppna sedan Commit-fönstret och klicka <b>Commit</b>.`
+      },
+      panels:[{title:'⌨️ Terminal', kind:'term', lines:[
+        {t:'$ git add Program.cs', cls:'cmdline'},
+        {t:'$ git commit -m "Slå ihop feature/login"', cls:'cmdline'},
+        {t:'[dev a1b2c3d] Slå ihop feature/login', cls:'ctx', note:'✅ klart'}
+      ]}] },
+    { title:'Trygghetsnät: backa ur',
+      text:'Känns det för rörigt mitt i en konflikt? Du kan alltid backa. Då är allt som innan du startade merge, och du kan prova igen när du är redo.',
+      cmd:'git merge --abort', note:'tillbaka som före merge',
+      tools:{
+        console:`<code>git merge --abort</code> avbryter pågående merge och återställer allt.`,
+        vscode:`Öppna terminalen via <b>Terminal → New Terminal</b> och skriv kommandot. Eller kommandopaletten: <b>Git: Abort Merge</b>.`,
+        vs:`Öppna <b>Visa → Terminal</b> och skriv kommandot.`,
+        rider:`Öppna terminalen (<kbd>Alt</kbd>+<kbd>F12</kbd>) och skriv kommandot.`
+      },
+      panels:[{title:'⌨️ Terminal', kind:'term', lines:[
+        {t:'$ git merge --abort', cls:'cmdline'},
+        {t:'$ git status', cls:'cmdline'},
+        {t:'On branch dev', cls:'ctx'},
+        {t:'nothing to commit, working tree clean', cls:'ctx', note:'✅ som förut'}
+      ]}] }
+  ]
+};
+
+/* ---------- Lektion: Starta ett projekt (scen "places") ---------- */
+const LSTART = {
+  name:'Starta', scene:'places',
+  boxes:[
+    {icon:'📁', name:'Din mapp',  term:'working directory', hint:'Här jobbar du med filerna'},
+    {icon:'💾', name:'Din dator', term:'lokalt repo',       hint:'Dina sparpunkter'},
+    {icon:'☁️', name:'GitHub',    term:'remote',            hint:'Projektets hemadress'}
+  ],
+  arrows:[{t:'auto',g:'←'},{t:'git clone',g:'←'}],
+  steps:[
+    { title:'Skapa ett repo på GitHub',
+      text:'Ett repo (repository) är projektets mapp med hela historiken. Du börjar med att skapa ett tomt på GitHub. Där bor projektet, och alla i teamet kan hämta det.',
+      cmd:null, arrow:-1,
+      items:[{id:'g',box:2,cls:'remote',icon:'📦',t:'mitt-projekt',s:'Skapad på github.com',b:'🆕 nytt'}],
+      tools:`På github.com: klicka <b>+</b> uppe till höger och välj <b>New repository</b>. Ge det ett namn, kryssa i <b>Add a README file</b> (då får repot en första sparpunkt), välj <b>Add .gitignore</b> med mallen <b>VisualStudio</b> (se lektion 3) och klicka <b>Create repository</b>.` },
+    { title:'Klona: hämta en kopia',
+      text:'Att klona är att ladda ner hela projektet, med historik, till din dator. Git skapar mappen åt dig. Du klonar bara en gång per projekt och dator.',
+      cmd:'git clone https://github.com/ditt-namn/mitt-projekt.git', note:'ladda ner projektet', arrow:'all',
+      items:[
+        {id:'g',box:2,cls:'remote',icon:'📦',t:'mitt-projekt',s:'Skapad på github.com',b:'☁️ originalet'},
+        {id:'l',box:1,from:2,cls:'commit',icon:'💾',t:'mitt-projekt',s:'Hela historiken',b:'🏠 din kopia'},
+        {id:'f',box:0,from:1,cls:'staged',icon:'📁',t:'mitt-projekt/',s:'README.md',b:'✅ redo att jobba i'}
+      ],
+      tools:{
+        console:`Gå till mappen där projektet ska ligga (<code>cd</code>), kör <code>git clone</code> med adressen. Adressen finns under den gröna knappen <b>Code</b> på GitHub.`,
+        vscode:`Kommandopaletten (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) → <b>Git: Clone</b>. Klistra in adressen och välj var mappen ska ligga.`,
+        vs:`Startfönstret → <b>Clone a repository</b>. Klistra in adressen, välj sökväg och klicka <b>Clone</b>.`,
+        rider:`Välkomstskärmen → <b>Get from VCS</b> (eller <b>Clone Repository</b>). Klistra in adressen och klicka <b>Clone</b>.`
+      }},
+    { title:'Öppna mappen i ditt verktyg',
+      text:'Nu är det en vanlig projektmapp. Öppna den i ditt verktyg, så ser du filerna och Git-funktionerna: grennamn, Källkontroll eller Commit-fönstret.',
+      cmd:null, arrow:-1,
+      items:[
+        {id:'g',box:2,cls:'remote',icon:'📦',t:'mitt-projekt',s:'Skapad på github.com',b:'☁️ originalet'},
+        {id:'l',box:1,cls:'commit',icon:'💾',t:'mitt-projekt',s:'Hela historiken',b:'🏠 din kopia'},
+        {id:'f',box:0,cls:'staged',icon:'📁',t:'mitt-projekt/',s:'README.md',b:'✅ öppnad i verktyget'}
+      ],
+      tools:{
+        console:`<code>cd mitt-projekt</code> och sedan <code>git status</code> för att se att allt ser rätt ut.`,
+        vscode:`<b>File → Open Folder…</b> och välj den nya mappen. Efter en klon frågar VS Code ofta själv, tryck <b>Open</b>.`,
+        vs:`<b>Fil → Öppna → Mapp</b>, eller dubbelklicka lösningsfilen (.sln) i mappen.`,
+        rider:`<b>File → Open…</b> och välj mappen eller lösningsfilen (.sln).`
+      }},
+    { title:'Härifrån kör du som vanligt',
+      text:'Nu är allt klart. Du ändrar, lägger i kundvagnen, tar sparpunkt och skickar upp, precis som i lektion 2. Du behöver aldrig klona om projektet.',
+      cmd:null, arrow:-1,
+      items:[
+        {id:'g',box:2,cls:'remote',icon:'📦',t:'mitt-projekt',s:'Skapad på github.com',b:'☁️ originalet'},
+        {id:'l',box:1,cls:'commit',icon:'💾',t:'mitt-projekt',s:'Hela historiken',b:'🏠 din kopia'},
+        {id:'f',box:0,cls:'staged',icon:'📁',t:'mitt-projekt/',s:'README.md',b:'✅ redo'}
+      ],
+      tools:`Gå vidare till nästa lektion: <b>Spara och skicka</b>.` },
+    { title:'Har du redan en mapp? Börja åt andra hållet',
+      text:'Finns projektet redan på din dator utan Git? Då gör du mappen till ett repo och kopplar den till ett tomt repo på GitHub.',
+      cmd:['git init','git add .','git commit -m "Första sparpunkten"','git remote add origin <adress>','git push -u origin main'], note:'andra hållet', arrow:-1,
+      items:[
+        {id:'f2',box:0,cls:'staged',icon:'📁',t:'min-gamla-mapp/',s:'Dina filer',b:'📂 finns redan'},
+        {id:'l2',box:1,from:0,cls:'commit',icon:'💾',t:'Första sparpunkten',s:'Git följer mappen nu',b:'🏠 på din dator'},
+        {id:'g2',box:2,from:1,cls:'remote',icon:'☁️',t:'Första sparpunkten',s:'Uppskickad',b:'✨ delad'}
+      ],
+      tools:{
+        console:`Kör kommandona i projektmappen. Byt <code>&lt;adress&gt;</code> mot adressen till det tomma repot på GitHub. <code>-u</code> kopplar grenen så att senare <code>git push</code> räcker.`,
+        vscode:`Källkontroll → <b>Initialize Repository</b>, gör en första commit, och klicka sedan <b>Publish to GitHub</b>.`,
+        vs:`<b>Git → Create Git Repository…</b> skapar både det lokala repot och repot på GitHub i ett svep.`,
+        rider:`<b>Git → Create Git Repository…</b>, gör en första commit och välj sedan <b>Git → GitHub → Share Project on GitHub</b>.`
+      }}
+  ]
+};
+
+/* ---------- Lektion: Hämta andras ändringar (scen "places") ---------- */
+const LPULL = {
+  name:'Hämta (pull)', scene:'places',
+  boxes:[
+    {icon:'📁', name:'Din mapp',  term:'working directory', hint:'Här jobbar du med filerna'},
+    {icon:'💾', name:'Din dator', term:'lokalt repo',       hint:'Dina sparpunkter'},
+    {icon:'☁️', name:'GitHub',    term:'remote',            hint:'Delat med teamet'}
+  ],
+  arrows:[{t:'merge',g:'←'},{t:'fetch /<br>push',g:'⇄'}],
+  steps:[
+    { title:'Kompisen har skickat upp något nytt',
+      text:'Medan du gjorde annat har en kompis pushat en sparpunkt. Den finns på GitHub men inte på din dator, och din dator vet inte ens om det än.',
+      cmd:null, arrow:-1,
+      items:[
+        {id:'f', box:0,cls:'staged',icon:'📄',t:'Program.cs',s:'Din version 1',b:'✅ som senast'},
+        {id:'l1',box:1,cls:'commit',icon:'💾',t:'Sparpunkt 1',s:'“Första versionen”',b:'🏠 hos dig'},
+        {id:'r1',box:2,cls:'remote',icon:'☁️',t:'Sparpunkt 1',s:'“Första versionen”',b:'delad'},
+        {id:'r2',box:2,cls:'remote',icon:'☁️',t:'Sparpunkt 2',s:'“Ny knapp” (kompisen)',b:'🆕 nytt för dig'}
+      ],
+      tools:`Inget att göra än. Det här är bara läget: GitHub ligger före din dator.` },
+    { title:'Hämta: git fetch',
+      text:'Git laddar ner det nya till din dator men rör inte dina filer. Det är säkert att göra när som helst.',
+      cmd:'git fetch', note:'ladda ner, rör inte filerna', arrow:1,
+      items:[
+        {id:'f', box:0,cls:'staged',icon:'📄',t:'Program.cs',s:'Din version 1',b:'✅ oförändrad'},
+        {id:'l1',box:1,cls:'commit',icon:'💾',t:'Sparpunkt 1',s:'“Första versionen”',b:'🏠 hos dig'},
+        {id:'l2',box:1,from:2,cls:'commit',icon:'💾',t:'Sparpunkt 2',s:'“Ny knapp” (kompisen)',b:'📥 hämtad, ej i mappen'},
+        {id:'r1',box:2,cls:'remote',icon:'☁️',t:'Sparpunkt 1',s:'“Första versionen”',b:'delad'},
+        {id:'r2',box:2,cls:'remote',icon:'☁️',t:'Sparpunkt 2',s:'“Ny knapp” (kompisen)',b:'delad'}
+      ],
+      tools:{
+        console:`<code>git fetch</code>. Inget syns i dina filer, men Git vet nu vad som är nytt.`,
+        vscode:`Källkontroll → <b>•••</b> → <b>Fetch</b>.`,
+        vs:`Menyn <b>Git → Fetch</b>.`,
+        rider:`Menyn <b>Git → Fetch</b>.`
+      }},
+    { title:'Slå ihop: git merge',
+      text:'Nu drar du in det hämtade i din mapp. Först nu ändras dina filer.',
+      cmd:'git merge origin/main', note:'in i din mapp', arrow:0,
+      items:[
+        {id:'f', box:0,cls:'remote',icon:'📄',t:'Program.cs',s:'Version 2: ny knapp',b:'🔄 uppdaterad'},
+        {id:'l1',box:1,cls:'commit',icon:'💾',t:'Sparpunkt 1',s:'“Första versionen”',b:'🏠 hos dig'},
+        {id:'l2',box:1,cls:'commit',icon:'💾',t:'Sparpunkt 2',s:'“Ny knapp” (kompisen)',b:'✅ i din mapp'},
+        {id:'r1',box:2,cls:'remote',icon:'☁️',t:'Sparpunkt 1',s:'“Första versionen”',b:'delad'},
+        {id:'r2',box:2,cls:'remote',icon:'☁️',t:'Sparpunkt 2',s:'“Ny knapp” (kompisen)',b:'delad'}
+      ],
+      tools:{
+        console:`<code>git merge origin/main</code>. <code>origin/main</code> är din dators kopia av det som ligger på GitHub.`,
+        vscode:`Kommandopaletten → <b>Git: Merge Branch…</b> och välj <b>origin/main</b>.`,
+        vs:`<b>Git → Manage Branches</b>, högerklicka på <b>origin/main</b> och välj <b>Merge 'origin/main' into 'main'</b>.`,
+        rider:`Klicka på grennamnet, välj <b>origin/main</b> och sedan <b>Merge 'origin/main' into 'main'</b>.`
+      }},
+    { title:'Genväg: git pull',
+      text:'git pull gör fetch och merge i ett steg. Det är det du kommer använda i vardagen.',
+      cmd:'git pull', note:'fetch + merge i ett', arrow:'all',
+      items:[
+        {id:'f', box:0,cls:'remote',icon:'📄',t:'Program.cs',s:'Version 2: ny knapp',b:'🔄 uppdaterad'},
+        {id:'l1',box:1,cls:'commit',icon:'💾',t:'Sparpunkt 1',s:'“Första versionen”',b:'🏠 hos dig'},
+        {id:'l2',box:1,cls:'commit',icon:'💾',t:'Sparpunkt 2',s:'“Ny knapp” (kompisen)',b:'✅ i din mapp'},
+        {id:'r1',box:2,cls:'remote',icon:'☁️',t:'Sparpunkt 1',s:'“Första versionen”',b:'delad'},
+        {id:'r2',box:2,cls:'remote',icon:'☁️',t:'Sparpunkt 2',s:'“Ny knapp” (kompisen)',b:'delad'}
+      ],
+      tools:{
+        console:`<code>git pull</code>.`,
+        vscode:`Källkontroll → <b>•••</b> → <b>Pull</b>. <b>Sync Changes</b> i statusfältet gör pull och push efter varandra.`,
+        vs:`<b>Git → Pull</b>, eller pilen ned (<b>Pull</b>) i <b>Git Changes</b>.`,
+        rider:`<b>Git → Pull…</b> och klicka <b>Pull</b>.`
+      }},
+    { title:'När push blir nekad',
+      text:'Du har gjort en egen sparpunkt, men GitHub har en som du saknar. Git vägrar skicka upp, annars skulle kompisens ändring skrivas över. Felet innehåller ordet “rejected”.',
+      cmd:'git push', note:'❌ rejected', arrow:1,
+      items:[
+        {id:'f', box:0,cls:'staged',icon:'📄',t:'Program.cs',s:'Din version, med din ändring',b:'✅ sparad'},
+        {id:'l1',box:1,cls:'commit',icon:'💾',t:'Sparpunkt 1',s:'“Första versionen”',b:'🏠 hos dig'},
+        {id:'l3',box:1,cls:'commit',icon:'💾',t:'Sparpunkt 3',s:'“Din ändring”',b:'🚫 får inte plats'},
+        {id:'r1',box:2,cls:'remote',icon:'☁️',t:'Sparpunkt 1',s:'“Första versionen”',b:'delad'},
+        {id:'r2',box:2,cls:'remote',icon:'☁️',t:'Sparpunkt 2',s:'“Ny knapp” (kompisen)',b:'saknas hos dig'}
+      ],
+      tools:`I alla verktyg får du ett felmeddelande där det står <i>rejected</i> eller att push misslyckades. Verktygen visar det olika, men orsaken är densamma: du ligger efter.` },
+    { title:'Lösningen: hämta först, skicka sen',
+      text:'Du hämtar kompisens sparpunkt först, så att din dator har allt. Sedan går push igenom.',
+      cmd:['git pull','git push'], note:'hämta först, skicka sen', arrow:'all',
+      items:[
+        {id:'f', box:0,cls:'remote',icon:'📄',t:'Program.cs',s:'Allas ändringar samlade',b:'🔄 uppdaterad'},
+        {id:'l1',box:1,cls:'commit',icon:'💾',t:'Sparpunkt 1',s:'“Första versionen”',b:'🏠 hos dig'},
+        {id:'l2',box:1,cls:'commit',icon:'💾',t:'Sparpunkt 2',s:'“Ny knapp” (kompisen)',b:'📥 hämtad'},
+        {id:'l3',box:1,cls:'commit',icon:'💾',t:'Sparpunkt 3',s:'“Din ändring”',b:'🏠 på din dator'},
+        {id:'r1',box:2,cls:'remote',icon:'☁️',t:'Sparpunkt 1',s:'“Första versionen”',b:'delad'},
+        {id:'r2',box:2,cls:'remote',icon:'☁️',t:'Sparpunkt 2',s:'“Ny knapp” (kompisen)',b:'delad'},
+        {id:'r3',box:2,from:1,cls:'remote',icon:'☁️',t:'Sparpunkt 3',s:'“Din ändring”',b:'✨ delad'}
+      ],
+      tools:{
+        console:`Kör <code>git pull</code>, och när det gått bra <code>git push</code>. Ändrade ni samma rad får du en konflikt, se lektionen om konflikter.`,
+        vscode:`<b>Sync Changes</b> i statusfältet gör pull och push efter varandra. Eller <b>Pull</b> och sedan <b>Push</b> via <b>•••</b>.`,
+        vs:`<b>Git → Pull</b>, sedan <b>↑ Push</b> i <b>Git Changes</b>.`,
+        rider:`<b>Git → Pull…</b>, sedan <b>Git → Push…</b> (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>).`
+      }},
+    { title:'Rutinen som räddar dig',
+      text:'Börja varje arbetspass med git pull. Avsluta med add, commit och push. Då slipper du de flesta avvisade pushar och många konflikter.',
+      cmd:null, arrow:'all',
+      items:[
+        {id:'f', box:0,cls:'remote',icon:'📄',t:'Program.cs',s:'Allas ändringar samlade',b:'🔄 uppdaterad'},
+        {id:'l1',box:1,cls:'commit',icon:'💾',t:'Sparpunkt 1',s:'“Första versionen”',b:'🏠 hos dig'},
+        {id:'l2',box:1,cls:'commit',icon:'💾',t:'Sparpunkt 2',s:'“Ny knapp” (kompisen)',b:'📥 hämtad'},
+        {id:'l3',box:1,cls:'commit',icon:'💾',t:'Sparpunkt 3',s:'“Din ändring”',b:'🏠 på din dator'},
+        {id:'r1',box:2,cls:'remote',icon:'☁️',t:'Sparpunkt 1',s:'“Första versionen”',b:'delad'},
+        {id:'r2',box:2,cls:'remote',icon:'☁️',t:'Sparpunkt 2',s:'“Ny knapp” (kompisen)',b:'delad'},
+        {id:'r3',box:2,cls:'remote',icon:'☁️',t:'Sparpunkt 3',s:'“Din ändring”',b:'✨ delad'}
+      ],
+      tools:`Morgon: <b>pull</b>. Kväll: <b>add → commit → push</b>. Hänger du inte med i vad som hänt kan du alltid göra <b>fetch</b> först och titta, innan du slår ihop.` }
+  ]
+};
+
+/* ---------- Lektion: Ångra (scen "places") ---------- */
+const LUNDO = {
+  name:'Ångra', scene:'places',
+  boxes:[
+    {icon:'📁', name:'Din mapp',   term:'working directory', hint:'Här jobbar du med filerna'},
+    {icon:'🛒', name:'Kundvagnen', term:'staging',           hint:'Det som ska med i nästa sparpunkt'},
+    {icon:'💾', name:'Din dator',  term:'lokalt repo',       hint:'Dina sparpunkter'},
+    {icon:'☁️', name:'GitHub',     term:'remote',            hint:'Delat med alla'}
+  ],
+  arrows:[{t:'restore<br>--staged',g:'←'},{t:'commit<br>--amend',g:'↺'},{t:'revert<br>+ push',g:'→'}],
+  steps:[
+    { title:'Du har ändrat fel',
+      text:'Du har ändrat en fil och märker att det blev fel. Hur du ångrar beror på hur långt du hunnit: bara ändrat, lagt i kundvagnen, tagit sparpunkt eller redan skickat upp.',
+      cmd:null, arrow:-1,
+      items:[{id:'f',box:0,cls:'changed',icon:'📄',t:'Program.cs',s:'Ändrad, men fel',b:'✏️ ändrad'}],
+      tools:`Börja med att titta på vad som är ändrat: <code>git status</code>, <b>Källkontroll</b>, <b>Git Changes</b> eller Commit-fönstret.` },
+    { title:'Släng ändringen',
+      text:'Filen blir som vid senaste sparpunkten. Obs: ändringen är borta för alltid, eftersom Git aldrig sparade den. Använd den bara när du är säker.',
+      cmd:'git restore Program.cs', note:'⚠️ går inte att ångra', arrow:-1,
+      items:[{id:'f',box:0,cls:'staged',icon:'📄',t:'Program.cs',s:'Som vid senaste sparpunkten',b:'↩️ tillbaka'}],
+      tools:{
+        console:`<code>git restore Program.cs</code>. Vill du slänga allt ändrat: <code>git restore .</code>`,
+        vscode:`Hovra över filen under <b>Changes</b> och klicka på pilen <b>Discard Changes</b> (↩).`,
+        vs:`<b>Git Changes</b> → högerklicka på filen → <b>Undo Changes</b>.`,
+        rider:`Commit-fönstret → högerklicka på filen → <b>Rollback…</b> (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Z</kbd>).`
+      }},
+    { title:'Du hann lägga den i kundvagnen',
+      text:'Säg att du ändrade filen igen och la den i kundvagnen innan du ändrade dig.',
+      cmd:'git add Program.cs', note:'som i lektion 2', arrow:-1,
+      items:[{id:'f',box:1,cls:'staged',icon:'📄',t:'Program.cs',s:'Väntar på sparpunkt',b:'✅ redo'}],
+      tools:`Samma som i lektion 2: <b>+</b> (VS Code, Visual Studio) eller kryssruta (Rider).` },
+    { title:'Ta ut den ur kundvagnen',
+      text:'Filen går tillbaka till din mapp, ändringen finns kvar men är inte med i nästa sparpunkt. Inget är förlorat.',
+      cmd:'git restore --staged Program.cs', note:'ut ur kundvagnen', arrow:0,
+      items:[{id:'f',box:0,cls:'changed',icon:'📄',t:'Program.cs',s:'Ändrad, inte i kundvagnen',b:'✏️ ändrad'}],
+      tools:{
+        console:`<code>git restore --staged Program.cs</code>.`,
+        vscode:`Under <b>Staged Changes</b>: klicka på <b>−</b> (Unstage Changes).`,
+        vs:`<b>Git Changes</b> → klicka på <b>−</b> bredvid filen.`,
+        rider:`Ta bort kryssrutan framför filen i Commit-fönstret.`
+      }},
+    { title:'Skrev du fel meddelande?',
+      text:'Sparpunkten hette “asdf”. Så länge du inte pushat kan du byta meddelandet. Det är din privata historia ännu.',
+      cmd:'git commit --amend -m "Lägg till inloggning"', note:'byt meddelande', arrow:1,
+      items:[{id:'l',box:2,from:1,cls:'commit',icon:'💾',t:'Sparpunkt 2',s:'“Lägg till inloggning”',b:'✏️ meddelandet rättat'}],
+      tools:{
+        console:`<code>git commit --amend -m "nytt meddelande"</code>. Fungerar bara för den senaste sparpunkten, och bara innan push.`,
+        vscode:`Källkontroll → <b>•••</b> → <b>Commit → Commit (Amend)</b>.`,
+        vs:`Pilen på commit-knappen har valet <b>Amend</b> (kryssa i <b>Amend previous commit</b>).`,
+        rider:`Git-loggen (<kbd>Alt</kbd>+<kbd>9</kbd>) → högerklicka sparpunkten → <b>Edit Commit Message…</b> (<kbd>F2</kbd>).`
+      }},
+    { title:'Redan pushat? Använd revert',
+      text:'När en sparpunkt är delad ändrar man aldrig historiken, för andra bygger redan på den. Då gör du en ny sparpunkt som gör det omvända. Alla kan hänga med.',
+      cmd:'git revert HEAD', note:'ny sparpunkt som backar', arrow:2,
+      items:[
+        {id:'l', box:2,cls:'commit',icon:'💾',t:'Sparpunkt 2',s:'“Lägg till inloggning”',b:'🏠 på din dator'},
+        {id:'lr',box:2,from:2,cls:'commit',icon:'↩️',t:'Ångra',s:'Backar sparpunkt 2',b:'🏠 bara hos dig'},
+        {id:'r', box:3,cls:'remote',icon:'☁️',t:'Sparpunkt 2',s:'“Lägg till inloggning”',b:'delad'}
+      ],
+      tools:{
+        console:`<code>git revert HEAD</code> backar den senaste sparpunkten. <code>HEAD</code> betyder “där du står nu”.`,
+        vscode:`Det finns ingen knapp för detta som standard. Öppna terminalen via <b>Terminal → New Terminal</b> och skriv kommandot.`,
+        vs:`<b>Git → View Branch History</b>, högerklicka sparpunkten och välj <b>Revert</b>.`,
+        rider:`Git-loggen (<kbd>Alt</kbd>+<kbd>9</kbd>) → högerklicka sparpunkten → <b>Revert Commit</b>.`
+      }},
+    { title:'Skicka upp ångrandet',
+      text:'Sist pushar du, så att alla får den nya sparpunkten. Historiken visar både felet och rättelsen, och ingen blir överraskad.',
+      cmd:'git push', note:'dela rättelsen', arrow:2,
+      items:[
+        {id:'l', box:2,cls:'commit',icon:'💾',t:'Sparpunkt 2',s:'“Lägg till inloggning”',b:'🏠 på din dator'},
+        {id:'lr',box:2,cls:'commit',icon:'↩️',t:'Ångra',s:'Backar sparpunkt 2',b:'🏠 på din dator'},
+        {id:'r', box:3,cls:'remote',icon:'☁️',t:'Sparpunkt 2',s:'“Lägg till inloggning”',b:'delad'},
+        {id:'rr',box:3,from:2,cls:'remote',icon:'↩️',t:'Ångra',s:'Backar sparpunkt 2',b:'✨ delad'}
+      ],
+      tools:`Samma push som i lektion 2.` }
+  ]
+};
+
+/* ---------- Lektion: Pull request (scen "branches") ---------- */
+const LPR = {
+  name:'Pull request', scene:'branches',
+  graph:{
+    lanes:[{id:'dev',desc:'gemensam',at:0},{id:'feature',desc:'ditt jobb',at:1}],
+    nodes:[
+      {id:'d0',lane:'dev',    col:0,t:'',        at:0},
+      {id:'f0',lane:'feature',col:0,t:'Start',   at:1},
+      {id:'f1',lane:'feature',col:1,t:'Commit 1',at:1},
+      {id:'f2',lane:'feature',col:2,t:'Commit 2',at:1},
+      {id:'f3',lane:'feature',col:3,t:'Rättelse',at:5},
+      {id:'d1',lane:'dev',    col:5,t:'Merge',   at:3,solid:6}
+    ],
+    edges:[
+      {from:'d0',to:'f0',c:'feature',at:1},
+      {from:'f0',to:'f1',c:'feature',at:1},
+      {from:'f1',to:'f2',c:'feature',at:1},
+      {from:'f2',to:'d1',c:'test',merge:true,dashed:true,label:'Pull request',at:3,until:5},
+      {from:'f2',to:'f3',c:'feature',at:5},
+      {from:'f3',to:'d1',c:'test',merge:true,dashed:true,label:'Pull request',at:5,until:6},
+      {from:'d0',to:'d1',c:'dev',at:6},
+      {from:'f3',to:'d1',c:'feature',merge:true,at:6}
+    ],
+    clouds:[{node:'f2',at:2},{node:'f3',at:5},{node:'d1',at:6}],
+    tags:[{node:'f2',text:'👀 granskas',at:4,until:5},{node:'f3',text:'✅ godkänd',at:5,until:6}]
+  },
+  steps:[
+    { title:'Varför pull request?', head:'dev',
+      text:'I ett grupprojekt pushar ingen direkt till den gemensamma grenen. Du jobbar på en egen gren och ber teamet titta på ändringen innan den slås ihop. Den förfrågan kallas pull request, eller PR.',
+      cmd:null,
+      tools:`Pull request är inte ett Git-kommando. Det är en funktion på GitHub som bygger på grenarna du redan kan.` },
+    { title:'Börja från senaste dev och jobba', head:'feature',
+      text:'Du hämtar senaste dev, skapar din gren och gör dina sparpunkter där, precis som tidigare. En gren per uppgift, så blir varje PR liten och lätt att granska.',
+      cmd:['git switch dev','git pull','git switch -c feature/login'], note:'+ dina commits',
+      tools:`Samma som i lektion 4 (skapa gren) och lektion 5 (pull). Börja alltid från en uppdaterad dev, annars får du onödiga konflikter senare.` },
+    { title:'Pusha din gren', head:'feature',
+      text:'För att teamet ska kunna se ditt jobb måste grenen upp till GitHub. Första gången på en ny gren behöver Git veta vart den ska.',
+      cmd:'git push -u origin feature/login', note:'första gången på ny gren',
+      tools:{
+        console:`<code>git push -u origin feature/login</code>. Efter det räcker <code>git push</code> på den grenen.`,
+        vscode:`Klicka <b>Publish Branch</b> i Källkontroll (eller i statusfältet).`,
+        vs:`Klicka <b>↑ Push</b> i <b>Git Changes</b>. Nya grenar publiceras första gången.`,
+        rider:`<b>Git → Push…</b> och klicka <b>Push</b>.`
+      }},
+    { title:'Öppna en pull request', head:'feature',
+      text:'På GitHub ber du om att din gren ska in i dev. Den streckade pilen betyder att det är ett förslag. Inget är sammanslaget än.',
+      cmd:null,
+      tools:`Det här görs på github.com och ser likadant ut oavsett verktyg. Efter din push visas en gul ruta: <b>Compare &amp; pull request</b>. Klicka, välj att den ska gå <b>från feature/login till dev</b>, skriv rubrik och beskrivning av vad du gjort, och klicka <b>Create pull request</b>.` },
+    { title:'Teamet granskar', head:'feature',
+      text:'Någon i teamet läser din ändring, kommenterar och godkänner, eller ber om ändringar. Det är det som gör PR till mer än en formalitet: ni lär er av varandras kod.',
+      cmd:null,
+      tools:`Granskaren öppnar fliken <b>Files changed</b>, kan kommentera enskilda rader och väljer sedan <b>Approve</b> eller <b>Request changes</b>. Som författare svarar du i kommentarerna.` },
+    { title:'Rätta efter kommentarer', head:'feature',
+      text:'Fick du önskemål jobbar du vidare på samma gren och pushar. PR:en uppdateras av sig själv, du öppnar ingen ny.',
+      cmd:['git add .','git commit -m "Rätta efter review"','git push'], note:'PR:en uppdateras',
+      tools:{
+        console:`Samma som vanligt: <code>git add</code>, <code>git commit</code>, <code>git push</code>.`,
+        vscode:`Commit som i lektion 2, sedan <b>Sync Changes</b> eller <b>Push</b>. Ny push på samma gren uppdaterar PR:en.`,
+        vs:`Commit som i lektion 2, sedan <b>↑ Push</b>.`,
+        rider:`Commit som i lektion 2, sedan <b>Git → Push…</b>.`
+      }},
+    { title:'Merga på GitHub', head:'feature',
+      text:'När granskaren godkänt trycker någon på merge-knappen på GitHub. Då blir pilen ifylld och dev innehåller ditt jobb. Din dator vet inte om det än.',
+      cmd:null,
+      tools:`Klicka <b>Merge pull request</b> på github.com. Många team väljer <b>Squash and merge</b> för en renare historik, men kolla vad ert team har kommit överens om. Tips: använd knappen <b>Delete branch</b> som dyker upp efteråt.` },
+    { title:'Hämta resultatet och städa', head:'dev',
+      text:'Nu byter du till dev och hämtar ner det som mergats. Den gamla grenen behövs inte längre, så den tar du bort. Nästa uppgift får en ny gren.',
+      cmd:['git switch dev','git pull','git branch -d feature/login'], note:'hämta, ta bort grenen',
+      tools:{
+        console:`<code>git branch -d feature/login</code> tar bort den lokala grenen. Git vägrar om den inte är mergad, så det är säkert.`,
+        vscode:`Byt till <b>dev</b> och kör <b>Pull</b>. Ta bort grenen: kommandopaletten → <b>Git: Delete Branch…</b>.`,
+        vs:`Byt till <b>dev</b> och kör <b>Git → Pull</b>. I <b>Manage Branches</b>: högerklicka <b>feature/login</b> → <b>Delete</b>.`,
+        rider:`Byt till <b>dev</b> och kör <b>Git → Pull…</b>. Grenmenyn → <b>feature/login</b> → <b>Delete</b>.`
+      }}
+  ]
+};
+
+/* ---------- Lektion: Ignorera filer (scen "editor") ---------- */
+const LIGNORE = {
+  name:'Ignorera filer', scene:'editor',
+  steps:[
+    { title:'Alla filer ska inte med i Git',
+      text:'En projektmapp innehåller ditt eget jobb, men också sådant som datorn skapar åt dig och sådant som är privat. Bara det första hör hemma i Git.',
+      cmd:null,
+      tools:`Det här gäller alla verktyg. Det är Git som bestämmer vad som följer med, inte editorn.`,
+      panels:[{title:'📁 Din mapp', badge:{t:'mitt-projekt/', cls:''}, lines:[
+        {t:'Program.cs', cls:'result', note:'✅ din kod: ska med'},
+        {t:'Program.csproj', cls:'result', note:'✅ projektfilen: ska med'},
+        {t:'bin/', cls:'marker', note:'⛔ byggresultat'},
+        {t:'obj/', cls:'marker', note:'⛔ mellanfiler från bygget'},
+        {t:'.vs/', cls:'marker', note:'⛔ dina egna inställningar'},
+        {t:'appsettings.secrets.json', cls:'marker', note:'⛔ lösenord och nycklar'}
+      ]}] },
+    { title:'Varför är det ett problem?',
+      text:'git add . lägger allt i kundvagnen, även det som aldrig borde dit. Mapparna bin och obj ändras vid varje bygge, så hela gruppen får konflikter i filer ingen skrivit. Och hamnar en nyckel på GitHub är den läckt.',
+      cmd:'git status', note:'se vad Git ser',
+      tools:{
+        console:`<code>git status</code> listar allt Git ser. Titta alltid på listan innan du kör <code>git add .</code>.`,
+        vscode:`Källkontroll visar alla filer under <b>Changes</b>. Är listan lång och full av bin/obj? Då saknas en <code>.gitignore</code>.`,
+        vs:`<b>Git Changes</b> visar alla filer. Är listan lång och full av bin/obj? Då saknas en <code>.gitignore</code>.`,
+        rider:`Commit-fönstret visar alla filer under <b>Unversioned Files</b>. Är listan lång? Då saknas en <code>.gitignore</code>.`
+      },
+      panels:[{title:'⌨️ Terminal', kind:'term', lines:[
+        {t:'$ git status', cls:'cmdline'},
+        {t:'Untracked files:', cls:'ctx'},
+        {t:'        .vs/', cls:'err', note:'← vill du inte ha'},
+        {t:'        Program.cs', cls:'ctx', note:'← vill du ha'},
+        {t:'        appsettings.secrets.json', cls:'err', note:'← farligt'},
+        {t:'        bin/', cls:'err', note:'← vill du inte ha'},
+        {t:'        obj/', cls:'err', note:'← vill du inte ha'}
+      ]}] },
+    { title:'Lösningen: en fil som heter .gitignore',
+      text:'En vanlig textfil i projektets rot där du listar vad Git ska strunta i. Stjärna betyder vilket namn som helst. Filen själv ska med i Git, så att hela gruppen delar samma regler.',
+      cmd:'dotnet new gitignore', note:'färdig fil för .NET',
+      tools:{
+        console:`<code>dotnet new gitignore</code> skapar en färdig fil med alla vanliga .NET-regler. Kör den i projektets rot.`,
+        vscode:`Kör kommandot i terminalen (<b>Terminal → New Terminal</b>), eller skapa filen <code>.gitignore</code> själv i projektets rot.`,
+        vs:`Visual Studio skapar ofta filen åt dig när du skapar repot. Annars: kör kommandot i <b>Visa → Terminal</b>.`,
+        rider:`Högerklicka projektets rot → <b>New → .ignore file → .gitignore file (Git)</b>, eller kör kommandot i terminalen (<kbd>Alt</kbd>+<kbd>F12</kbd>).`
+      },
+      panels:[{title:'📄 .gitignore', badge:{t:'ligger i projektets rot', cls:'mine'}, lines:[
+        {t:'bin/', cls:'ctx', note:'← ignorera hela mappen'},
+        {t:'obj/', cls:'ctx'},
+        {t:'.vs/', cls:'ctx'},
+        {t:'*.user', cls:'ctx', note:'← * = vilket namn som helst'},
+        {t:'appsettings.secrets.json', cls:'ctx', note:'← en enskild fil'}
+      ]}] },
+    { title:'Kontrollera att det funkade',
+      text:'Kör git status igen. Nu ser Git bara det som ska med, plus själva .gitignore. Gör den här kollen till en vana innan du lägger något i kundvagnen.',
+      cmd:'git status', note:'nu är listan kort',
+      tools:`Samma som förut: listan med ändrade filer ska nu bara innehålla din kod och <code>.gitignore</code>.`,
+      panels:[{title:'⌨️ Terminal', kind:'term', lines:[
+        {t:'$ git status', cls:'cmdline'},
+        {t:'Untracked files:', cls:'ctx'},
+        {t:'        .gitignore', cls:'ctx', note:'✅ ska med'},
+        {t:'        Program.cs', cls:'ctx', note:'✅ ska med'}
+      ]}] },
+    { title:'Hade du redan checkat in bin och obj?',
+      text:'En .gitignore påverkar bara filer som Git inte redan följer. Ligger bin och obj redan i repot måste du säga åt Git att sluta följa dem. Filerna ligger kvar på din disk.',
+      cmd:['git rm -r --cached bin obj','git commit -m "Sluta följa bin och obj"'], note:'bort ur Git, inte från disken',
+      tools:{
+        console:`Kör kommandona. <code>--cached</code> betyder att filerna bara tas bort ur Git, inte från datorn. Pusha sedan som vanligt.`,
+        vscode:`Det finns ingen knapp för detta. Använd terminalen (<b>Terminal → New Terminal</b>).`,
+        vs:`Det finns ingen knapp för detta. Använd terminalen (<b>Visa → Terminal</b>).`,
+        rider:`Använd terminalen (<kbd>Alt</kbd>+<kbd>F12</kbd>) och kör kommandona.`
+      },
+      panels:[{title:'⌨️ Terminal', kind:'term', lines:[
+        {t:'$ git rm -r --cached bin obj', cls:'cmdline'},
+        {t:"rm 'bin/Debug/net8.0/Program.dll'", cls:'ctx'},
+        {t:"rm 'obj/project.assets.json'", cls:'ctx', note:'… och fler'},
+        {t:'$ git commit -m "Sluta följa bin och obj"', cls:'cmdline'},
+        {t:'[main 4c1d2e9] Sluta följa bin och obj', cls:'ctx', note:'✅ klart'}
+      ]}] },
+    { title:'Hemligheter hör inte hemma i repot',
+      text:'Lösenord och API-nycklar ska aldrig in i Git. Är de redan pushade räknas de som läckta: byt dem direkt, att radera filen efteråt hjälper inte. I .NET finns user-secrets, som sparar dem utanför projektmappen.',
+      cmd:['dotnet user-secrets init','dotnet user-secrets set "ApiKey" "hemligt"'], note:'sparas utanför repot',
+      tools:{
+        console:`Kör kommandona i projektmappen. I koden läser du värdet med <code>builder.Configuration["ApiKey"]</code>. Varje gruppmedlem sätter sin egen nyckel.`,
+        vscode:`Kör kommandona i terminalen (<b>Terminal → New Terminal</b>).`,
+        vs:`Högerklicka projektet → <b>Manage User Secrets</b>. Då öppnas en fil som ligger utanför projektmappen.`,
+        rider:`Kör kommandona i terminalen (<kbd>Alt</kbd>+<kbd>F12</kbd>).`
+      },
+      panels:[{title:'📁 Vad ligger var?', badge:{t:'hemligheter', cls:''}, lines:[
+        {t:'appsettings.json', cls:'result', note:'✅ i Git: tomma platshållare'},
+        {t:'~/.microsoft/usersecrets/…', cls:'result', note:'✅ på din dator: riktiga nycklar'},
+        {t:'appsettings.secrets.json', cls:'marker', note:'⛔ riskabelt, glöms lätt'}
+      ]}] },
+    { title:'Tre tumregler',
+      text:'Gör dem till rutin, så slipper ni det mesta av krånglet i grupprojektet.',
+      cmd:null,
+      tools:`Använder ni GitHub kan ni också välja <b>Add .gitignore</b> och mallen <b>VisualStudio</b> när ni skapar repot. Då finns filen från första början.`,
+      panels:[{title:'✅ Checklista', badge:{t:'varje projekt', cls:'result'}, lines:[
+        {t:'1. Skapa .gitignore innan första commit', cls:'result'},
+        {t:'2. Titta på git status innan git add .', cls:'result'},
+        {t:'3. Inga lösenord eller nycklar i repot', cls:'result'}
+      ]}] }
+  ]
+};
+
+const LESSONS = [LSTART, L1, LIGNORE, L2, LPULL, L3, LPR, LUNDO];
+LESSONS.forEach((l,i) => l.title = (i+1) + ' · ' + l.name);
+
+/* ===================== SCENER ===================== */
+const $ = s => document.querySelector(s);
+const stage = $('#stage');
+
+/* ----- Scen: places (rutor med föremål som flyttar sig) ----- */
+const places = (() => {
+  let slots = [], arrowEls = [], els = {}, layer;
+  const IH = 78, GAP = 8;
+
+  function build(lesson){
+    slots = []; arrowEls = []; els = {};
+    lesson.boxes.forEach((b,i) => {
+      const box = document.createElement('div');
+      box.className = 'box';
+      box.innerHTML = '<div class="box-head"><div class="ic">'+b.icon+'</div><div><div class="nm">'+b.name+
+        '</div><div class="tm">'+b.term+'</div><div class="hint">'+b.hint+'</div></div></div><div class="slot"></div>';
+      stage.appendChild(box);
+      const slot = box.querySelector('.slot');
+      let rows = 1;
+      lesson.steps.forEach(st => {
+        const n = st.items.filter(it => it.box === i).length;
+        if (n > rows) rows = n;
+      });
+      if (rows > 1) slot.style.minHeight = (rows * (IH + GAP) - GAP) + 'px';
+      slots.push(slot);
+      if (i < lesson.arrows.length) {
+        const a = document.createElement('div');
+        a.className = 'arrow';
+        const ar = lesson.arrows[i], at = typeof ar === 'string' ? ar : ar.t, ag = (ar && ar.g) || '→';
+        a.innerHTML = '<span class="glyph">'+ag+'</span><span>'+at+'</span>';
+        stage.appendChild(a);
+        arrowEls.push(a);
+      }
+    });
+    layer = document.createElement('div');
+    layer.id = 'items';
+    stage.appendChild(layer);
+  }
+  function place(box, idx){
+    const s = stage.getBoundingClientRect(), r = slots[box].getBoundingClientRect();
+    return {x:r.left - s.left - stage.clientLeft, y:r.top - s.top - stage.clientTop + idx*(IH+GAP), w:r.width};
+  }
+  function setPos(el, p){
+    el.style.width = p.w + 'px';
+    el.style.transform = 'translate('+p.x+'px,'+p.y+'px)';
+  }
+  function make(){
+    const el = document.createElement('div');
+    el.className = 'item';
+    el.innerHTML = '<div class="t"></div><div class="s"></div><div class="b"></div>';
+    return el;
+  }
+  function update(el, it){
+    el.querySelector('.t').textContent = it.icon + ' ' + it.t;
+    el.querySelector('.s').textContent = it.s;
+    el.querySelector('.b').textContent = it.b;
+    const changed = el.dataset.cls !== it.cls;
+    el.dataset.cls = it.cls;
+    el.classList.remove('changed','staged','commit','remote');
+    el.classList.add(it.cls);
+    if (changed && el.dataset.init) { el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
+    el.dataset.init = '1';
+  }
+  function render(st){
+    const present = new Set(), counts = {};
+    st.items.forEach(it => {
+      present.add(it.id);
+      const idx = counts[it.box] = (counts[it.box] === undefined ? 0 : counts[it.box] + 1);
+      let el = els[it.id];
+      if (!el) {
+        el = els[it.id] = make();
+        layer.appendChild(el);
+        setPos(el, place(it.from !== undefined ? it.from : it.box, 0));
+        el.style.opacity = it.from !== undefined ? 1 : 0;
+        void el.offsetWidth;
+      }
+      update(el, it);
+      setPos(el, place(it.box, idx));
+      el.style.opacity = 1;
+    });
+    Object.keys(els).forEach(id => {
+      if (!present.has(id)) {
+        const el = els[id];
+        el.style.opacity = 0;
+        delete els[id];
+        setTimeout(() => el.remove(), 500);
+      }
+    });
+    arrowEls.forEach((a,i) => a.classList.toggle('on', st.arrow === 'all' || st.arrow === i));
+  }
+  return {build, render};
+})();
+
+/* ----- Scen: branches (spår med sparpunkter och merge-pilar) ----- */
+const branches = (() => {
+  let LY = {}, root;
+  const cx = c => 160 + 80*c;
+  const R = 15;
+
+  function build(lesson){
+    const g = lesson.graph, N = {};
+    g.nodes.forEach(n => N[n.id] = n);
+    LY = {};
+    g.lanes.forEach((l,i) => LY[l.id] = 50 + 80*i);
+    const H = 50 + 80*(g.lanes.length - 1) + 50;
+    const un = o => o.until !== undefined ? ' data-until="'+o.until+'"' : '';
+    let h = '<svg viewBox="0 0 700 '+H+'" role="img" aria-label="Grenar i Git">';
+    g.lanes.forEach(l => {
+      const y = LY[l.id];
+      h += '<g class="lane c-'+l.id+'" data-at="'+l.at+'"><line x1="124" x2="690" y1="'+y+'" y2="'+y+'"/>'+
+           '<text class="ln" x="12" y="'+(y-1)+'">'+l.id+'</text><text class="ld" x="12" y="'+(y+18)+'">'+l.desc+'</text></g>';
+    });
+    g.edges.forEach(e => {
+      const a = N[e.from], b = N[e.to];
+      const x1 = cx(a.col), y1 = LY[a.lane], x2 = cx(b.col), y2 = LY[b.lane];
+      let d;
+      if (y1 === y2 || x1 === x2) d = 'M'+x1+' '+y1+'L'+x2+' '+y2;
+      else { const dx = (x2-x1)*0.55; d = 'M'+x1+' '+y1+'C'+(x1+dx)+' '+y1+' '+(x2-dx)+' '+y2+' '+x2+' '+y2; }
+      h += '<g class="edge c-'+e.c+(e.dashed ? ' dashed' : '')+'" data-at="'+e.at+'"'+un(e)+'><path d="'+d+'" pathLength="1"/>';
+      if (e.merge) {
+        const tx = x2 - R - 1;
+        h += '<polygon points="'+tx+','+y2+' '+(tx-11)+','+(y2-7)+' '+(tx-11)+','+(y2+7)+'"/>';
+      }
+      if (e.label) h += '<text class="elabel" x="'+((x1+x2)/2 + (y1 === y2 ? 0 : 42))+'" y="'+((y1+y2)/2 + (y1 === y2 ? -8 : 24))+'">'+e.label+'</text>';
+      h += '</g>';
+    });
+    g.nodes.forEach(n => {
+      h += '<g class="node c-'+n.lane+'" data-at="'+n.at+'"'+(n.solid !== undefined ? ' data-solid="'+n.solid+'"' : '')+
+           ' transform="translate('+cx(n.col)+','+LY[n.lane]+')"><circle r="'+R+'"/><text y="'+(R+18)+'">'+n.t+'</text></g>';
+    });
+    (g.clouds || []).forEach(c => {
+      const n = N[c.node];
+      h += '<text class="cloud" data-at="'+c.at+'"'+un(c)+' x="'+cx(n.col)+'" y="'+(LY[n.lane]-24)+'">☁️</text>';
+    });
+    (g.tags || []).forEach(t => {
+      const n = N[t.node];
+      h += '<text class="tag" data-at="'+t.at+'"'+un(t)+' x="'+cx(n.col)+'" y="'+(LY[n.lane]-48)+'">'+t.text+'</text>';
+    });
+    h += '<g class="head" id="head" style="transform:translate(588px,'+LY[g.lanes[g.lanes.length > 3 ? 2 : 0].id]+'px)">'+
+         '<rect x="0" y="-14" width="104" height="28" rx="14"/><text x="52" y="5">📍 Du är här</text></g></svg>';
+    stage.innerHTML = h;
+    root = stage.querySelector('svg');
+  }
+  function render(st, idx){
+    root.querySelectorAll('[data-at]').forEach(el => {
+      const at = +el.dataset.at, until = el.dataset.until === undefined ? Infinity : +el.dataset.until;
+      el.classList.toggle('show', at <= idx && idx < until);
+      if (el.dataset.solid !== undefined) el.classList.toggle('ghost', idx < +el.dataset.solid);
+    });
+    if (st.head) root.querySelector('#head').style.transform = 'translate(588px,'+LY[st.head]+'px)';
+  }
+  return {build, render};
+})();
+
+/* ----- Scen: editor (kodpaneler och terminal) ----- */
+const editor = (() => {
+  let panelsEl;
+  function build(){
+    stage.innerHTML = '<div class="panels"></div>';
+    panelsEl = stage.querySelector('.panels');
+  }
+  function render(st){
+    panelsEl.innerHTML = '';
+    panelsEl.className = 'panels' + (st.panels.length > 1 ? ' two' : '');
+    let d = 0;
+    st.panels.forEach(p => {
+      const el = document.createElement('div');
+      el.className = 'panel' + (p.kind === 'term' ? ' term' : '');
+      const h = document.createElement('div');
+      h.className = 'panel-h';
+      const t = document.createElement('span');
+      t.textContent = p.title;
+      h.appendChild(t);
+      if (p.badge) {
+        const b = document.createElement('span');
+        b.className = 'br ' + p.badge.cls;
+        b.textContent = p.badge.t;
+        h.appendChild(b);
+      }
+      el.appendChild(h);
+      const code = document.createElement('div');
+      code.className = 'code';
+      p.lines.forEach(l => {
+        const row = document.createElement('div');
+        row.className = 'cl ' + l.cls;
+        row.style.animationDelay = (d++ * 90) + 'ms';
+        const c = document.createElement('code');
+        c.textContent = l.t;
+        row.appendChild(c);
+        if (l.note) {
+          const n = document.createElement('span');
+          n.className = 'nt';
+          n.textContent = l.note;
+          row.appendChild(n);
+        }
+        code.appendChild(row);
+      });
+      el.appendChild(code);
+      panelsEl.appendChild(el);
+    });
+  }
+  return {build, render};
+})();
+
+const SCENES = {places, branches, editor};
+
+/* ===================== STYRNING ===================== */
+let li = 0, lesson = LESSONS[0], STEPS = lesson.steps, scene = places, cur = 0, timer = null;
+
+let tool = 'vscode';
+try { const t = localStorage.getItem('gitguide.tool'); if (TOOLS.some(x => x[0] === t)) tool = t; } catch(e){}
+
+function renderTool(){
+  const st = STEPS[cur];
+  const label = TOOLS.find(t => t[0] === tool)[1];
+  $('#who').textContent = 'Så gör du i ' + label;
+  $('#toolbody').innerHTML = typeof st.tools === 'string' ? st.tools : st.tools[tool];
+  document.querySelectorAll('#tools .tab').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tool === tool)));
+}
+
+function go(n){
+  cur = Math.max(0, Math.min(STEPS.length - 1, n));
+  const st = STEPS[cur];
+  scene.render(st, cur);
+  $('#stepno').textContent = lesson.title + ' · steg ' + (cur+1) + ' av ' + STEPS.length;
+  $('#title').textContent = st.title;
+  $('#text').textContent = st.text;
+  const cmd = Array.isArray(st.cmd) ? st.cmd.join('\n') : st.cmd;
+  $('#cmdbox').hidden = !cmd;
+  if (cmd) { $('#cmd').textContent = cmd; $('#cmdnote').textContent = '← ' + st.note; }
+  document.querySelectorAll('.dot').forEach((d,i) => i === cur ? d.setAttribute('aria-current','step') : d.removeAttribute('aria-current'));
+  $('#prev').disabled = cur === 0;
+  $('#next').textContent = cur === STEPS.length - 1 ? 'Börja om ↺' : 'Nästa →';
+  renderTool();
+}
+
+function setPlay(on){
+  clearInterval(timer); timer = null;
+  $('#play').textContent = on ? '⏸ Pausa' : '▶ Spela upp';
+  $('#play').setAttribute('aria-pressed', String(on));
+  if (on) {
+    if (cur === STEPS.length - 1) go(0);
+    timer = setInterval(() => { if (cur >= STEPS.length - 1) setPlay(false); else go(cur + 1); }, 4500);
+  }
+}
+
+function loadLesson(i){
+  setPlay(false);
+  li = i; lesson = LESSONS[i]; STEPS = lesson.steps; scene = SCENES[lesson.scene];
+  stage.className = 'stage ' + lesson.scene;
+  stage.innerHTML = '';
+  scene.build(lesson);
+  $('#dots').innerHTML = '';
+  STEPS.forEach((s,k) => {
+    const d = document.createElement('button');
+    d.className = 'dot'; d.type = 'button'; d.setAttribute('aria-label','Steg ' + (k+1));
+    d.onclick = () => go(k);
+    $('#dots').appendChild(d);
+  });
+  document.querySelectorAll('.ltab').forEach(b => b.setAttribute('aria-selected', String(+b.dataset.lesson === i)));
+  try { history.replaceState(null, '', '#' + (i+1)); } catch(e){}
+  go(0);
+}
+
+/* lektionsflikar */
+LESSONS.forEach((l,i) => {
+  const b = document.createElement('button');
+  b.className = 'ltab'; b.type = 'button'; b.setAttribute('role','tab');
+  b.dataset.lesson = i; b.textContent = l.title;
+  b.onclick = () => loadLesson(i);
+  $('#lessons').appendChild(b);
+});
+
+/* verktygsflikar */
+TOOLS.forEach(([key,label]) => {
+  const b = document.createElement('button');
+  b.className = 'tab'; b.type = 'button'; b.setAttribute('role','tab');
+  b.dataset.tool = key; b.textContent = label;
+  b.onclick = () => { tool = key; try { localStorage.setItem('gitguide.tool', key); } catch(e){} renderTool(); };
+  $('#tools').appendChild(b);
+});
+
+/* kontroller */
+$('#prev').onclick = () => go(cur - 1);
+$('#next').onclick = () => go(cur === STEPS.length - 1 ? 0 : cur + 1);
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') $('#next').click();
+  if (e.key === 'ArrowLeft') $('#prev').click();
+});
+$('#play').onclick = () => setPlay(!timer);
+$('#copy').onclick = async () => {
+  const st = STEPS[cur], text = Array.isArray(st.cmd) ? st.cmd.join('\n') : st.cmd;
+  try {
+    await navigator.clipboard.writeText(text);
+    $('#copy').textContent = 'Kopierat ✓';
+    setTimeout(() => $('#copy').textContent = 'Kopiera', 1500);
+  } catch(e){}
+};
+
+let rt, lastW = innerWidth;
+function relayout(force){
+  /* Bara scenen med absolutpositionerade föremål behöver räkna om, och bara när bredden ändras
+     (på mobil skickas resize även när adressfältet gömms). */
+  if (scene !== places) return;
+  if (!force && innerWidth === lastW) return;
+  lastW = innerWidth;
+  stage.classList.add('no-anim');
+  go(cur);
+  void stage.offsetWidth;
+  clearTimeout(rt);
+  rt = setTimeout(() => stage.classList.remove('no-anim'), 60);
+}
+addEventListener('resize', () => relayout(false));
+addEventListener('load', () => relayout(true));
+
+const startLesson = Math.max(0, Math.min(LESSONS.length - 1, (parseInt(location.hash.slice(1), 10) || 1) - 1));
+loadLesson(startLesson);
+</script>
+</body>
+</html>
