@@ -59,6 +59,11 @@
    "href": "https://marcusjobb.github.io/YRGO-CLO26-Portal/mongodb-lathund.html"
   },
   {
+   "icon": "🧭",
+   "label": "Vägar efter utbildningen",
+   "href": "https://marcusjobb.github.io/YRGO-CLO26-Portal/vagar-efter-utbildningen.html"
+  },
+  {
    "icon": "🤖",
    "label": "OpenCode — installation och gratis modeller",
    "href": "00_kursintro/notes/opencode_installation.md"

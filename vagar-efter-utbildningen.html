@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vägar efter utbildningen</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #F9F9F7;
+  --fg: #1C1C1A;
+  --muted: #64645E;
+  --muted2: #9A9A90;
+  --border: #E4E4DF;
+  --code-bg: #EFEFE8;
+
+  --c-cr:    #B55608;
+  --c-cr-bg: #FEF4EC;
+  --c-st:    #1762A3;
+  --c-st-bg: #EBF2FA;
+  --c-be:    #237055;
+  --c-be-bg: #E9F4EE;
+  --c-ar:    #6040A0;
+  --c-ar-bg: #F0ECFA;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161614;
+    --fg: #E6E6E0;
+    --muted: #8A8A80;
+    --muted2: #5A5A54;
+    --border: #2C2C28;
+    --code-bg: #1E1E1A;
+    --c-cr: #E8922E; --c-cr-bg: #261508;
+    --c-st: #4B9DD4; --c-st-bg: #0C1E30;
+    --c-be: #40B076; --c-be-bg: #0A1F14;
+    --c-ar: #9878D8; --c-ar-bg: #18102A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161614; --fg: #E6E6E0; --muted: #8A8A80; --muted2: #5A5A54;
+  --border: #2C2C28; --code-bg: #1E1E1A;
+  --c-cr: #E8922E; --c-cr-bg: #261508;
+  --c-st: #4B9DD4; --c-st-bg: #0C1E30;
+  --c-be: #40B076; --c-be-bg: #0A1F14;
+  --c-ar: #9878D8; --c-ar-bg: #18102A;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 2.5rem;
+}
+
+.container { max-width: 760px; margin: 0 auto; }
+
+h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 2.6rem; font-weight: 400; line-height: 1.1;
+  text-wrap: balance; margin-bottom: 0.4rem;
+}
+.subtitle { color: var(--muted); font-size: 0.875rem; letter-spacing: 0.03em; margin-bottom: 2.5rem; }
+
+h2 {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 2.75rem; margin-bottom: 1rem;
+}
+
+code {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.82em;
+  background: var(--code-bg); padding: 0.1em 0.4em; border-radius: 3px;
+}
+
+/* ── Insight box (intro) ── */
+.insight {
+  background: var(--code-bg); border-radius: 8px;
+  padding: 1.4rem 1.6rem; margin-bottom: 0.5rem;
+}
+.insight-lead {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.2rem; font-style: italic;
+  margin-bottom: 1.1rem; line-height: 1.4;
+}
+.insight-rows { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.2rem; }
+.insight-row { display: grid; grid-template-columns: 100px 1fr; gap: 0.75rem; font-size: 0.875rem; align-items: start; }
+.insight-row code { background: none; padding: 0; font-weight: 600; font-size: 0.95em; }
+.insight-row-desc strong { color: var(--fg); }
+.insight-row-desc .sub {
+  display: block; color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem; line-height: 1.5;
+}
+.insight-body {
+  font-size: 0.875rem; line-height: 1.6;
+  border-top: 1px solid var(--border); padding-top: 0.9rem;
+}
+
+/* ── Category ── */
+.category { margin-top: 2.25rem; }
+.cat-header {
+  display: flex; align-items: baseline; gap: 0.75rem;
+  padding-bottom: 0.6rem; border-bottom: 2px solid var(--border); margin-bottom: 0.25rem;
+}
+.cat-title { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.5rem; font-weight: 400; }
+.cat-sub { font-size: 0.82rem; color: var(--muted); }
+.cr .cat-title { color: var(--c-cr); }
+.st .cat-title { color: var(--c-st); }
+.be .cat-title { color: var(--c-be); }
+.ar .cat-title { color: var(--c-ar); }
+
+/* ── Pattern row ── */
+.pattern {
+  display: grid; grid-template-columns: 175px 1fr;
+  gap: 0.75rem 1rem; padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border); align-items: start; min-width: 0;
+}
+.pattern:last-child { border-bottom: none; }
+
+.pattern-name {
+  font-weight: 600; font-size: 0.875rem;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; min-width: 0;
+}
+.cr .pattern-name { color: var(--c-cr); }
+.st .pattern-name { color: var(--c-st); }
+.be .pattern-name { color: var(--c-be); }
+.ar .pattern-name { color: var(--c-ar); }
+
+.badge {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; font-weight: 500;
+  letter-spacing: 0.04em; padding: 0.15em 0.55em; border-radius: 999px; white-space: nowrap;
+}
+.badge-lec { background: rgba(23,98,163,0.12); color: var(--c-st); }
+.badge-know { background: rgba(35,112,85,0.12); color: var(--c-be); }
+
+.pattern-body { font-size: 0.875rem; line-height: 1.55; min-width: 0; }
+.pattern-when { display: block; color: var(--muted); font-size: 0.8rem; margin-top: 0.3rem; line-height: 1.5; }
+.pattern-when em { font-style: italic; color: var(--fg); opacity: 0.8; }
+
+/* ── Classes list inside pattern ── */
+.pattern-classes {
+  margin-top: 0.65rem; padding-top: 0.55rem;
+  border-top: 1px dashed var(--border);
+}
+.cls-label {
+  font-size: 0.63rem; font-weight: 600; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--muted2);
+  display: block; margin-bottom: 0.35rem;
+}
+.cls-list { display: flex; flex-direction: column; gap: 0.25rem; }
+.cls-row {
+  display: grid; grid-template-columns: 190px 1fr;
+  gap: 0.4rem; font-size: 0.775rem; align-items: start;
+}
+.cls-row code { background: none; padding: 0; font-weight: 600; font-size: 1em; color: var(--fg); }
+.cls-row span { color: var(--muted); line-height: 1.4; }
+
+/* ── Architecture cards ── */
+.arch-cards { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.25rem; }
+.arch-card { background: var(--c-ar-bg); border-radius: 8px; padding: 1rem 1.25rem; }
+.arch-card h3 { color: var(--c-ar); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
+.arch-card p { font-size: 0.875rem; line-height: 1.55; margin-bottom: 0.5rem; }
+.arch-card p:last-child { margin-bottom: 0; }
+.arch-diagram {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem;
+  color: var(--muted); line-height: 1.6;
+  margin-top: 0.5rem; padding: 0.6rem 0.8rem;
+  background: rgba(0,0,0,0.04); border-radius: 4px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .arch-diagram { background: rgba(255,255,255,0.04); }
+}
+:root[data-theme="dark"] .arch-diagram { background: rgba(255,255,255,0.04); }
+
+.arch-classes { margin-top: 0.6rem; }
+.arch-cls-row {
+  display: grid; grid-template-columns: 190px 1fr;
+  gap: 0.4rem; font-size: 0.775rem; align-items: start; margin-bottom: 0.25rem;
+}
+.arch-cls-row code { background: none; padding: 0; font-weight: 600; color: var(--fg); }
+.arch-cls-row span { color: var(--muted); line-height: 1.4; }
+
+/* Legend */
+.legend {
+  margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--border);
+  font-size: 0.775rem; color: var(--muted);
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem;
+}
+
+@media (max-width: 540px) {
+  h1 { font-size: 2rem; }
+  .pattern { grid-template-columns: 1fr; gap: 0.2rem; }
+  .insight-row { grid-template-columns: 1fr; gap: 0.1rem; }
+  .cat-header { flex-direction: column; gap: 0.15rem; align-items: flex-start; }
+  .cls-row { grid-template-columns: 1fr; gap: 0.1rem; }
+  .arch-cls-row { grid-template-columns: 1fr; gap: 0.1rem; }
+}
+.back { font-size: 0.9rem; margin-bottom: 0.5rem; }
+.back a { display: inline-block; border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.85rem; color: var(--fg); text-decoration: none; }
+.back a:hover { border-color: var(--fg); }
+.menu-btn { display: none; }
+@media (max-width: 1179px) {
+  .menu-btn { display: inline-flex; align-items: center; gap: 0.4rem; position: fixed; top: 12px; right: 16px; z-index: 30;
+              font: inherit; font-size: 0.85rem; padding: 0.4rem 0.85rem; border-radius: 999px; cursor: pointer;
+              border: 1px solid var(--border); background: var(--bg); color: var(--fg); }
+  .toc.open { display: block; position: fixed; top: 52px; left: 16px; right: 16px; width: auto; max-height: 70vh;
+              overflow-y: auto; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+              padding: 0.75rem; z-index: 29; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+}
+/* Flytande innehållsförteckning: bara på breda skärmar, så att telefonen inte får horisontell scroll */
+[id] { scroll-margin-top: 1.5rem; }
+.toc { display: none; }
+@media (min-width: 1180px) {
+  .toc { display: block; position: fixed; top: 2.5rem; left: 16px; width: 180px; font-size: 0.85rem; }
+  .toc h4 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 1.05rem; color: var(--muted); margin-bottom: 0.5rem; }
+  .toc a { display: block; padding: 0.3rem 0.6rem; color: var(--muted); text-decoration: none; border-left: 2px solid var(--border); }
+  .toc a:hover, .toc a.active { color: var(--fg); border-left-color: var(--fg); }
+}
+
+pre { background: var(--code-bg); border-radius: 6px; padding: 0.9rem 1rem; overflow-x: auto;
+      font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 0.82rem; line-height: 1.5;
+      margin: 0.6rem 0 0.2rem; }
+pre code { background: none; padding: 0; }
+.note { border-left: 3px solid var(--c-cr); padding: 0.4rem 0.9rem; margin: 0.8rem 0; color: var(--muted); }
+.warn { border-left: 3px solid var(--c-cr); padding: 0.4rem 0.9rem; margin: 0.8rem 0; }
+table.t { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 0.6rem 0; }
+table.t th, table.t td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+table.t th { color: var(--muted); font-weight: 600; }
+.step { margin: 0.4rem 0 0.8rem; }
+.back a { display: inline-block; border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.85rem;
+          color: var(--fg); text-decoration: none; }
+.back a:hover { border-color: var(--fg); }
+.menu-btn { display: none; }
+@media (max-width: 1179px) {
+  .menu-btn { display: inline-flex; align-items: center; gap: 0.4rem; position: fixed; top: 12px; right: 16px; z-index: 30;
+              font: inherit; font-size: 0.85rem; padding: 0.4rem 0.85rem; border-radius: 999px; cursor: pointer;
+              border: 1px solid var(--border); background: var(--bg); color: var(--fg); }
+  .toc.open { display: block; position: fixed; top: 52px; left: 16px; right: 16px; width: auto; max-height: 70vh;
+              overflow-y: auto; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+              padding: 0.75rem; z-index: 29; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+}
+.tbl-wrap { overflow-x: auto; margin: 0.6rem 0; }
+.tbl-wrap table.t { margin: 0; min-width: 420px; }
+.path { margin-top: 2.25rem; }
+.path-head { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; padding-bottom: 0.6rem; border-bottom: 2px solid var(--border); }
+.path-num { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--muted2); }
+.path-title { font-family: 'Instrument Serif', Georgia, serif; font-size: 1.6rem; font-weight: 400; color: var(--c-st); }
+.path-tag { font-size: 0.82rem; color: var(--muted); }
+.path.lead .path-title { color: var(--c-ar); }
+.facts { display: grid; grid-template-columns: 120px 1fr; gap: 0.35rem 1rem; margin-top: 0.9rem; font-size: 0.9rem; }
+.facts dt { font-weight: 600; color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; padding-top: 0.15rem; }
+.facts dd { margin: 0; }
+.fit { margin-top: 0.8rem; padding: 0.6rem 0.9rem; border-radius: 6px; background: var(--c-be-bg); color: var(--fg); font-size: 0.875rem; }
+.fit strong { color: var(--c-be); }
+.honest { border-left: 3px solid var(--c-cr); padding: 0.4rem 0.9rem; margin: 0.8rem 0; color: var(--muted); font-size: 0.875rem; }
+.cols { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 0.6rem; margin-top: 0.5rem; }
+.chip { background: var(--code-bg); border-radius: 8px; padding: 0.7rem 0.9rem; font-size: 0.85rem; }
+.chip strong { display: block; color: var(--c-st); margin-bottom: 0.15rem; }
+.chip span { color: var(--muted); font-size: 0.8rem; }
+.jump { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.2rem 0 0; }
+.jump a { border: 1px solid var(--border); border-radius: 999px; padding: 0.25rem 0.85rem; font-size: 0.85rem; color: var(--fg); text-decoration: none; }
+.jump a:hover { border-color: var(--fg); }
+@media (max-width: 540px) { .facts { grid-template-columns: 1fr; gap: 0.1rem; } .facts dd { margin-bottom: 0.5rem; } }
+</style>
+</head>
+<body>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="toc">☰ Innehåll</button>
+<nav class="toc" id="toc" aria-label="Innehåll">
+  <h4>Innehåll</h4>
+  <a href="#inte-nu">Välj inte nu</a>
+  <a href="#v1">.NET-utvecklare</a>
+  <a href="#v2">Cloud Developer</a>
+  <a href="#v3">Kvalitet och test</a>
+  <a href="#v4">Systemutvecklare</a>
+  <a href="#v5">Arkitektur</a>
+  <a href="#v6">AI-relaterade jobb</a>
+  <a href="#fler">Fler vägar</a>
+  <a href="#v7">Leda arbetet</a>
+  <a href="#oversikt">Överblick</a>
+  <a href="#tre-rader">Dina tre rader</a>
+  <a href="#riktig-kod">Riktig kod</a>
+  <a class="toc-back" href="kurs.html?kurs=03">← Tillbaka till kurs 3</a>
+</nav>
+
+<div class="container">
+  <p class="back"><a href="kurs.html?kurs=03">← Kurs 3</a></p>
+  <h1>Vägar efter utbildningen</h1>
+  <p class="subtitle">Fördjupad OOP i C# · Kurs 3 · CLO26 · YRGO</p>
+
+  <div class="insight" id="inte-nu">
+    <p class="insight-lead">Det här är ingen tenta och inget beslut. Läs som du läser en meny.</p>
+    <div class="insight-rows">
+      <div class="insight-row"><code>Roller</code><span class="insight-row-desc">Utbildningsplanen har tre yrkesroller: <strong>.NET-clouddeveloper</strong>, <strong>Cloud Developer</strong> och <strong>mjukvaru- och systemutvecklare</strong>.</span></div>
+      <div class="insight-row"><code>LIA</code><span class="insight-row-desc">Du provar på riktigt i Lärande i arbete: <strong>20 veckor</strong> ute hos ett företag.</span></div>
+      <div class="insight-row"><code>Grunden</code><span class="insight-row-desc">De flesta vägarna delar samma grund. Det du lär dig den här veckan läser du i alla vägarna.</span></div>
+    </div>
+    <p class="insight-body">Ha dina tre rader framför dig: vilket jobb du ser framför dig, vad du vill bygga och vad du vill slippa.</p>
+  </div>
+  <div class="jump">
+    <a href="#v1">1 · .NET</a><a href="#v2">2 · Cloud</a><a href="#v3">3 · Test</a><a href="#v4">4 · System</a>
+    <a href="#v5">5 · Arkitektur</a><a href="#v6">6 · AI</a><a href="#fler">+ Fler</a><a href="#v7">7 · Leda</a>
+  </div>
+
+  <section class="path" id="v1">
+    <div class="path-head"><span class="path-num">VÄG 1</span><span class="path-title">.NET-utvecklare</span><span class="path-tag">Logik och API:er i C#</span></div>
+    <dl class="facts">
+      <dt>Du gör</dt><dd>Bygger logiken i ett system i C#: regler för hur en bokning får göras, ett API som en app pratar med, eller koden som hämtar och sparar data i en databas.</dd>
+      <dt>En dag</dt><dd>Du får en uppgift (&quot;kunden ska kunna avboka en tid&quot;), läser den befintliga koden, lägger till det som saknas och testar. Mycket av tiden går åt till att <em>läsa</em> kod. Därför tränar vi clean code och kodgranskning.</dd>
+      <dt>Kurser</dt><dd>Databashantering och design · Fördjupad OOP i C# (den här) · Grundläggande molnapplikationer</dd>
+      <dt>Du använder mest</dt><dd>C# och LINQ · SQL och EF Core · ASP.NET Core för API:er · Git · felsökning med debuggern</dd>
+      <dt>Öva på</dt><dd>Bygg ett konsolprogram för en bokningslista med EF Core och SQLite. Låt datat som skickas runt vara <code>record</code>, och rita klassdiagrammet i Mermaid. Kolla upp: LINQ-frågor mot din egen databas.</dd>
+      <!-- VISAS EFTER KURS 4 (kräver sådant som inte gåtts igenom i kurs 3): API med ASP.NET Core och EF Core, provat med Swagger eller en .http-fil i VS Code. Kolla upp: minimal APIs. -->
+    </dl>
+    <p class="fit"><strong>Passar dig om</strong> du tycker det är roligt att lösa en sak i taget och se att den fungerar.</p>
+  </section>
+
+  <section class="path" id="v2">
+    <div class="path-head"><span class="path-num">VÄG 2</span><span class="path-title">Cloud Developer</span><span class="path-tag">Publicera och driva tjänster</span></div>
+    <dl class="facts">
+      <dt>Du gör</dt><dd>Publicerar tjänster i molnet och ser till att de fortsätter fungera. Var kör vi koden, vad händer när fler användare kommer, och hur rullar vi ut en ny version utan att något går sönder?</dd>
+      <dt>En dag</dt><dd>Du skriver kod, men också konfiguration. Du ser till att en tjänst startar på rätt sätt och kan växa när belastningen ökar.</dd>
+      <dt>Kurser</dt><dd>Molnapplikationer fördjupning · Skalbara molnapplikationer · Kubernetes</dd>
+      <dt>Du använder mest</dt><dd>En molnplattform (Azure, AWS eller Google Cloud) · Docker och Kubernetes · CI/CD-flöden · Infrastructure as Code · loggar för att se vad som händer</dd>
+      <dt>Öva på</dt><dd>Gå igenom din egen kod och lista allt som måste ändras för att den ska fungera på någon annans dator: sökvägar, connection string och hemligheter. Flytta hemligheterna till <code>dotnet user-secrets</code>. Kolla upp: vad som händer med din kod om databasen ligger på en annan dator.</dd>
+      <!-- VISAS EFTER KURS 4 (kräver sådant som inte gåtts igenom i kurs 3): Lägg din egen app i en Docker-container och kör den lokalt. Skriv ett GitHub Actions-flöde som bygger den vid varje push. Kolla upp: kind eller minikube för Kubernetes på din egen dator. -->
+    </dl>
+    <p class="fit"><strong>Passar dig om</strong> du är nyfiken på vad som händer <em>efter</em> att koden är skriven.</p>
+  </section>
+
+  <section class="path" id="v3">
+    <div class="path-head"><span class="path-num">VÄG 3</span><span class="path-title">Kvalitet och test</span><span class="path-tag">Se till att det håller</span></div>
+    <dl class="facts">
+      <dt>Du gör</dt><dd>Skriver tester som körs automatiskt, hittar var det brister och hjälper laget att upptäcka fel innan användarna gör det.</dd>
+      <dt>En dag</dt><dd>Du läser kraven, funderar på vad som kan gå fel och skriver tester för det. Ett bra test är ofta ett litet program som ställer en fråga till din kod och kollar att svaret blir rätt. Du har redan kört kantfall mot din egen inlämning.</dd>
+      <dt>Kurser</dt><dd>Test och kvalitetssäkring, som startar måndag 7 december, direkt efter den här kursen.</dd>
+      <dt>Du använder mest</dt><dd>Enhetstester · testfall och kantfall · kravställning · Git · automatiska tester som körs vid varje ändring</dd>
+      <dt>Öva på</dt><dd>Välj en egen metod, till exempel en rabattberäkning. Skriv en lista med kantfall: noll, negativa tal, tomt värde och samma dag in och ut. Kör dem ett i taget i ett konsolprogram och skriv vad du förväntade dig och vad som hände.</dd>
+      <!-- VISAS EFTER KURS 4 (kräver sådant som inte gåtts igenom i kurs 3): Skriv xUnit-tester för samma metod, med samma kantfall. Kolla upp: xUnit och NSubstitute eller Moq. -->
+    </dl>
+    <p class="fit"><strong>Passar dig om</strong> du gillar att vara den som ställer frågan &quot;men vad händer om…?&quot;.</p>
+  </section>
+
+  <section class="path" id="v4">
+    <div class="path-head"><span class="path-num">VÄG 4</span><span class="path-title">Mjukvaru- och systemutvecklare</span><span class="path-tag">Verksamhetssystem</span></div>
+    <dl class="facts">
+      <dt>Du gör</dt><dd>Den bredaste rollen. Du kodar i <strong>verksamhetssystem</strong>, de system som företag använder varje dag för att vardagen ska fungera.</dd>
+      <dt>Kurser</dt><dd>Den här kursen. Den tränar att planera och bygga utifrån användaren, och det är det verksamhetssystem handlar om.</dd>
+      <dt>Du använder mest</dt><dd>C# · SQL och databaser · EF Core · UML och ERD för att rita upp systemet · Git · samtal med dem som ska använda systemet</dd>
+      <dt>Öva på</dt><dd>Bygg ett litet bokningssystem med minst tre tabeller i EF Core. Rita ERD och klassdiagram i Mermaid <em>först</em>, och bygg sedan. Kolla upp: Mermaid i VS Code.</dd>
+    </dl>
+    <h2>Vad bygger man egentligen?</h2>
+    <div class="cols">
+      <div class="chip"><strong>CRM</strong><span>Customer Relationship Management: kundregister, säljuppföljning och ärenden</span></div>
+      <div class="chip"><strong>CMS</strong><span>Content Management System: innehåll till webbplatser och intranät</span></div>
+      <div class="chip"><strong>Bokningssystem</strong><span>Tider och resurser: hotell, spa, verkstad, vård</span></div>
+      <div class="chip"><strong>Lager och order</strong><span>Vad som finns, vad som är beställt och vad som ska skickas</span></div>
+      <div class="chip"><strong>Ekonomi och fakturering</strong><span>Budget, kvitton och löner</span></div>
+      <div class="chip"><strong>E-handel</strong><span>Katalog, varukorg och betalning</span></div>
+      <div class="chip"><strong>Interna verktyg</strong><span>Rapporter och integrationer mellan system</span></div>
+    </div>
+    <p style="margin-top:0.9rem;">Du har redan byggt små versioner: <strong>Hotel Grandioso</strong> är ett bokningssystem, spabokningen likaså, och hushållsbudgeten är ett litet ekonomisystem. Samma sorts kod. De riktiga systemen är bara större.</p>
+    <p class="fit"><strong>Fundera:</strong> vilket av systemen skulle du helst vilja jobba i?</p>
+  </section>
+
+  <section class="path" id="v5">
+    <div class="path-head"><span class="path-num">VÄG 5</span><span class="path-title">Arkitektur</span><span class="path-tag">Välja strukturen andra bygger i</span></div>
+    <dl class="facts">
+      <dt>Du gör</dt><dd>Väljer strukturen: hur delas systemet upp, vem får prata med vem och var ligger databasen? Bra arkitektur märks mest när det <em>inte</em> blir jobbigt att ändra något ett år senare.</dd>
+      <dt>En dag</dt><dd>Mycket samtal och ritande. Du förklarar varför en lösning är bättre än en annan och lyssnar på vad som gör ont i nuvarande kod.</dd>
+      <dt>Kurser</dt><dd>Du har redan börjat: designmönster, SOLID och refactoring i den här kursen är byggstenarna. De fördjupas längre fram.</dd>
+      <dt>Du använder mest</dt><dd>Designmönster · SOLID · UML-klassdiagram · kodgranskning · att kunna förklara ett val så att andra förstår det</dd>
+      <dt>Öva på</dt><dd>Ta en gammal egen inlämning och refaktorera den med Strategy eller Repository. Rita klassdiagrammet före och efter. Läs ett öppet projekt på GitHub och skriv tre saker du lägger märke till i strukturen.</dd>
+    </dl>
+    <p class="honest">Ärligt: det här är sällan ett första jobb. Man blir arkitekt efter några år av att bygga och läsa andras kod. Men du lägger grunden nu.</p>
+    <p class="fit"><strong>Passar dig om</strong> du gillar att se mönster och förklara varför saker hänger ihop.</p>
+  </section>
+
+  <section class="path" id="v6">
+    <div class="path-head"><span class="path-num">VÄG 6</span><span class="path-title">AI-relaterade jobb</span><span class="path-tag">Bygga med och granska AI</span></div>
+    <dl class="facts">
+      <dt>Du gör</dt><dd>Bygger med och runt AI: verktyg, integrationer med AI-tjänster och, minst lika viktigt, <strong>granskar det som AI skriver</strong>. Genererad kod måste fortfarande läsas av någon som förstår den.</dd>
+      <dt>En dag</dt><dd>Du kopplar ett program mot en AI-tjänst, eller använder ett AI-verktyg som kodkollega och kontrollerar vad det föreslår. Du avgör om förslaget är bra.</dd>
+      <dt>Kurser</dt><dd>Utbildningens kompetensmål nämner att integrera lösningar med hjälp av AI. I den här kursen tränar du kod med AI-stöd: kodkontrollen i Inlämning 2 är ett exempel. AI hittar saker, du bedömer dem.</dd>
+      <dt>Du använder mest</dt><dd>AI-verktyg i terminalen och i editorn · prompts · API-anrop med async och await · kodgranskning · ett kritiskt öga</dd>
+      <dt>Öva på</dt><dd>Kör kodkontrollen mot din egen kod med OpenCode och bedöm varje förslag: håller du med, och varför? Skriv sedan en egen kontrollprompt för just din kod. Kolla upp: OpenCode (guiden finns i kursens resurser).</dd>
+      <!-- VISAS EFTER KURS 4 (kräver sådant som inte gåtts igenom i kurs 3): Ett litet konsolprogram som skickar en fråga till en AI-tjänst och skriver ut svaret, med API-anrop, JSON och async och await. -->
+    </dl>
+    <p class="fit"><strong>Passar dig om</strong> du vill kunna använda AI utan att lita blint på den.</p>
+  </section>
+
+  <h2 id="fler">Fler vägar</h2>
+  <p>Utbildningsplanen pekar också mot de här. De är inga egna yrkesroller i planen, men målen och kurserna leder dit.</p>
+  <section class="path" id="f1">
+    <div class="path-head"><span class="path-num">FLER 1</span><span class="path-title">DevOps</span><span class="path-tag">Från kod till körande tjänst</span></div>
+    <dl class="facts">
+      <dt>Du gör</dt><dd>Bygger flödet som tar kod till en körande tjänst: bygger, kontrollerar och rullar ut automatiskt, och beskriver infrastrukturen som kod så att den går att upprepa.</dd>
+      <dt>En dag</dt><dd>Du automatiserar sådant som någon annars gör för hand, och du får larm när något går sönder. Mycket arbete går ut på att göra upprepningar tråkiga i den goda meningen.</dd>
+      <dt>Kurser</dt><dd>Samma som Cloud Developer: Molnapplikationer fördjupning, Skalbara molnapplikationer och Kubernetes. Utbildningens kunskapsmål nämner DevOps, CI/CD och Infrastructure as Code.</dd>
+      <dt>Du använder mest</dt><dd>Git · CI/CD-flöden · Docker · Infrastructure as Code · loggar</dd>
+      <dt>Öva på</dt><dd>Skriv ner varje manuellt steg från ändrad kod till färdig inlämning (bygg, kontroll, zip) som en checklista. Gör sedan ett litet skript som utför stegen åt dig. Kolla upp: vad förkortningen CI/CD står för.</dd>
+      <!-- VISAS EFTER KURS 4 (kräver sådant som inte gåtts igenom i kurs 3): Ett GitHub Actions-flöde som gör samma steg vid varje push. -->
+    </dl>
+    <p class="fit"><strong>Passar dig om</strong> du hellre automatiserar en tråkig sak en gång än gör den för hand tio gånger.</p>
+  </section>
+
+  <section class="path" id="f2">
+    <div class="path-head"><span class="path-num">FLER 2</span><span class="path-title">Säkerhet</span><span class="path-tag">Skriva kod som tål att ifrågasättas</span></div>
+    <dl class="facts">
+      <dt>Du gör</dt><dd>Skriver säker kod och letar efter svagheter innan någon annan gör det: hemligheter som hamnat i fel ställe, indata som ingen kontrollerar och behörigheter som är för vida.</dd>
+      <dt>En dag</dt><dd>Du granskar kod med säkerhet i fokus, rättar svagheter och förklarar för andra varför något är en risk. Det handlar mycket om att tänka som den som vill få programmet att gå sönder.</dd>
+      <dt>Kurser</dt><dd>Utbildningsplanen har både kunskapsmål om dators- och cybersäkerhet och kompetensmålet att skapa säkra IT-system. Vilka kurser som tar upp det hittar du i kursplanerna.</dd>
+      <dt>Du använder mest</dt><dd>Kodgranskning · hantering av hemligheter (<code>dotnet user-secrets</code>) · kontroll av indata · Git-historik</dd>
+      <dt>Öva på</dt><dd>Gå igenom din egen kod och leta efter indata som ingen kontrollerar: text i stället för siffra, tomt värde och ett id som inte finns. Leta också efter hemligheter som ligger i koden. Rätta och skriv vad du ändrade och varför. Kolla upp: listan OWASP Top 10.</dd>
+    </dl>
+    <p class="fit"><strong>Passar dig om</strong> du gillar att tänka &quot;vad är det värsta som kan hända?&quot; och sedan stoppa det.</p>
+  </section>
+
+  <section class="path" id="f3">
+    <div class="path-head"><span class="path-num">FLER 3</span><span class="path-title">Data och databas</span><span class="path-tag">Se till att data stämmer och går att hämta</span></div>
+    <dl class="facts">
+      <dt>Du gör</dt><dd>Designar tabeller, skriver frågor och ser till att data är rätt och snabb att hämta. I vissa jobb handlar det mest om att flytta data mellan system.</dd>
+      <dt>En dag</dt><dd>Du gör ett problem till tabeller, skriver SQL och felsöker en fråga som går för långsamt. Du pratar med dem som äger datat om vad som är rätt.</dd>
+      <dt>Kurser</dt><dd>Databashantering och design, och den här kursen (EF Core och MongoDB).</dd>
+      <dt>Du använder mest</dt><dd>SQL · ERD · EF Core · MongoDB</dd>
+      <dt>Öva på</dt><dd>Välj en SQLite-databas du redan har. Skriv fem frågor i SQL och samma fem som LINQ via EF Core, och jämför hur de ser ut. Rita ERD:t. Kolla upp: skillnaden mellan en fildatabas och en databasserver.</dd>
+    </dl>
+    <p class="fit"><strong>Passar dig om</strong> du gillar ordning och vill att datat ska stämma.</p>
+  </section>
+
+  <section class="path" id="f4">
+    <div class="path-head"><span class="path-num">FLER 4</span><span class="path-title">Webb och gränssnitt</span><span class="path-tag">Det användaren ser och klickar på</span></div>
+    <dl class="facts">
+      <dt>Du gör</dt><dd>Bygger det användaren faktiskt möter: sidor, formulär och knappar, och ser till att det är begripligt för den som inte har skrivit koden.</dd>
+      <dt>En dag</dt><dd>Du gör om en skiss till ett gränssnitt, provar det som en användare skulle göra och rättar det som är krångligt.</dd>
+      <dt>Kurser</dt><dd>Utbildningsöversikten har ingen egen kurs i webbutveckling. Gränssnitt ingår i systemutveckling, och här får du lära dig en hel del själv.</dd>
+      <dt>Du använder mest</dt><dd>HTML och CSS · ett JavaScript-ramverk eller C#-baserad webb · användarens perspektiv</dd>
+      <dt>Öva på</dt><dd>Rita menyn i ett av dina konsolprogram som en skiss på papper. Låt någon annan prova den utan förklaring och anteckna var hen tvekar. Ändra och prova igen. Kolla upp: grunderna i HTML och CSS.</dd>
+    </dl>
+    <p class="honest">Ärligt: det här kräver mer egen träning än de andra vägarna. Det finns inget i kursen som gör dig färdig, men skisserna och feedbacken du övar nu går att ta med.</p>
+    <p class="fit"><strong>Passar dig om</strong> du blir glad av att se en sak som någon kan använda direkt.</p>
+  </section>
+
+  <section class="path" id="f5">
+    <div class="path-head"><span class="path-num">FLER 5</span><span class="path-title">Produktägare / kravanalytiker</span><span class="path-tag">Bestämma vad som ska byggas</span></div>
+    <dl class="facts">
+      <dt>Du gör</dt><dd>Bestämmer vad som ska byggas och i vilken ordning: pratar med användarna, skriver kraven och prioriterar listan med önskemål.</dd>
+      <dt>En dag</dt><dd>Du pratar med användare, skriver user stories med acceptanskriterier och avgör vad som ska göras först när allt inte hinns med.</dd>
+      <dt>Kurser</dt><dd>Kommunikation och affärsmässighet, kravställning i utbildningens mål och Kanban och agila metoder.</dd>
+      <dt>Du använder mest</dt><dd>Backlog · user stories · acceptanskriterier · samtal med användare</dd>
+      <dt>Öva på</dt><dd>Skriv fem user stories med acceptanskriterier för ett system du själv använder, till exempel skolans portal eller ett bokningssystem. Sortera dem efter vad som är viktigast och skriv varför. Kolla upp: prioriteringsmodellen MoSCoW.</dd>
+    </dl>
+    <p class="honest">Ärligt: sällan ett första jobb. Man går hit efter några år, när man förstått både koden och verksamheten.</p>
+    <p class="fit"><strong>Passar dig om</strong> du är nyfiken på vad folk egentligen behöver, inte bara vad de ber om.</p>
+  </section>
+
+  <section class="path lead" id="v7">
+    <div class="path-head"><span class="path-num">VÄG 7</span><span class="path-title">Leda arbetet</span><span class="path-tag">Efter några år i yrket</span></div>
+    <p class="honest">Det här är inte yrkesroller i utbildningsplanen, utan vanliga vägar vidare för den som vill leda i stället för att bara koda.</p>
+    <dl class="facts">
+      <dt>Scrum master / agil projektledare</dt><dd>Håller teamets arbetssätt igång och tar bort hinder, så att de som kodar kan fokusera. Kurser: Kanban och agila metoder, som du redan har mött i kursen. Använder mest: Kanban-tavlan, backlog, daglig avstämning och retrospektiv. Öva på: starta en Kanban-tavla för ett eget projekt, skriv tre user stories med acceptanskriterier och håll en liten retrospektiv varje fredag. Kolla upp: GitHub Projects.</dd>
+      <dt>IT-projektledare</dt><dd>Ansvarar för plan, budget och leverans mot kunden, och översätter mellan tekniker och beställare. Kurser: Kommunikation och affärsmässighet, och kravställning i utbildningens mål. Använder mest: planering, kravlistor, mejl och möten. Öva på: ta ett eget projekt och skriv en kravlista, en tidsplan och ett kort statusmejl varje vecka.</dd>
+    </dl>
+    <p class="fit"><strong>Passar dig om</strong> du är bra på att få folk att dra åt samma håll.</p>
+  </section>
+
+  <h2 id="oversikt">Överblick</h2>
+  <div class="tbl-wrap"><table class="t"><thead><tr><th>Väg</th><th>Kärnan</th><th>Kurser</th></tr></thead><tbody>
+    <tr><td><strong>.NET-utvecklare</strong></td><td>Logik och API:er i C#</td><td>Databashantering, den här kursen, Grundläggande molnapplikationer</td></tr>
+    <tr><td><strong>Cloud Developer</strong></td><td>Publicera och driva tjänster</td><td>Molnapplikationer fördjupning, Skalbara molnapplikationer, Kubernetes</td></tr>
+    <tr><td><strong>Kvalitet och test</strong></td><td>Se till att det håller</td><td>Test och kvalitetssäkring</td></tr>
+    <tr><td><strong>Systemutvecklare</strong></td><td>Verksamhetssystem</td><td>Den här kursen</td></tr>
+    <tr><td><strong>Arkitektur</strong></td><td>Välja strukturen</td><td>Designmönster och refactoring, fördjupas längre fram</td></tr>
+    <tr><td><strong>AI-relaterade jobb</strong></td><td>Bygga med och granska AI</td><td>Kodkontroll med AI-stöd</td></tr>
+    <tr><td><strong>DevOps</strong></td><td>Från kod till körande tjänst</td><td>Molnkurserna, CI/CD och Infrastructure as Code</td></tr>
+    <tr><td><strong>Säkerhet</strong></td><td>Skriva säker kod</td><td>Se kursplanerna</td></tr>
+    <tr><td><strong>Data och databas</strong></td><td>Data som stämmer</td><td>Databashantering, den här kursen</td></tr>
+    <tr><td><strong>Webb och gränssnitt</strong></td><td>Det användaren ser</td><td>Ingen egen kurs, ingår i systemutveckling</td></tr>
+    <tr><td><strong>Produktägare</strong></td><td>Bestämma vad som byggs</td><td>Kommunikation och affärsmässighet, Kanban</td></tr>
+    <tr><td><strong>Leda arbetet</strong></td><td>Teamet och leveransen</td><td>Kanban och agila metoder, Kommunikation och affärsmässighet</td></tr>
+  </tbody></table></div>
+
+  <h2 id="tre-rader">Kolla dina tre rader igen</h2>
+  <ol style="padding-left:1.2rem;">
+    <li>Vilken väg ligger närmast det du skrev?</li>
+    <li>Finns det en väg du inte hade tänkt på, men som lät lite kul?</li>
+    <li>Vad skulle du vilja prova i LIA?</li>
+  </ol>
+  <p class="note">Det är okej att svaret fortfarande är &quot;vet inte&quot;. Då har du fått en hel del nya saker att fundera på.</p>
+
+  <h2 id="riktig-kod">Det här finns i riktig kod</h2>
+  <p>Oavsett väg kommer du att läsa det här varje dag:</p>
+  <div class="tbl-wrap"><table class="t"><tbody>
+    <tr><td><strong>Null-operatorer</strong></td><td>Överallt där data kan saknas, till exempel från en databas eller ett API</td></tr>
+    <tr><td><strong>Indexers</strong></td><td><code>configuration["ConnectionStrings:Default"]</code> när du läser inställningar</td></tr>
+    <tr><td><strong>Extension methods</strong></td><td><code>builder.Services.AddControllers()</code> och alla LINQ-anrop</td></tr>
+    <tr><td><strong>Records</strong></td><td>Data som skickas mellan delar av ett program, till exempel svaret från ett API</td></tr>
+    <tr><td><strong>async och await</strong></td><td>Allt som väntar på nätverk, filer eller databaser</td></tr>
+  </tbody></table></div>
+</div>
+
+<script>
+(() => {
+  const links = [...document.querySelectorAll('.toc a[href^="#"]')];
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  links.forEach(l => {
+    const target = document.querySelector(l.getAttribute('href'));
+    if (target) io.observe(target);
+  });
+})();
+(() => {
+  const btn = document.querySelector('.menu-btn');
+  const toc = document.getElementById('toc');
+  if (!btn || !toc) return;
+  btn.addEventListener('click', () => {
+    const open = toc.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  toc.addEventListener('click', e => {
+    if (e.target.tagName !== 'A') return;
+    toc.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  });
+})();
+</script>
+
+</body>
+</html>
