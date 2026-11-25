@@ -58,7 +58,7 @@ pre.code .ln b{display:inline-block;width:2.2em;color:var(--c);font-weight:400;u
 .stagewrap{position:relative;width:100%;background:var(--card)}
 .stage{position:absolute;left:0;top:0;width:640px;height:400px;transform-origin:0 0}
 .box{position:absolute;border-radius:12px;border:2px solid var(--line);background:var(--card);padding:8px 10px;
-  transition:left .8s ease,top .8s ease,width .8s ease,height .8s ease,opacity .5s ease,background .5s,border-color .5s;overflow:hidden}
+  transition:left .8s ease,top .8s ease,width .8s ease,height .8s ease,opacity .5s ease,background .5s,border-color .5s,transform .8s ease;overflow:hidden}
 .box .bt{font-weight:700;font-size:15px;line-height:1.2}
 .box .bs{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.25}
 .box.hero{background:var(--accent-bg);border-color:var(--accent)}
@@ -73,11 +73,18 @@ pre.code .ln b{display:inline-block;width:2.2em;color:var(--c);font-weight:400;u
 .box.iface{background:var(--iface-bg);border-color:var(--iface);border-style:dashed;text-align:center}
 .box.note{background:var(--ok-bg);border-color:var(--ok);text-align:center;padding:6px}
 .box.note .bt{font-size:14px;color:var(--ok)}
+.box.note.bad{background:var(--bad-bg);border-color:var(--bad)}
+.box.note.bad .bt{color:var(--bad)}
 svg.arrows{position:absolute;left:0;top:0;width:640px;height:400px;pointer-events:none;z-index:1}
 svg.arrows .a{opacity:0;transition:opacity .4s}
 svg.arrows .a.on{opacity:1}
 .packet{position:absolute;left:0;top:0;z-index:5;opacity:0;pointer-events:none}
 .packet span{display:block;transform:translate(-50%,-50%);background:var(--ink);color:var(--bg);border-radius:999px;padding:3px 10px;font:600 12.5px ui-monospace,Menlo,Consolas,monospace;white-space:nowrap}
+.packet.big span{font-size:20px;padding:9px 22px;background:var(--accent);color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.box.sign{background:var(--accent);border-color:var(--accent);text-align:center;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:6}
+.box.sign .bt{font-size:26px;color:#fff;letter-spacing:.5px}
+.box.sign.bad{background:var(--bad);border-color:var(--bad)}
+.box.sign.bad .bt{font-size:21px}
 .explain{padding:14px 16px;border-top:1px solid var(--line)}
 .explain h2{margin:0 0 4px;font-size:1.1rem}
 .explain p{margin:4px 0}
@@ -734,8 +741,237 @@ void OnStockChanged(object sender, StockChangedEventArgs e)
   ]
 };
 
-const PATTERNS = [STRATEGY, OBSERVER, EVENT];
-const COMING = ['Factory', 'Builder', 'Repository'];
+
+const CB = (y, t, o) => ({ x:195, y, w:190, h:30, o:(o || 0), cls:'chunk', t, s:'', d:0, r:0 });
+const CK = (y, t, o) => ({ x:447, y, w:175, h:30, o:(o || 1), cls:'chunk', t, s:'' });
+const BUILDER = {
+  id: 'builder', name: 'Builder', codeTitle: 'Program.cs',
+  blurb: '<b>Builder:</b> bygg ett objekt bit för bit, och få det först när det är färdigt. Exemplet är en hotellbokning med många val.',
+  elements: ['bk','call','call2','note','prog','bld','pg','pr','pn','pb','pl','pp','sign'],
+  steps: [
+    { title: 'En bokning med många val',
+      text: '<p>Ett hotell tar emot bokningar. En <b>Booking</b> har gäst, rum, antal nätter och några extra val: frukost, sen utcheckning, parkering.</p><p>Det enklaste är en konstruktor som tar allt på en gång. Det fungerar, men titta på raden längst ner i koden.</p>',
+      code: `class Booking
+{
+    public string Guest { get; }
+    public string Room { get; }
+    public int Nights { get; }
+    public bool Breakfast { get; }
+    public bool LateCheckout { get; }
+    public bool Parking { get; }
+
+    public Booking(string guest, string room, int nights,
+        bool breakfast, bool lateCheckout, bool parking)
+    {
+        Guest = guest; Room = room; Nights = nights;
+        Breakfast = breakfast; LateCheckout = lateCheckout; Parking = parking;
+    }
+}
+
+var booking = new Booking("Mira", "Dubbel", 3, true, false, true);`,
+      hl: [18, 18],
+      set: {
+        bk:   { x:120, y:30, w:400, h:250, o:1, cls:'hero', t:'Booking', s:'tar emot allt på en gång' },
+        call: { x:140, y:100, w:360, h:34, o:1, cls:'chunk', t:'new Booking("Mira","Dubbel",3,true,false,true)', s:'' }
+      }
+    },
+    { title: 'Vad betyder true, false, true?',
+      text: '<p>Vilken <code>true</code> är frukost? Vilken är sen utcheckning? Det går inte att läsa ut ur raden. Du måste gå tillbaka till konstruktorn.</p><p>Värre: byter du plats på två <code>bool</code> <b>kompilerar det ändå</b>, och bokningen blir fel utan att något varnar.</p>',
+      code: `var a = new Booking("Mira", "Dubbel", 3, true, false, true);
+var b = new Booking("Mira", "Dubbel", 3, false, true, true);
+
+// Vilken har frukost? Vilken har sen utcheckning?
+// Du måste gå tillbaka till konstruktorn för att veta.`,
+      hl: [1, 2],
+      set: {
+        bk:    { cls:'hero bad', s:'lätt att blanda ihop' },
+        call2: { x:140, y:150, w:360, h:34, o:1, cls:'chunk', t:'new Booking("Mira","Dubbel",3,false,true,true)', s:'' },
+        note:  { x:140, y:210, w:360, h:44, o:1, cls:'note bad', t:'Båda kompilerar. Vilken är rätt?', s:'' }
+      }
+    },
+    { title: 'Idén: en hjälpare som samlar ihop valen',
+      text: '<p>Vi lägger in en <b>hjälpare</b> mellan din kod och bokningen: <code>BookingBuilder</code>. Din kod berättar för den vad du vill ha, <b>ett val i taget</b>. Byggaren <b>samlar</b> ihop dem, och först på slutet skapas bokningen.</p><p>Titta på bilden: den röriga raden försvinner. Tre rutor tar över: <b>Program</b> (din kod), <b>BookingBuilder</b> (som samlar) och <b>Booking</b> (som väntar tom).</p>',
+      code: `class BookingBuilder
+{
+    private string _guest;
+    private string _room;
+    private int _nights;
+    private bool _breakfast;
+    private bool _lateCheckout;
+    private bool _parking;
+    // metoderna kommer härnäst ...
+}`,
+      hl: [1, 9],
+      set: {
+        call: { o:0 }, call2: { o:0 }, note: { o:0 },
+        prog: { x:10,  y:110, w:120, h:180, o:1, cls:'', t:'Program', s:'din kod, som anropar' },
+        bld:  { x:185, y:60,  w:210, h:280, o:1, cls:'weapon', t:'BookingBuilder', s:'samlar in valen' },
+        bk:   { x:440, y:60,  w:190, h:280, o:1, cls:'hero', t:'Booking', s:'väntar, ännu tom' },
+        pg: CB(110, '_guest = "Mira"'),
+        pr: CB(148, '_room = "Dubbel"'),
+        pn: CB(186, '_nights = 3'),
+        pb: CB(224, '_breakfast = true'),
+        pl: CB(262, '_lateCheckout = true'),
+        pp: CB(300, '_parking = false'),
+        sign: { x:185, y:8, w:210, h:44, o:0, cls:'sign', t:'Build()!', s:'' }
+      }
+    },
+    { title: 'Valen kommer in, och byggaren samlar dem',
+      text: '<p>Varje anrop från Program är <b>ett val</b>. Följ prickarna: de åker in i byggaren, och <b>byggaren sparar varje val</b> i sitt eget fält. Det syns som rutorna som dyker upp inuti den.</p><p>Varje metod gör <code>return this</code>: den lämnar tillbaka sig själv. Därför kan du koppla ihop anropen i en <b>kedja</b>. Bokningen till höger är fortfarande tom: ingenting har skickats vidare än.</p>',
+      code: `public BookingBuilder ForGuest(string guest)
+{
+    _guest = guest;
+    return this;   // så att du kan fortsätta kedjan
+}
+
+public BookingBuilder WithRoom(string room)
+{
+    _room = room;
+    return this;
+}
+
+public BookingBuilder ForNights(int nights)
+{
+    _nights = nights;
+    return this;
+}
+
+var builder = new BookingBuilder()
+    .ForGuest("Mira")
+    .WithRoom("Dubbel")
+    .ForNights(3);`,
+      hl: [19, 22],
+      set: { bld: { s:'sparar varje val' } },
+      msgs: [
+        { a:'prog', b:'bld', out:'ForGuest("Mira")',   reveal:{ pg:{ o:1 } }, dur:1400 },
+        { a:'prog', b:'bld', out:'WithRoom("Dubbel")', reveal:{ pr:{ o:1 } }, dur:1400, delay:1600 },
+        { a:'prog', b:'bld', out:'ForNights(3)',       reveal:{ pn:{ o:1 } }, dur:1400, delay:3200 }
+      ],
+      after: { pg:{ o:1 }, pr:{ o:1 }, pn:{ o:1 } }
+    },
+    { title: 'Valfria delar: bara det du väljer',
+      text: '<p>Frukost och sen utcheckning är <b>valfria</b>. Du anropar bara de metoder du vill ha, och byggaren samlar på sig dem. <code>WithBreakfast()</code> kan du läsa utan att slå upp något.</p><p>Det du inte väljer får ett vettigt standardvärde: parkering blev <code>false</code> (den svagare rutan).</p>',
+      code: `public BookingBuilder WithBreakfast()
+{
+    _breakfast = true;
+    return this;
+}
+
+public BookingBuilder WithLateCheckout()
+{
+    _lateCheckout = true;
+    return this;
+}
+
+var builder = new BookingBuilder()
+    .ForGuest("Mira")
+    .WithRoom("Dubbel")
+    .ForNights(3)
+    .WithBreakfast()
+    .WithLateCheckout();`,
+      hl: [17, 18],
+      msgs: [
+        { a:'prog', b:'bld', out:'WithBreakfast()',    reveal:{ pb:{ o:1 } }, dur:1400 },
+        { a:'prog', b:'bld', out:'WithLateCheckout()', reveal:{ pl:{ o:1 } }, dur:1400, delay:1600 }
+      ],
+      after: { pb:{ o:1 }, pl:{ o:1 }, pp:{ o:0.5 } }
+    },
+    { title: 'Build(): nu skickas allt vidare',
+      text: '<p>Sist säger du <code>Build()</code>: “nu är jag klar”. Först då <b>delar byggaren ut allt den samlat</b> till Booking, <b>ett kort i taget, som en dealer i blackjack</b>. Titta på bilden: den stora skylten visar att <code>Build()</code> anropas, valen flyger över till bokningen, och när sista kortet landat blir den klar.</p><p>Kedjan går att läsa som en mening: <i>en bokning för Mira, i dubbelrum, tre nätter, med frukost och sen utcheckning</i>.</p>',
+      code: `public Booking Build()
+    => new Booking(_guest, _room, _nights,
+        _breakfast, _lateCheckout, _parking);
+
+var booking = new BookingBuilder()
+    .ForGuest("Mira")
+    .WithRoom("Dubbel")
+    .ForNights(3)
+    .WithBreakfast()
+    .WithLateCheckout()
+    .Build();
+
+Console.WriteLine($"{booking.Guest}: {booking.Nights} nätter i {booking.Room}");
+// Mira: 3 nätter i Dubbel`,
+      hl: [1, 3],
+      msgs: [ { a:'prog', b:'bld', out:'Build()', big:true, dur:2200 } ],
+      after: {
+        sign: { o:1 },
+        bld:  { cls:'weapon active', t:'Build() anropad!', s:'delar ut valen, ett i taget' },
+        pg: { ...CK(110, 'Guest = "Mira"'),        d:1200, r:-2 },
+        pr: { ...CK(148, 'Room = "Dubbel"'),       d:1700, r:1.5 },
+        pn: { ...CK(186, 'Nights = 3'),            d:2200, r:-1 },
+        pb: { ...CK(224, 'Breakfast = true'),      d:2700, r:2 },
+        pl: { ...CK(262, 'LateCheckout = true'),   d:3200, r:-1.5 },
+        pp: { ...CK(300, 'Parking = false'), o:0.55, d:3700, r:1 },
+        bk:  { cls:'hero ok', s:'klar ✓', d:4500 }
+      },
+      lines: ['Mira: 3 nätter i Dubbel']
+    },
+    { title: 'Build() kan kontrollera att inget saknas',
+      text: '<p>Det bästa med Build: den kan <b>kolla att allt som behövs finns</b> innan bokningen skapas. Här har Program bara angett rummet, så byggaren säger nej och skickar <b>ingenting</b> vidare.</p><p>Du får aldrig en halvfärdig bokning. Antingen blir den rätt, eller så får du veta direkt vad som saknas.</p>',
+      code: `public Booking Build()
+{
+    // Tänk på att lägga till Try Catch där Build anropas
+    if (string.IsNullOrEmpty(_guest))
+        throw new InvalidOperationException("Gäst saknas");
+    if (string.IsNullOrEmpty(_room))
+        throw new InvalidOperationException("Rum saknas");
+    if (_nights < 1)
+        throw new InvalidOperationException("Minst en natt");
+
+    return new Booking(_guest, _room, _nights,
+        _breakfast, _lateCheckout, _parking);
+}
+
+var booking = new BookingBuilder()
+    .WithRoom("Dubbel")
+    .Build();
+// InvalidOperationException: Gäst saknas`,
+      hl: [4, 9],
+      set: {
+        bk:  { cls:'hero bad', s:'tom: gäst saknas' },
+        bld: { cls:'weapon', t:'BookingBuilder', s:'samlar in valen' },
+        sign: { x:185, y:8, w:210, h:44, o:0, cls:'sign', t:'Build()!', s:'' },
+        pg: CB(110, '_guest = "Mira"'),
+        pr: CB(148, '_room = "Dubbel"', 1),
+        pn: CB(186, '_nights = 3'),
+        pb: CB(224, '_breakfast = true'),
+        pl: CB(262, '_lateCheckout = true'),
+        pp: CB(300, '_parking = false')
+      },
+      msgs: [ { a:'prog', b:'bld', out:'Build()', back:'Gäst saknas', big:true, dur:2200 } ],
+      after: { sign: { x:140, y:8, w:310, h:44, o:1, cls:'sign bad', t:'Build() ✗ Gäst saknas' }, note: { x:400, y:350, w:230, h:40, o:1, cls:'note', t:'Ingen halvfärdig bokning ✓', s:'' } },
+      lines: ['InvalidOperationException: Gäst saknas']
+    },
+    { title: 'Det här löste vi',
+      text: '<p><b>Builder</b> betyder: bygg ett objekt bit för bit, och få det först när det är färdigt. Byggaren tar emot valen ett i taget, <b>samlar</b> dem och <b>skickar vidare</b> först vid <code>Build()</code>. Anropen blir läsbara, ordningen spelar mindre roll, och byggaren kan kontrollera att inget saknas.</p><p><b>Vardagsliknelse:</b> att beställa en macka i en subdisk. Du väljer bröd, sedan pålägg, sedan grönsaker, ett i taget. Du får ingen macka förrän du säger “klart”. I bilden delar byggaren ut valen som en dealer delar ut kort.</p>',
+      tip: '<b>Proffsens tips:</b> Builder lönar sig när du har <i>många valfria delar</i>, ungefär fler än fem. Med två-tre värden räcker en vanlig konstruktor, så tvinga inte in ett mönster där det inte behövs. Känn också igen <code>new Booking { Guest = "Mira" }</code> (object initializer) och <code>with</code> på records. De löser delar av samma problem.',
+      code: `// Builder i en mening:
+// bygg ett objekt bit för bit,
+// och få det först när det är färdigt.
+//
+// Booking        = det du vill ha
+// BookingBuilder = hjälparen som samlar in valen
+// Build()        = "nu är jag klar, skicka vidare"`,
+      hl: [1, 3],
+      set: {
+        bk:  { cls:'hero ok', s:'klar ✓' },
+        bld: { cls:'weapon', t:'BookingBuilder', s:'hjälparen som samlar' },
+        sign: { o:0 },
+        note: { o:0 },
+        pg: CK(110, 'Guest = "Mira"'),
+        pr: CK(148, 'Room = "Dubbel"'),
+        pn: CK(186, 'Nights = 3'),
+        pb: CK(224, 'Breakfast = true'),
+        pl: CK(262, 'LateCheckout = true'),
+        pp: { ...CK(300, 'Parking = false'), o:0.55 }
+      }
+    }
+  ]
+};
+
+const PATTERNS = [STRATEGY, OBSERVER, EVENT, BUILDER];
+const COMING = ['Factory', 'Repository'];
 
 /* ============ HJÄLPFUNKTIONER ============ */
 const $ = id => document.getElementById(id);
@@ -774,10 +1010,13 @@ function buildBoxes(){
 /* Räkna ut tillståndet för ett steg: slå ihop alla steg fram till och med i */
 function stateAt(i){
   const st = {};
-  pat.elements.forEach(id => st[id] = { x:0, y:0, w:100, h:60, o:0, cls:'', t:'', s:'' });
+  pat.elements.forEach(id => st[id] = { x:0, y:0, w:100, h:60, o:0, cls:'', t:'', s:'', d:0, r:0 });
   for (let k = 0; k <= i; k++){
     const set = pat.steps[k].set || {};
     Object.keys(set).forEach(id => Object.assign(st[id], set[id]));
+    const aft = k < i ? (pat.steps[k].after || {}) : {};
+    Object.keys(aft).forEach(id => Object.assign(st[id], aft[id]));
+    if (k < i){ Object.keys(set).forEach(id => { st[id].d = 0; }); Object.keys(aft).forEach(id => { st[id].d = 0; }); }
   }
   return st;
 }
@@ -788,6 +1027,8 @@ function applyState(st){
     d.style.left = s.x+'px'; d.style.top = s.y+'px';
     d.style.width = s.w+'px'; d.style.height = s.h+'px';
     d.style.opacity = s.o;
+    d.style.transitionDelay = (s.d || 0) + 'ms';
+    d.style.transform = s.r ? 'rotate(' + s.r + 'deg)' : 'none';
     d.className = 'box ' + s.cls;
     d.firstChild.textContent = s.t;
     d.lastChild.textContent = s.s;
@@ -832,15 +1073,22 @@ function drawArrows(st, list){
   });
 }
 
-/* Pricken(arna) som bär meddelandet. Flera kan åka samtidigt, svar är valfritt. */
+/* Pricken(arna) som bär meddelandet. Flera kan åka samtidigt (eller med delay),
+   svar är valfritt, och 'reveal' visar en del när just den pricken kommit fram. */
 function runMessage(st, msgs, myToken, done){
   const list = Array.isArray(msgs) ? msgs : [msgs];
+  const live = JSON.parse(JSON.stringify(st));
   let left = list.length;
   const fin = () => { left--; if (left === 0 && myToken === token) done(); };
+  function reveal(m){
+    if (!m.reveal || myToken !== token) return;
+    Object.keys(m.reveal).forEach(id => Object.assign(live[id], m.reveal[id]));
+    applyState(live);
+  }
   list.forEach(m => {
     const { p, q } = line(st, m.a, m.b);
     const el = document.createElement('div');
-    el.className = 'packet'; el.innerHTML = '<span></span>';
+    el.className = 'packet' + (m.big ? ' big' : ''); el.innerHTML = '<span></span>';
     const span = el.firstChild;
     stage.appendChild(el);
     function leg(from, to, text, cb){
@@ -848,11 +1096,12 @@ function runMessage(st, msgs, myToken, done){
       span.textContent = text; el.style.opacity = 1;
       const anim = el.animate(
         [{ transform:`translate(${from.x}px,${from.y}px)` }, { transform:`translate(${to.x}px,${to.y}px)` }],
-        { duration: 1100, easing:'ease-in-out', fill:'forwards' });
+        { duration: m.dur || 1100, easing:'ease-in-out', fill:'forwards' });
       anim.onfinish = () => { if (myToken === token) cb(); };
     }
     const end = () => { el.remove(); fin(); };
-    leg(p, q, m.out, () => m.back ? leg(q, p, m.back, end) : end());
+    const arrive = () => { reveal(m); if (m.back) leg(q, p, m.back, end); else end(); };
+    setTimeout(() => leg(p, q, m.out, arrive), m.delay || 0);
   });
 }
 
@@ -864,6 +1113,14 @@ function showOut(lines, animate){
       const anim = animate === 'all' || (animate && i === lines.length-1);
       return '<span class="l"'+(anim ? '' : ' style="animation:none"')+'>'+esc(l)+'</span>';
     }).join('');
+}
+
+/* Delar som ska dyka upp först när meddelandet kommit fram */
+function applyAfter(st, step){
+  if (!step.after) return;
+  const st2 = JSON.parse(JSON.stringify(st));
+  Object.keys(step.after).forEach(id => Object.assign(st2[id], step.after[id]));
+  applyState(st2);
 }
 
 /* ============ VISA ETT STEG ============ */
@@ -891,8 +1148,9 @@ function show(i){
     drawArrows(st, step.arrows);
     if (msgs && !reduce){
       showOut(step.msgs ? [] : (own ? own.slice(0, -1) : []), false);
-      runMessage(st, msgs, myToken, () => showOut(own, step.msgs ? 'all' : true));
+      runMessage(st, msgs, myToken, () => { applyAfter(st, step); showOut(own, own ? (step.msgs ? 'all' : true) : false); });
     } else {
+      applyAfter(st, step);
       showOut(own || (step.keepOut ? prevLines : null) || [], false);
     }
   }, delay);
@@ -954,7 +1212,7 @@ function play(){
   timer = setInterval(() => {
     if (cur >= pat.steps.length-1){ stop(); return; }
     show(cur+1);
-  }, 6500);
+  }, 8500);
 }
 $('next').addEventListener('click', () => { stop(); show(cur+1); });
 $('back').addEventListener('click', () => { stop(); show(cur-1); });
