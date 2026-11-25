@@ -140,6 +140,8 @@ code {
 }
 .badge-lec { background: rgba(23,98,163,0.12); color: var(--c-st); }
 .badge-know { background: rgba(35,112,85,0.12); color: var(--c-be); }
+.badge-anim { background: rgba(79,70,229,0.12); color: #4f46e5; text-decoration: none; margin-left: 6px; }
+.badge-anim:hover { background: rgba(79,70,229,0.22); }
 
 .pattern-body { font-size: 0.875rem; line-height: 1.55; min-width: 0; }
 .pattern-when { display: block; color: var(--muted); font-size: 0.8rem; margin-top: 0.3rem; line-height: 1.5; }
@@ -298,7 +300,7 @@ code {
     </div>
 
     <div class="pattern cr">
-      <div class="pattern-name">Factory Method<span class="badge badge-lec">★ föreläsning</span></div>
+      <div class="pattern-name">Factory Method<span class="badge badge-lec">★ föreläsning</span><a class="badge badge-anim" href="designmonster-guide.html#factory-1">▶ animerad guide</a></div>
       <div class="pattern-body">
         Samla all kod som skapar objekt på ett enda ställe — en "fabrik" — istället för att sprida <code>new</code> över hela koden.
         <span class="pattern-when">Patrik på Kalles Pizzeria skriver <code>new SwishTjänst()</code> på 16 ställen. Han lägger till Klarna, missar tre. Kraschar på fredag. Med Factory Method ändrar han på ett enda ställe.</span>
@@ -330,7 +332,7 @@ code {
     </div>
 
     <div class="pattern cr">
-      <div class="pattern-name">Builder<span class="badge badge-lec">★ föreläsning</span></div>
+      <div class="pattern-name">Builder<span class="badge badge-lec">★ föreläsning</span><a class="badge badge-anim" href="designmonster-guide.html#builder-1">▶ animerad guide</a></div>
       <div class="pattern-body">
         Bygg upp ett komplext objekt steg för steg med en läsbar kedja av metoder — istället för en konstruktor med tio parametrar ingen förstår.
         <span class="pattern-when">Vad är <code>new Order("Sofie", null, true, false, 42)</code>? Ingen vet. <code>new OrderBuilder().FörKund("Sofie").MedExpress().Bygg()</code> — det förstår alla. <code>StringBuilder</code> i C# är Builder.</span>
@@ -480,7 +482,7 @@ code {
     </div>
 
     <div class="pattern st">
-      <div class="pattern-name">Repository<span class="badge badge-lec">★ föreläsning</span></div>
+      <div class="pattern-name">Repository<span class="badge badge-lec">★ föreläsning</span><a class="badge badge-anim" href="designmonster-guide.html#repository-1">▶ animerad guide</a></div>
       <div class="pattern-body">
         En klass som hanterar all kommunikation med databasen. Resten av koden frågar Repository — aldrig databasen direkt.
         <span class="pattern-when">Sofie byter databas från SQL Server till PostgreSQL. Med Repository ändrar hon på ett enda ställe. Utan det: veckor av jobb. <code>IRepository&lt;T&gt;</code> med <code>HämtaAsync()</code> och <code>LäggTillAsync()</code>.</span>
@@ -600,7 +602,7 @@ code {
     </div>
 
     <div class="pattern be">
-      <div class="pattern-name">Observer<span class="badge badge-lec">★ föreläsning</span></div>
+      <div class="pattern-name">Observer<span class="badge badge-lec">★ föreläsning</span><a class="badge badge-anim" href="designmonster-guide.html#observer-1">▶ animerad guide</a><a class="badge badge-anim" href="designmonster-guide.html#event-1">▶ med event</a></div>
       <div class="pattern-body">
         En klass meddelar "det hände något!" utan att veta vem som lyssnar. De som bryr sig prenumererar och reagerar.
         <span class="pattern-when"><em>Sofie:s <code>OrderService</code> ska minska lagret, skicka ett bekräftelsemail och notifiera plocklistan — allt när en order läggs. Hon stoppar in allt i <code>LäggOrder()</code>. Sen kommer kravet på SMS-avisering. Sen push-notis. Metoden växer och OrderService vet om allt.</em> Med Observer meddelar <code>OrderService</code> bara "en order lades" — och vem som lyssnar är inte dess problem. <code>event</code> och <code>delegate</code> i C# <em>är</em> Observer. <code>knapp.Click += handler</code> är samma sak.</span>
@@ -632,7 +634,7 @@ code {
     </div>
 
     <div class="pattern be">
-      <div class="pattern-name">Strategy<span class="badge badge-lec">★ föreläsning</span></div>
+      <div class="pattern-name">Strategy<span class="badge badge-lec">★ föreläsning</span><a class="badge badge-anim" href="designmonster-guide.html#strategy-1">▶ animerad guide</a></div>
       <div class="pattern-body">
         Byt ut en algoritm runtime utan att ändra koden runt om. Algoritmen bor i en egen klass.
         <span class="pattern-when"><code>meny.OrderBy(r => r.Pris)</code> — lambdan du skickar in <em>är</em> strategin. Du väljer sorteringslogik utan att ändra <code>OrderBy</code>. Nytt krav? Ny klass. Rör ingenting annat.</span>
