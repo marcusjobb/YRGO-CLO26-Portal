@@ -2091,6 +2091,22 @@
       }
      ],
      "ovningar": {}
+    },
+    {
+     "titel": "Inför tentan: läs och träna",
+     "beskrivning": "Vad du ska läsa och öva på inför tentan onsdag 2 december, med länkar till anteckningar, övningar och tentafrågor.",
+     "tags": [
+      "tenta",
+      "repetition"
+     ],
+     "notes": [
+      {
+       "text": "Inför tentan: läs och träna",
+       "href": "04_csharp_hidden_gems/notes/infor_tentan.md"
+      }
+     ],
+     "ovningar": {},
+     "publish": "2026-11-25"
     }
    ],
    "publish": "2026-11-20",
