@@ -49,6 +49,11 @@
    "href": "https://marcusjobb.github.io/YRGO-CLO26-Portal/git-visuell-guide.html"
   },
   {
+   "icon": "🧬",
+   "label": "Arv, abstract och interface — animerad guide",
+   "href": "https://marcusjobb.github.io/YRGO-CLO26-Portal/oop-guide.html"
+  },
+  {
    "icon": "🦸",
    "label": "Livekodning — Mira hjälteäventyret",
    "href": "https://github.com/marcusjobb/Mira_hero_01_livekodning"

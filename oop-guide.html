@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arv, abstract och interface – visuell guide</title>
+<style>
+:root{
+  color-scheme: light dark;
+  --bg:#f7f6f2; --card:#ffffff; --ink:#1d1d1f; --muted:#62666d; --line:#dedbd1;
+  --accent:#4f46e5; --accent-bg:#e9e7fd;
+  --bad:#dc2626; --bad-bg:#fde8e8;
+  --ok:#16a34a; --ok-bg:#e2f6e8;
+  --warn:#f59e0b; --warn-bg:#fff4dc;
+  --iface:#7c3aed; --iface-bg:#efe7fd;
+  --weapon:#0284c7; --weapon-bg:#e0f2fd;
+  --code-bg:#14161a; --code-ink:#e8e8ea; --code-line:#2a2d35; --code-hl:#2f3550;
+  --k:#c792ea; --t:#82aaff; --s:#c3e88d; --c:#7f8794; --n:#f78c6c;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#15161a; --card:#1f2127; --ink:#f0f0f2; --muted:#a0a4ab; --line:#33363e;
+    --accent:#818cf8; --accent-bg:#2a2c4a;
+    --bad:#f87171; --bad-bg:#3b2224;
+    --ok:#4ade80; --ok-bg:#1f3527;
+    --warn:#fbbf24; --warn-bg:#3b3220;
+    --iface:#a78bfa; --iface-bg:#2d2547;
+    --weapon:#38bdf8; --weapon-bg:#1c3342;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:0 16px 40px}
+.wrap{max-width:1180px;margin:0 auto}
+header{padding:24px 0 8px}
+h1{margin:0 0 4px;font-size:1.6rem}
+.lead{margin:0;color:var(--muted)}
+.picker{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 6px}
+.picker .lbl{color:var(--muted);font-size:.9rem}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-size:.92rem;cursor:pointer}
+.chip[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.chip[disabled]{opacity:.5;cursor:default}
+.blurb{margin:6px 0 0;padding:8px 12px;border-left:3px solid var(--accent);background:var(--accent-bg);border-radius:0 8px 8px 0;font-size:.95rem}
+.steps{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 14px}
+.dot{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--muted);font:inherit;font-size:.85rem;cursor:pointer}
+.dot[aria-current="step"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.dot.done{color:var(--ink);border-color:var(--accent)}
+.main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:16px;align-items:start}
+@media (max-width:860px){.main{grid-template-columns:1fr}.stagecol{order:-1}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.cardhead{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-bottom:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+.cardhead button{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:2px 10px;font:inherit;font-size:.8rem;cursor:pointer}
+pre.code{margin:0;padding:12px 0;background:var(--code-bg);color:var(--code-ink);font:13.5px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-x:auto;min-height:340px}
+pre.code .ln{display:block;padding:0 14px 0 8px;white-space:pre;border-left:3px solid transparent;opacity:.72;transition:opacity .4s,background .4s}
+pre.code .ln.hl{opacity:1;background:var(--code-hl);border-left-color:var(--accent)}
+pre.code .ln b{display:inline-block;width:2.2em;color:var(--c);font-weight:400;user-select:none}
+.k{color:var(--k)}.t{color:var(--t)}.s{color:var(--s)}.c{color:var(--c);font-style:italic}.n{color:var(--n)}
+.stagewrap{position:relative;width:100%;background:var(--card)}
+.stage{position:absolute;left:0;top:0;width:640px;height:400px;transform-origin:0 0}
+.box{position:absolute;border-radius:12px;border:2px solid var(--line);background:var(--card);padding:8px 10px;
+  transition:left .8s ease,top .8s ease,width .8s ease,height .8s ease,opacity .5s ease,background .5s,border-color .5s,transform .8s ease;overflow:hidden}
+.box .bt{font-weight:700;font-size:15px;line-height:1.2}
+.box .bs{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.25}
+.box.hero{background:var(--accent-bg);border-color:var(--accent)}
+.box.hero .bt{font-size:18px}
+.box.bad{background:var(--bad-bg);border-color:var(--bad)}
+.box.ok{background:var(--ok-bg);border-color:var(--ok)}
+.box.chunk{background:var(--warn-bg);border-color:var(--warn);padding:5px 10px;z-index:2}
+.box.chunk .bt{font:600 13px/1.3 ui-monospace,Menlo,Consolas,monospace;white-space:nowrap}
+.box.weapon{background:var(--weapon-bg);border-color:var(--weapon);z-index:2;padding:8px 6px;text-align:center}
+.box.weapon .bt{font-size:13px}
+.box.weapon.active{box-shadow:0 0 0 4px color-mix(in srgb,var(--weapon) 35%,transparent)}
+.box.iface{background:var(--iface-bg);border-color:var(--iface);border-style:dashed;text-align:center}
+.box.note{background:var(--ok-bg);border-color:var(--ok);text-align:center;padding:6px}
+.box.note .bt{font-size:14px;color:var(--ok)}
+.box.note.bad{background:var(--bad-bg);border-color:var(--bad)}
+.box.note.bad .bt{color:var(--bad)}
+svg.arrows{position:absolute;left:0;top:0;width:640px;height:400px;pointer-events:none;z-index:1}
+svg.arrows .a{opacity:0;transition:opacity .4s}
+svg.arrows .a.on{opacity:1}
+.packet{position:absolute;left:0;top:0;z-index:5;opacity:0;pointer-events:none}
+.packet span{display:block;transform:translate(-50%,-50%);background:var(--ink);color:var(--bg);border-radius:999px;padding:3px 10px;font:600 12.5px ui-monospace,Menlo,Consolas,monospace;white-space:nowrap}
+.packet.big span{font-size:20px;padding:9px 22px;background:var(--accent);color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.box.sign{background:var(--accent);border-color:var(--accent);text-align:center;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:6}
+.box.sign .bt{font-size:26px;color:#fff;letter-spacing:.5px}
+.box.sign.bad{background:var(--bad);border-color:var(--bad)}
+.box.sign.bad .bt{font-size:21px}
+.explain{padding:14px 16px;border-top:1px solid var(--line)}
+.explain h2{margin:0 0 4px;font-size:1.1rem}
+.explain p{margin:4px 0}
+.tip{margin-top:10px;padding:10px 12px;border-radius:10px;background:var(--warn-bg);border:1px solid var(--warn);font-size:.95rem}
+.out{margin:0;padding:10px 14px;background:var(--code-bg);color:var(--code-ink);font:13.5px/1.6 ui-monospace,Menlo,Consolas,monospace;min-height:84px;border-top:1px solid var(--line)}
+.out[hidden]{display:none}
+.out .p{color:var(--c)}
+.out .l{display:block;animation:fade .5s both}
+@keyframes fade{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+.bar{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;margin:10px 0 14px}
+.bar .steps{margin:0}
+.controls{display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 16px;font:inherit;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:disabled{opacity:.45;cursor:default}
+.btn:focus-visible,.chip:focus-visible,.dot:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+footer{margin-top:22px;color:var(--muted);font-size:.9rem}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:reduce){
+  .box,svg.arrows .a,pre.code .ln{transition:none}
+  .out .l{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Arv, abstract och interface – visuell guide</h1>
+    <p class="lead">Se hur kod som upprepas flyttas upp till en basklass, hur en abstrakt klass tvingar barnen att göra rätt, och hur ett interface är ett löfte som olika klasser kan dela. Klicka dig igenom eller tryck Spela upp. Börja gärna med Arv.</p>
+  </header>
+
+  <div class="picker" id="patterns" role="tablist" aria-label="Ämne"><span class="lbl">Ämne:</span></div>
+  <p class="blurb" id="blurb"></p>
+  <div class="bar">
+    <div class="steps" id="steps" aria-label="Steg"></div>
+    <div class="controls">
+      <button class="btn" id="back" type="button">← Tillbaka</button>
+      <button class="btn primary" id="play" type="button">▶ Spela upp</button>
+      <button class="btn" id="next" type="button">Nästa →</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <section class="card" aria-label="C#-kod">
+      <div class="cardhead"><span id="codeTitle">Program.cs</span><button id="copy" type="button">Kopiera</button></div>
+      <pre class="code" id="code" tabindex="0"></pre>
+    </section>
+
+    <section class="card stagecol" aria-label="Animerad bild">
+      <div class="stagewrap" id="stagewrap">
+        <div class="stage" id="stage">
+          <svg class="arrows" id="arrows" viewBox="0 0 640 400" aria-hidden="true">
+            <defs>
+              <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+      <pre class="out" id="out" aria-live="polite" hidden></pre>
+      <div class="explain" aria-live="polite">
+        <h2 id="title"></h2>
+        <div id="text"></div>
+        <div class="tip" id="tip" hidden></div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    Läs mer: <a href="https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-03-fordjupad-oop/01_trygg_start_oop/notes/arv.md">Arv</a> och <a href="https://github.com/marcusjobb/YRGO-CLO26-HT26Kursmaterial/blob/main/kurs-03-fordjupad-oop/01_trygg_start_oop/notes/abstract_och_interface.md">Abstract och interface</a> i kursmaterialet.
+    Fler idéer hittar du i <a href="designmonster-guide.html">designmönster-guiden</a>.
+    Tips: pilknapparna på tangentbordet fungerar också.
+  </footer>
+</div>
+
+<script>
+/* ============ DATA ============ */
+const W = 640, H = 400;
+
+/* Varje steg ändrar bara det som ska ändras. Resten ärvs från steget innan. */
+
+/* ---------- ARV ---------- */
+const ARV = {
+  id: 'arv', name: 'Arv', codeTitle: 'Character.cs',
+  blurb: '<b>Arv:</b> det som är gemensamt skrivs en gång, i basklassen. Barnen får det gratis och lägger bara till det som är unikt för dem.',
+  elements: ['hero','monster','wizard','base','note'],
+  steps: [
+    { title: 'Hjälte och monster har samma kod',
+      text: '<p>I spelet finns en <b>Hero</b> och ett <b>Monster</b>. Båda har ett namn, hälsa och kan ta skada. Så vi skriver samma tre rader i båda klasserna.</p><p>Det fungerar. Men titta på bilden: <b>samma kod står på två ställen</b>.</p>',
+      code: `class Hero
+{
+    public string Name;
+    public int Health;
+
+    public void TakeDamage(int amount)
+    {
+        Health -= amount;
+    }
+}
+
+class Monster
+{
+    public string Name;
+    public int Health;
+
+    public void TakeDamage(int amount)
+    {
+        Health -= amount;
+    }
+}`,
+      hl: [3, 9],
+      set: {
+        hero:    { x:40,  y:30, w:270, h:230, o:1, cls:'hero', t:'Hero', s:'Name · Health · TakeDamage()' },
+        monster: { x:330, y:30, w:270, h:230, o:1, cls:'hero', t:'Monster', s:'Name · Health · TakeDamage()' },
+        note:    { x:140, y:300, w:360, h:50, o:1, cls:'note bad', t:'Samma tre rader, två gånger' }
+      }
+    },
+    { title: 'Tre klasser, tre kopior',
+      text: '<p>Nu kommer en <b>Wizard</b> också. Vi kopierar koden en gång till.</p><p>Vill vi ändra hur skada räknas måste vi göra det <b>tre gånger</b>, och missar vi en blir spelet fel. Programmerare har en regel för det: <b>DRY</b>, <i>Don\'t Repeat Yourself</i>.</p>',
+      code: `class Wizard
+{
+    public string Name;
+    public int Health;
+
+    public void TakeDamage(int amount)
+    {
+        Health -= amount;
+    }
+}
+
+// Nu finns samma kod på tre ställen.
+// Vill vi ändra hur skada räknas?
+// Då blir det tre ändringar.`,
+      hl: [1, 9],
+      set: {
+        hero:    { x:20,  y:40, w:190, h:190, cls:'hero bad', s:'kopia 1' },
+        monster: { x:225, y:40, w:190, h:190, cls:'hero bad', s:'kopia 2' },
+        wizard:  { x:430, y:40, w:190, h:190, o:1, cls:'hero bad', t:'Wizard', s:'kopia 3' },
+        note:    { x:90,  y:290, w:460, h:50, cls:'note bad', t:'Ändrar du TakeDamage? Ändra på 3 ställen' }
+      }
+    },
+    { title: 'Flytta upp det gemensamma',
+      text: '<p>Lösningen: plocka ut det som är lika och lägg det i <b>en enda klass</b> högst upp. Den kallas <b>basklassen</b>. Här heter den <code>Character</code>.</p><p>Hero, Monster och Wizard skriver <code>: Character</code> efter sitt namn. Det betyder “jag <b>ärver</b> från Character”. Pilarna på bilden säger <b>“är en sorts”</b>.</p>',
+      code: `class Character
+{
+    public string Name;
+    public int Health;
+
+    public void TakeDamage(int amount)
+    {
+        Health -= amount;
+    }
+}
+
+class Hero : Character { }
+class Monster : Character { }
+class Wizard : Character { }`,
+      hl: [1, 9],
+      set: {
+        base:    { x:150, y:20, w:340, h:90, o:1, cls:'hero ok', t:'Character', s:'Name · Health · TakeDamage()' },
+        hero:    { x:20,  y:230, w:170, h:80, cls:'weapon', t:'Hero', s:'bara det unika' },
+        monster: { x:235, y:230, w:170, h:80, cls:'weapon', t:'Monster', s:'bara det unika' },
+        wizard:  { x:450, y:230, w:170, h:80, cls:'weapon', t:'Wizard', s:'bara det unika' },
+        note:    { o:0 }
+      },
+      arrows: [
+        { a:'hero', b:'base', label:'är en' }, { a:'monster', b:'base' }, { a:'wizard', b:'base' }
+      ]
+    },
+    { title: 'Barnen får allt gratis',
+      file: 'Program.cs',
+      text: '<p>Hero har aldrig skrivit <code>TakeDamage</code>, men Mira kan ändå ta skada. Metoden <b>kommer från Character</b>.</p><p>Det är hela poängen: skriv en gång, använd överallt. Ändrar du <code>TakeDamage</code> i Character ändras den för alla tre på en gång.</p>',
+      code: `Hero mira = new Hero();
+mira.Name = "Mira";
+mira.Health = 100;
+
+mira.TakeDamage(20);
+Console.WriteLine($"{mira.Name} har {mira.Health} hälsa kvar");`,
+      hl: [5, 6],
+      set: { hero: { cls:'hero ok', s:'ärver TakeDamage()' } },
+      arrows: [
+        { a:'hero', b:'base', label:'är en' }, { a:'monster', b:'base' }, { a:'wizard', b:'base' }
+      ],
+      msg: { a:'hero', b:'base', out:'TakeDamage(20)', back:'Health = 80' },
+      lines: ['Mira har 80 hälsa kvar']
+    },
+    { title: 'virtual och override: barnet byter en sak',
+      text: '<p>Ibland ska barnet göra <i>något annat</i> än basklassen. Då markerar basklassen metoden <code>virtual</code> (“du får byta ut den”), och barnet skriver <code>override</code>.</p><p>Hero byter ut <code>Attack</code> mot sitt eget svar. Monster ändrar ingenting, så det använder basklassens svar.</p>',
+      code: `class Character
+{
+    public string Name;
+    public virtual string Attack()
+        => $"{Name} slår till!";
+}
+
+class Hero : Character
+{
+    public override string Attack()
+        => $"{Name} svingar svärdet!";
+}
+
+class Monster : Character { }   // ärver Attack som den är`,
+      hl: [3, 4],
+      set: {
+        base:    { s:'virtual Attack(): standardsvaret' },
+        hero:    { cls:'hero ok', s:'override Attack(): eget svar' },
+        monster: { cls:'weapon', s:'använder standardsvaret' }
+      },
+      arrows: [
+        { a:'hero', b:'base', label:'är en' }, { a:'monster', b:'base' }, { a:'wizard', b:'base' }
+      ],
+      lines: ['Mira svingar svärdet!', 'Gruff slår till!']
+    },
+    { title: 'Så känner du igen arv',
+      text: '<p>Prova med meningen: <b>“Hero är en sorts Character.”</b> Låter det rätt? Då passar arv. Låter det konstigt, till exempel “Garage är en sorts Bil”? Då är arv fel verktyg.</p><p><b>Vardagsliknelse:</b> en rik farbror som lämnar efter sig tre sportbilar. Du ärver allt han ägde utan att ha köpt något. Men tänk på att även hans dåliga vanor följer med.</p>',
+      tip: '<b>Proffsens tips:</b> ärv inte bara för att spara några rader. Ärv när det verkligen <i>är en sorts</i>. Behöver olika slags saker kunna samma sak, till exempel läka, är det ett <b>interface</b> du vill ha. Det visar nästa flik.',
+      code: `// Arv i en mening:
+// det gemensamma skrivs en gång i basklassen,
+// barnen får det gratis och lägger bara till det unika.
+//
+// Character      = basklassen, det gemensamma
+// Hero : Character = Hero ÄR EN SORTS Character
+// virtual/override = barnet får byta ut en sak`,
+      hl: [1, 3],
+      set: {
+        base: { cls:'weapon' },
+        note: { x:130, y:335, w:380, h:44, o:1, cls:'note', t:'Hero är en sorts Character ✔' }
+      },
+      keepOut: true,
+      arrows: [
+        { a:'hero', b:'base', label:'är en' }, { a:'monster', b:'base' }, { a:'wizard', b:'base' }
+      ]
+    }
+  ]
+};
+
+/* ---------- ABSTRACT ---------- */
+const ABSTRACT = {
+  id: 'abstract', name: 'Abstract', codeTitle: 'Character.cs',
+  blurb: '<b>Abstract:</b> en ritning som aldrig blir ett objekt. Den tvingar varje barn att skriva sin egen version av det som måste vara olika.',
+  elements: ['base','hero','monster','x','sign','note'],
+  steps: [
+    { title: 'Finns det en “allmän karaktär”?',
+      text: '<p>I spelet finns hjältar och monster. Men finns det en <i>vanlig karaktär</i>, som varken är hjälte eller monster? Nej. Ändå går det att skriva <code>new Character()</code>.</p><p>Och vad ska en sådan karaktär göra när den <code>Attack</code>-ar? Vi vet inte. Det går inte att svara på.</p>',
+      code: `class Character
+{
+    public string Name;
+    public int Health;
+
+    public virtual string Attack()
+        => "???";   // vad gör en allmän karaktär?
+}
+
+var someone = new Character();   // går att göra just nu
+someone.Attack();                // ???`,
+      hl: [10, 11],
+      set: {
+        base:    { x:170, y:20, w:300, h:100, o:1, cls:'hero', t:'Character', s:'Name · Health · Attack()' },
+        hero:    { x:60,  y:260, w:170, h:70, o:1, cls:'weapon', t:'Hero' },
+        monster: { x:410, y:260, w:170, h:70, o:1, cls:'weapon', t:'Monster' },
+        x:       { x:190, y:140, w:260, h:40, o:1, cls:'chunk', t:'new Character("Någon", 50)', s:'' },
+        note:    { x:120, y:340, w:400, h:44, o:1, cls:'note bad', t:'Vad ska Attack() göra för “Någon”?' }
+      },
+      arrows: [ { a:'hero', b:'base' }, { a:'monster', b:'base' } ]
+    },
+    { title: 'abstract: förbjud att skapa den',
+      text: '<p>Lösningen är ett enda ord: <code>abstract</code>. Då blir klassen en <b>ritning</b>. Du kan ärva från den, men du kan <b>aldrig skapa ett objekt</b> av den.</p><p>Försöker du ändå säger kompilatorn nej, <i>innan</i> programmet ens körs. Det är ett skyddsnät.</p>',
+      code: `abstract class Character
+{
+    public string Name;
+    public int Health;
+}
+
+var someone = new Character();
+//  ^ kompileringsfel: en abstrakt klass går inte att skapa`,
+      hl: [6, 7],
+      set: {
+        base: { cls:'iface', t:'abstract Character', s:'en ritning, aldrig ett objekt' },
+        x:    { cls:'note bad', t:'new Character()  ✗', s:'' },
+        sign: { x:150, y:182, w:340, h:48, o:0, cls:'sign bad', t:'KOMPILERINGSFEL' },
+        note: { o:0 }
+      },
+      arrows: [ { a:'hero', b:'base', dash:true }, { a:'monster', b:'base', dash:true } ],
+      msg: { a:'x', b:'base', out:'new', reveal:{ sign:{ o:1 } } },
+      lines: ['error CS0144: kan inte skapa en instans av den abstrakta klassen Character']
+    },
+    { title: 'abstract metod: tvinga barnen',
+      text: '<p>Det går att gå längre. En <b>abstrakt metod</b> har inget innehåll, bara ett <b>krav</b>: “alla som ärver mig <i>måste</i> skriva sin egen <code>Attack</code>.”</p><p>Basklassen vet inte hur en hjälte eller ett monster attackerar. Men den vet att <i>alla</i> måste kunna det.</p>',
+      code: `abstract class Character
+{
+    public string Name;
+    public int Health;
+
+    public abstract string Attack();   // ingen kropp, bara ett krav
+}`,
+      hl: [6, 6],
+      set: {
+        base:    { s:'abstract Attack(): inget innehåll' },
+        hero:    { cls:'weapon', s:'måste skriva Attack()' },
+        monster: { cls:'weapon', s:'måste skriva Attack()' },
+        x:       { o:0 },
+        sign:    { o:0 }
+      },
+      arrows: [ { a:'hero', b:'base', dash:true }, { a:'monster', b:'base', dash:true } ]
+    },
+    { title: 'Barnet skriver sin egen version',
+      file: 'Hero.cs',
+      text: '<p>Hero och Monster skriver varsin <code>Attack</code> med <code>override</code>. Nu fungerar det, och varje barn gör <b>sin egen sak</b>.</p><p>Det som är <i>gemensamt</i> (<code>Name</code>, <code>Health</code>) ligger kvar i basklassen. Det som måste vara <i>olika</i> tvingas fram.</p>',
+      code: `class Hero : Character
+{
+    public override string Attack()
+        => $"{Name} svingar svärdet!";
+}
+
+class Monster : Character
+{
+    public override string Attack()
+        => $"{Name} morrar och hugger!";
+}`,
+      hl: [3, 4],
+      set: {
+        hero:    { cls:'hero ok', s:'override Attack()' },
+        monster: { cls:'hero ok', s:'override Attack()' }
+      },
+      arrows: [ { a:'hero', b:'base', dash:true }, { a:'monster', b:'base', dash:true } ],
+      lines: ['Mira svingar svärdet!', 'Gruff morrar och hugger!']
+    },
+    { title: 'Glömmer du? Kompilatorn säger ifrån',
+      text: '<p>Säg att vi lägger till ett nytt monster och <b>glömmer</b> att skriva <code>Attack</code>. Det går inte att köra. Kompilatorn stoppar oss direkt och talar om vad som saknas.</p><p>Det är därför abstrakt är trevligt: <b>felet hittas medan du skriver</b>, inte när någon spelar.</p>',
+      code: `class Monster : Character
+{
+    // glömde skriva Attack()
+}
+// error CS0534: Monster implementerar inte
+// den ärvda abstrakta medlemmen Character.Attack()`,
+      hl: [1, 4],
+      set: {
+        monster: { cls:'hero bad', s:'saknar Attack()!' },
+        sign:    { x:120, y:175, w:400, h:56, o:1, cls:'sign bad', t:'FEL: Monster saknar Attack()' }
+      },
+      arrows: [ { a:'hero', b:'base', dash:true }, { a:'monster', b:'base', dash:true } ],
+      lines: ['error CS0534: Monster implementerar inte Character.Attack()']
+    },
+    { title: 'abstract eller virtual?',
+      text: '<p><b>virtual</b> betyder “du <i>får</i> byta ut den”. Barnet kan låta bli. <b>abstract</b> betyder “du <i>måste</i> skriva den”. Barnet kan inte låta bli.</p><p>En abstrakt klass får också ha vanliga fält och metoder, som <code>Name</code> och <code>TakeDamage</code>. Så den ger dig både <b>delad kod</b> och <b>tvång</b>.</p>',
+      tip: '<b>Proffsens tips:</b> använd abstract när basklassen aldrig ska finnas som egen sak. Fråga dig: <i>“Finns det en vanlig Character?”</i> Om svaret är nej, gör den abstrakt.',
+      code: `// Abstract i en mening:
+// en ritning som aldrig blir ett objekt,
+// och som tvingar barnen att skriva det som måste vara olika.
+//
+// abstract class  = går inte att skapa
+// abstract metod  = barnet MÅSTE skriva den
+// virtual metod   = barnet FÅR skriva en egen`,
+      hl: [1, 3],
+      set: {
+        monster: { cls:'hero ok', s:'override Attack()' },
+        sign:    { o:0 },
+        note:    { x:90, y:335, w:460, h:48, o:1, cls:'note', t:'virtual = barnet får byta.  abstract = barnet måste.' }
+      },
+
+      arrows: [ { a:'hero', b:'base', dash:true }, { a:'monster', b:'base', dash:true } ]
+    }
+  ]
+};
+
+/* ---------- INTERFACE ---------- */
+const INTERFACE = {
+  id: 'interface', name: 'Interface', codeTitle: 'IHealer.cs',
+  blurb: '<b>Interface:</b> ett löfte om vad en klass kan göra, oavsett vad den <i>är</i>. Många olika klasser kan lova samma sak.',
+  elements: ['iface','iface2','wizard','fire','hero','note'],
+  steps: [
+    { title: 'Två olika saker som båda kan läka',
+      file: 'Healers.cs',
+      text: '<p>En <b>Wizard</b> kan läka en hjälte. En <b>lägereld</b> kan också värma upp en hjälte. De är helt olika: Wizard är en karaktär, Campfire är bara ett föremål.</p><p>De kan inte dela en basklass, för en eld är ingen karaktär. Det enda de har gemensamt är en <b>förmåga</b>.</p>',
+      code: `class Wizard : Character
+{
+    public void Heal(Character target)
+    {
+        target.Health += 20;
+        Console.WriteLine($"{Name} läker {target.Name}.");
+    }
+}
+
+class Campfire   // ingen Character, bara ett föremål
+{
+    public void Heal(Character target)
+    {
+        target.Health += 5;
+        Console.WriteLine($"Lägerelden värmer {target.Name}.");
+    }
+}`,
+      hl: [3, 7],
+      set: {
+        wizard: { x:60,  y:60, w:230, h:120, o:1, cls:'hero', t:'Wizard', s:'en karaktär som kan läka' },
+        fire:   { x:350, y:60, w:230, h:120, o:1, cls:'hero', t:'Campfire', s:'ett föremål som kan läka' },
+        note:   { x:90,  y:250, w:460, h:50, o:1, cls:'note bad', t:'De delar ingen basklass, bara en förmåga' }
+      }
+    },
+    { title: 'Ett löfte: IHealer',
+      text: '<p>Lösningen är ett <b>interface</b>. Det är ett <b>löfte</b> om vad en klass kan göra, utan att säga <i>hur</i>.</p><p>Här lovar <code>IHealer</code>: “den som lovar mig har en metod <code>Heal</code>”. Det är bara löftet. Ingen kod, inget innehåll.</p>',
+      code: `interface IHealer
+{
+    void Heal(Character target);
+}`,
+      hl: [1, 4],
+      set: {
+        iface:  { x:170, y:15, w:300, h:70, o:1, cls:'iface', t:'IHealer', s:'löftet: void Heal(Character target)' },
+        wizard: { x:60,  y:200, w:230, h:90 },
+        fire:   { x:350, y:200, w:230, h:90 },
+        note:   { o:0 }
+      }
+    },
+    { title: 'Båda lovar att kunna läka',
+      file: 'Healers.cs',
+      text: '<p>Nu skriver båda klasserna <code>: IHealer</code>. De streckade pilarna betyder <b>“lovar”</b>. Wizard ärver från Character <i>och</i> lovar att läka. Campfire lovar bara att läka.</p><p>Skriver du basklass och interface tillsammans: <b>basklassen först</b>, sedan interfacen.</p>',
+      code: `class Wizard : Character, IHealer
+{
+    public void Heal(Character target)
+    {
+        target.Health += 20;
+    }
+}
+
+class Campfire : IHealer
+{
+    public void Heal(Character target)
+    {
+        target.Health += 5;
+    }
+}`,
+      hl: [1, 1],
+      set: {
+        wizard: { s:'är en Character, kan läka' },
+        fire:   { s:'kan läka' },
+        note:   { x:150, y:330, w:340, h:44, o:1, cls:'note', t:'Basklassen först, sedan interfacen' }
+      },
+      arrows: [ { a:'wizard', b:'iface', dash:true }, { a:'fire', b:'iface', dash:true } ]
+    },
+    { title: 'Den som använder löftet bryr sig inte',
+      file: 'Program.cs',
+      text: '<p>Nu kommer fördelen. Vi lägger båda i <b>samma lista</b> av <code>IHealer</code>. Koden som läker vet inte om det är en Wizard eller en eld, och behöver inte veta.</p><p>Den frågar bara: <i>“kan du läka?”</i> Och alla som lovat svarar ja.</p>',
+      code: `List<IHealer> healers = new List<IHealer>
+{
+    new Wizard("Zelda", 70),
+    new Campfire()
+};
+
+foreach (IHealer healer in healers)
+    healer.Heal(mira);`,
+      hl: [7, 8],
+      set: {
+        hero: { x:225, y:310, w:190, h:64, o:1, cls:'weapon', t:'Mira', s:'Hälsa: 60' },
+        note: { o:0 }
+      },
+      arrows: [ { a:'wizard', b:'iface', dash:true }, { a:'fire', b:'iface', dash:true } ],
+      msgs: [
+        { a:'wizard', b:'hero', out:'Heal()', dur:1000, reveal:{ hero:{ s:'Hälsa: 80' } } },
+        { a:'fire',   b:'hero', out:'Heal()', dur:1000, delay:1500, reveal:{ hero:{ s:'Hälsa: 85' } } }
+      ],
+      lines: ['Zelda läker Mira.', 'Lägerelden värmer Mira.']
+    },
+    { title: 'En basklass, men många löften',
+      file: 'Wizard.cs',
+      text: '<p>En klass kan bara ärva från <b>en</b> basklass. Men den kan lova <b>hur många interface som helst</b>. Här är Wizard en Character, och den lovar både att läka och att trolla.</p><p>Därför säger man: arv beskriver vad något <i>är</i>, interface beskriver vad något <i>kan</i>.</p>',
+      code: `interface ICaster
+{
+    string Cast();
+}
+
+class Wizard : Character, IHealer, ICaster
+{
+    // en basklass, men hur många löften som helst
+}`,
+      hl: [6, 6],
+      set: {
+        iface:  { x:30,  y:15, w:270, h:70 },
+        iface2: { x:340, y:15, w:270, h:70, o:1, cls:'iface', t:'ICaster', s:'löftet: string Cast()' },
+        wizard: { x:195, y:200, w:250, h:100, cls:'hero ok', t:'Wizard', s:'Character + IHealer + ICaster' },
+        fire:   { o:0 },
+        hero:   { o:0 },
+        note:   { o:0 }
+      },
+      arrows: [ { a:'wizard', b:'iface', dash:true }, { a:'wizard', b:'iface2', dash:true } ]
+    },
+    { title: 'Interface eller abstract?',
+      text: '<p>Ställ båda meningarna och se vilken som låter naturlig:</p><ul><li><b>“Wizard är en sorts Character”</b> → arv eller abstract</li><li><b>“Wizard kan läka”</b> → interface</li></ul><p>Är du osäker, prova båda. Den som låter rätt visar vägen.</p>',
+      tip: '<b>Proffsens tips:</b> ett interface har inget innehåll och ingen delad kod, det är bara ett löfte. Behöver du dela kod mellan klasserna är abstrakt basklass bättre. Behöver du bara att olika slags saker kan samma sak, är interface rätt.',
+      code: `// Interface i en mening:
+// ett löfte om vad en klass kan göra,
+// oavsett vad den är.
+//
+// IHealer          = löftet
+// : Character, IHealer = är en Character, KAN läka
+// en basklass, hur många interface som helst`,
+      hl: [1, 3],
+      set: {
+        note: { x:90, y:325, w:460, h:50, o:1, cls:'note', t:'Wizard är en sorts Character. Wizard kan läka.' }
+      },
+
+      arrows: [ { a:'wizard', b:'iface', dash:true }, { a:'wizard', b:'iface2', dash:true } ]
+    }
+  ]
+};
+
+const PATTERNS = [ARV, ABSTRACT, INTERFACE];
+const COMING = [];
+
+/* ============ HJÄLPFUNKTIONER ============ */
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const KW = 'class|interface|abstract|override|virtual|public|private|new|return|var|string|void|static|else|if|int|bool|using|namespace|foreach|in';
+const TOKEN = new RegExp('(\\/\\/.*$)|(\\$?"(?:[^"\\\\]|\\\\.)*")|\\b('+KW+')\\b|\\b([A-Z][A-Za-z0-9_]*)\\b|\\b(\\d+)\\b','g');
+function highlight(line){
+  let out = '', last = 0, m;
+  TOKEN.lastIndex = 0;
+  while ((m = TOKEN.exec(line))){
+    out += esc(line.slice(last, m.index));
+    const cls = m[1] ? 'c' : m[2] ? 's' : m[3] ? 'k' : m[4] ? 't' : 'n';
+    out += '<span class="'+cls+'">'+esc(m[0])+'</span>';
+    last = m.index + m[0].length;
+  }
+  return out + esc(line.slice(last));
+}
+
+/* ============ TILLSTÅND ============ */
+let pat = ARV, cur = 0, timer = null, token = 0;
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const boxes = {};
+const stage = $('stage'), wrap = $('stagewrap'), svg = $('arrows');
+
+/* Bygg en div per element en gång */
+function buildBoxes(){
+  Object.keys(boxes).forEach(k => { boxes[k].remove(); delete boxes[k]; });
+  pat.elements.forEach(id => {
+    const d = document.createElement('div');
+    d.className = 'box'; d.style.opacity = 0;
+    d.innerHTML = '<div class="bt"></div><div class="bs"></div>';
+    stage.appendChild(d); boxes[id] = d;
+  });
+}
+
+/* Räkna ut tillståndet för ett steg: slå ihop alla steg fram till och med i */
+function stateAt(i){
+  const st = {};
+  pat.elements.forEach(id => st[id] = { x:0, y:0, w:100, h:60, o:0, cls:'', t:'', s:'', d:0, r:0 });
+  for (let k = 0; k <= i; k++){
+    const set = pat.steps[k].set || {};
+    Object.keys(set).forEach(id => Object.assign(st[id], set[id]));
+    const aft = k < i ? (pat.steps[k].after || {}) : {};
+    Object.keys(aft).forEach(id => Object.assign(st[id], aft[id]));
+    if (k < i){ Object.keys(set).forEach(id => { st[id].d = 0; }); Object.keys(aft).forEach(id => { st[id].d = 0; }); }
+  }
+  return st;
+}
+
+function applyState(st){
+  Object.keys(st).forEach(id => {
+    const s = st[id], d = boxes[id];
+    d.style.left = s.x+'px'; d.style.top = s.y+'px';
+    d.style.width = s.w+'px'; d.style.height = s.h+'px';
+    d.style.opacity = s.o;
+    d.style.transitionDelay = (s.d || 0) + 'ms';
+    d.style.transform = s.r ? 'rotate(' + s.r + 'deg)' : 'none';
+    d.className = 'box ' + s.cls;
+    d.firstChild.textContent = s.t;
+    d.lastChild.textContent = s.s;
+    d.lastChild.style.display = s.s ? '' : 'none';
+  });
+}
+
+/* Pilar: från kant till kant mellan två boxars mittpunkter */
+function edge(r, tx, ty){
+  const cx = r.x + r.w/2, cy = r.y + r.h/2, dx = tx - cx, dy = ty - cy;
+  if (!dx && !dy) return {x:cx, y:cy};
+  const k = Math.min((r.w/2)/Math.abs(dx || 1e-9), (r.h/2)/Math.abs(dy || 1e-9));
+  return { x: cx + dx*k, y: cy + dy*k };
+}
+function line(st, a, b){
+  const A = st[a], B = st[b];
+  const ac = {x:A.x+A.w/2, y:A.y+A.h/2}, bc = {x:B.x+B.w/2, y:B.y+B.h/2};
+  return { p: edge(A, bc.x, bc.y), q: edge(B, ac.x, ac.y) };
+}
+function drawArrows(st, list){
+  svg.querySelectorAll('.a').forEach(n => n.remove());
+  (list || []).forEach(ar => {
+    const { p, q } = line(st, ar.a, ar.b);
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('class', 'a');
+    g.style.color = ar.color ? 'var(--'+ar.color+')' : (ar.dash ? 'var(--iface)' : 'var(--accent)');
+    const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    l.setAttribute('x1', p.x); l.setAttribute('y1', p.y); l.setAttribute('x2', q.x); l.setAttribute('y2', q.y);
+    l.setAttribute('stroke', 'currentColor'); l.setAttribute('stroke-width', ar.dash ? 2 : 2.5);
+    if (ar.dash) l.setAttribute('stroke-dasharray', '6 5');
+    l.setAttribute('marker-end', 'url(#ah)');
+    g.appendChild(l);
+    if (ar.label){
+      const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      t.setAttribute('x', (p.x+q.x)/2 + 8); t.setAttribute('y', (p.y+q.y)/2);
+      t.setAttribute('fill', 'currentColor'); t.setAttribute('font-size', '13');
+      t.setAttribute('font-family', 'ui-monospace,Menlo,Consolas,monospace');
+      t.textContent = ar.label; g.appendChild(t);
+    }
+    svg.appendChild(g);
+    requestAnimationFrame(() => requestAnimationFrame(() => g.classList.add('on')));
+  });
+}
+
+/* Pricken(arna) som bär meddelandet. Flera kan åka samtidigt (eller med delay),
+   svar är valfritt, och 'reveal' visar en del när just den pricken kommit fram. */
+function runMessage(st, msgs, myToken, done){
+  const list = Array.isArray(msgs) ? msgs : [msgs];
+  const live = JSON.parse(JSON.stringify(st));
+  let left = list.length;
+  const fin = () => { left--; if (left === 0 && myToken === token) done(); };
+  function reveal(m){
+    if (!m.reveal || myToken !== token) return;
+    Object.keys(m.reveal).forEach(id => Object.assign(live[id], m.reveal[id]));
+    applyState(live);
+  }
+  list.forEach(m => {
+    const { p, q } = line(st, m.a, m.b);
+    const el = document.createElement('div');
+    el.className = 'packet' + (m.big ? ' big' : ''); el.innerHTML = '<span></span>';
+    const span = el.firstChild;
+    stage.appendChild(el);
+    function leg(from, to, text, cb){
+      if (myToken !== token) return;
+      span.textContent = text; el.style.opacity = 1;
+      const anim = el.animate(
+        [{ transform:`translate(${from.x}px,${from.y}px)` }, { transform:`translate(${to.x}px,${to.y}px)` }],
+        { duration: m.dur || 1100, easing:'ease-in-out', fill:'forwards' });
+      anim.onfinish = () => { if (myToken === token) cb(); };
+    }
+    const end = () => { el.remove(); fin(); };
+    const arrive = () => { reveal(m); if (m.back) leg(q, p, m.back, end); else end(); };
+    setTimeout(() => leg(p, q, m.out, arrive), m.delay || 0);
+  });
+}
+
+function showOut(lines, animate){
+  const o = $('out');
+  o.hidden = !(lines && lines.length) && !animate;
+  o.innerHTML = '<span class="p">$ dotnet run</span>' +
+    (lines || []).map((l, i) => {
+      const anim = animate === 'all' || (animate && i === lines.length-1);
+      return '<span class="l"'+(anim ? '' : ' style="animation:none"')+'>'+esc(l)+'</span>';
+    }).join('');
+}
+
+/* Delar som ska dyka upp först när meddelandet kommit fram */
+function applyAfter(st, step){
+  if (!step.after) return;
+  const st2 = JSON.parse(JSON.stringify(st));
+  Object.keys(step.after).forEach(id => Object.assign(st2[id], step.after[id]));
+  applyState(st2);
+}
+
+/* ============ VISA ETT STEG ============ */
+function show(i){
+  cur = Math.max(0, Math.min(pat.steps.length-1, i));
+  const step = pat.steps[cur], st = stateAt(cur), myToken = ++token;
+  stage.querySelectorAll('.packet').forEach(n => n.remove());
+
+  const lines = step.code.split('\n');
+  $('code').innerHTML = lines.map((l, n) =>
+    '<span class="ln'+(step.hl && n+1 >= step.hl[0] && n+1 <= step.hl[1] ? ' hl' : '')+'"><b>'+(n+1)+'</b>'+highlight(l)+'</span>').join('');
+  $('title').textContent = (cur+1) + '. ' + step.title;
+  $('codeTitle').textContent = step.file || pat.codeTitle;
+  $('text').innerHTML = step.text;
+  const tip = $('tip'); tip.hidden = !step.tip; tip.innerHTML = step.tip || '';
+
+  applyState(st);
+  drawArrows(st, []);
+  const prevLines = (pat.steps.slice(0, cur).reverse().find(x => x.lines) || {}).lines;
+  const own = step.lines;
+  const msgs = step.msgs || step.msg;
+
+  const delay = reduce ? 0 : 850;
+  setTimeout(() => {
+    if (myToken !== token) return;
+    drawArrows(st, step.arrows);
+    if (msgs && !reduce){
+      showOut(step.msgs ? [] : (own ? own.slice(0, -1) : []), false);
+      runMessage(st, msgs, myToken, () => { applyAfter(st, step); showOut(own, own ? (step.msgs ? 'all' : true) : false); });
+    } else {
+      applyAfter(st, step);
+      showOut(own || (step.keepOut ? prevLines : null) || [], false);
+    }
+  }, delay);
+  if (!own && !step.keepOut) showOut([], false);
+
+  document.querySelectorAll('.dot').forEach((d, n) => {
+    d.setAttribute('aria-current', n === cur ? 'step' : 'false');
+    d.classList.toggle('done', n < cur);
+  });
+  $('back').disabled = cur === 0;
+  $('next').disabled = cur === pat.steps.length-1;
+  try { history.replaceState(null, '', '#' + pat.id + '-' + (cur+1)); } catch (e) {}
+}
+
+/* ============ UI ============ */
+function buildSteps(){
+  const sp = $('steps'); sp.innerHTML = '';
+  pat.steps.forEach((st, n) => {
+    const d = document.createElement('button');
+    d.className = 'dot'; d.type = 'button'; d.textContent = n+1; d.title = st.title;
+    d.addEventListener('click', () => { stop(); show(n); });
+    sp.appendChild(d);
+  });
+}
+function buildUI(){
+  const pk = $('patterns');
+  PATTERNS.forEach(p => {
+    const b = document.createElement('button');
+    b.className = 'chip'; b.type = 'button'; b.textContent = p.name; b.dataset.id = p.id;
+    b.setAttribute('role', 'tab');
+    b.addEventListener('click', () => setPattern(p, 0));
+    pk.appendChild(b);
+  });
+  COMING.forEach(n => {
+    const b = document.createElement('button');
+    b.className = 'chip'; b.type = 'button'; b.disabled = true; b.textContent = n + ' (kommer)';
+    pk.appendChild(b);
+  });
+}
+function setPattern(p, step){
+  stop(); token++;
+  pat = p;
+  document.querySelectorAll('#patterns .chip[data-id]').forEach(c =>
+    c.setAttribute('aria-selected', c.dataset.id === p.id ? 'true' : 'false'));
+  $('blurb').innerHTML = p.blurb;
+  buildBoxes(); buildSteps();
+  show(step);
+}
+function fit(){
+  const k = wrap.clientWidth / W;
+  stage.style.transform = 'scale('+k+')';
+  wrap.style.height = (H*k)+'px';
+}
+function stop(){ clearInterval(timer); timer = null; $('play').textContent = '▶ Spela upp'; }
+function play(){
+  if (timer){ stop(); return; }
+  if (cur >= pat.steps.length-1) show(0);
+  $('play').textContent = '⏸ Pausa';
+  timer = setInterval(() => {
+    if (cur >= pat.steps.length-1){ stop(); return; }
+    show(cur+1);
+  }, 8500);
+}
+$('next').addEventListener('click', () => { stop(); show(cur+1); });
+$('back').addEventListener('click', () => { stop(); show(cur-1); });
+$('play').addEventListener('click', play);
+$('copy').addEventListener('click', async () => {
+  const b = $('copy');
+  try { await navigator.clipboard.writeText(pat.steps[cur].code); b.textContent = 'Kopierad ✓'; }
+  catch (e) { b.textContent = 'Markera koden själv'; }
+  setTimeout(() => b.textContent = 'Kopiera', 1800);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight'){ stop(); show(cur+1); }
+  if (e.key === 'ArrowLeft'){ stop(); show(cur-1); }
+});
+window.addEventListener('resize', fit);
+
+buildUI(); fit();
+{
+  const m = /^#([a-z]+)-(\d+)$/.exec(location.hash);
+  const p = m ? (PATTERNS.find(x => x.id === m[1]) || ARV) : ARV;
+  setPattern(p, m ? parseInt(m[2], 10) - 1 : 0);
+}
+</script>
+</body>
+</html>
