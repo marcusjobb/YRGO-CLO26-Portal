@@ -1674,6 +1674,14 @@
       {
        "text": "Tuples (artikel)",
        "href": "04_csharp_hidden_gems/notes/tuples.md"
+      },
+      {
+       "text": "Exempel: Tuples: returnera flera värden från en metod",
+       "href": "04_csharp_hidden_gems/examples/tuples_ovn1_live.md"
+      },
+      {
+       "text": "Exempel: Tuples: namngivna värden, byte och villkor",
+       "href": "04_csharp_hidden_gems/examples/tuples_2_live.md"
       }
      ],
      "lektion": [
@@ -1707,6 +1715,10 @@
       {
        "text": "Pattern matching (artikel)",
        "href": "04_csharp_hidden_gems/notes/pattern_matching.md"
+      },
+      {
+       "text": "Exempel: Pattern matching: från typkontroll till switch-uttryck",
+       "href": "04_csharp_hidden_gems/examples/pattern_matching_live.md"
       }
      ],
      "lektion": [
@@ -1869,6 +1881,10 @@
       {
        "text": "Null-operatorerna (artikel)",
        "href": "04_csharp_hidden_gems/notes/null_operators.md"
+      },
+      {
+       "text": "Exempel: Null-operatorerna: från nästlade if till en rad",
+       "href": "04_csharp_hidden_gems/examples/null_operators_live.md"
       }
      ],
      "lektion": [
@@ -1906,6 +1922,10 @@
       {
        "text": "Indexers (artikel)",
        "href": "04_csharp_hidden_gems/notes/indexers.md"
+      },
+      {
+       "text": "Exempel: Indexers: en egen klass som går att använda med hakparenteser",
+       "href": "04_csharp_hidden_gems/examples/indexers_live.md"
       }
      ],
      "lektion": [
@@ -1943,6 +1963,10 @@
       {
        "text": "Extension methods (artikel)",
        "href": "04_csharp_hidden_gems/notes/extension_methods.md"
+      },
+      {
+       "text": "Exempel: Extension methods: lägg till en metod på string",
+       "href": "04_csharp_hidden_gems/examples/extension_methods_live.md"
       }
      ],
      "lektion": [
@@ -1988,6 +2012,10 @@
       {
        "text": "Records (artikel)",
        "href": "04_csharp_hidden_gems/notes/records.md"
+      },
+      {
+       "text": "Exempel: Records: samma värden betyder samma sak",
+       "href": "04_csharp_hidden_gems/examples/records_live.md"
       }
      ],
      "lektion": [
@@ -2025,6 +2053,18 @@
       {
        "text": "async och await (artikel)",
        "href": "04_csharp_hidden_gems/notes/async_await.md"
+      },
+      {
+       "text": "Exempel: async och await: starta jobbet nu, vänta på svaret sen",
+       "href": "04_csharp_hidden_gems/examples/async_1_live.md"
+      },
+      {
+       "text": "Exempel: async och await: tre väntanden, en i taget eller alla på en gång",
+       "href": "04_csharp_hidden_gems/examples/async_2_live.md"
+      },
+      {
+       "text": "Exempel: async och await: tre stekpannor, och den som blir klar först skriver ut sig först",
+       "href": "04_csharp_hidden_gems/examples/async_3_live.md"
       }
      ],
      "lektion": [
@@ -2062,6 +2102,18 @@
       {
        "text": "Reflection (artikel)",
        "href": "04_csharp_hidden_gems/notes/reflection.md"
+      },
+      {
+       "text": "Exempel: Reflection: läsa och sätta properties utan att veta klassens namn i förväg",
+       "href": "04_csharp_hidden_gems/examples/reflection_1_live.md"
+      },
+      {
+       "text": "Exempel: Reflection: en fabrik som fyller i standardvärden åt vilken klass som helst",
+       "href": "04_csharp_hidden_gems/examples/reflection_2_live.md"
+      },
+      {
+       "text": "Exempel: Reflection och extension methods: SetDefaults som fungerar på egna klasser",
+       "href": "04_csharp_hidden_gems/examples/reflection_3_live.md"
       }
      ],
      "ovningar": {
